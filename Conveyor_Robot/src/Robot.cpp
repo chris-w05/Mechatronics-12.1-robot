@@ -17,20 +17,12 @@ Robot::Robot()
             BACK_LEFT_DIST_SENSOR_PIN,
             FRONT_DIST_SENSOR_PIN,
             BACK_DIST_SENSOR_PIN),
-      gripper(GRIPPER_SERVO_PIN),
-      arm(
-          ARM_ROT_ENCODER_A, ARM_ROT_ENCODER_B,
-          ARM_EXT_ENCODER_A, ARM_EXT_ENCODER_B),
-      indexer(INDEXER_SERVO_PIN),
       miner(MINER_SOLENOID_PIN),
       serialComs(serialMain),
       planner(drive)
 {
     //Sets up subsystems
     subsystems[subsystemCount++] = &drive;
-    subsystems[subsystemCount++] = &gripper;
-    subsystems[subsystemCount++] = &arm;
-    subsystems[subsystemCount++] = &indexer;
     subsystems[subsystemCount++] = &miner;
     subsystems[subsystemCount++] = &serialComs;
 

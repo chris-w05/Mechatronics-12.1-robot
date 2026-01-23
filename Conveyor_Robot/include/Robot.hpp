@@ -9,8 +9,6 @@
 #include "Autonomous/AutonomousRoutine.hpp"
 #include "Autonomous/Planner.hpp"
 #include "subsystems/Arm.hpp"
-#include "subsystems/Gripper.hpp"
-#include "subsystems/Indexer.hpp"
 #include "subsystems/Miner.hpp"
 #include "subsystems/SerialComs.hpp"
 #include "SoftwareSerial.h"
@@ -26,9 +24,6 @@ public:
 
 private:
     Drive drive;
-    Gripper gripper;
-    Arm arm;
-    Indexer indexer;
     Miner miner;
     SerialComs serialComs;
 

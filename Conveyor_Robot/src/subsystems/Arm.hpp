@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Subsystem.h"
 #include "Devices/ServoControl.hpp"
 #include "Devices/MotorController.hpp"
@@ -20,7 +22,7 @@ class Arm : public Subsystem{
         {
         }
 
-        void Arm::init() override {
+        void init() override {
             _motorControler.init();
         }
 
@@ -65,10 +67,11 @@ class Arm : public Subsystem{
     private:
         //M1 -> Rotation
         //M2 -> translation
-        MotorController _motorControler;
+        
         
         Encoder _extEncoder;
         Encoder _rotEncoder;
+        MotorController _motorControler;
         int _targetAngle = 90;
         int _targetExtension = 90;
         double _currentExtension = 0;

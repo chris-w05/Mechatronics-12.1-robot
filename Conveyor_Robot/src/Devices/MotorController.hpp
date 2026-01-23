@@ -70,6 +70,11 @@ public:
         _target2 = targetM2;
     }
 
+    void setPower( int signalM1, int signalM2 ){
+        dualDriver.setM1Speed(signalM1);
+        dualDriver.setM2Speed(signalM2);
+    }
+
     void update(double current_value1, double current_value2)
     {
         double signal1 = _pid1.update(current_value1, _target1);
