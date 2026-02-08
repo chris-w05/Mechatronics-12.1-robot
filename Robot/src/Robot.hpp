@@ -59,24 +59,150 @@ class Robot{
 
         void update()
         {
-            switch (mode){
-                case AWAIT:
-                    break;
-                case AUTONOMOUS:
-                    for (Subsystem *s : subsystems)
-                        s->update();
+            // Always update SerialComs first so commands are captured promptly
+            serialComs.update();
 
-                    autonomous.update();
-                    break;
-                case SERIAL_TEST:
-                    break;
+            // If a command is available, handle it (global commands are always accepted)
+            if (serialComs.hasCommand())
+            {
+                char cmd = serialComs.getCommandChar();
+                if (cmd != 0)
+                {
+                    handleGlobalCommand(cmd);
+                }
             }
 
+            switch (mode)
+            {
+            case AWAIT:
+                // do nothing except wait for the 'S' command (handled in global handler)
+                break;
 
+            case AUTONOMOUS:
+                // In autonomous mode we want subsystems and the autonomous planner to run
+                for (int i = 0; i < subsystemCount; ++i)
+                    subsystems[i]->update();
+
+                autonomous.update();
+                break;
+
+            case SERIAL_TEST:
+                // Update all subsystems so that commands (e.g. miner.mine()) actually take effect
+                for (int i = 0; i < subsystemCount; ++i)
+                    subsystems[i]->update();
+
+                // In SERIAL_TEST mode we also accept single-character commands.
+                // Those are handled in handleSerialTestCommand(); we poll serialComs.hasCommand() above.
+                break;
+            } // switch
             
         }
 
     private:
+        /**
+         * Global commands are handled even from AWAIT state.
+         * - 'S' : enter SERIAL_TEST
+         * - 'A' : start Autonomous now
+         * - others: forwarded to serial test handler when in SERIAL_TEST
+         */
+        void handleGlobalCommand(char cmd)
+        {
+            switch (cmd)
+            {
+            case 'S':
+                if (mode != SERIAL_TEST)
+                {
+                    mode = SERIAL_TEST;
+                    serialComs.send("Entered SERIAL_TEST mode. Send 'H' for help.");
+                }
+                break;
+
+            case 'A':
+                // start autonomous immediately
+                if (mode != AUTONOMOUS)
+                {
+                    mode = AUTONOMOUS;
+                    autonomous.start();
+                    serialComs.send("Autonomous started.");
+                }
+                break;
+
+            default:
+                // If we're already in SERIAL_TEST, forward the command to the SERIAL_TEST handler.
+                if (mode == SERIAL_TEST)
+                {
+                    handleSerialTestCommand(cmd);
+                }
+                else
+                {
+                    // Unrecognized in AWAIT/AUTONOMOUS — optionally echo
+                    // This keeps the robot responsive if a user accidentally types while waiting.
+                    char buf[48];
+                    snprintf(buf, sizeof(buf), "Unknown/global cmd '%c' (S start serial, A start auton)", cmd);
+                    serialComs.send(buf);
+                }
+                break;
+            }
+        }
+
+        /**
+         * Commands that are available while in SERIAL_TEST mode.
+         *
+         * - 'M' : start miner
+         * - 'm' : stop miner
+         * - 'D' : request drive diagnostic (this is conservative: calls drive.stop() and
+         *         prints a hint. See TODO below to implement a real drive pulse)
+         * - 'E' : exit SERIAL_TEST back to AWAIT (stops miner)
+         * - 'H' : print help
+         */
+        void handleSerialTestCommand(char cmd)
+        {
+            switch (cmd)
+            {
+            case 'M':
+                miner.mine();
+                serialComs.send("Miner: mine() called.");
+                break;
+
+            case 'm':
+                miner.stopMining();
+                serialComs.send("Miner: stopMining() called.");
+                break;
+
+            case 'D':
+                // Conservative default: stop drive and prompt user how to implement a diagnostic pulse safely.
+                drive.stop(); // safe stop
+                serialComs.send("Drive: stop() called. To run a diagnostic pulse, implement Drive::runDiagnosticPulse() and call it here.");
+                // If you want a sample diagnostic pulse, add this to your Drive class:
+                // void runDiagnosticPulse() { setMotorOpenLoopLeft(100); setMotorOpenLoopRight(100); delay(200); stop(); }
+                break;
+
+            case 'd':
+            
+                break;
+            case 'E':
+                // Exit serial testing and go back to awaiting mode (stop subsystems if needed)
+                miner.stopMining();
+                mode = AWAIT;
+                serialComs.send("Exited SERIAL_TEST. Back to AWAIT.");
+                break;
+
+            case 'H':
+            default:
+            {
+                // Print help / list of test commands
+                serialComs.send("SERIAL_TEST commands:");
+                serialComs.send("  M : start miner");
+                serialComs.send("  m : stop miner");
+                serialComs.send("  D : drive diagnostic (safe default: stop; see code comments)");
+                serialComs.send("  A : start autonomous");
+                serialComs.send("  E : exit SERIAL_TEST -> AWAIT");
+                serialComs.send("  H : this help");
+            }
+            break;
+            } // switch
+        }
+
         enum RobotMode
         {
             AUTONOMOUS,

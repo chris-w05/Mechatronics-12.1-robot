@@ -5,7 +5,7 @@
 #include "Subsystem.h"
 #include "utils/Odometry.hpp"
 #include "Devices/EncoderWrapper.hpp"
-#include "Devices/MotorController.hpp"
+#include "Devices/DualMotorController.hpp"
 #include "Devices/DistanceSensor.hpp"
 
 class Drive : public Subsystem {
@@ -37,7 +37,7 @@ class Drive : public Subsystem {
         EncoderWrapper _leftEncoder;
         EncoderWrapper _rightEncoder;
 
-        MotorController _motorController;
+        DualMotorController _motorController;
 
         SharpGP2Y0A51 distSensor;
 

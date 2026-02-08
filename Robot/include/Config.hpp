@@ -61,7 +61,11 @@ static const float ARM_EXT_RATIO = 3.14 * 2; // mm/rotation - arm pos(mm) = moto
 
 
 //Miner constants
-static const int MINER_HIT_RATE = 350;                  //ms
+static const unsigned long MINER_CYCLE_MS = 400UL;                  //ms
+static const unsigned long MINER_PRESS_MS = 25UL;
+static const int MINER_SERVO_PRESS_ANGLE = 80;
+static const int MINER_SERVO_STORE_ANGLE = 160;
+static const int MINER_SERVO_RETRACT_ANGLE = 40;
 
 
 //----------------------------------PID constants

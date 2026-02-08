@@ -1,5 +1,5 @@
-#ifndef MOTOR_CONTROLLER_HPP
-#define MOTOR_CONTROLLER_HPP
+#ifndef DUAL_MOTOR_CONTROLLER_HPP
+#define DUAL_MOTOR_CONTROLLER_HPP
 
 #include <Arduino.h>
 #include "utils/PID.hpp"
@@ -13,11 +13,11 @@ struct TB9051Pins
     uint8_t m2en, m2dir, m2pwm, m2diag, m2ocm;
 };
 
-class MotorController
+class DualMotorController
 {
 public:
     // Default-pins constructor (shield #1)
-    MotorController(
+    DualMotorController(
         double kp1, double ki1, double kd1, bool m1reversed,
         double kp2, double ki2, double kd2, bool m2reversed,
         bool holdPositionWhenStopped1 = false,
@@ -33,7 +33,7 @@ public:
     }
 
     // Remapped-pins constructor (shield #2, #3, ...)
-    MotorController(
+    DualMotorController(
         const TB9051Pins &pins,
         double kp1, double ki1, double kd1, bool m1reversed,
         double kp2, double ki2, double kd2, bool m2reversed,

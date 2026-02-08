@@ -3,11 +3,16 @@
 
 #include <Arduino.h>
 #include <SoftwareSerial.h>
+
 /**
  * SerialComs
  *
  * Simple command receiver for Arduino-to-Arduino communication.
  * Commands are newline-terminated ASCII strings.
+ *
+ * Improvements:
+ * - getCommandChar() returns the first character of the latest newline-terminated command
+ *   and clears the command flag. This makes single-character commands easy to use.
  */
 class SerialComs : public Subsystem
 {
@@ -25,16 +30,16 @@ public:
     /**
      * Call once in setup()
      */
-    void init()
+    void init() override
     {
-        
+        // nothing special to init here
     }
 
     /**
      * Call periodically in loop()
-     * Non-blocking.
+     * Non-blocking. Buffers up to MAX_CMD_LEN-1 chars and sets a flag when newline ('\n') is seen.
      */
-    void update()
+    void update() override
     {
         while (_serial.available() > 0)
         {
@@ -60,7 +65,7 @@ public:
             }
             else
             {
-                // Overflow → reset buffer
+                // Overflow → reset buffer to avoid partial/malformed commands
                 _bufLen = 0;
             }
         }
@@ -75,7 +80,7 @@ public:
     }
 
     /**
-     * Get the latest command.
+     * Get the latest command string (pointer).
      * Calling this clears the command flag.
      */
     const char *getCommand()
@@ -85,14 +90,28 @@ public:
     }
 
     /**
-     * Send a message back
+     * Convenience: return the first char of the latest command (or 0 if none).
+     * Clears the command flag.
+     */
+    char getCommandChar()
+    {
+        if (!_hasCommand)
+            return 0;
+        _hasCommand = false;
+        if (_buffer[0] == '\0')
+            return 0;
+        return _buffer[0];
+    }
+
+    /**
+     * Send a message back (adds newline).
      */
     void send(const char *msg)
     {
         _serial.println(msg);
     }
 
-    virtual void stop() {}
+    virtual void stop() override {}
 
 private:
     SoftwareSerial &_serial;
