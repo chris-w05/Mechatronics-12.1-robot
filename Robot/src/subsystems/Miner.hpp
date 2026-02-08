@@ -1,6 +1,9 @@
+#pragma once
+
+#include <Arduino.h>
 #include "Subsystem.h"
 #include "Devices/ServoControl.hpp"
-#include "Devices/Encoder.hpp"
+#include "Devices/EncoderWrapper.hpp"
 #include "utils/PID.hpp"
 #include "Devices/MotorController.hpp"
 #include "Config.hpp"
@@ -9,8 +12,8 @@
 class Miner: public Subsystem
 {
 public:
-    Miner(const int solenoidPin):
-    mineSolenoid(solenoidPin)
+    Miner(const int servoPin):
+    servo(servoPin, 0, 180, false)
     {}
 
 
@@ -21,26 +24,12 @@ public:
 
     void init() override
     {
-        mineSolenoid.init();
+
     }
 
     void update() override
     {
-        unsigned long now = millis();
-
-        // Start a new cycle
-        if (!mineSolenoid.isOn() && now - _cycleStartTime >= MINER_HIT_RATE)
-        {
-            _cycleStartTime = now;
-            _onStartTime = now;
-            mineSolenoid.on();
-        }
-
-        // Turn off after max on time
-        if (mineSolenoid.isOn() && now - _onStartTime >= SOLENOID_MAX_ON_TIME)
-        {
-            mineSolenoid.off();
-        }
+        
     }
 
     void mine(){
@@ -54,13 +43,12 @@ public:
     void stop() override
     {
         _mode = OFF;
-        mineSolenoid.off();
     }
     // Needs to be updated if using PID
 
 private:
     Mode _mode = OFF;
-    Solenoid mineSolenoid;
+    ServoControl servo;
     long _cycleStartTime = 0;
     long _onStartTime = 0;
     

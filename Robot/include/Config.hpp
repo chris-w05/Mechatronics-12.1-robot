@@ -1,5 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
+#include <Arduino.h>
+
 //----------------------------Pin allocation
 // Encoder pins
 static const int LEFT_ENCODER_A = 18;
@@ -38,6 +40,7 @@ static const long SERIAL_BAUD_RATE = 115200;
 static const int HALL_EFFECT_PIN = A2;
 static const int LINE_SENSOR_START_PIN = 28; //CHANGE ME
 static const int COLOR_SENSOR_START_PIN = 41; // CHANGE ME
+static const int DISTANCE_SENSOR_PIN = 47; // CHANGE ME
 
 //----------------------------------Software constants
 static const int MAX_STEPS = 10; // Maximum allowed steps in autonomous. This prevents too much memory from being used

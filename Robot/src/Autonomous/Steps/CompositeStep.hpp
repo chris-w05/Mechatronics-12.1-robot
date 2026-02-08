@@ -2,6 +2,7 @@
 #define COMPOSITE_STEP_H
 
 #include "Autonomous/AutoStep.h"
+#include "Config.hpp"
 
 const int MAX_SUB_STEPS = 10; // Adjust based on your max expected sub-steps per composite
 

@@ -1,6 +1,7 @@
 #ifndef DRIVE_HPP
 #define DRIVE_HPP
 
+#include <Arduino.h>
 #include "Subsystem.h"
 #include "utils/Odometry.hpp"
 #include "Devices/EncoderWrapper.hpp"

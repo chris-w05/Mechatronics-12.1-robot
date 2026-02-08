@@ -1,6 +1,8 @@
 #ifndef SUBSYSTEM_H
 #define SUBSYSTEM_H
 
+#include <Arduino.h>
+
 class Subsystem {
 public:
     virtual ~Subsystem() = default;

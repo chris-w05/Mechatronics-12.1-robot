@@ -1,7 +1,7 @@
-#include "Drive.hpp"
 #include <Arduino.h>
+#include "Drive.hpp"
 #include "Config.hpp"
-#include <Encoder.h>
+#include "Devices/EncoderWrapper.hpp"
 
 Drive::Drive(
     const int left_enc_a,
