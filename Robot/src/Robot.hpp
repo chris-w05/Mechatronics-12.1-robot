@@ -9,8 +9,10 @@
 #include "Autonomous/Planner.hpp"
 #include "subsystems/Miner.hpp"
 #include "subsystems/SerialComs.hpp"
+#include "subsystems/Shooter.hpp"
 #include "SoftwareSerial.h"
 #include "Config.hpp"
+#include "Devices/MotorController.hpp"
 
 SoftwareSerial serialMain(SERIAL_RX, SERIAL_TX);
 
@@ -28,12 +30,14 @@ class Robot{
                 DISTANCE_SENSOR_PIN
                 ),
             miner(MINER_SERVO_PIN),
+            shooter(SHOOTER_MOTOR_PWM1, SHOOTER_MOTOR_PWM2, SHOOTER_MOTOR_ENABLE, SHOOTER_MOTOR_ENABLE2, -1, -1, -1, 5.0, MotorController::DriverType::L298N ),
             serialComs(serialMain),
             planner(drive)
         {
             //Sets up subsystems
             subsystems[subsystemCount++] = &drive;
             subsystems[subsystemCount++] = &miner;
+            subsystems[subsystemCount++] = &shooter;
             subsystems[subsystemCount++] = &serialComs;
 
             //Create autonomous routine
@@ -178,13 +182,23 @@ class Robot{
                 break;
 
             case 'd':
-            
+
                 break;
             case 'E':
                 // Exit serial testing and go back to awaiting mode (stop subsystems if needed)
                 miner.stopMining();
                 mode = AWAIT;
                 serialComs.send("Exited SERIAL_TEST. Back to AWAIT.");
+                break;
+
+            case 'F':
+                shooter.fire();
+                serialComs.send("Shooter: fire() called.");
+                break;
+            
+            case 'f':
+                shooter.stopFiring();
+                serialComs.send("Shooter: stopFiring() called.");
                 break;
 
             case 'H':
@@ -212,6 +226,7 @@ class Robot{
 
         Drive drive;
         Miner miner;
+        Shooter shooter;
         SerialComs serialComs;
 
         Planner planner;

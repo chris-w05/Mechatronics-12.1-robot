@@ -24,7 +24,9 @@ static const int RIGHT_MOTOR_DIR = 8;
 
 //Shooter motor
 static const int SHOOTER_MOTOR_ENABLE = 8;
-static const int SHOOTER_MOTOR_PWM = 23;
+static const int SHOOTER_MOTOR_ENABLE2 = 43;
+static const int SHOOTER_MOTOR_PWM1 = 3;
+static const int SHOOTER_MOTOR_PWM2 = 5;
 static const int SHOOTER_MOTOR_DIR = 45;
 
 //Servo pins
@@ -55,9 +57,6 @@ static const float ARM_ROT_RATIO = .5; // rev/rotation - arm pos(rotations) = mo
 static const float ARM_EXT_RATIO = 3.14 * 2; // mm/rotation - arm pos(mm) = motors rotations * ARM_EXT_RATIO
 
 //----------------------------------Setpoints
-
-
-
 
 
 //Miner constants
