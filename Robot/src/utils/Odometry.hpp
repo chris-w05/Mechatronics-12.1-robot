@@ -1,7 +1,7 @@
 #ifndef ODOMETRY_H
 #define ODOMETRY_H
 
-#include "Devices/Encoder.hpp"
+#include "Devices/EncoderWrapper.hpp"
 
 class Odometry
 {
@@ -15,7 +15,7 @@ public:
 
     void init(const Pose2D &pose);
 
-    void update(Encoder &left, Encoder &right);
+    void update(EncoderWrapper &left, EncoderWrapper &right);
     
     Pose2D getPose() const { return _pose; }
     float distanceTravelled() {return _distanceTravelled; };

@@ -4,7 +4,7 @@
 
 #include "Autonomous/AutoStep.h"
 #include "utils/Strategy.hpp"
-#include "Robot.hpp" // for subsystems references if needed
+#include "Robot.hpp"
 
 class StrategyControllerStep : public AutoStep
 {

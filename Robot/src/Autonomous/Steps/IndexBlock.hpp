@@ -3,7 +3,6 @@
 
 #include "Autonomous/AutoStep.h"
 #include "subsystems/Drive.hpp"
-#include "Devices/Encoder.hpp"
 #include "utils/Strategy.hpp"
 
 class IndexBlockStep : public AutoStep

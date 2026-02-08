@@ -2,8 +2,8 @@
 #define DRIVE_HPP
 
 #include "Subsystem.h"
-#include "Devices/Encoder.hpp"
 #include "utils/Odometry.hpp"
+#include "Devices/EncoderWrapper.hpp"
 #include "Devices/MotorController.hpp"
 #include "Devices/DistanceSensor.hpp"
 
@@ -17,16 +17,7 @@ class Drive : public Subsystem {
               const int left_mtr_dir,
               const int right_mtr_pwm,
               const int right_mtr_dir,
-              const int frontLeftDistPin,
-              const int backLeftDistPin,
-              const int frontDistPin,
-              const int backDistPin,
-              const float lKP = DRIVE_L_KP,
-              const float lKI = DRIVE_L_KI,
-              const float lKD = DRIVE_L_KD,
-              const float rKP = DRIVE_R_KP,
-              const float rKI = DRIVE_R_KI,
-              const float rKD = DRIVE_R_KD);
+              const int distPin);
 
         void init() override;
         void update() override;
@@ -42,15 +33,12 @@ class Drive : public Subsystem {
         int16_t _speedL = 0;
         int16_t _speedR = 0;
 
-        Encoder _leftEncoder;
-        Encoder _rightEncoder;
+        EncoderWrapper _leftEncoder;
+        EncoderWrapper _rightEncoder;
 
         MotorController _motorController;
 
-        SharpGP2Y0A51 _frontLeftWallSensor;
-        SharpGP2Y0A51 _backLeftWallSensor;
-        SharpGP2Y0A51 _frontWallSensor;
-        SharpGP2Y0A51 _backWallSensor;
+        SharpGP2Y0A51 distSensor;
 
         Odometry _odometry;
 

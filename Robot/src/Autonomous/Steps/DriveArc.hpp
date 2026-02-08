@@ -3,18 +3,23 @@
 
 #include "Autonomous/AutoStep.h"
 #include "subsystems/Drive.hpp"
-#include "Devices/Encoder.hpp"
 
-class DriveDistance : public AutoStep{
+class DriveArc : public AutoStep{
 public:
-    DriveDistance(Drive& drive,
+
+    /**
+     * @param direction true -> Counter-clockwise | false -> clockwise
+     */
+    DriveArc(Drive& drive,
                 float targetDistance,
-                float targetVelocity)
+                float targetVelocity,
+                float radius, 
+                bool direction)
         : _drive(drive),
           _target(targetDistance),
           _velocity(targetVelocity) {}
 
-    DriveDistance(Drive &drive)
+    DriveArc(Drive &drive)
         : _drive(drive){}
 
     void start() override
@@ -24,7 +29,12 @@ public:
 
     void update() override
     {
-        _drive.setSpeed(_velocity);
+        if (_direction){
+            _drive.followRadiusCCW( _velocity, _radius);
+        }
+        else{
+            _drive.followRadiusCCW(_velocity, _radius);
+        }
     }
 
     bool isFinished() const override
@@ -36,9 +46,11 @@ public:
         _drive.setSpeed(0);
     }
 
-    void configure(float targetDistance, float targetVelocity){
+    void configure(float targetDistance, float targetVelocity, float radius, bool direction){
         _target = targetDistance;
         _velocity = targetVelocity;
+        _radius = radius;
+        _direction = direction;
 
     }
 
@@ -46,6 +58,8 @@ private:
     Drive &_drive;
     float _target = 0;
     float _velocity = 0;
+    float _radius = 10;
+    bool _direction = 0;
     float _startDistance = 0;
 };
 

@@ -1,6 +1,7 @@
 #include "Drive.hpp"
 #include <Arduino.h>
 #include "Config.hpp"
+#include <Encoder.h>
 
 Drive::Drive(
     const int left_enc_a,
@@ -11,26 +12,14 @@ Drive::Drive(
     const int left_mtr_dir,
     const int right_mtr_pwm,
     const int right_mtr_dir,
-    const int frontLeftDistPin,
-    const int backLeftDistPin,
-    const int frontDistPin,
-    const int backDistPin,
-    const float lKP = DRIVE_L_KP,
-    const float lKI = DRIVE_L_KI,
-    const float lKD = DRIVE_L_KD,
-    const float rKP = DRIVE_R_KP,
-    const float rKI = DRIVE_R_KI,
-    const float rKD = DRIVE_R_KD)
+    const int distPin)
     : _leftEncoder(left_enc_a, left_enc_b),
       _rightEncoder(right_enc_a, right_enc_b),
       _motorController(
           DRIVE_L_KP, DRIVE_L_KI, DRIVE_L_KD, false,
           DRIVE_R_KP, DRIVE_R_KI, DRIVE_R_KD, true,
           false, false),
-      _frontLeftWallSensor(frontLeftDistPin),
-        _backLeftWallSensor(backLeftDistPin),
-        _frontWallSensor(frontDistPin),
-        _backWallSensor(backDistPin)
+      distSensor( distPin)
 {
 }
 
