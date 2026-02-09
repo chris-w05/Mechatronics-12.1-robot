@@ -148,7 +148,8 @@ public:
 
         // Compute PID output (note PID::update(measurement, setpoint))
         double pid_out = _pid.update((double)current, (double)target);
-
+        // Serial.print("PID output: ");
+        // Serial.println(pid_out);
         // Convert controller output to PWM units if necessary.
         double pwm_f = pid_out * _controlToPwm;
 
@@ -408,9 +409,12 @@ private:
         }
 
         uint8_t duty = (uint8_t)abs(speed);
+        // Serial.print("Duty: ");
+        // Serial.println(duty);
 
         if (speed > 0)
         {
+            // Serial.println("Positive Speed");
             digitalWrite(_pwm1_pin, HIGH); // IN1
             digitalWrite(_pwm2_pin, LOW);  // IN2
             analogWrite(_en_pin, duty);    // EN PWM
@@ -447,7 +451,7 @@ private:
     // --- PID -> PWM conversion tuning parameters ---
     double _controlToPwm = 1.0;    // multiplier from PID units to PWM units
     double _outputLimit = 255.0;   // clamp magnitude of PWM
-    double _pwmDeadband = 1.0;     // small deadband around zero (PWM units)
+    double _pwmDeadband = .05;     // small deadband around zero (PWM units)
     double _targetDeadband = 0.01; // deadband for target considered zero (target units)
 
     // For external current-sense on L298N or other drivers (volts per amp)

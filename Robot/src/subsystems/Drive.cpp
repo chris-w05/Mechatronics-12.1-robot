@@ -29,6 +29,7 @@ void Drive::init()
     _leftEncoder.init();
     _rightEncoder.init();
     _motorController.init();
+    Serial.println("Drivetrain initialized");
 }
 
 void Drive::update()

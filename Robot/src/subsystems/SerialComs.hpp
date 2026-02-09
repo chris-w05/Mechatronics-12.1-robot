@@ -32,6 +32,7 @@ public:
      */
     void init() override
     {
+        Serial.println("Serial communications initialized");
         // nothing special to init here
     }
 

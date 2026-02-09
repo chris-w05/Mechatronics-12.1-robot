@@ -13,6 +13,9 @@
 #include "SoftwareSerial.h"
 #include "Config.hpp"
 #include "Devices/MotorController.hpp"
+#include "Autonomous/Steps/FireStep.hpp"
+#include "Autonomous/Steps/MineBlock.hpp"
+#include "Autonomous/Steps/DelayStep.hpp"
 
 SoftwareSerial serialMain(SERIAL_RX, SERIAL_TX);
 
@@ -23,16 +26,17 @@ class Robot{
     public:
         Robot()
             : drive(
-                LEFT_ENCODER_A, LEFT_ENCODER_B,
-                RIGHT_ENCODER_A, RIGHT_ENCODER_B,
-                LEFT_MOTOR_PWM, LEFT_MOTOR_DIR,
-                RIGHT_MOTOR_PWM, RIGHT_MOTOR_DIR,
-                DISTANCE_SENSOR_PIN
-                ),
-            miner(MINER_SERVO_PIN),
-            shooter(SHOOTER_MOTOR_PWM1, SHOOTER_MOTOR_PWM2, SHOOTER_MOTOR_ENABLE, SHOOTER_MOTOR_ENABLE2, -1, -1, -1, 5.0, MotorController::DriverType::L298N ),
-            serialComs(serialMain),
-            planner(drive)
+                  LEFT_ENCODER_A, LEFT_ENCODER_B,
+                  RIGHT_ENCODER_A, RIGHT_ENCODER_B,
+                  LEFT_MOTOR_PWM, LEFT_MOTOR_DIR,
+                  RIGHT_MOTOR_PWM, RIGHT_MOTOR_DIR,
+                  DISTANCE_SENSOR_PIN),
+              miner(MINER_SERVO_PIN),
+              shooter(SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
+                    SHOOTER_MOTOR_IN1, SHOOTER_MOTOR_IN2, SHOOTER_MOTOR_ENABLE, SHOOTER_MOTOR_ENABLE2, -1, -1, -1, 5.0, MotorController::DriverType::L298N
+                      ),
+              serialComs(serialMain),
+              planner(drive)
         {
             //Sets up subsystems
             subsystems[subsystemCount++] = &drive;
@@ -48,17 +52,30 @@ class Robot{
             //Planner can be thought of the implementation of Strategy for autonomous decision making. 
             //It turns objectives from Strategy into sequences of actions for autonomous running
 
-            autonomous.add(new ReplanStep(&planner, &Planner::planThunk));
+            autonomous.add(new FireStep(&shooter, 3000, false));
+            autonomous.add(new DelayStep(3000));
+            autonomous.add(new MineBlockStep(&miner, 5));
+            autonomous.add(new DelayStep(3000));
+            autonomous.add(new FireStep(&shooter, 2000, false));
+            autonomous.add(new DelayStep(3000));
+            autonomous.add(new MineBlockStep(&miner, 10));
+            // autonomous.add(new ReplanStep(&planner, &Planner::planThunk));
         }
 
         void init()
         {
+            Serial.println("Starting - in robot init");
             serialMain.begin(SERIAL_BAUD_RATE);
+            for (int i = 0; i < subsystemCount; ++i)
+            {
+                if (subsystems[i])
+                {
+                    subsystems[i]->init();
+                }
+            }
 
-            for (Subsystem *s : subsystems)
-                s->init();
-
-            autonomous.start();
+            Serial.println("Subsystems initialized");
+            // autonomous.start();
         }
 
         void update()
@@ -67,9 +84,12 @@ class Robot{
             serialComs.update();
 
             // If a command is available, handle it (global commands are always accepted)
-            if (serialComs.hasCommand())
+
+            if (Serial.available())
             {
-                char cmd = serialComs.getCommandChar();
+                char cmd = Serial.read();
+                
+                Serial.println(cmd);
                 if (cmd != 0)
                 {
                     handleGlobalCommand(cmd);
@@ -117,7 +137,7 @@ class Robot{
                 if (mode != SERIAL_TEST)
                 {
                     mode = SERIAL_TEST;
-                    serialComs.send("Entered SERIAL_TEST mode. Send 'H' for help.");
+                    Serial.println("Entered SERIAL_TEST mode. Send 'H' for help.");
                 }
                 break;
 
@@ -127,8 +147,16 @@ class Robot{
                 {
                     mode = AUTONOMOUS;
                     autonomous.start();
-                    serialComs.send("Autonomous started.");
+                    Serial.println("Autonomous started.");
                 }
+                break;
+
+            case 'a':
+                // start autonomous immediately
+                mode = AUTONOMOUS;
+                autonomous.reset();
+                Serial.println("resetting");
+                
                 break;
 
             default:
@@ -193,25 +221,27 @@ class Robot{
 
             case 'F':
                 shooter.fire();
-                serialComs.send("Shooter: fire() called.");
+                ("Shooter: fire() called.");
                 break;
             
             case 'f':
                 shooter.stopFiring();
-                serialComs.send("Shooter: stopFiring() called.");
+                Serial.println("Shooter: stopFiring() called.");
                 break;
 
             case 'H':
+                // Print help / list of test commands
+                Serial.println("SERIAL_TEST commands:");
+                Serial.println("  M : start miner");
+                Serial.println("  m : stop miner");
+                Serial.println("  D : drive diagnostic (safe default: stop; see code comments)");
+                Serial.println("  A : start autonomous");
+                Serial.println("  E : exit SERIAL_TEST -> AWAIT");
+                Serial.println("  H : this help");
+                break;
             default:
             {
-                // Print help / list of test commands
-                serialComs.send("SERIAL_TEST commands:");
-                serialComs.send("  M : start miner");
-                serialComs.send("  m : stop miner");
-                serialComs.send("  D : drive diagnostic (safe default: stop; see code comments)");
-                serialComs.send("  A : start autonomous");
-                serialComs.send("  E : exit SERIAL_TEST -> AWAIT");
-                serialComs.send("  H : this help");
+                
             }
             break;
             } // switch

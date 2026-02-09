@@ -2,28 +2,33 @@
 
 #include "Autonomous/AutoStep.h"
 #include "subsystems/Drive.hpp"
+#include "subsystems/Miner.hpp"
 
 class MineBlockStep : public AutoStep
 {
 public:
-    MineBlockStep(){
+    MineBlockStep(Miner* miner, int hits ):
+    miner(miner), _numberHits(hits) {
         
+    }
+
+    MineBlockStep()
+    {
     }
 
     void start() override
     {
+        miner->mine(_numberHits);
     }
 
     void update() override
     { 
-        //Create logic for pressing mine button here
-
 
     }
 
     bool isFinished() const override
     {
-        return true;
+        return miner->isDoneMining();
     }
 
     void end() override
@@ -35,6 +40,8 @@ public:
     }
 
 private:
+    Miner* miner;
+
     short _numberHits = 5;
     bool hitsMet = false;
 };

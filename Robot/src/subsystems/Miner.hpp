@@ -31,12 +31,18 @@ public:
 
         // Set to retract angle on startup
         servo.setAngle(MINER_SERVO_STORE_ANGLE);
+        Serial.println("Miner initialized");
     }
 
     void update() override
     {
         // Use unsigned long for millis arithmetic
         const unsigned long now = millis();
+
+        if( _number_hits >= _hits_to_mine - 1){
+            _mode = OFF;
+        }
+
         if (_mode == OFF)
         {
             // Ensure servo is retracted while stopped
@@ -81,6 +87,7 @@ public:
             // Press window elapsed, ensure retracted
             _onStartTime = 0;
             setServoToRetract();
+            
 
             // If the full cycle has elapsed, advance cycle start (keeps times small)
             // This keeps cycle anchored to the first cycleStartTime but also avoids overflow
@@ -89,6 +96,7 @@ public:
                 // advance cycle start forward by multiples of cycleMs to avoid long drift
                 unsigned long cyclesPassed = (now - _cycleStartTime) / cycleMs;
                 _cycleStartTime += cyclesPassed * cycleMs;
+                _number_hits++;
             }
         }
         servo.update();
@@ -97,10 +105,27 @@ public:
     void mine()
     {
         // begin mining immediately on next update
+        //indefinite number of hits
+        _hits_to_mine = 100000;
         if (_mode != MINING)
         {
             _mode = MINING;
             // reset timers so the next update starts a clean cycle immediately
+            _number_hits = 0;
+            _cycleStartTime = 0;
+            _onStartTime = 0;
+        }
+    }
+
+    void mine(int hits_to_mine)
+    {
+        // begin mining immediately on next update
+        _hits_to_mine = hits_to_mine;
+        if (_mode != MINING)
+        {
+            _mode = MINING;
+            // reset timers so the next update starts a clean cycle immediately
+            _number_hits = 0;
             _cycleStartTime = 0;
             _onStartTime = 0;
         }
@@ -116,11 +141,17 @@ public:
         _mode = OFF;
     }
 
+    bool isDoneMining(){
+        return (_mode ==  OFF);
+    }
+
 private:
     Mode _mode = OFF;
     ServoControl servo;
     unsigned long _cycleStartTime = 0;
     unsigned long _onStartTime = 0;
+    unsigned int _number_hits = 0;
+    unsigned int _hits_to_mine = 10;
 
 
 

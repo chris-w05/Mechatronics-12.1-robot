@@ -5,24 +5,24 @@
 class EncoderWrapper
 {
 public:
-    // adcPin: analog pin (e.g., A0)
-    // vref: ADC reference voltage in volts (default 5.0)
-    // adcMax: ADC max reading (1023 for 10-bit AVR; 4095 for 12-bit)
     EncoderWrapper(uint8_t pinA, uint8_t pinB)
-        :  encoder(pinA, pinB)
+        : _pinA(pinA), _pinB(pinB), encoder(pinA, pinB)
     {
     }
 
-    // Call in setup()
     void init()
     {
+        pinMode(_pinA, INPUT_PULLUP); // try enabling pullups
+        pinMode(_pinB, INPUT_PULLUP);
+        encoder.write(0); // baseline
         lastMillis = millis();
-        count = 0;
+        count = encoder.read();
+        lastCount = count;
         velocity = 0;
-        lastCount = 0;
+        lastVelocity = 0;
+        acceleration = 0;
     }
 
-    // Call in your loop at least as fast as the sensor's update rate (~60 Hz typical)
     void update()
     {
         unsigned long now = millis();
@@ -31,7 +31,6 @@ public:
             count = encoder.read();
 
             long dCount = count - lastCount;
-            // velocity = counts per second
             velocity = (float)dCount * (1000.0 / INTERVAL);
             float dVelocity = velocity - lastVelocity;
             acceleration = dVelocity * (1000.0 / INTERVAL);
@@ -42,33 +41,20 @@ public:
         }
     }
 
-    int32_t read(){
-        return count;
-    }
-
-    int32_t getCount(){
-        return count;
-    }
-
-    float getVelocity(){
-        return velocity;
-    }
-
-    float getAcceleration(){
-        return acceleration;
-    }
+    int32_t read() { return count; }
+    int32_t getCount() { return count; }
+    float getVelocity() { return velocity; }
+    float getAcceleration() { return acceleration; }
 
 private:
     uint8_t _pinA;
     uint8_t _pinB;
     Encoder encoder;
-    int32_t count;
-    int32_t lastCount;
-
-    unsigned long lastMillis;
-    unsigned long INTERVAL = 100; //ms - update time to take average velocity
-
-    float velocity;
-    float lastVelocity;
-    float acceleration;
+    int32_t count = 0;
+    int32_t lastCount = 0;
+    unsigned long lastMillis = 0;
+    unsigned long INTERVAL = 100;
+    float velocity = 0;
+    float lastVelocity = 0;
+    float acceleration = 0;
 };

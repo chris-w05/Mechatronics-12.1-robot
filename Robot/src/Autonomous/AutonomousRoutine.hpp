@@ -1,5 +1,3 @@
-//Sequentially runs a list of AutoSteps. This defines the procedure of an autonomous by ordering steps and choosing which step to run
-
 #ifndef AUTONOMOUS_ROUTINE_H
 #define AUTONOMOUS_ROUTINE_H
 
@@ -30,16 +28,24 @@ public:
         }
     }
 
-
+    // Start the routine from the beginning.
+    // If a step is currently running, end it first to leave it in a clean state.
     void start()
     {
+        // If currently running a step, end it so we restart cleanly.
+        if (_index >= 0 && _index < _count && _steps[_index])
+        {
+            _steps[_index]->end();
+        }
+
         _index = 0;
-        if (_count > 0)
+        if (_count > 0 && _steps[0])
         {
             _steps[0]->start();
         }
     }
 
+    // Call repeatedly from main loop to drive the routine
     void update()
     {
         if (_index >= _count)
@@ -48,16 +54,40 @@ public:
         }
 
         AutoStep *step = _steps[_index];
+        if (!step)
+            return;
+
         step->update();
 
         if (step->isFinished())
         {
+            Serial.println("Step is finished");
             step->end();
             _index++;
-            if (_index < _count)
+            if (_index < _count && _steps[_index])
             {
                 _steps[_index]->start();
             }
+        }
+    }
+
+    // Reset the routine so it can run again:
+    // - end the currently active step (if any)
+    // - set index to 0 and start the first step (if any)
+    void reset()
+    {
+        // End the currently running step to put it into a clean state
+        if (_index >= 0 && _index < _count && _steps[_index])
+        {
+            _steps[_index]->end();
+        }
+
+        _index = 0;
+
+        // Start the first step so the next update() continues execution
+        if (_count > 0 && _steps[0])
+        {
+            _steps[0]->start();
         }
     }
 
@@ -70,6 +100,7 @@ public:
         _index = _count; // mark complete
     }
 
+    // Add a step to the routine (ownership transferred to this object)
     void add(AutoStep *step)
     {
         if (_count >= MAX_STEPS)

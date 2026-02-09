@@ -25,13 +25,14 @@ static const int RIGHT_MOTOR_DIR = 8;
 //Shooter motor
 static const int SHOOTER_MOTOR_ENABLE = 8;
 static const int SHOOTER_MOTOR_ENABLE2 = 43;
-static const int SHOOTER_MOTOR_PWM1 = 3;
-static const int SHOOTER_MOTOR_PWM2 = 5;
+static const int SHOOTER_MOTOR_IN1 = 3;
+static const int SHOOTER_MOTOR_IN2 = 5;
 static const int SHOOTER_MOTOR_DIR = 45;
+static const int SHOOTER_ENCODER_A  = 20;
+static const int SHOOTER_ENCODER_B = 21;
 
-//Servo pins
+// Servo pins
 static const int MINER_SERVO_PIN = 11;
-
 
 //Serial pins
 static const int SERIAL_RX = 16;
@@ -61,10 +62,10 @@ static const float ARM_EXT_RATIO = 3.14 * 2; // mm/rotation - arm pos(mm) = moto
 
 //Miner constants
 static const unsigned long MINER_CYCLE_MS = 400UL;                  //ms
-static const unsigned long MINER_PRESS_MS = 25UL;
+static const unsigned long MINER_PRESS_MS = 100UL;
 static const int MINER_SERVO_PRESS_ANGLE = 80;
 static const int MINER_SERVO_STORE_ANGLE = 160;
-static const int MINER_SERVO_RETRACT_ANGLE = 40;
+static const int MINER_SERVO_RETRACT_ANGLE = 00;
 
 
 //----------------------------------PID constants
