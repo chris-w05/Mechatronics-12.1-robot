@@ -52,8 +52,8 @@ static const int MAX_SUBSYSTEMS = 10;
 //----------------------------------Physical constants
 //Robot params
 static const float DRIVETRAIN_WIDTH = .23876391; //meters
-static const int TICKS_PER_REV = 1024; //Number of ticks per motor revolution
-static const float DRIVETRAIN_WHEEL_DIAMETER = 4; //in
+static const int TICKS_PER_REV = 64; //Number of ticks per motor revolution
+static const float DRIVETRAIN_WHEEL_DIAMETER = 3.93700787402; // in
 static const float ARM_ROT_RATIO = .5; // rev/rotation - arm pos(rotations) = motors rotations * ARM_ROT_RATIO
 static const float ARM_EXT_RATIO = 3.14 * 2; // mm/rotation - arm pos(mm) = motors rotations * ARM_EXT_RATIO
 

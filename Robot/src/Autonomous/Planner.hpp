@@ -4,9 +4,12 @@
 #include "AutoStep.h"
 #include <stdint.h>
 #include "subsystems/Drive.hpp"
+#include "subsystems/Miner.hpp"
+#include "subsystems/Shooter.hpp"
 #include "utils/Strategy.hpp"
 
 #include "Steps/DriveDistance.hpp"
+#include "Steps/DriveArc.hpp"
 #include "Steps/CompositeStep.hpp"
 #include "Steps/DriveDistance.hpp"
 #include "Steps/DetectBlock.hpp"
@@ -16,13 +19,16 @@
 #include "Steps/AdvanceCycleStep.hpp"
 #include "DeferredStep.hpp" // Expected: DeferredStep(AutoStep* (*factory)(void*), void* ctx)
 #include "Steps/PlaceOnTable.hpp"
+#include "Steps/FollowLineStep.hpp"
 
 class Planner
 {
 public:
 
     //Add all of the subsystems that would be used by the robot
-    explicit Planner(Drive &drive);
+    explicit Planner(Drive &drive,
+        Miner &miner,
+        Shooter &shooter );
 
     // Called repeatedly by ReplanStep.
     // Returns pointer to the next step to run, or nullptr when finished.
@@ -51,6 +57,8 @@ private:
 
     //Add more subsystems
     Drive &_drive;
+    Miner &_miner;
+    Shooter &_shooter;
 
 
     
@@ -64,8 +72,8 @@ private:
 
     // Pre-allocated reusable steps (no new/delete during match)
     DriveDistance _driveStep;
-    DetectBlockStep _detectStep;
-    RejectBlockStep _rejectStep;
+    DriveArc _driveArcStep;
+    FollowLineStep _followLineStep;
     MineBlockStep _mineStep;
     IndexBlockStep _indexStep;
     PlaceOnTableStep _placeStep;

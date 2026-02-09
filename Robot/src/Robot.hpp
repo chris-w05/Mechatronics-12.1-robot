@@ -30,13 +30,13 @@ class Robot{
                   RIGHT_ENCODER_A, RIGHT_ENCODER_B,
                   LEFT_MOTOR_PWM, LEFT_MOTOR_DIR,
                   RIGHT_MOTOR_PWM, RIGHT_MOTOR_DIR,
-                  DISTANCE_SENSOR_PIN),
+                  DISTANCE_SENSOR_PIN, LINE_SENSOR_START_PIN),
               miner(MINER_SERVO_PIN),
               shooter(SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
                     SHOOTER_MOTOR_IN1, SHOOTER_MOTOR_IN2, SHOOTER_MOTOR_ENABLE, SHOOTER_MOTOR_ENABLE2, -1, -1, -1, 5.0, MotorController::DriverType::L298N
                       ),
               serialComs(serialMain),
-              planner(drive)
+              planner(drive, miner, shooter)
         {
             //Sets up subsystems
             subsystems[subsystemCount++] = &drive;

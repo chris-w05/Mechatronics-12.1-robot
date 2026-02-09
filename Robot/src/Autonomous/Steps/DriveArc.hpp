@@ -1,5 +1,5 @@
-#ifndef DRIVEDISTANCE_STEP_H
-#define DRIVEDISTANCE_STEP_H
+#ifndef DRIVEARC_STEP_H
+#define DRIVEARC_STEP_H
 
 #include "Autonomous/AutoStep.h"
 #include "subsystems/Drive.hpp"
@@ -21,6 +21,8 @@ public:
 
     DriveArc(Drive &drive)
         : _drive(drive){}
+
+    DriveArc();
 
     void start() override
     {
