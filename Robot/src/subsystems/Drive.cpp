@@ -57,8 +57,8 @@ void Drive::update()
     }
     _motorController.setTarget(_speedL, _speedR);
 
-    float leftVelocity = _leftEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER  / TICKS_PER_REV; //inch/s
-    float rightVelocity = _rightEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER / TICKS_PER_REV; //inch/s
+    float leftVelocity = _leftEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER  / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV); //inch/s
+    float rightVelocity = _rightEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV); //inch/s
 
     _motorController.update( leftVelocity, rightVelocity);
 
