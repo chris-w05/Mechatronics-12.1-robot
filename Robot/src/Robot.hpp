@@ -81,13 +81,13 @@ class Robot{
         void update()
         {
             // Always update SerialComs first so commands are captured promptly
-            serialComs.update();
+            // serialComs.update();
 
             // If a command is available, handle it (global commands are always accepted)
 
-            if (Serial.available())
+            if (serialComs.hasCommand())
             {
-                char cmd = Serial.read();
+                char cmd = serialComs.getCommandChar();
                 
                 Serial.println(cmd);
                 if (cmd != 0)
