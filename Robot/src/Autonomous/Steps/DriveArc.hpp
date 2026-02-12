@@ -11,12 +11,12 @@ public:
      * @param direction true -> Counter-clockwise | false -> clockwise
      */
     DriveArc(Drive& drive,
-                float targetDistance,
+                float targetAngle,
                 float targetVelocity,
                 float radius, 
                 bool direction)
         : _drive(drive),
-          _target(targetDistance),
+          _target(targetAngle),
           _velocity(targetVelocity) {}
 
     DriveArc(Drive &drive)
@@ -26,7 +26,7 @@ public:
 
     void start() override
     {
-        _startDistance = _drive.getDistance(); // or encoder average
+        _startAngle = _drive.getPose().heading; // or encoder average
     }
 
     void update() override
@@ -41,7 +41,7 @@ public:
 
     bool isFinished() const override
     {
-        return (_drive.getDistance() - _startDistance) >= _target;
+        return (_drive.getPose().heading - _startAngle) >= _target;
     }
 
     void end(){
@@ -62,7 +62,7 @@ private:
     float _velocity = 0;
     float _radius = 10;
     bool _direction = 0;
-    float _startDistance = 0;
+    float _startAngle = 0;
 };
 
 

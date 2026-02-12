@@ -8,7 +8,7 @@
 class FireStep : public AutoStep
 {
 public:
-    FireStep( Shooter* shooter, unsigned long time, bool reversed)
+    FireStep( Shooter& shooter, unsigned long time, bool reversed)
         : 
         _shooter(shooter),
         _time(time),
@@ -18,12 +18,11 @@ public:
     void start() override
     {
         _startTime = millis();
-        _shooter->fire();
+        _shooter.fire();
     }
 
     void update() override
     {
-        
     }
 
     bool isFinished() const override
@@ -35,17 +34,17 @@ public:
 
     void end() override
     {
-        _shooter->stop();
+        _shooter.stop();
     }
 
     void configure( long time, bool reversed)
     {
         _time = time;
-        reversed = reversed;
+        _reversed = reversed;
     }
 
 private:
-    Shooter* _shooter;
+    Shooter& _shooter;
     unsigned long _time = 0;
     bool _reversed = false;
     long _startTime = 0;

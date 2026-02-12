@@ -8,7 +8,7 @@ Planner::Planner(Drive &drive, Miner &miner, Shooter &shooter)
       _driveStep(drive),
       _driveArcStep(drive),
       _followLineStep(drive),
-      _mineStep(),
+      _mineStep(miner, 5),
       _indexStep(),
       _placeStep(),
       _advanceStep()

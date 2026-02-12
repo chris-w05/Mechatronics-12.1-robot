@@ -7,18 +7,14 @@
 class MineBlockStep : public AutoStep
 {
 public:
-    MineBlockStep(Miner* miner, int hits ):
+    MineBlockStep(Miner& miner, int hits ):
     miner(miner), _numberHits(hits) {
         
     }
 
-    MineBlockStep()
-    {
-    }
-
     void start() override
     {
-        miner->mine(_numberHits);
+        miner.mine(_numberHits);
     }
 
     void update() override
@@ -28,7 +24,7 @@ public:
 
     bool isFinished() const override
     {
-        return miner->isDoneMining();
+        return miner.isDoneMining();
     }
 
     void end() override
@@ -40,7 +36,7 @@ public:
     }
 
 private:
-    Miner* miner;
+    Miner &miner;
 
     short _numberHits = 5;
     bool hitsMet = false;

@@ -52,13 +52,13 @@ class Robot{
             //Planner can be thought of the implementation of Strategy for autonomous decision making. 
             //It turns objectives from Strategy into sequences of actions for autonomous running
 
-            autonomous.add(new FireStep(&shooter, 3000, false));
+            autonomous.add(new FireStep(shooter, 3000, false));
             autonomous.add(new DelayStep(3000));
-            autonomous.add(new MineBlockStep(&miner, 5));
+            autonomous.add(new MineBlockStep(miner, 5));
             autonomous.add(new DelayStep(3000));
-            autonomous.add(new FireStep(&shooter, 2000, false));
+            autonomous.add(new FireStep(shooter, 2000, false));
             autonomous.add(new DelayStep(3000));
-            autonomous.add(new MineBlockStep(&miner, 10));
+            autonomous.add(new MineBlockStep(miner, 10));
             // autonomous.add(new ReplanStep(&planner, &Planner::planThunk));
         }
 
@@ -192,40 +192,48 @@ class Robot{
             switch (cmd)
             {
             case 'M':
-                miner.mine();
-                serialComs.send("Miner: mine() called.");
+                autonomous.clear();
+                autonomous.add(new MineBlockStep(miner, 5));
+                autonomous.start();
+                Serial.println("Miner: mine() called.");
                 break;
 
             case 'm':
-                miner.stopMining();
-                serialComs.send("Miner: stopMining() called.");
+                autonomous.stop();
+                Serial.println("Miner: stopMining() called.");
                 break;
 
             case 'D':
                 // Conservative default: stop drive and prompt user how to implement a diagnostic pulse safely.
-                drive.stop(); // safe stop
-                serialComs.send("Drive: stop() called. To run a diagnostic pulse, implement Drive::runDiagnosticPulse() and call it here.");
+                autonomous.clear();
+                autonomous.add(new DriveDistance(drive, 10.0f, 3.0f));
+                autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
+                autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
+                autonomous.start();
+                Serial.println("Drive: stop() called. To run a diagnostic pulse, implement Drive::runDiagnosticPulse() and call it here.");
                 // If you want a sample diagnostic pulse, add this to your Drive class:
                 // void runDiagnosticPulse() { setMotorOpenLoopLeft(100); setMotorOpenLoopRight(100); delay(200); stop(); }
                 break;
 
             case 'd':
-
+                autonomous.stop();
                 break;
             case 'E':
                 // Exit serial testing and go back to awaiting mode (stop subsystems if needed)
-                miner.stopMining();
+                autonomous.stop();
                 mode = AWAIT;
-                serialComs.send("Exited SERIAL_TEST. Back to AWAIT.");
+                Serial.println("Exited SERIAL_TEST. Back to AWAIT.");
                 break;
 
             case 'F':
-                shooter.fire();
+                autonomous.clear();
+                autonomous.add(new FireStep(shooter, 300000, false));
+                autonomous.start();
                 ("Shooter: fire() called.");
                 break;
             
             case 'f':
-                shooter.stopFiring();
+                autonomous.stop();
                 Serial.println("Shooter: stopFiring() called.");
                 break;
 

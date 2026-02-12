@@ -33,7 +33,7 @@ public:
     // keep signature similar to prior version; add driverType param (defaults to TB9051).
     MotorController(int pwm1_pin, int pwm2_pin = -1, int en_pin = -1, int enb_pin = -1,
                     int diag_pin = -1, int ocm_pin = -1, int occ_pin = -1, float analog_vref = 5.0f,
-                    float kp = 0.0, float ki = 0.0, float kd = 0.0,
+                    float kp = 0.0f, float ki = 0.0f, float kd = 0.0f,
                     DriverType driver = DriverType::TB9051)
         : _pwm1_pin(pwm1_pin),
           _pwm2_pin(pwm2_pin),
@@ -139,12 +139,12 @@ public:
         }
 
         // If target is near zero, stop driving and reset PID to avoid windup.
-        if (fabs(target) <= _targetDeadband)
-        {
-            _pid.reset();
-            coast();
-            return;
-        }
+        // if (fabs(target) <= _targetDeadband)
+        // {
+        //     _pid.reset();
+        //     coast();
+        //     return;
+        // }
 
         // Compute PID output (note PID::update(measurement, setpoint))
         double pid_out = _pid.update((double)current, (double)target);
@@ -154,8 +154,8 @@ public:
         double pwm_f = pid_out * _controlToPwm;
 
         // Apply small PWM deadband to avoid chatter
-        if (fabs(pwm_f) < _pwmDeadband)
-            pwm_f = 0.0;
+        // if (fabs(pwm_f) < _pwmDeadband)
+        //     pwm_f = 0.0;
 
         // Clip to allowed output range
         if (pwm_f > _outputLimit)
@@ -164,6 +164,8 @@ public:
             pwm_f = -_outputLimit;
 
         int pwm_int = (int)round(pwm_f);
+        // Serial.print("PWM: ");
+        // Serial.println(pwm_int);
         setSpeed(pwm_int);
     }
 

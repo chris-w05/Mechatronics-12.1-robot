@@ -71,6 +71,10 @@ public:
         }
     }
 
+    int getCount(){
+        return _count;
+    }
+
     // Reset the routine so it can run again:
     // - end the currently active step (if any)
     // - set index to 0 and start the first step (if any)
@@ -83,12 +87,6 @@ public:
         }
 
         _index = 0;
-
-        // Start the first step so the next update() continues execution
-        if (_count > 0 && _steps[0])
-        {
-            _steps[0]->start();
-        }
     }
 
     void stop()
@@ -109,6 +107,61 @@ public:
             return;
         }
         _steps[_count++] = step;
+    }
+
+    // Remove a step at a specific index (ownership deleted here)
+    void removeAt(int index)
+    {
+        if (index < 0 || index >= _count)
+        {
+            return;
+        }
+
+        // If we're removing the currently running step, end it
+        if (index == _index && _steps[index])
+        {
+            _steps[index]->end();
+        }
+
+        delete _steps[index];
+
+        // Shift remaining steps left
+        for (int i = index; i < _count - 1; ++i)
+        {
+            _steps[i] = _steps[i + 1];
+        }
+
+        _steps[_count - 1] = nullptr;
+        _count--;
+
+        // Fix index if needed
+        if (_index > index)
+        {
+            _index--;
+        }
+        else if (_index >= _count)
+        {
+            _index = _count;
+        }
+    }
+
+    // Remove all steps and reset the routine
+    void clear()
+    {
+        // End current step if running
+        if (_index >= 0 && _index < _count && _steps[_index])
+        {
+            _steps[_index]->end();
+        }
+
+        for (int i = 0; i < _count; ++i)
+        {
+            delete _steps[i];
+            _steps[i] = nullptr;
+        }
+
+        _count = 0;
+        _index = 0;
     }
 };
 

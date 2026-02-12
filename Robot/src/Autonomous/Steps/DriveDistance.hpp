@@ -6,7 +6,7 @@
 
 class DriveDistance : public AutoStep{
 public:
-    DriveDistance(Drive& drive,
+    DriveDistance(Drive &drive,
                 float targetDistance,
                 float targetVelocity)
         : _drive(drive),

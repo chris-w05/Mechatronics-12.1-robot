@@ -38,9 +38,9 @@ public:
     Odometry::Pose2D getPose();
     void setSpeed(int16_t speed);
     float getDistance() { return _odometry.distanceTravelled(); };
-    void followRadiusClockwise(int16_t speed, float radius);
+    void followRadiusClockwise(float omega_rad_s, float radius);
     void followLine(int16_t speed);
-    void followRadiusCCW(int16_t speed, float radius);
+    void followRadiusCCW(float omega_rad_s, float radius);
 
 private:
     int16_t _speedL = 0;

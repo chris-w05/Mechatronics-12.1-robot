@@ -21,11 +21,11 @@ public:
     void start() override
     {
         _startDistance = _drive.getDistance(); // or encoder average
+        _drive.followLine(_velocity);
     }
 
     void update() override
     {
-        _drive.setSpeed(_velocity);
     }
 
     bool isFinished() const override
