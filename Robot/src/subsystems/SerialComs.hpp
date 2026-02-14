@@ -2,7 +2,6 @@
 #define SERIAL_COMS_HPP
 
 #include <Arduino.h>
-#include <SoftwareSerial.h>
 
 /**
  * SerialComs
@@ -10,9 +9,15 @@
  * Simple command receiver for Arduino-to-Arduino communication.
  * Commands are newline-terminated ASCII strings.
  *
- * Improvements:
- * - getCommandChar() returns the first character of the latest newline-terminated command
- *   and clears the command flag. This makes single-character commands easy to use.
+ * Usage:
+ *   SerialComs serialComs(Serial1);
+ *   serialComs.init();
+ *   // in loop:
+ *   serialComs.update();
+ *   if (serialComs.hasCommand()) {
+ *     const char *cmd = serialComs.getCommand();
+ *     // or char c = serialComs.getCommandChar();
+ *   }
  */
 class SerialComs : public Subsystem
 {
@@ -20,11 +25,12 @@ public:
     static const uint8_t MAX_CMD_LEN = 32;
 
     /**
-     * @param serial Reference to a SoftwareSerial (Serial, Serial1, etc)
+     * @param serial Reference to a HardwareSerial (Serial, Serial1, etc)
      */
-    SerialComs(SoftwareSerial &serial)
-        : _serial(serial), _bufLen(0), _hasCommand(false)
+    SerialComs(HardwareSerial &serialPort)
+        : _serial(serialPort), _bufLen(0), _hasCommand(false)
     {
+        _buffer[0] = '\0';
     }
 
     /**
@@ -33,40 +39,43 @@ public:
     void init() override
     {
         Serial.println("Serial communications initialized");
-        // nothing special to init here
+        // Nothing else required here; the HardwareSerial should be begun by the caller.
     }
 
     /**
      * Call periodically in loop()
      * Non-blocking. Buffers up to MAX_CMD_LEN-1 chars and sets a flag when newline ('\n') is seen.
+     * Processes at most one complete command per call (returns after setting _hasCommand).
      */
     void update() override
     {
+        // Serial.println("Updating coms");
         while (_serial.available() > 0)
         {
-            char c = _serial.read();
+            char c = (char)_serial.read();
 
-            // Ignore carriage return
+            // Ignore CR
             if (c == '\r')
                 continue;
 
             // End of command
             if (c == '\n')
             {
+                // Null-terminate and mark command available
                 _buffer[_bufLen] = '\0';
                 _hasCommand = true;
-                _bufLen = 0;
-                return; // process one command per update
+                _bufLen = 0; // prepare for next command
+                return;      // deliver at most one command per update()
             }
 
-            // Add character if space remains
+            // Accumulate character if space remains
             if (_bufLen < MAX_CMD_LEN - 1)
             {
                 _buffer[_bufLen++] = c;
             }
             else
             {
-                // Overflow → reset buffer to avoid partial/malformed commands
+                // Buffer overflow -> discard current buffer to avoid malformed commands
                 _bufLen = 0;
             }
         }
@@ -115,7 +124,7 @@ public:
     virtual void stop() override {}
 
 private:
-    SoftwareSerial &_serial;
+    HardwareSerial &_serial;
     char _buffer[MAX_CMD_LEN];
     uint8_t _bufLen;
     bool _hasCommand;

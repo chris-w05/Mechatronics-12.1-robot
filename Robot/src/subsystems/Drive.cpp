@@ -18,8 +18,8 @@ Drive::Drive(
       _rightEncoder(right_enc_a, right_enc_b),
       _lineSensor(lineFollowerPin),
       _motorController(
-          DRIVE_L_KP, DRIVE_L_KI, DRIVE_L_KD, false,
-          DRIVE_R_KP, DRIVE_R_KI, DRIVE_R_KD, true,
+          DRIVE_L_KP, DRIVE_L_KI, DRIVE_L_KD, true,
+          DRIVE_R_KP, DRIVE_R_KI, DRIVE_R_KD, false,
           false, false),
       distSensor( distPin)
 {
@@ -61,6 +61,22 @@ void Drive::update()
     float leftVelocity = _leftEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER  / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV); //inch/s
     float rightVelocity = _rightEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV); //inch/s
 
+    leftVelocity *= -1;
+    // Serial.print("Velocity L: ");
+    // Serial.print(leftVelocity);
+    // Serial.print("Velocity R: ");
+    // Serial.println(rightVelocity);
+
+    // Serial.print("targetL: ");
+    // Serial.print(_speedL);
+    // Serial.print(" leftVel(inch/s): ");
+    // Serial.print(leftVelocity);
+
+    // Serial.print("  targetR: ");
+    // Serial.print(_speedR);
+    // Serial.print(" rightVel(inch/s): ");
+    // Serial.print(rightVelocity);
+
     _motorController.update( leftVelocity, rightVelocity);
 
     _odometry.update(_leftEncoder, _rightEncoder);
@@ -72,10 +88,14 @@ Odometry::Pose2D Drive::getPose(){
 
 
 
-void Drive::setSpeed(int16_t speed){
+void Drive::setSpeed(float speed){
     mode = STRAIGHT;
     _speedR = speed;
     _speedL = speed;
+}
+
+void Drive::hardSetSpeed(int16_t speed){
+    _motorController.setPower(speed, speed);
 }
 
 void Drive::followRadiusClockwise(float omega_rad_s, float radius_m)
@@ -85,11 +105,11 @@ void Drive::followRadiusClockwise(float omega_rad_s, float radius_m)
     // track half-width
     const float halfL = DRIVETRAIN_WIDTH / 2.0f;
 
-    float _speedL = omega_rad_s * (radius_m + halfL);
-    float _speedR = omega_rad_s * (radius_m - halfL);
+    _speedL = omega_rad_s * (radius_m + halfL);
+    _speedR = omega_rad_s * (radius_m - halfL);
 }
 
-void Drive::followLine(int16_t speed)
+void Drive::followLine(float speed)
 {
     mode = MODE::LINEFOLLOWING;
     _speedL = speed;
@@ -103,8 +123,8 @@ void Drive::followRadiusCCW(float omega_rad_s, float radius_m)
     // track half-width
     const float halfL = DRIVETRAIN_WIDTH / 2.0f;
 
-    float _speedL = omega_rad_s * (radius_m - halfL);
-    float _speedR = omega_rad_s * (radius_m + halfL);
+    _speedL = omega_rad_s * (radius_m - halfL);
+    _speedR = omega_rad_s * (radius_m + halfL);
 }
 
 void Drive::stop()

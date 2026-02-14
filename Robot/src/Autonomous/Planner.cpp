@@ -38,7 +38,6 @@ AutoStep *Planner::planNext()
     case DECIDE_AND_ACT:
     {
         //Robot is at mine, and about to intake the block
-        // ACCEPT -> mine it
         _mineStep.configure(/*ms*/ 350);
         _phase = INDEX;
         return &_mineStep;

@@ -17,7 +17,6 @@
 #include "Autonomous/Steps/MineBlock.hpp"
 #include "Autonomous/Steps/DelayStep.hpp"
 
-SoftwareSerial serialMain(SERIAL_RX, SERIAL_TX);
 
 class Robot{
 
@@ -33,9 +32,9 @@ class Robot{
                   DISTANCE_SENSOR_PIN, LINE_SENSOR_START_PIN),
               miner(MINER_SERVO_PIN),
               shooter(SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
-                    SHOOTER_MOTOR_IN1, SHOOTER_MOTOR_IN2, SHOOTER_MOTOR_ENABLE, SHOOTER_MOTOR_ENABLE2, -1, -1, -1, 5.0, MotorController::DriverType::L298N
+                    SHOOTER_MOTOR_IN1, SHOOTER_MOTOR_IN2, SHOOTER_MOTOR_ENABLE, SHOOTER_MOTOR_ENABLE2, -1, -1, -1, 5.0, MotorController::DriverType::TB9051
                       ),
-              serialComs(serialMain),
+              serialComs(Serial2),
               planner(drive, miner, shooter)
         {
             //Sets up subsystems
@@ -64,8 +63,7 @@ class Robot{
 
         void init()
         {
-            Serial.println("Starting - in robot init");
-            serialMain.begin(SERIAL_BAUD_RATE);
+            Serial.println("Starting robot init");
             for (int i = 0; i < subsystemCount; ++i)
             {
                 if (subsystems[i])
@@ -99,7 +97,8 @@ class Robot{
             switch (mode)
             {
             case AWAIT:
-                // do nothing except wait for the 'S' command (handled in global handler)
+                for (int i = 0; i < subsystemCount; ++i)
+                    subsystems[i]->update();
                 break;
 
             case AUTONOMOUS:
@@ -205,18 +204,20 @@ class Robot{
 
             case 'D':
                 // Conservative default: stop drive and prompt user how to implement a diagnostic pulse safely.
-                autonomous.clear();
-                autonomous.add(new DriveDistance(drive, 10.0f, 3.0f));
-                autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
-                autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
-                autonomous.start();
-                Serial.println("Drive: stop() called. To run a diagnostic pulse, implement Drive::runDiagnosticPulse() and call it here.");
-                // If you want a sample diagnostic pulse, add this to your Drive class:
-                // void runDiagnosticPulse() { setMotorOpenLoopLeft(100); setMotorOpenLoopRight(100); delay(200); stop(); }
+                // autonomous.clear();
+                // autonomous.add(new DriveDistance(drive, 10.0f, 3.0f));
+                // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
+                // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
+                // autonomous.start();
+                // drive.hardSetSpeed(400);
+                drive.setSpeed(20);
+                Serial.println("Drive: start() called.");
                 break;
 
             case 'd':
                 autonomous.stop();
+                drive.setSpeed(0);
+                Serial.println("Drive: stop() called.");
                 break;
             case 'E':
                 // Exit serial testing and go back to awaiting mode (stop subsystems if needed)

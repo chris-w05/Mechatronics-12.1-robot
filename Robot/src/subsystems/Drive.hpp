@@ -36,15 +36,16 @@ public:
     void stop() override;
 
     Odometry::Pose2D getPose();
-    void setSpeed(int16_t speed);
+    void setSpeed(float speed);
     float getDistance() { return _odometry.distanceTravelled(); };
     void followRadiusClockwise(float omega_rad_s, float radius);
-    void followLine(int16_t speed);
+    void followLine(float speed);
     void followRadiusCCW(float omega_rad_s, float radius);
+    void hardSetSpeed(int16_t speed);
 
 private:
-    int16_t _speedL = 0;
-    int16_t _speedR = 0;
+    float _speedL = 0;
+    float _speedR = 0;
 
     EncoderWrapper _leftEncoder;
     EncoderWrapper _rightEncoder;

@@ -148,7 +148,7 @@ public:
 
         // Compute PID output (note PID::update(measurement, setpoint))
         double pid_out = _pid.update((double)current, (double)target);
-        // Serial.print("PID output: ");
+        // Serial.print(" PID output: ");
         // Serial.println(pid_out);
         // Convert controller output to PWM units if necessary.
         double pwm_f = pid_out * _controlToPwm;

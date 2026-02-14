@@ -20,8 +20,8 @@ public:
 
     Shooter(int encoderA, int encoderB, int pwm1_pin, int pwm2_pin = -1, int en_pin = -1, int enb_pin = -1,
             int diag_pin = -1, int ocm_pin = -1, int occ_pin = -1, float analog_vref = 5.0,
-            MotorController::DriverType driverType = MotorController::DriverType::L298N) : _mode(OFF),
-                                                                                           motor(pwm1_pin, pwm2_pin, en_pin, enb_pin, diag_pin, ocm_pin, occ_pin, analog_vref, -1.0f, -.0f, 0.0f, driverType),
+            MotorController::DriverType driverType = MotorController::DriverType::TB9051) : _mode(OFF),
+                                                                                           motor(pwm1_pin, pwm2_pin, en_pin, enb_pin, diag_pin, ocm_pin, occ_pin, analog_vref, -100.0f, -1.0f, 0.0f, driverType),
                                                                                            encoder(encoderA, encoderB)
     {
     }
@@ -45,8 +45,11 @@ public:
         encoder.update();
         float velocity = encoder.getVelocity() / (64.0 * SHOOTER_MOTOR_RATIO); //encoder gives ticks/sec for velocity
         // Serial.print("Velocity ");
-        // Serial.println(velocity);
+        // Serial.print(velocity);
         motor.update(targetVelocity, velocity);
+        if( _mode == OFF){
+            motor.setSpeed(0);
+        }
         // motor.setSpeed((int)(targetVelocity * 10));
         
     }
@@ -59,7 +62,7 @@ public:
             _mode = MINING;
         }
         // Serial.println("setting speed to 255");
-        targetVelocity = 1;
+        targetVelocity = 1.5;
     }
 
     void fire(float velocity)

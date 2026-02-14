@@ -27,10 +27,11 @@ public:
 
 
         double derivative = (measurement - _lastMeasurement) / dt;
-        _dFiltered = _dAlpha * derivative + (1.0 - _dAlpha) * _dFiltered; //Filters noise from velocity readings, may or may not be needed
+        _dFiltered = derivative;
+        // _dFiltered = _dAlpha * derivative + (1.0 - _dAlpha) * _dFiltered; //Filters noise from velocity readings, may or may not be needed
 
         double output =
-            _kp * error - _kd * _dFiltered + _ki * _integral;
+            _kp * error + _kd * _dFiltered + _ki * _integral;
 
         _lastMeasurement = measurement;
         _lastTime = now;

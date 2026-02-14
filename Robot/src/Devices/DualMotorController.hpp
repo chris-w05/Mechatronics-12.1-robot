@@ -22,7 +22,8 @@ public:
         double kp2, double ki2, double kd2, bool m2reversed,
         bool holdPositionWhenStopped1 = false,
         bool holdPositionWhenStopped2 = false)
-        : dualDriver(), // default pins
+        : 
+        //dualDriver(), // default pins
           _m1reversed(m1reversed),
           _m2reversed(m2reversed),
           _pid1(kp1, ki1, kd1),
@@ -39,9 +40,10 @@ public:
         double kp2, double ki2, double kd2, bool m2reversed,
         bool holdPositionWhenStopped1 = false,
         bool holdPositionWhenStopped2 = false)
-        : dualDriver(
-              pins.m1en, pins.m1dir, pins.m1pwm, pins.m1diag, pins.m1ocm,
-              pins.m2en, pins.m2dir, pins.m2pwm, pins.m2diag, pins.m2ocm),
+        : 
+        // dualDriver(
+        //       pins.m1en, pins.m1dir, pins.m1pwm, pins.m1diag, pins.m1ocm,
+        //       pins.m2en, pins.m2dir, pins.m2pwm, pins.m2diag, pins.m2ocm),
           _m1reversed(m1reversed),
           _m2reversed(m2reversed),
           _pid1(kp1, ki1, kd1),
@@ -60,6 +62,7 @@ public:
     {
         dualDriver.init();
         dualDriver.enableDrivers();
+        Serial.println("Drivetrain Drivers enabled");
         dualDriver.flipM1(_m1reversed);
         dualDriver.flipM2(_m2reversed);
     }
@@ -83,6 +86,11 @@ public:
         signal1 = constrain(signal1, -400, 400);
         signal2 = constrain(signal2, -400, 400);
 
+
+        // Serial.print("Signal L ");
+        // Serial.print(signal1);
+        // Serial.print("Signal R ");
+        // Serial.println(signal2);
         dualDriver.setM1Speed((int)signal1);
         dualDriver.setM2Speed((int)signal2);
     }
@@ -110,7 +118,7 @@ private:
     DualTB9051FTGMotorShield dualDriver;
 
     bool _m1reversed = false;
-    bool _m2reversed = false;
+    bool _m2reversed = true;
     
     PIDController _pid1;
     PIDController _pid2;
