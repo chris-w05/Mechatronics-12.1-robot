@@ -15,7 +15,8 @@ public:
     enum Mode
     {
         MINING,
-        OFF
+        OFF,
+        TEST
     };
 
     Shooter(int encoderA, int encoderB, int pwm1_pin, int pwm2_pin = -1, int en_pin = -1, int enb_pin = -1,
@@ -50,6 +51,9 @@ public:
         if( _mode == OFF){
             motor.setSpeed(0);
         }
+        if (_mode == TEST){
+            motor.setSpeed(255);
+        }
         // motor.setSpeed((int)(targetVelocity * 10));
         
     }
@@ -74,6 +78,10 @@ public:
         }
         // Serial.println("setting speed to 255");
         targetVelocity = velocity;
+    }
+
+    void fireHardSet(int signal){
+        _mode = TEST;
     }
 
     void stopFiring()

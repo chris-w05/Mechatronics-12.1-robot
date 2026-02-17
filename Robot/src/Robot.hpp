@@ -227,9 +227,10 @@ class Robot{
                 break;
 
             case 'F':
-                autonomous.clear();
-                autonomous.add(new FireStep(shooter, 300000, false));
-                autonomous.start();
+                // autonomous.clear();
+                // autonomous.add(new FireStep(shooter, 300000, true));
+                // autonomous.start();
+                shooter.fireHardSet(255);
                 ("Shooter: fire() called.");
                 break;
             
