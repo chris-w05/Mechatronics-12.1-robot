@@ -18,16 +18,18 @@ public:
 
     void start() override
     {
+        
         _startDistance = _drive.getDistance(); // or encoder average
+        _drive.setSpeed(_velocity);
     }
 
     void update() override
     {
-        _drive.setSpeed(_velocity);
     }
 
     bool isFinished() const override
     {
+        Serial.println(_drive.getDistance());
         return (_drive.getDistance() - _startDistance) >= _target;
     }
 

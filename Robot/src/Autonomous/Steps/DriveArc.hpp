@@ -26,22 +26,28 @@ public:
 
     void start() override
     {
-        _startAngle = _drive.getPose().heading; // or encoder average
-    }
-
-    void update() override
-    {
-        if (_direction){
-            _drive.followRadiusCCW( _velocity, _radius);
+        _startAngle = _drive.getAccumulatedHeading(); // or encoder average
+        if (_direction)
+        {
+            _drive.followRadiusCCW(_velocity, _radius);
         }
-        else{
+        else
+        {
             _drive.followRadiusCCW(_velocity, _radius);
         }
     }
 
+    void update() override
+    {
+        
+    }
+
     bool isFinished() const override
     {
-        return (_drive.getPose().heading - _startAngle) >= _target;
+        // Serial.print(_drive.getAccumulatedHeading() - _startAngle);
+        // Serial.print("  ");
+        // Serial.println(_target);
+        return (_drive.getAccumulatedHeading() - _startAngle) >= _target;
     }
 
     void end(){

@@ -28,19 +28,19 @@ public:
     void update()
     {
         unsigned long now = millis();
-        if (now - lastMillis >= INTERVAL)
-        {
-            count = encoder.read();
-
+        count = encoder.read();
+        
+        unsigned long dt = now - lastMillis;
+        if(dt != 0){
             long dCount = count - lastCount;
-            velocity = (float)dCount * (1000.0 / INTERVAL);
+            velocity = (float)dCount * (1000.0 / dt);
             float dVelocity = velocity - lastVelocity;
-            acceleration = dVelocity * (1000.0 / INTERVAL);
-
-            lastCount = count;
-            lastVelocity = velocity;
-            lastMillis = now;
+            acceleration = dVelocity * (1000.0 / dt);
         }
+
+        lastCount = count;
+        lastVelocity = velocity;
+        lastMillis = now;
     }
 
     int32_t read() { return isReversed? -count: count; }

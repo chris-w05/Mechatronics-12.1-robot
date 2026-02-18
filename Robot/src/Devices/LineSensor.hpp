@@ -31,7 +31,7 @@ public:
         long weightedSum = 0;
         int activeCount = 0;
 
-        for (int i = 0; i < numberPins; i++)
+        for (int i = 0; i < numberPins; i+=2)
         {
             if (_values[i])
             {

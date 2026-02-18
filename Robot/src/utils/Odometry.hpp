@@ -20,8 +20,12 @@ public:
     Pose2D getPose() const { return _pose; }
     float distanceTravelled() {return _distanceTravelled; };
 
+    float getAccumulatedHeading() const {return _accumulated_heading;};
+
 private:
     Pose2D _pose{0.0f, 0.0f, 0.0f};
+
+    float _accumulated_heading = 0;
 
     float _prevLeftDistance = 0;
     float _prevRightDistance = 0;

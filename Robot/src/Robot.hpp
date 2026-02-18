@@ -53,13 +53,6 @@ class Robot{
             //Planner can be thought of the implementation of Strategy for autonomous decision making. 
             //It turns objectives from Strategy into sequences of actions for autonomous running
 
-            autonomous.add(new FireStep(shooter, 3000, false));
-            autonomous.add(new DelayStep(3000));
-            autonomous.add(new MineBlockStep(miner, 5));
-            autonomous.add(new DelayStep(3000));
-            autonomous.add(new FireStep(shooter, 2000, false));
-            autonomous.add(new DelayStep(3000));
-            autonomous.add(new MineBlockStep(miner, 10));
             // autonomous.add(new ReplanStep(&planner, &Planner::planThunk));
         }
 
@@ -118,6 +111,7 @@ class Robot{
                 for (int i = 0; i < subsystemCount; ++i)
                     subsystems[i]->update();
 
+                autonomous.update();
                 // In SERIAL_TEST mode we also accept single-character commands.
                 // Those are handled in handleSerialTestCommand(); we poll serialComs.hasCommand() above.
                 break;
@@ -215,7 +209,7 @@ class Robot{
                 // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
                 // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
                 // autonomous.start();
-                drive.hardSetSpeed(-100);
+                drive.hardSetSpeed(100);
                 // drive.setSpeed(20);
                 Serial.println("Drive: start() called.");
                 break;
@@ -223,20 +217,34 @@ class Robot{
             case 'L':
                 drive.hardSetSpeed(100, -100);
                 // drive.setSpeed(20);
-                Serial.println("Drive: start() called.");
+                Serial.println("Drive: turn left called.");
                 break;
 
             case 'R':
                 drive.hardSetSpeed(-100, 100);
                 // drive.setSpeed(20);
-                Serial.println("Drive: start() called.");
+                Serial.println("Drive: turn right called.");
                 break;
 
             case 'Q':
-                drive.setSpeed(10.0);
-                Serial.println("Drive: start() called.");
+                // drive.setSpeed(10.0);
+                autonomous.clear();
+                // autonomous.add(new DriveDistance(drive, 30.0f, 3.0f));
+                autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
+                // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
+                autonomous.start();
+                Serial.println("Drive: Close loop control called.");
                 break;
-
+            case 'W':
+                drive.followRadiusCCW( .5, 0.0);
+                Serial.println("Drive: Close loop turning called.");
+                break;
+            case 'T':
+                break;
+            case 'q':
+                drive.setSpeed(0.0);
+                Serial.println("Closed loop on 0 velocity called.");
+                break;
             case 'l':
             case 'r':
             case 'd':

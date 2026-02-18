@@ -83,6 +83,14 @@ public:
     }
 
     /**
+     * Should be called when There is a large jump in target values, I.E. going from full forward velocity to full reverse
+     */
+    void resetPID(){
+        _pid1.reset();
+        _pid2.reset();
+    }
+
+    /**
      * Set a commanded power to both motors
      *
      * @param signalM1 Clamped to -400, 400
@@ -122,11 +130,20 @@ public:
         signal1 = constrain(signal1, -400, 400);
         signal2 = constrain(signal2, -400, 400);
 
+        Serial.print("Velocity L: ");
+        Serial.print(current_value1);
+        Serial.print(" targetL: ");
+        Serial.print(_target1);
+        Serial.print(" Signal L ");
+        Serial.print(signal1);
 
-        // Serial.print("Signal L ");
-        // Serial.print(signal1);
-        // Serial.print("Signal R ");
-        // Serial.println(signal2);
+        Serial.print("\t\tVelocity R: ");
+        Serial.print(current_value2);
+        Serial.print(" targetR: ");
+        Serial.print(_target2);
+        Serial.print(" Signal R ");
+        Serial.println(signal2);
+
         dualDriver.setM1Speed((int)signal1);
         dualDriver.setM2Speed((int)signal2);
     }
@@ -147,11 +164,15 @@ public:
         }
     }
 
-    void setPID( PIDConstants consts, bool motor = 0){ 
+    void setPID( PIDConstants consts, bool motor = 0){
+        _pid1.reset();
+        _pid2.reset();
         motor == 0 ? _pid1.set(consts) : _pid2.set(consts);};
 
     void setPID(PIDConstants consts, PIDConstants consts2)
     {
+        _pid1.reset();
+        _pid2.reset();
         _pid1.set(consts);
         _pid2.set(consts2);
     };

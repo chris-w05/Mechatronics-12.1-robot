@@ -24,8 +24,9 @@ void Odometry::update(EncoderWrapper &left, EncoderWrapper &right)
     float dTheta = (dRight - dLeft) / DRIVETRAIN_WIDTH;
 
     _distanceTravelled += dCenter;
-    _pose.heading += dTheta;
-
+    _accumulated_heading += dTheta;
+    _pose.heading = _accumulated_heading;
+    
     while (_pose.heading > M_PI)
         _pose.heading -= 2.0f * M_PI;
     while (_pose.heading < -M_PI)

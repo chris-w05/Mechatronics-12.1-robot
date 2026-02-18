@@ -19,7 +19,8 @@ public:
     enum Mode
     {
         MINING,
-        OFF
+        OFF,
+        STORE
     };
 
     // Sentinel value for "mine indefinitely"
@@ -29,7 +30,7 @@ public:
     {
         _cycleStartTime = 0;
         _onStartTime = 0;
-        _mode = OFF;
+        _mode = STORE;
         _number_hits = 0;
         _miningStartTime = 0;
         _timedOut = false;
@@ -55,6 +56,16 @@ public:
         {
             // ensure servo retracted and don't auto-reset timers
             setServoToRetract();
+            servo.update();
+            return;
+        }
+
+        if (_mode == STORE)
+        {
+            // Ensure servo is retracted while stopped and timers cleared for next start
+            setServoToStore();
+            _cycleStartTime = 0;
+            _onStartTime = 0;
             servo.update();
             return;
         }
@@ -220,6 +231,11 @@ private:
     void setServoToRetract()
     {
         servo.setAngle(MINER_SERVO_RETRACT_ANGLE);
+    }
+
+    void setServoToStore()
+    {
+        servo.setAngle(MINER_SERVO_STORE_ANGLE);
     }
 
     void startMining()

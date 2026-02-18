@@ -78,7 +78,7 @@ static const int MAX_SUBSYSTEMS = 10;
 
 //----------------------------------Physical constants
 //Robot params
-static const float DRIVETRAIN_WIDTH = .23876391; //meters
+static const float DRIVETRAIN_WIDTH = 9.30373858268; //inches
 static const int TICKS_PER_REV = 64; //Number of ticks per motor revolution
 static const float DRIVETRAIN_MOTOR_RATIO = 50;
 static const float SHOOTER_MOTOR_RATIO = 70;
@@ -92,22 +92,22 @@ static const float ARM_EXT_RATIO = 3.14 * 2; // mm/rotation - arm pos(mm) = moto
 //Miner constants
 static const unsigned long MINER_CYCLE_MS = 400UL;                  //ms
 static const unsigned long MINER_PRESS_MS = 100UL;
-static const int MINER_SERVO_PRESS_ANGLE = 80;
-static const int MINER_SERVO_STORE_ANGLE = 160;
-static const int MINER_SERVO_RETRACT_ANGLE = 00;
+static const int MINER_SERVO_PRESS_ANGLE = 140;
+static const int MINER_SERVO_STORE_ANGLE = 00;
+static const int MINER_SERVO_RETRACT_ANGLE = 180;
 
 
 //----------------------------------PID constants
 //drivetrain
 static const PIDConstants DRIVE_L_PID = {
-    .kp = 20.0, 
+    .kp = 50.0, 
     .ki = 3.0, 
     .kd = 0
 };
 
 static const PIDConstants DRIVE_R_PID = {
-    .kp = -20.0,
-    .ki = -3.0,
+    .kp = 50.0,
+    .ki = 3.0,
     .kd = 0
 };
 

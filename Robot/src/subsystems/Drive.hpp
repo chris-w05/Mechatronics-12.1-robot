@@ -57,7 +57,7 @@ class Drive : public Subsystem {
             _motorController(
                 pins,
                 DRIVE_L_PID, true,
-                DRIVE_R_PID, true,
+                DRIVE_R_PID, false,
                 false, false),
             distSensor( distPin)
         {
@@ -88,39 +88,35 @@ class Drive : public Subsystem {
             _leftEncoder.update();
             _rightEncoder.update();
 
-            if (mode == STRAIGHT || mode == ARC){
-                //Any special considerations handled here
-            }
-            else if( mode == LINEFOLLOWING){
+            if (mode == LINEFOLLOWING){
                 _lineSensor.update();
                 int correction = _lineSensor.readValue();
                 correction *= 20; // Correction gain - velocity units/number sensors active
-                if( (_speedL + _speedR)/2 < 0) correction *= -1; //If driving backwards, the line following correction needs to be reversed
+                if ((_speedL + _speedR) / 2 < 0)
+                    correction *= -1; // If driving backwards, the line following correction needs to be reversed
                 _speedL += correction;
                 _speedR -= correction;
             }
-            else if (mode == STOPPED){
 
-            }
             _motorController.setTarget(_speedL, _speedR);
 
             float leftVelocity = _leftEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER  / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV); //inch/s
             float rightVelocity = _rightEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV); //inch/s
-            Serial.print("Velocity L: ");
-            Serial.print(_leftEncoder.getVelocity());
-            Serial.print(" targetL: ");
-            Serial.print(_speedL);
-            Serial.print(" leftVel(inch/s): ");
-            Serial.print(leftVelocity);
+            
+            
+            // Serial.print("Velocity L: ");
+            // Serial.print(_leftEncoder.getVelocity());
+            // Serial.print(" targetL: ");
+            // Serial.print(_speedL);
+            // Serial.print(" leftVel(inch/s): ");
+            // Serial.print(leftVelocity);
 
-            Serial.print(" Velocity R: ");
-            Serial.print(_rightEncoder.getVelocity());
-            Serial.print(" targetR: ");
-            Serial.print(_speedR);
-            Serial.print(" rightVel(inch/s): ");
-            Serial.println(rightVelocity);
-            // Serial.print("Mode is ");
-            // Serial.println(mode);
+            // Serial.print(" Velocity R: ");
+            // Serial.print(_rightEncoder.getVelocity());
+            // Serial.print(" targetR: ");
+            // Serial.print(_speedR);
+            // Serial.print(" rightVel(inch/s): ");
+            // Serial.println(rightVelocity);
 
 
             //Apply feedback/ open loop control depending on current mode
@@ -134,7 +130,11 @@ class Drive : public Subsystem {
                 
                 case HARDSET:
                 case LINEFOLLOWING_HARDSET:
-                    _motorController.setPower((int)_speedL, -(int)_speedR);
+                    // Serial.print("Commanding speeds Left:");
+                    // Serial.print(_speedL);
+                    // Serial.print(" Right:");
+                    // Serial.println(_speedR);
+                    _motorController.setPower((int)_speedL, (int)_speedR);
                     break;
                 default:
                     _motorController.setPower(0, 0);
@@ -151,6 +151,10 @@ class Drive : public Subsystem {
             return _odometry.getPose();
         }
 
+        float getAccumulatedHeading(){
+            return _odometry.getAccumulatedHeading();
+        }
+
         /**
          * Passes total distance travelled from odometry
          */
@@ -163,6 +167,7 @@ class Drive : public Subsystem {
          */
         void setSpeed(float speed){
             mode = STRAIGHT;
+            _motorController.resetPID();
             _speedR = speed;
             _speedL = speed;
         }
