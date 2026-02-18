@@ -27,13 +27,11 @@ class Robot{
             : drive(
                   LEFT_ENCODER_A, LEFT_ENCODER_B,
                   RIGHT_ENCODER_A, RIGHT_ENCODER_B,
-                  LEFT_MOTOR_PWM, LEFT_MOTOR_DIR,
-                  RIGHT_MOTOR_PWM, RIGHT_MOTOR_DIR,
+                  drivePins,
                   DISTANCE_SENSOR_PIN, LINE_SENSOR_START_PIN),
               miner(MINER_SERVO_PIN),
               shooter(SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
-                    SHOOTER_MOTOR_IN1, SHOOTER_MOTOR_IN2, SHOOTER_MOTOR_ENABLE, SHOOTER_MOTOR_ENABLE2, -1, -1, -1, 5.0, MotorController::DriverType::TB9051
-                      ),
+                    shooterPins),
               serialComs(Serial2),
               planner(drive, miner, shooter)
         {
@@ -209,14 +207,33 @@ class Robot{
                 // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
                 // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
                 // autonomous.start();
-                // drive.hardSetSpeed(400);
-                drive.setSpeed(20);
+                drive.hardSetSpeed(-100);
+                // drive.setSpeed(20);
                 Serial.println("Drive: start() called.");
                 break;
 
+            case 'L':
+                drive.hardSetSpeed(100, -100);
+                // drive.setSpeed(20);
+                Serial.println("Drive: start() called.");
+                break;
+
+            case 'R':
+                drive.hardSetSpeed(-100, 100);
+                // drive.setSpeed(20);
+                Serial.println("Drive: start() called.");
+                break;
+
+            case 'Q':
+                drive.setSpeed(10.0);
+                Serial.println("Drive: start() called.");
+                break;
+
+            case 'l':
+            case 'r':
             case 'd':
                 autonomous.stop();
-                drive.setSpeed(0);
+                drive.hardSetSpeed(0);
                 Serial.println("Drive: stop() called.");
                 break;
             case 'E':
@@ -231,7 +248,7 @@ class Robot{
                 // autonomous.add(new FireStep(shooter, 300000, true));
                 // autonomous.start();
                 shooter.fireHardSet(255);
-                ("Shooter: fire() called.");
+                Serial.println("Shooter: fire() called.");
                 break;
             
             case 'f':

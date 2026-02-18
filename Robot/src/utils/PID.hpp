@@ -79,8 +79,8 @@ private:
 
     double _dAlpha = 0.1; // derivative smoothing
 
-    double _iMin = -1000.0;
-    double _iMax = 1000.0;
+    double _iMin = -100000.0;
+    double _iMax = 100000.0;
 
     unsigned long _lastTime = 0;
 };

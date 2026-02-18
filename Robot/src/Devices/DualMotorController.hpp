@@ -4,46 +4,47 @@
 #include <Arduino.h>
 #include "utils/PID.hpp"
 #include <DualTB9051FTGMotorShield.h>
+#include <L298NMotorDriverMega.h>
 
 
 //Default pins for the board. When a second board is created, one of these shoudl be created for it
 struct TB9051Pins
 {
-    uint8_t m1en, m1dir, m1pwm, m1diag, m1ocm;
-    uint8_t m2en, m2dir, m2pwm, m2diag, m2ocm;
+    uint8_t m1PWM, m1Direction1, m1Direction2;
+    uint8_t m2PWM, m2Direction1, m2Direction2;
 };
 
 class DualMotorController
 {
 public:
     // Default-pins constructor (shield #1)
-    DualMotorController(
-        double kp1, double ki1, double kd1, bool m1reversed,
-        double kp2, double ki2, double kd2, bool m2reversed,
-        bool holdPositionWhenStopped1 = false,
-        bool holdPositionWhenStopped2 = false)
-        : 
-        //dualDriver(), // default pins
-          _m1reversed(m1reversed),
-          _m2reversed(m2reversed),
-          _pid1(kp1, ki1, kd1),
-          _pid2(kp2, ki2, kd2),
-          _holdPositionWhenStopped1(holdPositionWhenStopped1),
-          _holdPositionWhenStopped2(holdPositionWhenStopped2)
-    {
-    }
+    // DualMotorController(
+    //     double kp1, double ki1, double kd1, bool m1reversed,
+    //     double kp2, double ki2, double kd2, bool m2reversed,
+    //     bool holdPositionWhenStopped1 = false,
+    //     bool holdPositionWhenStopped2 = false)
+    //     : 
+    //     //dualDriver(), // default pins
+    //       _m1reversed(m1reversed),
+    //       _m2reversed(m2reversed),
+    //       _pid1(kp1, ki1, kd1),
+    //       _pid2(kp2, ki2, kd2),
+    //       _holdPositionWhenStopped1(holdPositionWhenStopped1),
+    //       _holdPositionWhenStopped2(holdPositionWhenStopped2)
+    // {
+    // }
 
     // Remapped-pins constructor (shield #2, #3, ...)
     DualMotorController(
         const TB9051Pins &pins,
-        double kp1, double ki1, double kd1, bool m1reversed,
-        double kp2, double ki2, double kd2, bool m2reversed,
+        double kp1 = 0.0, double ki1 = 0.0, double kd1 = 0.0, bool m1reversed = false,
+        double kp2 = 0.0, double ki2 = 0.0, double kd2 = 0.0, bool m2reversed = false,
         bool holdPositionWhenStopped1 = false,
         bool holdPositionWhenStopped2 = false)
-        : 
-        // dualDriver(
-        //       pins.m1en, pins.m1dir, pins.m1pwm, pins.m1diag, pins.m1ocm,
-        //       pins.m2en, pins.m2dir, pins.m2pwm, pins.m2diag, pins.m2ocm),
+        : // dualDriver(
+          //       pins.m1en, pins.m1dir, pins.m1pwm, pins.m1diag, pins.m1ocm,
+          //       pins.m2en, pins.m2dir, pins.m2pwm, pins.m2diag, pins.m2ocm),'
+          dualDriver(pins.m1PWM, pins.m1Direction1, pins.m1Direction2, pins.m2PWM, pins.m2Direction1, pins.m2Direction2),
           _m1reversed(m1reversed),
           _m2reversed(m2reversed),
           _pid1(kp1, ki1, kd1),
@@ -61,7 +62,6 @@ public:
     void init()
     {
         dualDriver.init();
-        dualDriver.enableDrivers();
         Serial.println("Drivetrain Drivers enabled");
         dualDriver.flipM1(_m1reversed);
         dualDriver.flipM2(_m2reversed);
@@ -73,9 +73,30 @@ public:
         _target2 = targetM2;
     }
 
+    /**
+     * Set a commanded power to both motors
+     *
+     * @param signalM1 Clamped to -400, 400
+     * @param signalM2 Clamped to -400, 400
+     */
     void setPower( int signalM1, int signalM2 ){
         dualDriver.setM1Speed(signalM1);
         dualDriver.setM2Speed(signalM2);
+    }
+
+    /** 
+     * Set a commanded power to a specific motor
+     * 
+     * @param signal Power to send to motor, from -400 to 400
+     * @param motor 0 -> M1,  1 -> M2
+     */
+    void setPower(int signal, bool motor = 0)
+    {
+        if (motor){
+            dualDriver.setM1Speed(signal);
+            return;
+        }
+        dualDriver.setM2Speed(signal);
     }
 
     void update(double current_value1, double current_value2)
@@ -111,11 +132,12 @@ public:
         }
     }
 
-    float getM1current() { return dualDriver.getM1CurrentMilliamps(); }
-    float getM2current() { return dualDriver.getM2CurrentMilliamps(); }
+    // float getM1current() { return dualDriver.getM1CurrentMilliamps(); }
+    // float getM2current() { return dualDriver.getM2CurrentMilliamps(); }
 
 private:
-    DualTB9051FTGMotorShield dualDriver;
+    // DualTB9051FTGMotorShield dualDriver;
+    L298NMotorDriverMega dualDriver;
 
     bool _m1reversed = false;
     bool _m2reversed = true;

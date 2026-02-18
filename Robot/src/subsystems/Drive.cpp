@@ -8,18 +8,16 @@ Drive::Drive(
     const int left_enc_b,
     const int right_enc_a,
     const int right_enc_b,
-    const int left_mtr_pwm,
-    const int left_mtr_dir,
-    const int right_mtr_pwm,
-    const int right_mtr_dir,
+    const TB9051Pins pins,
     const int distPin,
     const int lineFollowerPin)
     : _leftEncoder(left_enc_a, left_enc_b),
       _rightEncoder(right_enc_a, right_enc_b),
       _lineSensor(lineFollowerPin),
       _motorController(
+          pins,
           DRIVE_L_KP, DRIVE_L_KI, DRIVE_L_KD, true,
-          DRIVE_R_KP, DRIVE_R_KI, DRIVE_R_KD, false,
+          DRIVE_R_KP, DRIVE_R_KI, DRIVE_R_KD, true,
           false, false),
       distSensor( distPin)
 {
@@ -30,6 +28,7 @@ void Drive::init()
     _odometry.init({0, 0, 0});
     _leftEncoder.init();
     _rightEncoder.init();
+    _leftEncoder.flipDirection();
     _motorController.init();
     Serial.println("Drivetrain initialized");
 }
@@ -60,24 +59,32 @@ void Drive::update()
 
     float leftVelocity = _leftEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER  / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV); //inch/s
     float rightVelocity = _rightEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV); //inch/s
+    Serial.print("Velocity L: ");
+    Serial.print(_leftEncoder.getVelocity());
+    Serial.print(" targetL: ");
+    Serial.print(_speedL);
+    Serial.print(" leftVel(inch/s): ");
+    Serial.print(leftVelocity);
 
-    leftVelocity *= -1;
-    // Serial.print("Velocity L: ");
-    // Serial.print(leftVelocity);
-    // Serial.print("Velocity R: ");
-    // Serial.println(rightVelocity);
+    Serial.print(" Velocity R: ");
+    Serial.print(_rightEncoder.getVelocity());
+    Serial.print(" targetR: ");
+    Serial.print(_speedR);
+    Serial.print(" rightVel(inch/s): ");
+    Serial.println(rightVelocity);
+    // Serial.print("Mode is ");
+    // Serial.println(mode);
 
-    // Serial.print("targetL: ");
-    // Serial.print(_speedL);
-    // Serial.print(" leftVel(inch/s): ");
-    // Serial.print(leftVelocity);
-
-    // Serial.print("  targetR: ");
-    // Serial.print(_speedR);
-    // Serial.print(" rightVel(inch/s): ");
-    // Serial.print(rightVelocity);
-
-    _motorController.update( leftVelocity, rightVelocity);
+    if( mode != HARDSET){
+        _motorController.update( leftVelocity, rightVelocity);
+    }
+    else{
+        _motorController.setPower((int)_speedL, -(int)_speedR);
+        // Serial.print("Setting motor power to ");
+        // Serial.print(_speedL);
+        // Serial.print(" ");
+        // Serial.println(_speedR);
+    }
 
     _odometry.update(_leftEncoder, _rightEncoder);
     }
@@ -95,7 +102,18 @@ void Drive::setSpeed(float speed){
 }
 
 void Drive::hardSetSpeed(int16_t speed){
+    mode = HARDSET;
+    _speedR = speed;
+    _speedL = speed;
     _motorController.setPower(speed, speed);
+}
+
+void Drive::hardSetSpeed(int16_t speed1, int16_t speed2)
+{
+    mode = HARDSET;
+    _speedR = speed1;
+    _speedL = speed2;
+    _motorController.setPower(speed1, speed2);
 }
 
 void Drive::followRadiusClockwise(float omega_rad_s, float radius_m)

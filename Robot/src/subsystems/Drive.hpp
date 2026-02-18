@@ -16,18 +16,18 @@ class Drive : public Subsystem {
         LINEFOLLOWING,
          STRAIGHT,
          ARC,
-         STOPPED
+         STOPPED,
+         HARDSET
     };
 
 public:
+    
+
     Drive(const int left_enc_a,
           const int left_enc_b,
           const int right_enc_a,
           const int right_enc_b,
-          const int left_mtr_pwm,
-          const int left_mtr_dir,
-          const int right_mtr_pwm,
-          const int right_mtr_dir,
+          const TB9051Pins pins,
           const int distPin,
           const int lineFollowerPin);
 
@@ -42,6 +42,7 @@ public:
     void followLine(float speed);
     void followRadiusCCW(float omega_rad_s, float radius);
     void hardSetSpeed(int16_t speed);
+    void hardSetSpeed(int16_t speed1, int16_t speed2);
 
 private:
     float _speedL = 0;
@@ -58,7 +59,7 @@ private:
 
     Odometry _odometry;
 
-    MODE mode = STRAIGHT;
+    MODE mode = HARDSET;
 
 
 

@@ -1,32 +1,59 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 #include <Arduino.h>
+#include <Devices/DualMotorController.hpp>
 
 //----------------------------Pin allocation
 // Encoder pins
-static const int LEFT_ENCODER_A = 20;
-static const int LEFT_ENCODER_B = 21;
-static const int RIGHT_ENCODER_A = 18;
-static const int RIGHT_ENCODER_B = 19;
+static const int LEFT_ENCODER_A = 18;
+static const int LEFT_ENCODER_B = 19;
+static const int RIGHT_ENCODER_A = 20;
+static const int RIGHT_ENCODER_B = 21;
 
 // Motor pins
 
 //THE ROBOT SHOOTS TOWARD THE BACK
 //Left Drive Wheel
-static const int LEFT_MOTOR_ENABLE = 2;
-static const int LEFT_MOTOR_PWM = 9;
-static const int LEFT_MOTOR_DIR = 7;
 
-//Right Drive Wheel
-static const int RIGHT_MOTOR_ENABLE = 4;
-static const int RIGHT_MOTOR_PWM = 10;
-static const int RIGHT_MOTOR_DIR = 8;
+// const TB9051Pins drivePins = {
+//     //Drive motor pins
+//     .m1PWM = 6,
+//     .m1Direction1 = 31,
+//     .m1Direction2 = 33,
+//     .m2PWM = 7,
+//     .m2Direction1 = 35,
+//     .m2Direction2 = 37};
 
-//Shooter motor
-static const int SHOOTER_MOTOR_ENABLE = -1;
-static const int SHOOTER_MOTOR_ENABLE2 = -1;
-static const int SHOOTER_MOTOR_IN1 = 5;
-static const int SHOOTER_MOTOR_IN2 = 6;
+
+// const TB9051Pins shooterPins = {
+//     //Shooter pins
+//     .m1PWM = 2,
+//     .m1Direction1 = 39,
+//     .m1Direction2 = 41,
+//     .m2PWM = 5,
+//     .m2Direction1 = 255,
+//     .m2Direction2 = 255
+// };
+
+const TB9051Pins drivePins = {
+    //Drive motor pins
+    .m1PWM = 6,
+    .m1Direction1 = 31,
+    .m1Direction2 = 33,
+    .m2PWM = 7,
+    .m2Direction1 = 35,
+    .m2Direction2 = 37};
+
+const TB9051Pins shooterPins = {
+    //Shooter pins
+    .m1PWM = 2,
+    .m1Direction1 = 39,
+    .m1Direction2 = 41,
+    .m2PWM = 5,
+    .m2Direction1 = 255,
+    .m2Direction2 = 255
+};
+
 static const int SHOOTER_ENCODER_A  = 3;
 static const int SHOOTER_ENCODER_B = 26;
 
@@ -71,12 +98,17 @@ static const int MINER_SERVO_RETRACT_ANGLE = 00;
 
 //----------------------------------PID constants
 //drivetrain
-static const float DRIVE_L_KP = -20;
-static const float DRIVE_L_KI = 0.0;
+static const float DRIVE_L_KP = 20;
+static const float DRIVE_L_KI = 3.0;
 static const float DRIVE_L_KD = 0;
 
 static const float DRIVE_R_KP = -20;
-static const float DRIVE_R_KI = 0.0;
+static const float DRIVE_R_KI = -3.0;
 static const float DRIVE_R_KD = 0;
+
+//Shooter
+static const float SHOOTER_KP = -20;
+static const float SHOOTER_KI = 0.0;
+static const float SHOOTER_KD = 0;
 
 #endif

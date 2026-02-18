@@ -23,6 +23,8 @@ public:
         acceleration = 0;
     }
 
+    void flipDirection(){ isReversed = !isReversed;}
+
     void update()
     {
         unsigned long now = millis();
@@ -41,12 +43,13 @@ public:
         }
     }
 
-    int32_t read() { return count; }
-    int32_t getCount() { return count; }
-    float getVelocity() { return velocity; }
-    float getAcceleration() { return acceleration; }
+    int32_t read() { return isReversed? -count: count; }
+    int32_t getCount() { return isReversed ? -count : count; }
+    float getVelocity() { return isReversed ? -velocity : velocity; }
+    float getAcceleration() { return isReversed ? -acceleration : acceleration; }
 
 private:
+    bool isReversed;
     uint8_t _pinA;
     uint8_t _pinB;
     Encoder encoder;

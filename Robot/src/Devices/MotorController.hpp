@@ -443,10 +443,12 @@ private:
     int _ocm_pin;
     int _occ_pin;
 
-    PIDController _pid;
-
     float _analog_vref;
     bool _two_pwm_mode;
+    PIDController _pid;
+
+    
+    
 
     DriverType _driverType;
 

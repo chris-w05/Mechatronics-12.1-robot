@@ -39,7 +39,7 @@ public:
         // Use unsigned long for millis arithmetic
         const unsigned long now = millis();
 
-        if( _number_hits >= _hits_to_mine - 1){
+        if( _number_hits > _hits_to_mine){
             _mode = OFF;
         }
 
@@ -106,7 +106,7 @@ public:
     {
         // begin mining immediately on next update
         //indefinite number of hits
-        _hits_to_mine = 100000;
+        _hits_to_mine = 10000;
         if (_mode != MINING)
         {
             _mode = MINING;
@@ -151,7 +151,7 @@ private:
     unsigned long _cycleStartTime = 0;
     unsigned long _onStartTime = 0;
     unsigned int _number_hits = 0;
-    unsigned int _hits_to_mine = 10;
+    int _hits_to_mine = 10;
 
 
 
