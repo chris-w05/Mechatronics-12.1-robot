@@ -1,7 +1,8 @@
-#ifndef CONFIG_H
-#define CONFIG_H
+#pragma once
+
 #include <Arduino.h>
 #include <Devices/DualMotorController.hpp>
+#include "utils/PID.hpp"
 
 //----------------------------Pin allocation
 // Encoder pins
@@ -98,17 +99,25 @@ static const int MINER_SERVO_RETRACT_ANGLE = 00;
 
 //----------------------------------PID constants
 //drivetrain
-static const float DRIVE_L_KP = 20;
-static const float DRIVE_L_KI = 3.0;
-static const float DRIVE_L_KD = 0;
+static const PIDConstants DRIVE_L_PID = {
+    .kp = 20.0, 
+    .ki = 3.0, 
+    .kd = 0
+};
 
-static const float DRIVE_R_KP = -20;
-static const float DRIVE_R_KI = -3.0;
-static const float DRIVE_R_KD = 0;
+static const PIDConstants DRIVE_R_PID = {
+    .kp = -20.0,
+    .ki = -3.0,
+    .kd = 0
+};
 
-//Shooter
-static const float SHOOTER_KP = -20;
-static const float SHOOTER_KI = 0.0;
-static const float SHOOTER_KD = 0;
+static const PIDConstants SHOOTER_POSITION_PID = {
+    .kp = -20.0,
+    .ki = 0.0,
+    .kd = 0
+};
 
-#endif
+static const PIDConstants SHOOTER_VELOCITY_PID = {
+    .kp = -20.0,
+    .ki = 0.0,
+    .kd = 0};

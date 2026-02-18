@@ -37,18 +37,20 @@ public:
     // Remapped-pins constructor (shield #2, #3, ...)
     DualMotorController(
         const TB9051Pins &pins,
-        double kp1 = 0.0, double ki1 = 0.0, double kd1 = 0.0, bool m1reversed = false,
-        double kp2 = 0.0, double ki2 = 0.0, double kd2 = 0.0, bool m2reversed = false,
+        PIDConstants M1PIDConsts = { 0, 0, 0}, bool m1reversed = false,
+        PIDConstants M2PIDConsts = {0, 0, 0}, bool m2reversed = false,
         bool holdPositionWhenStopped1 = false,
         bool holdPositionWhenStopped2 = false)
         : // dualDriver(
           //       pins.m1en, pins.m1dir, pins.m1pwm, pins.m1diag, pins.m1ocm,
           //       pins.m2en, pins.m2dir, pins.m2pwm, pins.m2diag, pins.m2ocm),'
-          dualDriver(pins.m1PWM, pins.m1Direction1, pins.m1Direction2, pins.m2PWM, pins.m2Direction1, pins.m2Direction2),
+          dualDriver(
+            pins.m1PWM, pins.m1Direction1, pins.m1Direction2, 
+            pins.m2PWM, pins.m2Direction1, pins.m2Direction2),
           _m1reversed(m1reversed),
           _m2reversed(m2reversed),
-          _pid1(kp1, ki1, kd1),
-          _pid2(kp2, ki2, kd2),
+          _pid1(M1PIDConsts),
+          _pid2(M2PIDConsts),
           _holdPositionWhenStopped1(holdPositionWhenStopped1),
           _holdPositionWhenStopped2(holdPositionWhenStopped2)
     {
@@ -67,7 +69,14 @@ public:
         dualDriver.flipM2(_m2reversed);
     }
 
-    void setTarget(double targetM1, double targetM2)
+
+    /**
+     * Set a target value for the motor controller's PID loop. This is unitless as units are handled by the implementation of the PID controller
+     *
+     * @param targetM1 Desired value for M1
+     * @param targetM2 Desired value for M2, defaults to 0.0
+     **/
+    void setTarget(double targetM1, double targetM2 = 0.0)
     {
         _target1 = targetM1;
         _target2 = targetM2;
@@ -99,7 +108,13 @@ public:
         dualDriver.setM2Speed(signal);
     }
 
-    void update(double current_value1, double current_value2)
+    /**
+     * Update the PID control loop for motor controller
+     *
+     * @param current_value1 The current state of motor 1 (position/velocity/etc.)
+     * @param current_value2 The current state of motor 2 (position/velocity/etc.) This defaults to 0.0 for use when manipulating only 1 motor
+     */
+    void update(double current_value1, double current_value2 = 0.0)
     {
         double signal1 = _pid1.update(current_value1, _target1);
         double signal2 = _pid2.update(current_value2, _target2); // <-- FIX
@@ -131,6 +146,15 @@ public:
             dualDriver.setM2Speed(0);
         }
     }
+
+    void setPID( PIDConstants consts, bool motor = 0){ 
+        motor == 0 ? _pid1.set(consts) : _pid2.set(consts);};
+
+    void setPID(PIDConstants consts, PIDConstants consts2)
+    {
+        _pid1.set(consts);
+        _pid2.set(consts2);
+    };
 
     // float getM1current() { return dualDriver.getM1CurrentMilliamps(); }
     // float getM2current() { return dualDriver.getM2CurrentMilliamps(); }

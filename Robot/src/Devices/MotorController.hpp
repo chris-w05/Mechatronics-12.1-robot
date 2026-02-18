@@ -49,6 +49,24 @@ public:
     {
     }
 
+    MotorController(int pwm1_pin, int pwm2_pin = -1, int en_pin = -1, int enb_pin = -1,
+                    int diag_pin = -1, int ocm_pin = -1, int occ_pin = -1, float analog_vref = 5.0f,
+                    PIDConstants consts = {0, 0, 0},
+                    DriverType driver = DriverType::TB9051)
+        : _pwm1_pin(pwm1_pin),
+          _pwm2_pin(pwm2_pin),
+          _en_pin(en_pin),
+          _enb_pin(enb_pin),
+          _diag_pin(diag_pin),
+          _ocm_pin(ocm_pin),
+          _occ_pin(occ_pin),
+          _analog_vref(analog_vref),
+          _two_pwm_mode(pwm2_pin != -1),
+          _pid(consts),
+          _driverType(driver)
+    {
+    }
+
     // call in setup(); configures pinMode for all provided pins
     void begin()
     {

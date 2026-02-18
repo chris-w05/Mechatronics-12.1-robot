@@ -3,11 +3,18 @@
 
 #include <Arduino.h>
 
+struct PIDConstants{
+    double kp, ki, kd;
+};
+
 class PIDController
 {
 public:
     PIDController(double kp, double ki, double kd)
         : _kp(kp), _ki(ki), _kd(kd){}
+
+    PIDController(PIDConstants consts)
+        : _kp(consts.kp), _ki(consts.ki), _kd(consts.kd) {}
 
     double update(double measurement, double setpoint)
     {
@@ -67,6 +74,12 @@ public:
         _kp = kp;
         _ki = ki;
         _kd = kd;
+    }
+
+    void set( PIDConstants consts){
+        _kp = consts.kp;
+        _ki = consts.ki;
+        _kd = consts.kd;
     }
 
 private:
