@@ -13,9 +13,17 @@ public:
     PIDController(double kp, double ki, double kd)
         : _kp(kp), _ki(ki), _kd(kd){}
 
+    /**
+     * Create a PID controller using a preexisting stucture of PID constants
+     */
     PIDController(PIDConstants consts)
         : _kp(consts.kp), _ki(consts.ki), _kd(consts.kd) {}
 
+
+    /**
+     * Get a new output value given the current state of the PID controller. 
+     * This is intentionally abstracted so that it can be used on position velocity or acceleration
+     */
     double update(double measurement, double setpoint)
     {
         unsigned long now = millis();

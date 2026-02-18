@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 
+
+//Abstract class so robot subsystems can be looped through. This defines the functions that each subsystem is required to include
 class Subsystem {
 public:
     virtual ~Subsystem() = default;

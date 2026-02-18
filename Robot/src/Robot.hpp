@@ -23,6 +23,10 @@ class Robot{
     
 
     public:
+
+        /**
+         * Robot constructor
+         */
         Robot()
             : drive(
                   LEFT_ENCODER_A, LEFT_ENCODER_B,
@@ -92,6 +96,8 @@ class Robot{
                 }
             }
 
+
+            //Global states
             switch (mode)
             {
             case AWAIT:
@@ -128,6 +134,8 @@ class Robot{
          */
         void handleGlobalCommand(char cmd)
         {
+
+            // Theser are test states to test individual cases of robot behavior. 
             switch (cmd)
             {
             case 'S':

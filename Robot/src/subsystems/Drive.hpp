@@ -16,7 +16,8 @@ class Drive : public Subsystem {
          STRAIGHT,
          ARC,
          STOPPED,
-         HARDSET
+         HARDSET,
+         LINEFOLLOWING_HARDSET
     };
 
     private:
@@ -38,6 +39,10 @@ class Drive : public Subsystem {
 
 
     public:
+
+        /**
+         * Drive contructor
+         */
         Drive(
             const int left_enc_a,
             const int left_enc_b,
@@ -58,6 +63,11 @@ class Drive : public Subsystem {
         {
         }
 
+
+        /**
+         * Should be called once on startup
+         * Starts odometry, inits sensors, etc. 
+         */
         void init()
         {
             _odometry.init({0, 0, 0});
@@ -68,6 +78,10 @@ class Drive : public Subsystem {
             Serial.println("Drivetrain initialized");
         }
 
+        /**
+         * Called once per loop of arduino,
+         * This is where feedback control is updated
+         */
         void update()
         {
             //Update child sensors
@@ -108,32 +122,56 @@ class Drive : public Subsystem {
             // Serial.print("Mode is ");
             // Serial.println(mode);
 
-            if( mode != HARDSET){
-                _motorController.update( leftVelocity, rightVelocity);
-            }
-            else{
-                _motorController.setPower((int)_speedL, -(int)_speedR);
-                // Serial.print("Setting motor power to ");
-                // Serial.print(_speedL);
-                // Serial.print(" ");
-                // Serial.println(_speedR);
+
+            //Apply feedback/ open loop control depending on current mode
+            switch( mode){
+                case LINEFOLLOWING:
+                case STRAIGHT:
+                case ARC:
+                case STOPPED:
+                    _motorController.update(leftVelocity, rightVelocity);
+                    break;
+                
+                case HARDSET:
+                case LINEFOLLOWING_HARDSET:
+                    _motorController.setPower((int)_speedL, -(int)_speedR);
+                    break;
+                default:
+                    _motorController.setPower(0, 0);
             }
 
             _odometry.update(_leftEncoder, _rightEncoder);
-            }
+        }
+        
 
+        /**
+         * Gets the current position and orientation of the robot
+         */
         Odometry::Pose2D getPose(){
             return _odometry.getPose();
         }
 
+        /**
+         * Passes total distance travelled from odometry
+         */
         float getDistance() { return _odometry.distanceTravelled(); };
 
+
+        /**
+         * Sets the desired speed for driving in a straight line
+         * This assumes PID control is being used and accurate
+         */
         void setSpeed(float speed){
             mode = STRAIGHT;
             _speedR = speed;
             _speedL = speed;
         }
 
+
+        /**
+         * Sends a raw speed command (no feedback control) to both motors
+         * This will make the robot drive in a straight-ish line
+         */
         void hardSetSpeed(int16_t speed){
             mode = HARDSET;
             _speedR = speed;
@@ -141,6 +179,11 @@ class Drive : public Subsystem {
             _motorController.setPower(speed, speed);
         }
 
+
+        /**
+         * Individually set the speeds of both drive motors
+         * This is done outside of feedback control
+         */
         void hardSetSpeed(int16_t speed1, int16_t speed2)
         {
             mode = HARDSET;
@@ -149,6 +192,10 @@ class Drive : public Subsystem {
             _motorController.setPower(speed1, speed2);
         }
 
+
+        /**
+         * Sets target velocities for feedback control to follow a specified arc
+         */
         void followRadiusClockwise(float omega_rad_s, float radius_m)
         {
             mode = MODE::ARC;
@@ -160,6 +207,9 @@ class Drive : public Subsystem {
             _speedR = omega_rad_s * (radius_m - halfL);
         }
 
+        /**
+         * Changes mode to LINEFOLLOWING, and gives a target speed for feedback control
+         */
         void followLine(float speed)
         {
             mode = MODE::LINEFOLLOWING;
@@ -167,6 +217,10 @@ class Drive : public Subsystem {
             _speedR = speed;
         }
 
+
+        /**
+         * Follow a radius in the Counter-clockwise direction
+         */
         void followRadiusCCW(float omega_rad_s, float radius_m)
         {
             mode = MODE::ARC;
@@ -178,6 +232,11 @@ class Drive : public Subsystem {
             _speedR = omega_rad_s * (radius_m + halfL);
         }
 
+        /**
+         * Closed-loop control for stopping the robot. 
+         * Sets the desired velocity to 0, so the robot will actively brake
+         * If you want to set power to 0 as a soft-stop, use hardSetSpeed(0);
+         */
         void stop()
         {
             mode = MODE::STOPPED;

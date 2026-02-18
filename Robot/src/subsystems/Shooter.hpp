@@ -29,6 +29,9 @@ public:
     }
     
 
+    /**
+     * initializes shooter subsystem 
+     */
     void init() override
     {
         // Initialize servo to retracted position and reset timers
@@ -39,6 +42,14 @@ public:
         // Set to retract angle on startup
     }
 
+
+    /**
+     * Updates shooter subsystem:
+     * updates children
+     *  - encoder position/velocity
+     * 
+     * sets power to motor, depending on mode
+     */
     void update() override
     {
         encoder.update();
