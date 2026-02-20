@@ -191,6 +191,11 @@ public:
         return (_mode == OFF);
     }
 
+    void store()
+    {
+       setServoToStore(); 
+    }
+
     // Return true if miner auto-stopped because of timeout (only relevant for indefinite)
     bool hasTimedOut() const { return _timedOut; }
 

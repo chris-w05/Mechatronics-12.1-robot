@@ -199,6 +199,7 @@ class Robot{
 
             case 'm':
                 autonomous.stop();
+                miner.store();
                 Serial.println("Miner: stopMining() called.");
                 break;
 
