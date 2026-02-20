@@ -209,8 +209,8 @@ class Robot{
                 // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
                 // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
                 // autonomous.start();
-                drive.hardSetSpeed(100);
-                // drive.setSpeed(20);
+                drive.hardSetSpeed(400);
+                // drive.setSpeed(5);
                 Serial.println("Drive: start() called.");
                 break;
 
