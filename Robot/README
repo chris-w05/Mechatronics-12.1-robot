@@ -1,0 +1,42 @@
+Documentation
+Project documentation is generated using Doxygen and rendered as a browsable HTML site.
+The documentation includes:
+  Class descriptions
+  Public and private members
+  Inheritance diagrams
+  Dependency graphs (via Graphviz)
+
+Prerequisites
+Before generating documentation, install:
+  Doxygen
+  Graphviz (required for UML and class diagrams)
+macOS (Homebrew)
+  brew install doxygen
+  brew install graphviz
+Ubuntu / Debian
+  sudo apt install doxygen graphviz
+Windows
+  Download installers from:
+  https://www.doxygen.nl/download.html
+  https://graphviz.org/download/
+
+Generating Documentation
+From the root of the project directory, run:
+doxygen Doxyfile
+This will generate a new folder:
+html/
+
+Viewing Documentation
+Open the generated documentation in your browser:
+open html/index.html      # macOS
+or
+xdg-open html/index.html  # Linux
+You can also manually open html/index.html in any web browser.
+
+Viewing Diagrams
+If Graphviz is installed correctly, the documentation will include:
+  Class diagrams
+  Inheritance hierarchies
+  Collaboration graphs
+For a full system overview, navigate to:
+Classes → Graphical Class Hierarchy
