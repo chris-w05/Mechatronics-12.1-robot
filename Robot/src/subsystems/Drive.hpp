@@ -124,8 +124,6 @@ class Drive : public Subsystem {
                     _motorController.setTarget(_speedL, _speedR);
                     _motorController.update(leftVelocity, rightVelocity);
                     break;
-                
-                case HARDSET:
                 case LINEFOLLOWING_HARDSET:{
                     // Serial.print("Commanding speeds Left:");
                     // Serial.print(_speedL);
@@ -139,9 +137,27 @@ class Drive : public Subsystem {
                         correction *= -1; // If driving backwards, the line following correction needs to be reversed
                     _speedL += correction;
                     _speedR -= correction;
-                    _motorController.setPower((int)_speedL, (int)_speedR);
+                    
                     break;
                 }
+                case HARDSET:
+                    if (_speedL != 0.0 && _speedR != 0.0){
+                        // Serial.print("Velocity L: ");
+                        // Serial.print(_leftEncoder.getVelocity());
+                        // Serial.print(" targetL: ");
+                        // Serial.print(_speedL);
+                        Serial.print(" leftVel(inch/s): ");
+                        Serial.print(leftVelocity);
+
+                        // Serial.print(" Velocity R: ");
+                        // Serial.print(_rightEncoder.getVelocity());
+                        // Serial.print(" targetR: ");
+                        // Serial.print(_speedR);
+                        Serial.print(" rightVel(inch/s): ");
+                        Serial.println(rightVelocity);
+                    }
+                    _motorController.setPower((int)_speedL, (int)_speedR);
+                    break;
                 default:
                     _motorController.setPower(0, 0);
             }
