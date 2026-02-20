@@ -88,18 +88,6 @@ class Drive : public Subsystem {
             _leftEncoder.update();
             _rightEncoder.update();
 
-            if (mode == LINEFOLLOWING){
-                _lineSensor.update();
-                int correction = _lineSensor.readValue();
-                correction *= 20; // Correction gain - velocity units/number sensors active
-                if ((_speedL + _speedR) / 2 < 0)
-                    correction *= -1; // If driving backwards, the line following correction needs to be reversed
-                _speedL += correction;
-                _speedR -= correction;
-            }
-
-            _motorController.setTarget(_speedL, _speedR);
-
             float leftVelocity = _leftEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER  / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV); //inch/s
             float rightVelocity = _rightEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV); //inch/s
             
@@ -121,21 +109,39 @@ class Drive : public Subsystem {
 
             //Apply feedback/ open loop control depending on current mode
             switch( mode){
-                case LINEFOLLOWING:
+                case LINEFOLLOWING:{
+                    _lineSensor.update();
+                    float correction = _lineSensor.readValue();
+                    correction *= DRIVE_LINEFOLLOW_VELOCITY_GAIN; // Correction gain - velocity units/number sensors active
+                    if ((_speedL + _speedR) / 2 < 0)
+                        correction *= -1; // If driving backwards, the line following correction needs to be reversed
+                    _speedL += correction;
+                    _speedR -= correction;
+                }
                 case STRAIGHT:
                 case ARC:
                 case STOPPED:
+                    _motorController.setTarget(_speedL, _speedR);
                     _motorController.update(leftVelocity, rightVelocity);
                     break;
                 
                 case HARDSET:
-                case LINEFOLLOWING_HARDSET:
+                case LINEFOLLOWING_HARDSET:{
                     // Serial.print("Commanding speeds Left:");
                     // Serial.print(_speedL);
                     // Serial.print(" Right:");
                     // Serial.println(_speedR);
+
+                    _lineSensor.update();
+                    int correction = _lineSensor.readValue();
+                    correction *= DRIVE_LINEFOLLOW_GAIN; // Correction gain - velocity units/number sensors active
+                    if ((_speedL + _speedR) / 2 < 0)
+                        correction *= -1; // If driving backwards, the line following correction needs to be reversed
+                    _speedL += correction;
+                    _speedR -= correction;
                     _motorController.setPower((int)_speedL, (int)_speedR);
                     break;
+                }
                 default:
                     _motorController.setPower(0, 0);
             }
@@ -144,7 +150,7 @@ class Drive : public Subsystem {
         }
         
 
-        /**
+        /** 
          * Gets the current position and orientation of the robot
          */
         Odometry::Pose2D getPose(){

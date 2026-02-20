@@ -34,12 +34,15 @@ public:
         if(dt != 0){
             long dCount = count - lastCount;
             velocity = (float)dCount * (1000.0 / dt);
+            velocity = filter(velocity, lastVelocity);
             float dVelocity = velocity - lastVelocity;
             acceleration = dVelocity * (1000.0 / dt);
+            acceleration = filter(dVelocity, lastAcceleration);
         }
 
         lastCount = count;
         lastVelocity = velocity;
+        lastAcceleration = acceleration;
         lastMillis = now;
     }
 
@@ -49,6 +52,10 @@ public:
     float getAcceleration() { return isReversed ? -acceleration : acceleration; }
 
 private:
+    const float filter( float newValue, float oldValue){
+        return alpha * newValue + (1-alpha) * oldValue;
+    }
+
     bool isReversed;
     uint8_t _pinA;
     uint8_t _pinB;
@@ -59,5 +66,7 @@ private:
     unsigned long INTERVAL = 100;
     float velocity = 0;
     float lastVelocity = 0;
+    float lastAcceleration = 0;
     float acceleration = 0;
+    float alpha = .2;
 };

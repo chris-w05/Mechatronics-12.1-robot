@@ -105,6 +105,9 @@ static const PIDConstants DRIVE_L_PID = {
     .kd = 0
 };
 
+static const float DRIVE_LINEFOLLOW_GAIN = 40;
+static const float DRIVE_LINEFOLLOW_VELOCITY_GAIN = 1;
+
 static const PIDConstants DRIVE_R_PID = {
     .kp = 50.0,
     .ki = 3.0,
