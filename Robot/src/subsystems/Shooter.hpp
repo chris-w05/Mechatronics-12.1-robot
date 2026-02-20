@@ -38,6 +38,7 @@ public:
         _cycleStartTime = 0;
         _onStartTime = 0;
         _mode = OFF;
+        motor.init();
         Serial.println("Shooter initialized");
         // Set to retract angle on startup
     }
@@ -63,7 +64,7 @@ public:
                 motor.setPower(0);
                 break;
             case TEST:
-                motor.setPower(255);
+                motor.setPower(-130);
                 break;
             case POSITION:
                 motor.update(position);
