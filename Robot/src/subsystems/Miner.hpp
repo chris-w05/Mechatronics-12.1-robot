@@ -191,9 +191,14 @@ public:
         return (_mode == OFF);
     }
 
+    /*
+     * Number of hits must be 0 for the miner to move from the retracted state
+     * @param _number_hits = 0
+     */
     void store()
     {
-       setServoToStore(); 
+        _number_hits = 0; // Miner cannot move from retract unless _number_hits is 0
+        _mode = STORE;
     }
 
     // Return true if miner auto-stopped because of timeout (only relevant for indefinite)
