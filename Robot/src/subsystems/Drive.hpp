@@ -75,6 +75,7 @@ class Drive : public Subsystem {
             _rightEncoder.init();
             _leftEncoder.flipDirection();
             _motorController.init();
+            _motorController.setPIDFeedForwardFunc(driveFF, driveFF);
             Serial.println("Drivetrain initialized");
         }
 

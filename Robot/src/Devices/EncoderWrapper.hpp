@@ -31,19 +31,19 @@ public:
         count = encoder.read();
         
         unsigned long dt = now - lastMillis;
-        if(dt != 0){
+        if (dt > 0)
+        {
             long dCount = count - lastCount;
             velocity = (float)dCount * (1000.0 / dt);
             velocity = filter(velocity, lastVelocity);
             float dVelocity = velocity - lastVelocity;
             acceleration = dVelocity * (1000.0 / dt);
             acceleration = filter(dVelocity, lastAcceleration);
+            lastMillis = now;
+            lastCount = count;
+            lastVelocity = velocity;
+            lastAcceleration = acceleration;
         }
-
-        lastCount = count;
-        lastVelocity = velocity;
-        lastAcceleration = acceleration;
-        lastMillis = now;
     }
 
     int32_t read() { return isReversed? -count: count; }
@@ -68,5 +68,5 @@ private:
     float lastVelocity = 0;
     float lastAcceleration = 0;
     float acceleration = 0;
-    float alpha = .2;
+    float alpha = 1;
 };

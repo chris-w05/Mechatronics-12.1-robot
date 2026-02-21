@@ -209,8 +209,8 @@ class Robot{
                 // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
                 // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
                 // autonomous.start();
-                drive.hardSetSpeed(400);
-                // drive.setSpeed(5);
+                // drive.hardSetSpeed(400);
+                drive.setSpeed(12);
                 Serial.println("Drive: start() called.");
                 break;
 
@@ -230,13 +230,14 @@ class Robot{
                 // drive.setSpeed(10.0);
                 autonomous.clear();
                 // autonomous.add(new DriveDistance(drive, 30.0f, 3.0f));
-                autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
+                // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
                 // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
-                autonomous.start();
+                // autonomous.start();
+                drive.followRadiusClockwise(1, 12);
                 Serial.println("Drive: Close loop control called.");
                 break;
             case 'W':
-                drive.followRadiusCCW( .5, 0.0);
+                drive.followRadiusCCW( .5, 8);
                 Serial.println("Drive: Close loop turning called.");
                 break;
             case 'T':

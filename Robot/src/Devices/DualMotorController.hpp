@@ -61,6 +61,10 @@ public:
         VELOCITY
     };
 
+
+    /**
+     * Initialize the controller.
+     */
     void init()
     {
         dualDriver.init();
@@ -90,6 +94,7 @@ public:
         _pid2.reset();
     }
 
+
     /**
      * Set a commanded power to both motors
      *
@@ -109,7 +114,7 @@ public:
      */
     void setPower(int signal, bool motor = 0)
     {
-        if (motor){
+        if (!motor){
             dualDriver.setM1Speed(signal);
             return;
         }
@@ -124,28 +129,61 @@ public:
      */
     void update(double current_value1, double current_value2 = 0.0)
     {
-        double signal1 = _pid1.update(current_value1, _target1);
-        double signal2 = _pid2.update(current_value2, _target2); // <-- FIX
+        int pidOut1 = _pid1.update(current_value1, _target1);
+        int pidOut2 = _pid2.update(current_value2, _target2);
 
-        signal1 = constrain(signal1, -400, 400);
-        signal2 = constrain(signal2, -400, 400);
+        // Constrain to allowed output range first
+        pidOut1 = (int)constrain(pidOut1, -400, 400);
+        pidOut2 = (int)constrain(pidOut2, -400, 400);
 
-        Serial.print("Velocity L: ");
+        // Compute deltas relative to last sent signals
+        int delta1 = pidOut1 - lastSignal1;
+        int delta2 = pidOut2 - lastSignal2;
+
+        // Apply slew limiter -> produce the actual signals we will send
+        int sendSignal1 = pidOut1;
+        int sendSignal2 = pidOut2;
+
+        if (delta1 > slewRateLimiter)
+            sendSignal1 = lastSignal1 + slewRateLimiter;
+        else if (delta1 < -slewRateLimiter)
+            sendSignal1 = lastSignal1 - slewRateLimiter;
+
+        if (delta2 > slewRateLimiter)
+            sendSignal2 = lastSignal2 + slewRateLimiter;
+        else if (delta2 < -slewRateLimiter)
+            sendSignal2 = lastSignal2 - slewRateLimiter;
+
+        // Debug prints: show PID output, limited send value, and the delta from last sent value
+        Serial.print("V L: ");
         Serial.print(current_value1);
-        Serial.print(" targetL: ");
+        Serial.print("  tL: ");
         Serial.print(_target1);
-        Serial.print(" Signal L ");
-        Serial.print(signal1);
+        Serial.print("  SglL ");
+        Serial.print(sendSignal1);
+        Serial.print("  pidL ");
+        Serial.print(pidOut1);
+        Serial.print("  diffL ");
+        Serial.print(sendSignal1 - lastSignal1);
 
-        Serial.print("\t\tVelocity R: ");
+        Serial.print("\t\tV R: ");
         Serial.print(current_value2);
-        Serial.print(" targetR: ");
+        Serial.print("  tR: ");
         Serial.print(_target2);
-        Serial.print(" Signal R ");
-        Serial.println(signal2);
+        Serial.print("  SglR ");
+        Serial.print(sendSignal2);
+        Serial.print("  pidR ");
+        Serial.print(pidOut2);
+        Serial.print("  diffR ");
+        Serial.println(sendSignal2 - lastSignal2);
 
-        dualDriver.setM1Speed((int)signal1);
-        dualDriver.setM2Speed((int)signal2);
+        // Send the limited signals to the driver
+        dualDriver.setM1Speed(sendSignal1);
+        dualDriver.setM2Speed(sendSignal2);
+
+        // Save last sent values for next iteration
+        lastSignal1 = sendSignal1;
+        lastSignal2 = sendSignal2;
     }
 
     void stop()
@@ -164,11 +202,23 @@ public:
         }
     }
 
+
+    /**
+     * Set the constants of the PID controller for one motor to a stuct of constants
+     * 
+     * @param consts The values to set kp, ki, and kd to
+     * @param motor Which motor to apply constant to, 0 for M1, 1 for M2
+     */
     void setPID( PIDConstants consts, bool motor = 0){
-        _pid1.reset();
-        _pid2.reset();
+        motor == 0 ? _pid1.reset() : _pid2.reset();
         motor == 0 ? _pid1.set(consts) : _pid2.set(consts);};
 
+    /**
+     * Set the constants of both PID controllers
+     *
+     * @param consts The values to set kp, ki, and kd for M1
+     * @param consts2 The values to set kp, ki, and kd for M2
+     */
     void setPID(PIDConstants consts, PIDConstants consts2)
     {
         _pid1.reset();
@@ -176,6 +226,38 @@ public:
         _pid1.set(consts);
         _pid2.set(consts2);
     };
+
+    /**
+     * Set the feedforward function for one motor's controller
+     * 
+     * @param fcn The function to dictate motor bias. 
+     *  Inputs: target measurement
+     *  Outputs: motor signal
+     * @param motor Which motor to apply function to. 0 for M1, 1 for M2
+     */
+    void setPIDFeedForwardFunc(FeedforwardFn fcn, bool motor = 0){
+        motor == 0 ? _pid1.reset() : _pid2.reset();
+        motor == 0 ? _pid1.setFeedforwardFunction(fcn) : _pid2.setFeedforwardFunction(fcn);
+    }
+
+    /**
+     * Set the feedforward function for one motor's controller
+     *
+     * @param fcn The function to dictate motor bias.
+     *  Inputs: target measurement
+     *  Outputs: motor signal
+     * 
+     * @param fcn2 The function to dictate motor bias.
+     *  Inputs: target measurement
+     *  Outputs: motor signal
+     * */
+    void setPIDFeedForwardFunc(FeedforwardFn fcn, FeedforwardFn fcn2)
+    {
+        _pid1.reset();
+        _pid2.reset();
+        _pid1.setFeedforwardFunction(fcn);
+        _pid2.setFeedforwardFunction(fcn2);
+    }
 
     // float getM1current() { return dualDriver.getM1CurrentMilliamps(); }
     // float getM2current() { return dualDriver.getM2CurrentMilliamps(); }
@@ -193,8 +275,16 @@ private:
     bool _holdPositionWhenStopped1 = false;
     bool _holdPositionWhenStopped2 = false;
 
+    int lastSignal1 = 0;
+    int lastSignal2 = 0;
+
     double _target1 = 0.0;
     double _target2 = 0.0;
+
+    /**
+     * Maximum change in motor power per cycle
+     */
+    int slewRateLimiter = 100;
 
     
 };

@@ -75,21 +75,37 @@ static const int MINER_SERVO_RETRACT_ANGLE = 180;
 
 
 //----------------------------------PID constants
-//drivetrain
-static const PIDConstants DRIVE_L_PID = {
-    .kp = 120.0, 
-    .ki = 3.0, 
-    .kd = 20
-};
+
+/**
+ * Minimum signal for drivetrain to move
+ */
+static const int stallSignal = 120;
+static const int maxSignal = 120;
+static const float a = ( maxSignal- stallSignal)/(21.0);
+
+/**
+ * FeedForward control for drivetrain - this gives an approximate expectiation of required motor signal for a given velocity
+ */
+static constexpr float driveFF(float setpoint){
+    // return 0;
+    return setpoint == 0 ? 0 : a*setpoint + (abs(setpoint)/setpoint)* stallSignal;
+}
 
 static const float DRIVE_LINEFOLLOW_GAIN = 40;
 static const float DRIVE_LINEFOLLOW_VELOCITY_GAIN = 1;
 
-static const PIDConstants DRIVE_R_PID = {
-    .kp = 120.0,
-    .ki = 3.0,
-    .kd = 20
-};
+// drivetrain
+static const PIDConstants DRIVE_L_PID = {
+    .kp = 20.0,
+    .ki = 0,
+    .kd = 0};
+
+static const PIDConstants DRIVE_R_PID = DRIVE_L_PID;
+// {
+//     .kp = 30.0,
+//     .ki = 2,
+//     .kd = .2
+// };
 
 static const PIDConstants SHOOTER_POSITION_PID = {
     .kp = -20.0,
