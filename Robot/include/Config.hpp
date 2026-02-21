@@ -92,12 +92,13 @@ static const PIDConstants DRIVE_R_PID = {
 };
 
 static const PIDConstants SHOOTER_POSITION_PID = {
-    .kp = -20.0,
+    .kp = -600.0,
     .ki = 0.0,
-    .kd = 0
+    .kd = 10.0
 };
 
 static const PIDConstants SHOOTER_VELOCITY_PID = {
-    .kp = -20.0,
+    .kp = 120.0,
     .ki = 0.0,
-    .kd = 0};
+    .kd = 0.0
+};

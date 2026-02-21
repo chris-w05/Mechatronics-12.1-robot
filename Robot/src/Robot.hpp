@@ -260,6 +260,18 @@ class Robot{
                 Serial.println("Exited SERIAL_TEST. Back to AWAIT.");
                 break;
 
+            case 'P':
+                shooter.stopFiring();
+                shooter.holdPosition(0.9);
+                Serial.println("Shooter: holdPosition() called.");
+                break;
+
+            case 'p':
+                shooter.stopFiring();
+                shooter.holdPosition(1.1);
+                Serial.println("Shooter: holdPosition() called.");
+                break;
+
             case 'F':
                 // autonomous.clear();
                 // autonomous.add(new FireStep(shooter, 300000, true));

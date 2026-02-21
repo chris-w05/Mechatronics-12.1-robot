@@ -101,15 +101,16 @@ public:
         targetVelocity = velocity;
     }
 
-    void holdPosition( float position ){
-
+    void holdPosition( float amount )
+    {
         if (_mode != POSITION)
         {
             _mode = POSITION;
+            motor.resetPID();
             motor.setPID(SHOOTER_POSITION_PID);
         }
 
-        targetPosition = position;
+        targetPosition = floor(position) + amount;
         motor.setTarget(targetPosition);
     }
 
