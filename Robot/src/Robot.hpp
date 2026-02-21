@@ -199,6 +199,7 @@ class Robot{
 
             case 'm':
                 autonomous.stop();
+                miner.store();
                 Serial.println("Miner: stopMining() called.");
                 break;
 
@@ -258,6 +259,18 @@ class Robot{
                 autonomous.stop();
                 mode = AWAIT;
                 Serial.println("Exited SERIAL_TEST. Back to AWAIT.");
+                break;
+
+            case 'P':
+                shooter.stopFiring();
+                shooter.holdPosition(0.9);
+                Serial.println("Shooter: holdPosition() called.");
+                break;
+
+            case 'p':
+                shooter.stopFiring();
+                shooter.holdPosition(1.1);
+                Serial.println("Shooter: holdPosition() called.");
                 break;
 
             case 'F':
