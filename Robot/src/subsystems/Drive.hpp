@@ -88,10 +88,11 @@ class Drive : public Subsystem {
             //Update child sensors
             _leftEncoder.update();
             _rightEncoder.update();
+            float leftVelocity = _leftEncoder.getVelocity() * DRIVETRAIN_TICKS_TO_IN; //inch/s
+            float rightVelocity = _rightEncoder.getVelocity() * DRIVETRAIN_TICKS_TO_IN; //inch/s
+            float leftAcceleration = _leftEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
+            float rightAcceleration = _rightEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
 
-            float leftVelocity = _leftEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER  / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV); //inch/s
-            float rightVelocity = _rightEncoder.getVelocity() * PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV); //inch/s
-            
             
             // Serial.print("Velocity L: ");
             // Serial.print(_leftEncoder.getVelocity());
@@ -123,7 +124,7 @@ class Drive : public Subsystem {
                 case ARC:
                 case STOPPED:
                     _motorController.setTarget(_speedL, _speedR);
-                    _motorController.update(leftVelocity, rightVelocity);
+                    _motorController.update(leftVelocity, leftAcceleration, rightVelocity, rightAcceleration);
                     break;
                 case LINEFOLLOWING_HARDSET:{
                     // Serial.print("Commanding speeds Left:");

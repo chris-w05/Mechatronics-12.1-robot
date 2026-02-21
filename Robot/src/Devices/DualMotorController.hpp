@@ -127,32 +127,28 @@ public:
      * @param current_value1 The current state of motor 1 (position/velocity/etc.)
      * @param current_value2 The current state of motor 2 (position/velocity/etc.) This defaults to 0.0 for use when manipulating only 1 motor
      */
-    void update(double current_value1, double current_value2 = 0.0)
+    void update(
+        float current_value1, float dcurrent_value1, 
+        float current_value2, float dcurrent_value2)
     {
-        int pidOut1 = _pid1.update(current_value1, _target1);
-        int pidOut2 = _pid2.update(current_value2, _target2);
-
-        // Constrain to allowed output range first
-        pidOut1 = (int)constrain(pidOut1, -400, 400);
-        pidOut2 = (int)constrain(pidOut2, -400, 400);
+        int pidOut1 = _pid1.update(current_value1, dcurrent_value1, _target1);
+        int pidOut2 = _pid2.update(current_value2, dcurrent_value2, _target2);
 
         // Compute deltas relative to last sent signals
         int delta1 = pidOut1 - lastSignal1;
         int delta2 = pidOut2 - lastSignal2;
 
-        // Apply slew limiter -> produce the actual signals we will send
-        int sendSignal1 = pidOut1;
-        int sendSignal2 = pidOut2;
-
+        /**Slew limiter - controlls acceleration of motors - if this is not necessary, set the slew rate to 800 (full range of possible command values)
+         * */
         if (delta1 > slewRateLimiter)
-            sendSignal1 = lastSignal1 + slewRateLimiter;
+            pidOut1 = lastSignal1 + slewRateLimiter;
         else if (delta1 < -slewRateLimiter)
-            sendSignal1 = lastSignal1 - slewRateLimiter;
+            pidOut1 = lastSignal1 - slewRateLimiter;
 
         if (delta2 > slewRateLimiter)
-            sendSignal2 = lastSignal2 + slewRateLimiter;
+            pidOut1 = lastSignal2 + slewRateLimiter;
         else if (delta2 < -slewRateLimiter)
-            sendSignal2 = lastSignal2 - slewRateLimiter;
+            pidOut2 = lastSignal2 - slewRateLimiter;
 
         // Debug prints: show PID output, limited send value, and the delta from last sent value
         Serial.print("V L: ");
@@ -160,30 +156,22 @@ public:
         Serial.print("  tL: ");
         Serial.print(_target1);
         Serial.print("  SglL ");
-        Serial.print(sendSignal1);
-        Serial.print("  pidL ");
         Serial.print(pidOut1);
-        Serial.print("  diffL ");
-        Serial.print(sendSignal1 - lastSignal1);
 
         Serial.print("\t\tV R: ");
         Serial.print(current_value2);
         Serial.print("  tR: ");
         Serial.print(_target2);
         Serial.print("  SglR ");
-        Serial.print(sendSignal2);
-        Serial.print("  pidR ");
-        Serial.print(pidOut2);
-        Serial.print("  diffR ");
-        Serial.println(sendSignal2 - lastSignal2);
+        Serial.println(pidOut2);
 
         // Send the limited signals to the driver
-        dualDriver.setM1Speed(sendSignal1);
-        dualDriver.setM2Speed(sendSignal2);
+        dualDriver.setM1Speed(pidOut1);
+        dualDriver.setM2Speed(pidOut2);
 
         // Save last sent values for next iteration
-        lastSignal1 = sendSignal1;
-        lastSignal2 = sendSignal2;
+        lastSignal1 = pidOut1;
+        lastSignal2 = pidOut2;
     }
 
     void stop()
@@ -237,7 +225,7 @@ public:
      */
     void setPIDFeedForwardFunc(FeedforwardFn fcn, bool motor = 0){
         motor == 0 ? _pid1.reset() : _pid2.reset();
-        motor == 0 ? _pid1.setFeedforwardFunction(fcn) : _pid2.setFeedforwardFunction(fcn);
+        // motor == 0 ? _pid1.setFeedforwardFunction(fcn) : _pid2.setFeedforwardFunction(fcn);
     }
 
     /**
@@ -255,8 +243,8 @@ public:
     {
         _pid1.reset();
         _pid2.reset();
-        _pid1.setFeedforwardFunction(fcn);
-        _pid2.setFeedforwardFunction(fcn2);
+        // _pid1.setFeedforwardFunction(fcn);
+        // _pid2.setFeedforwardFunction(fcn2);
     }
 
     // float getM1current() { return dualDriver.getM1CurrentMilliamps(); }
@@ -269,8 +257,8 @@ private:
     bool _m1reversed = false;
     bool _m2reversed = true;
     
-    PIDController _pid1;
-    PIDController _pid2;
+    PID _pid1;
+    PID _pid2;
 
     bool _holdPositionWhenStopped1 = false;
     bool _holdPositionWhenStopped2 = false;
