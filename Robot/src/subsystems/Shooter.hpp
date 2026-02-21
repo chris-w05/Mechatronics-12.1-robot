@@ -54,8 +54,9 @@ public:
     void update() override
     {
         encoder.update();
-        position = encoder.getCount() / (64.0 * SHOOTER_MOTOR_RATIO);
-        velocity = encoder.getVelocity() / (64.0 * SHOOTER_MOTOR_RATIO); // encoder gives ticks/sec for velocity
+        position = encoder.getCount()  * SHOOTER_TICKS_TO_ROTATIONS;
+        velocity = encoder.getVelocity()  * SHOOTER_TICKS_TO_ROTATIONS; // encoder gives ticks/sec for velocity
+        acceleration = encoder.getAcceleration()  * SHOOTER_TICKS_TO_ROTATIONS;
         // Serial.print("Velocity ");
         // Serial.print(velocity);
 
@@ -67,10 +68,10 @@ public:
                 motor.setPower(-130);
                 break;
             case POSITION:
-                motor.update(position);
+                motor.update(position, velocity);
                 break;
             case VELOCITY:
-                motor.update(velocity);
+                motor.update(velocity, acceleration);
                 break;
         };
         // motor.setSpeed((int)(targetVelocity * 10));
@@ -90,6 +91,8 @@ public:
         motor.setTarget(targetVelocity);
     }
 
+
+    /** Set the speed of the shooter to a specific velocity to shoot */
     void fire(float velocity)
     {
         // begin mining immediately on next update
@@ -101,6 +104,7 @@ public:
         targetVelocity = velocity;
     }
 
+    /** Set the shooter to hold a specific position */
     void holdPosition( float amount )
     {
         if (_mode != POSITION)
@@ -114,9 +118,11 @@ public:
         motor.setTarget(targetPosition);
     }
 
+    /** Command a power to the shooter motor */
     void fireHardSet(int signal){
         _mode = TEST;
     }
+
 
     void stopFiring()
     {
@@ -130,6 +136,7 @@ public:
         targetVelocity = 0;
     }
 
+    /**Hold the current position of the shooter */
     void hold(){
         holdPosition(position);
     }
@@ -145,5 +152,6 @@ private:
     float targetPosition = 0;
     float position = 0;
     float velocity = 0;
+    float acceleration = 0;
 
 };

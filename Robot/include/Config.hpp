@@ -55,14 +55,17 @@ static const int MAX_SUBSYSTEMS = 10;
 
 //----------------------------------Physical constants
 //Robot params
-static const float DRIVETRAIN_WIDTH = 9.375; //inches
+
 static const int TICKS_PER_REV = 64; //Number of ticks per motor revolution
+static const float DRIVETRAIN_WIDTH = 9.375; // inches
 static const float DRIVETRAIN_MOTOR_RATIO = 50;
-static const float SHOOTER_MOTOR_RATIO = 70;
 static const float DRIVETRAIN_WHEEL_DIAMETER = 3.93700787402; // in
 static const float DRIVETRAIN_TICKS_TO_IN = PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV);
-static const float ARM_ROT_RATIO = .5; // rev/rotation - arm pos(rotations) = motors rotations * ARM_ROT_RATIO
-static const float ARM_EXT_RATIO = 3.14 * 2; // mm/rotation - arm pos(mm) = motors rotations * ARM_EXT_RATIO
+static const float LINESENSOR_LOCATION  = 3;//in (from middle of left wheel)
+static const float LINESENSOR_LR_RATIO = (DRIVETRAIN_WIDTH - LINESENSOR_LOCATION) - LINESENSOR_LOCATION; //Handles the difference in kp required for left and right side of the robot for line following
+
+static const float SHOOTER_MOTOR_RATIO = 70;
+static const float SHOOTER_TICKS_TO_ROTATIONS = 1.0/ (SHOOTER_MOTOR_RATIO * TICKS_PER_REV);
 
 //----------------------------------Setpoints
 
@@ -92,7 +95,7 @@ static constexpr float driveFF(float setpoint){
     return setpoint == 0 ? 0 : a*setpoint + (abs(setpoint)/setpoint)* stallSignal;
 }
 
-static const float DRIVE_LINEFOLLOW_GAIN = 40;
+static const float DRIVE_LINEFOLLOW_GAIN = 1;
 static const float DRIVE_LINEFOLLOW_VELOCITY_GAIN = 1;
 
 // drivetrain

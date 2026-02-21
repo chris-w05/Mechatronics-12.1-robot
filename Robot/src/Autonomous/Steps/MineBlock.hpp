@@ -14,7 +14,7 @@ public:
 
     void start() override
     {
-        miner.mine(_numberHits);
+        miner.startMining(_numberHits);
     }
 
     void update() override

@@ -16,6 +16,7 @@
 #include "Autonomous/Steps/FireStep.hpp"
 #include "Autonomous/Steps/MineBlock.hpp"
 #include "Autonomous/Steps/DelayStep.hpp"
+#include "Autonomous/Steps/FollowLineStep.hpp"
 
 
 class Robot{
@@ -145,6 +146,13 @@ class Robot{
                 if (mode != AUTONOMOUS)
                 {
                     mode = AUTONOMOUS;
+                    autonomous.add(new DriveDistance(drive, 16.031, 20));
+                    autonomous.add(new DriveArc(drive, 11.96649, 20, 18));
+                    autonomous.add(new DriveArc(drive, 23.93298, 20, -36));
+                    autonomous.add(new DriveDistance(drive, 13.84810, 20));
+                    autonomous.add(new DriveArc(drive, 23.56194, 20, 30));
+                    autonomous.add(new FollowLineStep(drive, 20, 10));
+                    autonomous.add(new FireStep(shooter, 30000, false));
                     autonomous.start();
                     Serial.println("Autonomous started.");
                 }
@@ -181,9 +189,14 @@ class Robot{
          *
          * - 'M' : start miner
          * - 'm' : stop miner
-         * - 'D' : request drive diagnostic (this is conservative: calls drive.stop() and
-         *         prints a hint. See TODO below to implement a real drive pulse)
-         * - 'E' : exit SERIAL_TEST back to AWAIT (stops miner)
+         * - 'D' : Start driving
+         * - 'W' : Follow radius
+         * - 'l, r, d' : stop driving
+         * - 'E' : Exit to AWAIT state
+         * - 'P' : Hold shooter position
+         * - 'p' : Hold shooter position (different location)
+         * - 'F' : Fire shooter
+         * - 'f' : turn off shooter motor
          * - 'H' : print help
          */
         void handleSerialTestCommand(char cmd)

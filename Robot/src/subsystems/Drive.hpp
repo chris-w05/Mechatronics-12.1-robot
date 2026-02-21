@@ -93,32 +93,17 @@ class Drive : public Subsystem {
             float leftAcceleration = _leftEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
             float rightAcceleration = _rightEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
 
-            
-            // Serial.print("Velocity L: ");
-            // Serial.print(_leftEncoder.getVelocity());
-            // Serial.print(" targetL: ");
-            // Serial.print(_speedL);
-            // Serial.print(" leftVel(inch/s): ");
-            // Serial.print(leftVelocity);
-
-            // Serial.print(" Velocity R: ");
-            // Serial.print(_rightEncoder.getVelocity());
-            // Serial.print(" targetR: ");
-            // Serial.print(_speedR);
-            // Serial.print(" rightVel(inch/s): ");
-            // Serial.println(rightVelocity);
-
-
             //Apply feedback/ open loop control depending on current mode
             switch( mode){
                 case LINEFOLLOWING:{
                     _lineSensor.update();
                     float correction = _lineSensor.readValue();
                     correction *= DRIVE_LINEFOLLOW_VELOCITY_GAIN; // Correction gain - velocity units/number sensors active
-                    if ((_speedL + _speedR) / 2 < 0)
-                        correction *= -1; // If driving backwards, the line following correction needs to be reversed
-                    _speedL += correction;
-                    _speedR -= correction;
+                    float newSpeedL = _speedL - correction/LINESENSOR_LR_RATIO;
+                    float newSPeedR = _speedR + correction;
+                    _motorController.setTarget( newSpeedL, newSPeedR);
+                    _motorController.update(leftVelocity, leftAcceleration, rightVelocity, rightAcceleration);
+                    break;
                 }
                 case STRAIGHT:
                 case ARC:
@@ -133,13 +118,12 @@ class Drive : public Subsystem {
                     // Serial.println(_speedR);
 
                     _lineSensor.update();
-                    int correction = _lineSensor.readValue();
-                    correction *= DRIVE_LINEFOLLOW_GAIN; // Correction gain - velocity units/number sensors active
-                    if ((_speedL + _speedR) / 2 < 0)
-                        correction *= -1; // If driving backwards, the line following correction needs to be reversed
-                    _speedL += correction;
-                    _speedR -= correction;
-                    
+                    float kp = DRIVE_LINEFOLLOW_GAIN * (_speedL + _speedR)/2;
+                    float correction = _lineSensor.readValue();
+                    correction *= DRIVE_LINEFOLLOW_GAIN;
+                    int leftCmd = _speedL - correction/LINESENSOR_LR_RATIO; //Scale down left side command due to off-center nature of line sensor
+                    int rightCmd = _speedR = + correction;
+                    _motorController.setPower(leftCmd, rightCmd);
                     break;
                 }
                 case HARDSET:
@@ -234,6 +218,18 @@ class Drive : public Subsystem {
 
             _speedL = omega_rad_s * (radius_m + halfL);
             _speedR = omega_rad_s * (radius_m - halfL);
+        }
+
+        void followRadiusAtVelocity(float velocity, float radius_m)
+        {
+            mode = MODE::ARC;
+
+            // track half-width
+            const float halfL = DRIVETRAIN_WIDTH / 2.0f;
+            float omega = (velocity / abs(radius_m));
+            bool sign = 2 * (short)(radius_m > 0) - 1;
+            _speedL = omega * (radius_m + sign * halfL);
+            _speedR = omega * (radius_m - sign * halfL);
         }
 
         /**

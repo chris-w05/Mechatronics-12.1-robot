@@ -17,23 +17,6 @@ struct TB9051Pins
 class DualMotorController
 {
 public:
-    // Default-pins constructor (shield #1)
-    // DualMotorController(
-    //     double kp1, double ki1, double kd1, bool m1reversed,
-    //     double kp2, double ki2, double kd2, bool m2reversed,
-    //     bool holdPositionWhenStopped1 = false,
-    //     bool holdPositionWhenStopped2 = false)
-    //     : 
-    //     //dualDriver(), // default pins
-    //       _m1reversed(m1reversed),
-    //       _m2reversed(m2reversed),
-    //       _pid1(kp1, ki1, kd1),
-    //       _pid2(kp2, ki2, kd2),
-    //       _holdPositionWhenStopped1(holdPositionWhenStopped1),
-    //       _holdPositionWhenStopped2(holdPositionWhenStopped2)
-    // {
-    // }
-
     // Remapped-pins constructor (shield #2, #3, ...)
     DualMotorController(
         const TB9051Pins &pins,
@@ -125,7 +108,9 @@ public:
      * Update the PID control loop for motor controller
      *
      * @param current_value1 The current state of motor 1 (position/velocity/etc.)
+     * @param current_value1 The current time derivative of motor 1 (position/velocity/etc.)
      * @param current_value2 The current state of motor 2 (position/velocity/etc.) This defaults to 0.0 for use when manipulating only 1 motor
+     * @param current_value2 The current time derivative of motor 2 (position/velocity/etc.)
      */
     void update(
         float current_value1, float dcurrent_value1, 
@@ -174,6 +159,48 @@ public:
         lastSignal2 = pidOut2;
     }
 
+    /**
+     * Update the PID control loop for motor controller
+     *
+     * @param current_value The current state of motor 1 (position/velocity/etc.)
+     * @param current_value The current time derivative of motor 1 (position/velocity/etc.)
+     * @param motor Which motor to update the PID control for. 0 for M1, 1 for M2
+     */
+    void update(
+        float current_value, float dcurrent_value, bool motor = 0)
+    {
+
+        PID &pid = motor == 0 ? _pid1 : _pid2;
+        float &target = motor ==0 ? _target1 : _target2;
+        int &lastSignal = motor == 0? lastSignal1 : lastSignal2;
+
+        float pidOut = pid.update(current_value, dcurrent_value, _target1);
+
+        // Compute deltas relative to last sent signals
+        float delta = pidOut - lastSignal;
+        /**Slew limiter - controlls acceleration of motors - if this is not necessary, set the slew rate to 800 (full range of possible command values)
+         * */
+        if (delta > slewRateLimiter)
+            pidOut = lastSignal + slewRateLimiter;
+
+        // Debug prints: show PID output, limited send value, and the delta from last sent value
+        Serial.print("Current value: ");
+        Serial.print(current_value);
+        Serial.print("  target: ");
+        Serial.print(_target1);
+        Serial.print("  Signal: ");
+        Serial.print(pidOut);
+
+        // Send the limited signals to the driver
+        motor == 0 ? dualDriver.setM1Speed(pidOut) : dualDriver.setM2Speed(pidOut);
+
+        lastSignal = pidOut;
+    }
+
+
+    /**
+     * Stop the motors.
+     */
     void stop()
     {
         if (!_holdPositionWhenStopped1)
@@ -266,8 +293,8 @@ private:
     int lastSignal1 = 0;
     int lastSignal2 = 0;
 
-    double _target1 = 0.0;
-    double _target2 = 0.0;
+    float _target1 = 0.0;
+    float _target2 = 0.0;
 
     /**
      * Maximum change in motor power per cycle

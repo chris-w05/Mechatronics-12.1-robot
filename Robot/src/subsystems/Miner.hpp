@@ -42,7 +42,7 @@ public:
 
     void update() override
     {
-        const unsigned long now = millis();
+        _now = millis();
 
         // If programmed to stop after a fixed number of hits, and we've reached that,
         // stop mining. Note: compare only if _hits_to_mine is not INDEFINITE.
@@ -60,107 +60,34 @@ public:
             return;
         }
 
-        if (_mode == STORE)
-        {
-            // Ensure servo is retracted while stopped and timers cleared for next start
-            setServoToStore();
-            _cycleStartTime = 0;
-            _onStartTime = 0;
-            servo.update();
-            return;
+        switch(_mode){
+            case STORE:
+                // Ensure servo is retracted while stopped and timers cleared for next start
+                setServoToStore();
+                _cycleStartTime = 0;
+                _onStartTime = 0;
+                servo.update();
+                return;
+            
+            case OFF:
+                // Ensure servo is retracted while stopped and timers cleared for next start
+                setServoToRetract();
+                _cycleStartTime = 0;
+                _onStartTime = 0;
+                servo.update();
+                return;
+            
+            case MINING:
+                mine();
+                return;
         }
 
-        if (_mode == OFF)
-        {
-            // Ensure servo is retracted while stopped and timers cleared for next start
-            setServoToRetract();
-            _cycleStartTime = 0;
-            _onStartTime = 0;
-            servo.update();
-            return;
-        }
-
-        // MINING mode ---------------------------------------------------------
-        // Start global mining timer on first transition to MINING
-        if (_miningStartTime == 0)
-            _miningStartTime = now;
-
-        // Safety: if mining indefinitely but exceeded configured maximum continuous time, stop.
-        if (_hits_to_mine == INDEFINITE && _maxContinuousMillis > 0 &&
-            (now - _miningStartTime) >= _maxContinuousMillis)
-        {
-            // mark timed out and stop
-            _timedOut = true;
-            stopMiningInternal();
-            Serial.println("Miner timed out (max continuous time exceeded)");
-            servo.update();
-            return;
-        }
-
-        const unsigned long cycleMs = MINER_CYCLE_MS;
-        const unsigned long pressMs = MINER_PRESS_MS;
-
-        // Start a new cycle if needed
-        if (_cycleStartTime == 0)
-        {
-            _cycleStartTime = now;
-            _onStartTime = now; // start pressing immediately at cycle start
-            setServoToPress();
-            servo.update();
-            return;
-        }
-
-        // How long since the cycleStart (mod cycle length) — keeps values bounded
-        unsigned long elapsedSinceStart = now - _cycleStartTime;
-        unsigned long elapsedInCycle = elapsedSinceStart % cycleMs;
-
-        // If within press window -> ensure pressing
-        if (elapsedInCycle < pressMs)
-        {
-            // if we just entered press window (no onStart recorded or long past), record
-            if (_onStartTime == 0 || (now - _onStartTime) > cycleMs)
-            {
-                _onStartTime = now;
-                setServoToPress();
-            }
-            // otherwise keep pressing (no-op)
-        }
-        else
-        {
-            // outside press window -> ensure retracted and reset onStart
-            _onStartTime = 0;
-            setServoToRetract();
-
-            // If one or more full cycles have elapsed since _cycleStartTime, advance and count hits
-            if (elapsedSinceStart >= cycleMs)
-            {
-                // How many cycles have passed fully since _cycleStartTime
-                unsigned long cyclesPassed = elapsedSinceStart / cycleMs;
-
-                // Prevent extremely large jumps (protect against very long pauses)
-                const unsigned long MAX_CYCLES_INCREMENT = 10000UL;
-                if (cyclesPassed > MAX_CYCLES_INCREMENT)
-                    cyclesPassed = MAX_CYCLES_INCREMENT;
-
-                _cycleStartTime += cyclesPassed * cycleMs;
-
-                // Increase hit count by the number of completed cycles
-                _number_hits += static_cast<uint32_t>(cyclesPassed);
-
-                // If we reached / exceeded a finite goal, clamp and stop
-                if (_hits_to_mine != INDEFINITE && _number_hits >= static_cast<uint32_t>(_hits_to_mine))
-                {
-                    stopMiningInternal();
-                }
-            }
-        }
-
-        // Always update servo at end so PWM/system-level updates occur
-        servo.update();
+        
     }
 
+
     // Start mining with a specific number of hits (finite)
-    void mine(int32_t hits_to_mine)
+    void startMining(int32_t hits_to_mine)
     {
         if (hits_to_mine < 0)
             hits_to_mine = INDEFINITE;
@@ -170,7 +97,7 @@ public:
     }
 
     // Start indefinite mining (preferred over magic numbers)
-    void mineIndefinitely()
+    void startMiningIndefinitely()
     {
         _hits_to_mine = INDEFINITE;
         startMining();
@@ -222,8 +149,12 @@ public:
 private:
     Mode _mode = OFF;
     ServoControl servo;
-    unsigned long _cycleStartTime = 0; // start of current cycle anchor
-    unsigned long _onStartTime = 0;    // when press window started
+    /** Current time */
+    unsigned long _now = 0;
+    /**Start of current cycle */
+    unsigned long _cycleStartTime = 0;
+    /**Start of press window */
+    unsigned long _onStartTime = 0;
     uint32_t _number_hits = 0;         // how many cycles completed (unsigned)
     int32_t _hits_to_mine = 10;        // target hits; INDEFINITE (-1) means run forever
 
@@ -231,6 +162,86 @@ private:
     unsigned long _maxContinuousMillis = 300000UL; // default 5 minutes
     unsigned long _miningStartTime = 0;            // when mining() first called
     bool _timedOut = false;
+
+    void mine(){
+        // MINING mode ---------------------------------------------------------
+        // Start global mining timer on first transition to MINING
+        if (_miningStartTime == 0)
+            _miningStartTime = _now;
+
+        // Safety: if mining indefinitely but exceeded configured maximum continuous time, stop.
+        if (_hits_to_mine == INDEFINITE && _maxContinuousMillis > 0 &&
+            (_now - _miningStartTime) >= _maxContinuousMillis)
+        {
+            // mark timed out and stop
+            _timedOut = true;
+            stopMiningInternal();
+            Serial.println("Miner timed out (max continuous time exceeded)");
+            servo.update();
+            return;
+        }
+
+        const unsigned long cycleMs = MINER_CYCLE_MS;
+        const unsigned long pressMs = MINER_PRESS_MS;
+
+        // Start a new cycle if needed
+        if (_cycleStartTime == 0)
+        {
+            _cycleStartTime = _now;
+            _onStartTime = _now; // start pressing immediately at cycle start
+            setServoToPress();
+            servo.update();
+            return;
+        }
+
+        // How long since the cycleStart (mod cycle length) — keeps values bounded
+        unsigned long elapsedSinceStart = _now - _cycleStartTime;
+        unsigned long elapsedInCycle = elapsedSinceStart % cycleMs;
+
+        // If within press window -> ensure pressing
+        if (elapsedInCycle < pressMs)
+        {
+            // if we just entered press window (no onStart recorded or long past), record
+            if (_onStartTime == 0 || (_now - _onStartTime) > cycleMs)
+            {
+                _onStartTime = _now;
+                setServoToPress();
+            }
+            // otherwise keep pressing (no-op)
+        }
+        else
+        {
+            // outside press window -> ensure retracted and reset onStart
+            _onStartTime = 0;
+            setServoToRetract();
+
+            // If one or more full cycles have elapsed since _cycleStartTime, advance and count hits
+            if (elapsedSinceStart >= cycleMs)
+            {
+                // How many cycles have passed fully since _cycleStartTime
+                unsigned long cyclesPassed = elapsedSinceStart / cycleMs;
+
+                // Prevent extremely large jumps (protect against very long pauses)
+                const unsigned long MAX_CYCLES_INCREMENT = 10000UL;
+                if (cyclesPassed > MAX_CYCLES_INCREMENT)
+                    cyclesPassed = MAX_CYCLES_INCREMENT;
+
+                _cycleStartTime += cyclesPassed * cycleMs;
+
+                // Increase hit count by the number of completed cycles
+                _number_hits += static_cast<uint32_t>(cyclesPassed);
+
+                // If we reached / exceeded a finite goal, clamp and stop
+                if (_hits_to_mine != INDEFINITE && _number_hits >= static_cast<uint32_t>(_hits_to_mine))
+                {
+                    stopMiningInternal();
+                }
+            }
+        }
+
+        // Always update servo at end so PWM/system-level updates occur
+        servo.update();
+    }
 
     // Helper wrappers to set servo position
     void setServoToPress()
