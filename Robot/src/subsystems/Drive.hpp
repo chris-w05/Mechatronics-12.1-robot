@@ -31,7 +31,7 @@ class Drive : public Subsystem {
 
         DualMotorController _motorController;
 
-        SharpGP2Y0A51 distSensor;
+        SharpGP2Y0A51 _distSensor;
 
         Odometry _odometry;
 
@@ -50,16 +50,16 @@ class Drive : public Subsystem {
             const int right_enc_b,
             const TB9051Pins pins,
             const int distPin,
-            const int lineFollowerPin)
+            const int lineFollowerPins[8])
             : _leftEncoder(left_enc_a, left_enc_b),
-            _rightEncoder(right_enc_a, right_enc_b),
-            _lineSensor(lineFollowerPin),
-            _motorController(
-                pins,
-                DRIVE_L_PID, true,
-                DRIVE_R_PID, false,
-                false, false),
-            distSensor( distPin)
+              _rightEncoder(right_enc_a, right_enc_b),
+              _lineSensor(lineFollowerPins, lineSensorCalMin, lineSensorCalMax),
+              _motorController(
+                  pins,
+                  DRIVE_L_PID, true,
+                  DRIVE_R_PID, false,
+                  false, false),
+              _distSensor(distPin, distanceSensor_VoltageToDistance)
         {
         }
 
@@ -75,6 +75,7 @@ class Drive : public Subsystem {
             _rightEncoder.init();
             _leftEncoder.flipDirection();
             _motorController.init();
+            _lineSensor.init();
             _motorController.setPIDFeedForwardFunc(driveFF, driveFF);
             Serial.println("Drivetrain initialized");
         }
@@ -86,8 +87,10 @@ class Drive : public Subsystem {
         void update()
         {
             //Update child sensors
+            _distSensor.update();
             _leftEncoder.update();
             _rightEncoder.update();
+            _lineSensor.update();
             float leftVelocity = _leftEncoder.getVelocity() * DRIVETRAIN_TICKS_TO_IN; //inch/s
             float rightVelocity = _rightEncoder.getVelocity() * DRIVETRAIN_TICKS_TO_IN; //inch/s
             float leftAcceleration = _leftEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
@@ -96,8 +99,8 @@ class Drive : public Subsystem {
             //Apply feedback/ open loop control depending on current mode
             switch( mode){
                 case LINEFOLLOWING:{
-                    _lineSensor.update();
-                    float correction = _lineSensor.readValue();
+                    
+                    float correction = _lineSensor.getPosition();
                     correction *= DRIVE_LINEFOLLOW_VELOCITY_GAIN; // Correction gain - velocity units/number sensors active
                     float newSpeedL = _speedL - correction/LINESENSOR_LR_RATIO;
                     float newSPeedR = _speedR + correction;
@@ -119,7 +122,7 @@ class Drive : public Subsystem {
 
                     _lineSensor.update();
                     float kp = DRIVE_LINEFOLLOW_GAIN * (_speedL + _speedR)/2;
-                    float correction = _lineSensor.readValue();
+                    float correction = _lineSensor.getPosition();
                     correction *= DRIVE_LINEFOLLOW_GAIN;
                     int leftCmd = _speedL - correction/LINESENSOR_LR_RATIO; //Scale down left side command due to off-center nature of line sensor
                     int rightCmd = _speedR = + correction;
@@ -157,6 +160,10 @@ class Drive : public Subsystem {
          */
         Odometry::Pose2D getPose(){
             return _odometry.getPose();
+        }
+
+        float getDistanceSensorReading(){
+            return _distSensor.getDistanceCm();
         }
 
         float getAccumulatedHeading(){

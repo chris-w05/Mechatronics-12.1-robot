@@ -1,64 +1,72 @@
 #pragma once
 
 #include <Arduino.h>
+#include <QTRSensors.h>
 
+// LineSensor class using Pololu QTRSensors (for QTR-MD-08RC)
+// Assumes calibration arrays (calMin/calMax) were produced previously.
 class LineSensor
 {
 public:
-    LineSensor(int startPin) : _startPin(startPin) {}
+    static const uint16_t numberPins = 8;
 
-    void init()
+    // startPin: first Arduino pin (pins must be provided consecutively)
+    // calMin/calMax: arrays of length numberPins containing previously-saved bounds
+    LineSensor(const int pins[numberPins], const uint16_t calMin[numberPins], const uint16_t calMax[numberPins])
     {
-        for (int i = 0; i < numberPins; i++)
+        for (uint8_t i = 0; i < numberPins; ++i)
         {
-            pinMode(_startPin + i, INPUT);
+            // _calMin[i] = calMin[i];
+            // _calMax[i] = calMax[i];
+            _pins[i] = pins[i]; // OK because _pins is non-const; we're copying the values
+            // Serial.println(_pins[i]);
         }
     }
 
-    // Read all sensor values into the array
+    // Call from setup(). emitterPin default: QTRNoEmitterPin (255) -> no explicit emitter control
+    void init(uint16_t timeout = QTRRCDefaultTimeout, uint8_t emitterPin = QTRNoEmitterPin)
+    {
+        qtr.setTypeRC();
+        qtr.setSensorPins(_pins, numberPins);
+
+    }
+
+    // Read sensors and compute signed position in cm
     void update()
     {
-        for (int i = 0; i < numberPins; i++)
+        qtr.read(sensorValues);
+        float sum = 0;
+        float acc = 0;
+        for (int i = 0; i < 8; i++)
         {
-            _values[i] = digitalRead(_startPin + i);
+            // Serial.print("pin");
+            // Serial.print(_pins[i]);
+            // Serial.print(" ");
+            // Serial.print(sensorValues[i]);
+            // Serial.print("\t");
+            sum += _distance_between_sensors * i * sensorValues[i];
+            acc += sensorValues[i];
         }
+        
+        _current_value = sum/acc - 2.8;
+        Serial.println(_current_value);
     }
 
-    // Returns a signed value representing line position
-    // Negative = line on left, Positive = line on right
-    int readValue()
-    {
-        long weightedSum = 0;
-        int activeCount = 0;
-
-        for (int i = 0; i < numberPins; i+=2)
-        {
-            if (_values[i])
-            {
-                // Center sensors around zero
-                int weight = i - (numberPins - 1) / 2;
-                weightedSum += weight;
-                activeCount++;
-            }
-        }
-
-        // No line detected
-        if (activeCount == 0)
-        {
-            return 0;
-        }
-
-        return weightedSum / activeCount;
-    }
-
-    // Optional: get raw sensor values
-    const int *getValue() const
-    {
-        return _values;
-    }
+    float getPosition() const { return _current_value; }
+    const uint16_t *getRaw() const { return sensorValues; }
+    const uint16_t *getCalibrated() const { return _calibrated; }
 
 private:
-    int _startPin;
-    static const int numberPins = 8;
-    int _values[numberPins] = {0};
+    QTRSensors qtr;
+    uint8_t _pins[numberPins];
+    
+
+    uint16_t _calMin[numberPins];
+    uint16_t _calMax[numberPins];
+
+    uint16_t sensorValues[numberPins] = {0};
+    uint16_t _calibrated[numberPins] = {0};
+
+    float _current_value = 0.0f;
+    const float _distance_between_sensors = 0.8f; // cm
 };

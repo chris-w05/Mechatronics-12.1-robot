@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include <Devices/DualMotorController.hpp>
 #include "utils/PID.hpp"
+#include <cmath>
 
 //----------------------------Pin allocation
 // Encoder pins
@@ -44,10 +45,10 @@ static const int SERIAL_TX = 17;
 static const long SERIAL_BAUD_RATE = 115200;
 
 //Sensor pins
-static const int HALL_EFFECT_PIN = A2;
-static const int LINE_SENSOR_START_PIN = -1; //CHANGE ME
+static const int HALL_EFFECT_PIN = -1;
+static const int LINE_SENSOR_PINS[8] = {28, 30, 32, 34, 36, 38, 40, 42}; 
 static const int COLOR_SENSOR_START_PIN = -1; // CHANGE ME
-static const int DISTANCE_SENSOR_PIN = -1; // CHANGE ME
+static const int DISTANCE_SENSOR_PIN = A4; // CHANGE ME
 
 //----------------------------------Software constants
 static const int MAX_STEPS = 10; // Maximum allowed steps in autonomous. This prevents too much memory from being used
@@ -61,12 +62,20 @@ static const float DRIVETRAIN_WIDTH = 9.375; // inches
 static const float DRIVETRAIN_MOTOR_RATIO = 50;
 static const float DRIVETRAIN_WHEEL_DIAMETER = 3.93700787402; // in
 static const float DRIVETRAIN_TICKS_TO_IN = PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV);
+
 static const float LINESENSOR_LOCATION  = 3;//in (from middle of left wheel)
 static const float LINESENSOR_LR_RATIO = (DRIVETRAIN_WIDTH - LINESENSOR_LOCATION) - LINESENSOR_LOCATION; //Handles the difference in kp required for left and right side of the robot for line following
+const uint16_t lineSensorCalMin[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+const uint16_t lineSensorCalMax[8] = {1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000};
 
 static const float SHOOTER_MOTOR_RATIO = 70;
 static const float SHOOTER_TICKS_TO_ROTATIONS = 1.0/ (SHOOTER_MOTOR_RATIO * TICKS_PER_REV);
 
+
+
+static float distanceSensor_VoltageToDistance(float voltage){
+    return pow((voltage / 3.02398943), -1.43921480);
+}
 //----------------------------------Setpoints
 
 

@@ -33,7 +33,7 @@ class Robot{
                   LEFT_ENCODER_A, LEFT_ENCODER_B,
                   RIGHT_ENCODER_A, RIGHT_ENCODER_B,
                   drivePins,
-                  DISTANCE_SENSOR_PIN, LINE_SENSOR_START_PIN),
+                  DISTANCE_SENSOR_PIN, LINE_SENSOR_PINS),
               miner(MINER_SERVO_PIN),
               shooter(SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
                     shooterPins),
@@ -298,7 +298,11 @@ class Robot{
                 autonomous.stop();
                 Serial.println("Shooter: stopFiring() called.");
                 break;
-
+            
+            case '1':
+                Serial.print("Current distance sensor distance: ");
+                Serial.println(drive.getDistanceSensorReading());
+                break;
             case 'H':
                 // Print help / list of test commands
                 Serial.println("SERIAL_TEST commands:");
