@@ -59,7 +59,7 @@ static const int MAX_SUBSYSTEMS = 10;
 
 static const int TICKS_PER_REV = 64; //Number of ticks per motor revolution
 static const float DRIVETRAIN_WIDTH = 9.375; // inches
-static const float DRIVETRAIN_MOTOR_RATIO = 50;
+static const float DRIVETRAIN_MOTOR_RATIO = 50 * 45 / 100;
 static const float DRIVETRAIN_WHEEL_DIAMETER = 3.93700787402; // in
 static const float DRIVETRAIN_TICKS_TO_IN = PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV);
 
@@ -94,7 +94,8 @@ static const int MINER_SERVO_RETRACT_ANGLE = 180;
  */
 static const int stallSignal = 50;
 static const int maxSignal = 400;
-static const float a = ( maxSignal- stallSignal)/(21.0);
+static const float maxVelocity = 44.0; //in/s, velocity of the robot when drive motors are set to their maximum power
+static const float a = ( maxSignal- stallSignal)/(maxVelocity);
 
 /**
  * FeedForward control for drivetrain - this gives an approximate expectiation of required motor signal for a given velocity

@@ -141,15 +141,15 @@ class Drive : public Subsystem {
                         // Serial.print(_leftEncoder.getVelocity());
                         // Serial.print(" targetL: ");
                         // Serial.print(_speedL);
-                        Serial.print(" leftVel(inch/s): ");
-                        Serial.print(leftVelocity);
+                        // Serial.print(" leftVel(inch/s): ");
+                        // Serial.print(leftVelocity);
 
                         // Serial.print(" Velocity R: ");
                         // Serial.print(_rightEncoder.getVelocity());
                         // Serial.print(" targetR: ");
                         // Serial.print(_speedR);
-                        Serial.print(" rightVel(inch/s): ");
-                        Serial.println(rightVelocity);
+                        // Serial.print(" rightVel(inch/s): ");
+                        // Serial.println(rightVelocity);
                     }
                     _motorController.setPower((int)_speedL, (int)_speedR);
                     break;

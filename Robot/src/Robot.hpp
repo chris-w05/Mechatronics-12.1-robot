@@ -78,7 +78,7 @@ class Robot{
             serialComs.update();
 
             // If a command is available, handle it (global commands are always accepted)
-
+            
             if (serialComs.hasCommand())
             {
                 // fetch the full command string (this clears the hasCommand flag)
@@ -256,7 +256,6 @@ class Robot{
                 // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
                 // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
                 // autonomous.start();
-                // drive.hardSetSpeed(400);
                 drive.setSpeed(10);
                 Serial.println("Drive: start() called.");
                 break;
