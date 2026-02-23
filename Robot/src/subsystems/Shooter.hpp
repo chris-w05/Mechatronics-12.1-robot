@@ -78,17 +78,20 @@ public:
         
     }
 
+
+    /**
+     * Move the motor to the next deadband position, in the positive direction
+     */
     void fire()
     {
-        // begin mining immediately on next update
-        if (_mode != VELOCITY)
+        if (_mode != POSITION)
         {
-            _mode = VELOCITY;
-            motor.setPID(SHOOTER_VELOCITY_PID);
+            _mode = POSITION;
+            motor.resetPID();
+            motor.setPID(SHOOTER_POSITION_PID);
         }
-        // Serial.println("setting speed to 255");
-        targetVelocity = 1.5;
-        motor.setTarget(targetVelocity);
+        targetPosition = ceil(targetPosition) + .1;
+        motor.setTarget(targetPosition);
     }
 
 
@@ -114,7 +117,7 @@ public:
             motor.setPID(SHOOTER_POSITION_PID);
         }
 
-        targetPosition = floor(position) + amount;
+        targetPosition = floor(targetPosition) + amount;
         motor.setTarget(targetPosition);
     }
 
@@ -123,6 +126,21 @@ public:
         _mode = TEST;
     }
 
+    void prime(){
+        _mode = POSITION;
+        if (_mode != POSITION)
+        {
+            _mode = POSITION;
+            motor.resetPID();
+            motor.setPID(SHOOTER_POSITION_PID);
+        }
+
+        //converting position to an integer using floor ensures the shooter will move in the positive direction
+        //This has the assumption that the motor is in the deadband when the command is sent
+        //Ensures shooter will not move in negative direction when rack is forward
+        targetPosition = floor(position + .1) + SHOOTER_PULL_BACK_ROTATIONS; //.1 is a safety factor in the event the shooter is slightly below an integer position. 
+        motor.setTarget(targetPosition);
+    }
 
     void stopFiring()
     {

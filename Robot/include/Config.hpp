@@ -86,6 +86,7 @@ static const int MINER_SERVO_PRESS_ANGLE = 140;
 static const int MINER_SERVO_STORE_ANGLE = 00;
 static const int MINER_SERVO_RETRACT_ANGLE = 180;
 
+static const float SHOOTER_PULL_BACK_ROTATIONS = .75;
 
 //----------------------------------PID constants
 
