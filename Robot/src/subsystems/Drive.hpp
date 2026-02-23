@@ -189,10 +189,16 @@ class Drive : public Subsystem {
             return _odometry.getPose();
         }
 
+        /**
+         * Passes the current distance reading from the distance sensor
+         */
         float getDistanceSensorReading(){
             return _distSensor.getDistanceCm();
         }
 
+        /**
+         * Passes the current heading, not modded by PI (range is -inf -> inf)
+         */
         float getAccumulatedHeading(){
             return _odometry.getAccumulatedHeading();
         }
@@ -242,33 +248,44 @@ class Drive : public Subsystem {
 
 
         /**
-         * Sets target velocities for feedback control to follow a specified arc
+         * Sets target velocities for feedback control to follow a specified arc at a specified angular velocity
+         * 
+         * @param omega_rad_s The angular velocity of the robot following the curve, in radians/s
+         * @param radius The radius of the curve to follow, in inches
          */
-        void followRadiusClockwise(float omega_rad_s, float radius_m)
+        void followRadiusClockwise(float omega_rad_s, float radius)
         {
             mode = MODE::ARC;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             // track half-width
             const float halfL = DRIVETRAIN_WIDTH / 2.0f;
 
-            _speedL = omega_rad_s * (radius_m + halfL);
-            _speedR = omega_rad_s * (radius_m - halfL);
+            _speedL = omega_rad_s * (radius + halfL);
+            _speedR = omega_rad_s * (radius - halfL);
         }
 
-        void followRadiusAtVelocity(float velocity, float radius_m)
+        /**
+         * Sets target velocities for feedback control to follow a specified arc at a specific tangential velocity
+         * 
+         * @param velocity The tangential velocity to follow the arc at
+         * @param radius The radius of the arc for the robot to follow
+         */
+        void followRadiusAtVelocity(float velocity, float radius)
         {
             mode = MODE::ARC;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             // track half-width
             const float halfL = DRIVETRAIN_WIDTH / 2.0f;
-            float omega = (velocity / abs(radius_m));
-            bool sign = 2 * (short)(radius_m > 0) - 1;
-            _speedL = omega * (radius_m + sign * halfL);
-            _speedR = omega * (radius_m - sign * halfL);
+            float omega = (velocity / abs(radius));
+            bool sign = 2 * (short)(radius > 0) - 1;
+            _speedL = omega * (radius + sign * halfL);
+            _speedR = omega * (radius - sign * halfL);
         }
 
         /**
          * Changes mode to LINEFOLLOWING, and gives a target speed for feedback control
+         * 
+         * @param speed The speed in in/s for the robot to drive at
          */
         void followLine(float speed)
         {
@@ -280,6 +297,8 @@ class Drive : public Subsystem {
 
         /**
          * Changes mode to LINEFOLLOWING_HARDSET, and gives a target speed for feedback control
+         * 
+         * @param speed The signal to send the motor from (-400 to 400). Values outside this range will be constrained by the motor controller
          */
         void followLineHardset(int speed)
         {
@@ -305,6 +324,8 @@ class Drive : public Subsystem {
 
         /**
          * Have the robot hold a specific distance from the wall
+         * 
+         * @param distance The distance for the robot to hold from the wall
          */
         void apporachDistance(float distance){
             mode = MODE::DISTANCE;
