@@ -72,9 +72,9 @@ static const float SHOOTER_MOTOR_RATIO = 70;
 static const float SHOOTER_TICKS_TO_ROTATIONS = 1.0/ (SHOOTER_MOTOR_RATIO * TICKS_PER_REV);
 
 
-
+static const float IR_SENSOR_TO_ROBOT_EDGE = 1.5; //cm
 static float distanceSensor_VoltageToDistance(float voltage){
-    return pow((voltage / 3.02398943), -1.43921480);
+    return pow((voltage / 3.02398943), -1.43921480) - IR_SENSOR_TO_ROBOT_EDGE;
 }
 //----------------------------------Setpoints
 

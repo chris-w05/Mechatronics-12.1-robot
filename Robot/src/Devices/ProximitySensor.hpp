@@ -1,1 +1,0 @@
-// TODO: Read values from sensor, and have them filtered

@@ -199,6 +199,10 @@ public:
 
     /**
      * Use this when a derivative for both motors is not available
+     * The arguments do not include the derivatives of the state of the system
+     * 
+     * @param current_value1 The current measurement of system controlled by M1
+     * @param current_value2 The current measurement of system controlled by M2
      */
     void updateWithoutDerivatice(float current_value1, float current_value2){
         int pidOut1 = _pid1.update(current_value1, _target1);

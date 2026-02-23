@@ -15,7 +15,7 @@ public:
         pinMode(_pinA, INPUT_PULLUP); // try enabling pullups
         pinMode(_pinB, INPUT_PULLUP);
         encoder.write(0); // baseline
-        lastMillis = millis();
+        lastMicros = millis();
         count = encoder.read();
         lastCount = count;
         velocity = 0;
@@ -23,32 +23,54 @@ public:
         acceleration = 0;
     }
 
+    /**
+     * Reverses the reading of the encoder
+     */
     void flipDirection(){ isReversed = !isReversed;}
 
+    /**
+     * Updates the position, velocity, and aacceleration of the encoder. 
+     */
     void update()
     {
-        unsigned long now = millis();
+        unsigned long now = micros();
         count = encoder.read();
         
-        unsigned long dt = now - lastMillis;
+        unsigned long dt = now - lastMicros;
         if (dt > 0)
         {
             long dCount = count - lastCount;
-            velocity = (float)dCount * (1000.0 / dt);
+            velocity = (float)dCount * (1000000.0 / dt);
             velocity = filter(velocity, lastVelocity);
             float dVelocity = velocity - lastVelocity;
             acceleration = dVelocity * (1000.0 / dt);
             acceleration = filter(dVelocity, lastAcceleration);
-            lastMillis = now;
+            lastMicros = now;
             lastCount = count;
             lastVelocity = velocity;
             lastAcceleration = acceleration;
         }
     }
 
-    int32_t read() { return isReversed? -count: count; }
+    /**
+     * Gets the current position of the encoder
+     * 
+     * @returns The position of the encoder (in ticks - 64/revolution)
+     */
     int32_t getCount() { return isReversed ? -count : count; }
+
+    /**
+     * Gets teh current velocity of the encoder
+     * 
+     * @returns The velocity of the encoder in ticks/second
+     */
     float getVelocity() { return isReversed ? -velocity : velocity; }
+
+    /**
+     * Gets the current acceleration of the encoder
+     * 
+     * @returns The acceleration of the encoder in ticks / second squared
+     */
     float getAcceleration() { return isReversed ? -acceleration : acceleration; }
 
 private:
@@ -62,11 +84,13 @@ private:
     Encoder encoder;
     int32_t count = 0;
     int32_t lastCount = 0;
-    unsigned long lastMillis = 0;
+    unsigned long lastMicros = 0;
     unsigned long INTERVAL = 100;
     float velocity = 0;
     float lastVelocity = 0;
     float lastAcceleration = 0;
     float acceleration = 0;
+
+    /** IIR Filter constant for velocity and acceleration  */
     float alpha = .07;
 };

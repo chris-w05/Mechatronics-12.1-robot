@@ -51,7 +51,12 @@ public:
         _current_value = sum/acc - 2.8;
         // Serial.println(_current_value);
     }
-
+    
+    /**
+     * Gets the position of the line in centimeters
+     * 
+     * @returns the position of the line in cm
+     */
     float getPosition() const { return _current_value; }
     const uint16_t *getRaw() const { return sensorValues; }
     const uint16_t *getCalibrated() const { return _calibrated; }
