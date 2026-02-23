@@ -92,8 +92,8 @@ static const int MINER_SERVO_RETRACT_ANGLE = 180;
 /**
  * Minimum signal for drivetrain to move
  */
-static const int stallSignal = 120;
-static const int maxSignal = 120;
+static const int stallSignal = 50;
+static const int maxSignal = 400;
 static const float a = ( maxSignal- stallSignal)/(21.0);
 
 /**
@@ -104,14 +104,20 @@ static constexpr float driveFF(float setpoint){
     return setpoint == 0 ? 0 : a*setpoint + (abs(setpoint)/setpoint)* stallSignal;
 }
 
-static const float DRIVE_LINEFOLLOW_GAIN = 1;
+
+static const float DRIVE_LINEFOLLOW_GAIN = 3.8;
 static const float DRIVE_LINEFOLLOW_VELOCITY_GAIN = 1;
+
+static const PIDConstants DRIVE_DISTANCE_PID = {
+    .kp = -20.0,
+    .ki = 0,
+    .kd = 8};
 
 // drivetrain
 static const PIDConstants DRIVE_L_PID = {
-    .kp = 20.0,
+    .kp = 70.0,
     .ki = 0,
-    .kd = 0};
+    .kd = 20};
 
 static const PIDConstants DRIVE_R_PID = DRIVE_L_PID;
 // {

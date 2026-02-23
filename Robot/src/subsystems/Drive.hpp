@@ -17,12 +17,14 @@ class Drive : public Subsystem {
          ARC,
          STOPPED,
          HARDSET,
-         LINEFOLLOWING_HARDSET
+         LINEFOLLOWING_HARDSET,
+         DISTANCE
     };
 
     private:
         float _speedL = 0;
         float _speedR = 0;
+        float targetDistance = 0;
 
         EncoderWrapper _leftEncoder;
         EncoderWrapper _rightEncoder;
@@ -76,6 +78,7 @@ class Drive : public Subsystem {
             _leftEncoder.flipDirection();
             _motorController.init();
             _lineSensor.init();
+
             _motorController.setPIDFeedForwardFunc(driveFF, driveFF);
             Serial.println("Drivetrain initialized");
         }
@@ -115,17 +118,20 @@ class Drive : public Subsystem {
                     _motorController.update(leftVelocity, leftAcceleration, rightVelocity, rightAcceleration);
                     break;
                 case LINEFOLLOWING_HARDSET:{
-                    // Serial.print("Commanding speeds Left:");
-                    // Serial.print(_speedL);
-                    // Serial.print(" Right:");
-                    // Serial.println(_speedR);
+                    Serial.print("Commanding speeds Left:");
+                    Serial.print(_speedL);
+                    Serial.print(" Right:");
+                    Serial.print(_speedR);
+                    Serial.print(" leftVel(inch/s): ");
+                    Serial.print(leftVelocity);
+                    Serial.print(" rightVel(inch/s): ");
+                    Serial.println(rightVelocity);
 
                     _lineSensor.update();
-                    float kp = DRIVE_LINEFOLLOW_GAIN * (_speedL + _speedR)/2;
                     float correction = _lineSensor.getPosition();
-                    correction *= DRIVE_LINEFOLLOW_GAIN;
-                    int leftCmd = _speedL - correction/LINESENSOR_LR_RATIO; //Scale down left side command due to off-center nature of line sensor
-                    int rightCmd = _speedR = + correction;
+                    correction *= DRIVE_LINEFOLLOW_GAIN * (_speedL + _speedR) / 2;
+                    int leftCmd = _speedL + correction/LINESENSOR_LR_RATIO; //Scale down left side command due to off-center nature of line sensor
+                    int rightCmd = _speedR  - correction;
                     _motorController.setPower(leftCmd, rightCmd);
                     break;
                 }
@@ -147,6 +153,27 @@ class Drive : public Subsystem {
                     }
                     _motorController.setPower((int)_speedL, (int)_speedR);
                     break;
+
+                case DISTANCE:
+                {
+                    float distance = _distSensor.getDistanceCm();
+                    float error = distance - targetDistance;
+                    Serial.print("Error");
+                    Serial.print(error);
+                    Serial.print(" ");
+                    // Serial.print(" Left:");
+                    // Serial.print(_speedL);
+                    // Serial.print(" Right:");
+                    // Serial.print(_speedR);
+                    // Serial.print(" leftVel(inch/s): ");
+                    // Serial.print(leftVelocity);
+                    // Serial.print(" rightVel(inch/s): ");
+                    // Serial.println(rightVelocity);
+
+                    _motorController.setTarget(0, 0);
+                    _motorController.updateWithoutDerivatice(error, error);
+                    break;
+                }
                 default:
                     _motorController.setPower(0, 0);
             }
@@ -182,6 +209,7 @@ class Drive : public Subsystem {
          */
         void setSpeed(float speed){
             mode = STRAIGHT;
+            _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             _motorController.resetPID();
             _speedR = speed;
             _speedL = speed;
@@ -219,7 +247,7 @@ class Drive : public Subsystem {
         void followRadiusClockwise(float omega_rad_s, float radius_m)
         {
             mode = MODE::ARC;
-
+            _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             // track half-width
             const float halfL = DRIVETRAIN_WIDTH / 2.0f;
 
@@ -230,7 +258,7 @@ class Drive : public Subsystem {
         void followRadiusAtVelocity(float velocity, float radius_m)
         {
             mode = MODE::ARC;
-
+            _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             // track half-width
             const float halfL = DRIVETRAIN_WIDTH / 2.0f;
             float omega = (velocity / abs(radius_m));
@@ -245,23 +273,45 @@ class Drive : public Subsystem {
         void followLine(float speed)
         {
             mode = MODE::LINEFOLLOWING;
+            _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             _speedL = speed;
             _speedR = speed;
         }
 
+        /**
+         * Changes mode to LINEFOLLOWING_HARDSET, and gives a target speed for feedback control
+         */
+        void followLineHardset(int speed)
+        {
+            mode = MODE::LINEFOLLOWING_HARDSET;
+            _speedL = speed;
+            _speedR = speed;
+        }
 
         /**
          * Follow a radius in the Counter-clockwise direction
          */
-        void followRadiusCCW(float omega_rad_s, float radius_m)
+        void followRadiusCCW(float omega_rad_s, float radius)
         {
             mode = MODE::ARC;
+            _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
 
             // track half-width
             const float halfL = DRIVETRAIN_WIDTH / 2.0f;
 
-            _speedL = omega_rad_s * (radius_m - halfL);
-            _speedR = omega_rad_s * (radius_m + halfL);
+            _speedL = omega_rad_s * (radius - halfL);
+            _speedR = omega_rad_s * (radius + halfL);
+        }
+
+        /**
+         * Have the robot hold a specific distance from the wall
+         */
+        void apporachDistance(float distance){
+            mode = MODE::DISTANCE;
+            _motorController.setPID(DRIVE_DISTANCE_PID, DRIVE_DISTANCE_PID);
+            targetDistance = distance;
+            _speedL = 0;
+            _speedR = 0;
         }
 
         /**
@@ -272,6 +322,7 @@ class Drive : public Subsystem {
         void stop()
         {
             mode = MODE::STOPPED;
+            _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             setSpeed(0);
         }
 

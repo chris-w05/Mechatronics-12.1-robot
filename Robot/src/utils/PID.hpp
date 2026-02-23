@@ -184,6 +184,7 @@ public:
 
         // Derivative (on measurement to avoid derivative kick from setpoint)
         double derivative = (measurement - _lastMeasurement) / dt;
+        derivative = (.1)*derivative + (.9)*_lastDerivative; //IIR filter with alpha = .1 
 
 
         // Feedforward: if user supplied a custom function use it; otherwise use simple kff * setpoint
@@ -198,12 +199,13 @@ public:
         }
 
         double output =
-            _kp * error + _kd * _dFiltered + _ki * _integral + feedforward;
+            _kp * error + _kd * derivative + _ki * _integral + feedforward;
 
         // Save state
         _lastMeasurement = measurement;
         _lastTime = now;
         _lastOutput = output;
+        _lastDerivative = derivative;
 
         return output;
     }
@@ -219,15 +221,6 @@ public:
     }
 
     // -------- Feedforward related API --------
-
-    /**
-     * Set a simple feedforward gain: FF = kff * setpoint.
-     * Default is 0 (no feedforward).
-     */
-    void setFeedforwardGain(float kff)
-    {
-        _kff = kff;
-    }
 
     /**
      * Set a custom feedforward function.
@@ -249,9 +242,9 @@ private:
 
     // State
     float _integral = 0.0;
-    float _dFiltered = 0.0;
     float _lastMeasurement = 0.0;
     float _lastOutput = 0.0;
+    float _lastDerivative = 0.0;
 
     // Settings
     float _iMin = -100000.0;

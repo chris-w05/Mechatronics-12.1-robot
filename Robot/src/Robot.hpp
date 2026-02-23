@@ -75,42 +75,66 @@ class Robot{
         void update()
         {
             // Always update SerialComs first so commands are captured promptly
-            // serialComs.update();
+            serialComs.update();
 
             // If a command is available, handle it (global commands are always accepted)
 
             if (serialComs.hasCommand())
             {
-                char cmd = serialComs.getCommandChar();
-                
-                Serial.println(cmd);
-                if (cmd != 0)
+                // fetch the full command string (this clears the hasCommand flag)
+                const char *raw = serialComs.getCommand();
+                Serial.print("RCV: ");
+                Serial.println(raw);
+
+                char cmdChar = 0;
+                float param = 0.0f;
+                bool paramValid = false;
+
+                if (serialComs.parseCmdWithOptionalFloat(raw, cmdChar, param, paramValid))
                 {
-                    handleGlobalCommand(cmd);
+                    // Handle only true global commands here
+                    handleGlobalCommand(cmdChar);
+
+                    // Only forward to serial-test handler when we're actually in SERIAL_TEST
+                    if (mode == SERIAL_TEST)
+                    {
+                        if (paramValid)
+                            handleSerialTestCommand(cmdChar, param, paramValid);
+                        else
+                            handleSerialTestCommand(cmdChar);
+                    }
+                }
+                else
+                {
+                    serialComs.send("Invalid command format");
                 }
             }
-
 
             //Global states
             switch (mode)
             {
             case AWAIT:
                 for (int i = 0; i < subsystemCount; ++i)
+                {
                     subsystems[i]->update();
+                }
                 break;
 
             case AUTONOMOUS:
                 // In autonomous mode we want subsystems and the autonomous planner to run
                 for (int i = 0; i < subsystemCount; ++i)
+                {
                     subsystems[i]->update();
+                }
 
                 autonomous.update();
                 break;
 
             case SERIAL_TEST:
                 // Update all subsystems so that commands (e.g. miner.mine()) actually take effect
-                for (int i = 0; i < subsystemCount; ++i)
+                for (int i = 0; i < subsystemCount; ++i){
                     subsystems[i]->update();
+                }
 
                 autonomous.update();
                 // In SERIAL_TEST mode we also accept single-character commands.
@@ -146,36 +170,45 @@ class Robot{
                 if (mode != AUTONOMOUS)
                 {
                     mode = AUTONOMOUS;
-                    autonomous.add(new DriveDistance(drive, 16.031, 20));
-                    autonomous.add(new DriveArc(drive, 11.96649, 20, 18));
-                    autonomous.add(new DriveArc(drive, 23.93298, 20, -36));
-                    autonomous.add(new DriveDistance(drive, 13.84810, 20));
-                    autonomous.add(new DriveArc(drive, 23.56194, 20, 30));
-                    autonomous.add(new FollowLineStep(drive, 20, 10));
-                    autonomous.add(new FireStep(shooter, 30000, false));
+                    float speed = 5;
+                    autonomous.add(new DriveDistance(drive, 10, speed));
+                    autonomous.add(new DriveArc(drive, 3.14, speed, 10, true));
+                    autonomous.add(new DriveDistance(drive, 10, speed));
+                    autonomous.add(new DriveArc(drive, -3.14, speed, -10, true));
+
+                    // autonomous.add(new DriveDistance(drive, 16.031, speed));
+                    // autonomous.add(new DriveArc(drive, 11.96649, speed, -18));
+                    // autonomous.add(new DriveArc(drive, 23.93298, speed, 36));
+                    // autonomous.add(new DriveDistance(drive, 13.84810, speed));
+                    // autonomous.add(new DriveArc(drive, 23.56194, speed, -30));
+                    // autonomous.add(new FollowLineStep(drive, 4, speed));
+                    // autonomous.add(new FireStep(shooter, 30000, false));
                     autonomous.start();
                     Serial.println("Autonomous started.");
                 }
+                break;
+
+            case '=':
+                // Stop everything
+                for (int i = 0; i < subsystemCount; ++i)
+                {
+                    subsystems[i]->stop();
+                }
+
                 break;
 
             case 'a':
                 // start autonomous immediately
                 mode = AUTONOMOUS;
                 autonomous.reset();
-                Serial.println("resetting");
-                
+                autonomous.stop();
+
                 break;
 
             default:
-                // If we're already in SERIAL_TEST, forward the command to the SERIAL_TEST handler.
-                if (mode == SERIAL_TEST)
+                // Unknown as a global command; caller will forward to serial-test handler when appropriate.
+                if (mode != SERIAL_TEST)
                 {
-                    handleSerialTestCommand(cmd);
-                }
-                else
-                {
-                    // Unrecognized in AWAIT/AUTONOMOUS — optionally echo
-                    // This keeps the robot responsive if a user accidentally types while waiting.
                     char buf[48];
                     snprintf(buf, sizeof(buf), "Unknown/global cmd '%c' (S start serial, A start auton)", cmd);
                     serialComs.send(buf);
@@ -224,18 +257,19 @@ class Robot{
                 // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
                 // autonomous.start();
                 // drive.hardSetSpeed(400);
-                drive.setSpeed(12);
+                drive.setSpeed(10);
                 Serial.println("Drive: start() called.");
                 break;
 
             case 'L':
-                drive.hardSetSpeed(100, -100);
+                // drive.hardSetSpeed(150, -150);
+                drive.followRadiusAtVelocity(-10, -18);
                 // drive.setSpeed(20);
                 Serial.println("Drive: turn left called.");
                 break;
 
             case 'R':
-                drive.hardSetSpeed(-100, 100);
+                drive.hardSetSpeed(-150, 150);
                 // drive.setSpeed(20);
                 Serial.println("Drive: turn right called.");
                 break;
@@ -247,7 +281,7 @@ class Robot{
                 // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
                 // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
                 // autonomous.start();
-                drive.followRadiusClockwise(1, 12);
+                drive.followLineHardset(200);
                 Serial.println("Drive: Close loop control called.");
                 break;
             case 'W':
@@ -319,6 +353,60 @@ class Robot{
             }
             break;
             } // switch
+        }
+
+        /**
+         * Overload for handleSerialTestCommand for when a parameter is passed with character
+         */
+        void handleSerialTestCommand(char cmd, float param, bool paramValid)
+        {
+            switch (cmd)
+            {
+            case 'D':
+                if (paramValid)
+                {
+                    // param is the desired speed (units you choose)
+                    drive.setSpeed(param);
+                    char buf[48];
+                    snprintf(buf, sizeof(buf), "Drive: start() at speed %.2f", (double)param);
+                    serialComs.send(buf);
+                }
+                else
+                {
+                    // no parameter: use existing safe default
+                    drive.setSpeed(10);
+                    serialComs.send("Drive: start() at default speed 10");
+                }
+                break;
+
+            case 'C':
+                if (paramValid){
+                    drive.apporachDistance(param);
+                    char buf[48];
+                    snprintf(buf, sizeof(buf), "Drive: driving to wall distance of  %.2f", (double)param);
+                    serialComs.send(buf);
+                }
+                else{
+                    drive.apporachDistance(10.0);
+                    serialComs.send("Drive: sapproachDistance at default 10.0cm");
+                }
+                break;
+
+            case 'l':
+            case 'r':
+            case 'd':
+                autonomous.stop();
+                drive.hardSetSpeed(0);
+                serialComs.send("Drive: stop() called.");
+                break;
+
+                // ... keep other cases unchanged, or add param-aware behavior for other commands.
+
+            default:
+                // If you want backward compatibility: call old handler if exists
+                // handleSerialTestCommand(cmd); // only if you kept original variant
+                break;
+            }
         }
 
         enum RobotMode

@@ -123,6 +123,62 @@ public:
 
     virtual void stop() override {}
 
+    /**
+     * Parse a single-char command optionally followed by a numeric parameter.
+     * Accepts formats like:
+     *   D 10
+     *   D:10
+     *   D,10
+     *   D10
+     *
+     * Returns true if a command was parsed. If a numeric parameter exists, outParamIsValid is true and outParam contains it.
+     */
+    bool parseCmdWithOptionalFloat(const char *cmdStr, char &outCmd, float &outParam, bool &outParamIsValid)
+    {
+        if (!cmdStr || cmdStr[0] == '\0')
+            return false;
+
+        // Copy into modifiable buffer and normalize separators to spaces
+        char buf[SerialComs::MAX_CMD_LEN];
+        strncpy(buf, cmdStr, sizeof(buf));
+        buf[sizeof(buf) - 1] = '\0';
+        for (char *p = buf; *p; ++p)
+            if (*p == ',' || *p == ':')
+                *p = ' ';
+
+        // Skip leading whitespace
+        char *p = buf;
+        while (*p && isspace((unsigned char)*p))
+            ++p;
+        if (!*p)
+            return false;
+
+        // First non-space char is the command
+        outCmd = *p++;
+        outParamIsValid = false;
+        outParam = 0.0f;
+
+        // Skip whitespace after command
+        while (*p && isspace((unsigned char)*p))
+            ++p;
+
+        // If there's anything left and it looks like a number, parse it with atof
+        if (*p)
+        {
+            // Find first digit, sign, or decimal point
+            char *numStart = p;
+            // allow optional +/-
+            if (*numStart == '+' || *numStart == '-')
+                ++numStart;
+            if (isdigit((unsigned char)*numStart) || *numStart == '.')
+            {
+                outParam = (float)atof(p);
+                outParamIsValid = true;
+            }
+        }
+        return true;
+    }
+
 private:
     HardwareSerial &_serial;
     char _buffer[MAX_CMD_LEN];

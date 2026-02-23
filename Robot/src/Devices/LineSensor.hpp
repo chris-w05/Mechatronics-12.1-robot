@@ -49,7 +49,7 @@ public:
         }
         
         _current_value = sum/acc - 2.8;
-        Serial.println(_current_value);
+        // Serial.println(_current_value);
     }
 
     float getPosition() const { return _current_value; }

@@ -68,5 +68,5 @@ private:
     float lastVelocity = 0;
     float lastAcceleration = 0;
     float acceleration = 0;
-    float alpha = 1;
+    float alpha = .07;
 };

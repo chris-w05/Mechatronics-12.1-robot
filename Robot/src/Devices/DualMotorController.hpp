@@ -136,19 +136,19 @@ public:
             pidOut2 = lastSignal2 - slewRateLimiter;
 
         // Debug prints: show PID output, limited send value, and the delta from last sent value
-        Serial.print("V L: ");
-        Serial.print(current_value1);
-        Serial.print("  tL: ");
-        Serial.print(_target1);
-        Serial.print("  SglL ");
-        Serial.print(pidOut1);
+        // Serial.print("V L: ");
+        // Serial.print(current_value1);
+        // Serial.print("  tL: ");
+        // Serial.print(_target1);
+        // Serial.print("  SglL ");
+        // Serial.print(pidOut1);
 
-        Serial.print("\t\tV R: ");
-        Serial.print(current_value2);
-        Serial.print("  tR: ");
-        Serial.print(_target2);
-        Serial.print("  SglR ");
-        Serial.println(pidOut2);
+        // Serial.print("\t\tV R: ");
+        // Serial.print(current_value2);
+        // Serial.print("  tR: ");
+        // Serial.print(_target2);
+        // Serial.print("  SglR ");
+        // Serial.println(pidOut2);
 
         // Send the limited signals to the driver
         dualDriver.setM1Speed(pidOut1);
@@ -170,11 +170,11 @@ public:
         float current_value, float dcurrent_value, bool motor = 0)
     {
 
-        PID &pid = motor == 0 ? _pid1 : _pid2;
+        PIDController &pid = motor == 0 ? _pid1 : _pid2;
         float &target = motor ==0 ? _target1 : _target2;
         int &lastSignal = motor == 0? lastSignal1 : lastSignal2;
 
-        float pidOut = pid.update(current_value, dcurrent_value, _target1);
+        float pidOut = pid.update(current_value, dcurrent_value, target);
 
         // Compute deltas relative to last sent signals
         float delta = pidOut - lastSignal;
@@ -195,6 +195,57 @@ public:
         motor == 0 ? dualDriver.setM1Speed(pidOut) : dualDriver.setM2Speed(pidOut);
 
         lastSignal = pidOut;
+    }
+
+    /**
+     * Use this when a derivative for both motors is not available
+     */
+    void updateWithoutDerivatice(float current_value1, float current_value2){
+        int pidOut1 = _pid1.update(current_value1, _target1);
+        int pidOut2 = _pid2.update(current_value2, _target2);
+
+        // Compute deltas relative to last sent signals
+        int delta1 = pidOut1 - lastSignal1;
+        int delta2 = pidOut2 - lastSignal2;
+
+        /**Slew limiter - controlls acceleration of motors - if this is not necessary, set the slew rate to 800 (full range of possible command values)
+         * */
+        if (delta1 > slewRateLimiter)
+            pidOut1 = lastSignal1 + slewRateLimiter;
+        else if (delta1 < -slewRateLimiter)
+            pidOut1 = lastSignal1 - slewRateLimiter;
+
+        if (delta2 > slewRateLimiter)
+            pidOut1 = lastSignal2 + slewRateLimiter;
+        else if (delta2 < -slewRateLimiter)
+            pidOut2 = lastSignal2 - slewRateLimiter;
+
+        unsigned long now = millis();
+        if(now - lastMillis > 100 ){
+            // Serial.print(">VL:");
+            // Serial.print(current_value1);
+            // // Serial.print(",tL:");
+            // // Serial.print(_target1);
+            // Serial.print(",SglL:");
+            // Serial.println();
+            // // Serial.print(pidOut1);
+            // // Serial.print(",VR:");
+            // // Serial.print(current_value2);
+            // // Serial.print(",tR:");
+            // // Serial.print(_target2);
+            // // Serial.print(",SglR:");
+            // Serial.println(pidOut2);
+            lastMillis = now;
+        }
+
+
+        // Send the limited signals to the driver
+        dualDriver.setM1Speed(pidOut1);
+        dualDriver.setM2Speed(pidOut2);
+
+        // Save last sent values for next iteration
+        lastSignal1 = pidOut1;
+        lastSignal2 = pidOut2;
     }
 
 
@@ -252,7 +303,7 @@ public:
      */
     void setPIDFeedForwardFunc(FeedforwardFn fcn, bool motor = 0){
         motor == 0 ? _pid1.reset() : _pid2.reset();
-        // motor == 0 ? _pid1.setFeedforwardFunction(fcn) : _pid2.setFeedforwardFunction(fcn);
+        motor == 0 ? _pid1.setFeedforwardFunction(fcn) : _pid2.setFeedforwardFunction(fcn);
     }
 
     /**
@@ -270,8 +321,8 @@ public:
     {
         _pid1.reset();
         _pid2.reset();
-        // _pid1.setFeedforwardFunction(fcn);
-        // _pid2.setFeedforwardFunction(fcn2);
+        _pid1.setFeedforwardFunction(fcn);
+        _pid2.setFeedforwardFunction(fcn2);
     }
 
     // float getM1current() { return dualDriver.getM1CurrentMilliamps(); }
@@ -283,9 +334,11 @@ private:
 
     bool _m1reversed = false;
     bool _m2reversed = true;
+
+    unsigned long lastMillis = 0;
     
-    PID _pid1;
-    PID _pid2;
+    PIDController _pid1;
+    PIDController _pid2;
 
     bool _holdPositionWhenStopped1 = false;
     bool _holdPositionWhenStopped2 = false;

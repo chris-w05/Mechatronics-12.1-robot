@@ -14,10 +14,11 @@ public:
                 float targetAngle,
                 float targetVelocity,
                 float radius, 
-                bool direction)
+                bool isDistancebased)
         : _drive(drive),
           _target(targetAngle),
-          _velocity(targetVelocity) {}
+          _velocity(targetVelocity),
+          _distanceBased(false) {}
 
     DriveArc(Drive &drive,
              float distance,
@@ -55,8 +56,12 @@ public:
         // Serial.print("  ");
         // Serial.println(_target);
         if(_distanceBased){
-            return (_drive.getAccumulatedHeading() - _startDistance) >= _target;
+            Serial.print("Drive Arc, Delta distance ");
+            Serial.println((_drive.getDistance() - _startDistance));
+            return (_drive.getDistance() - _startDistance) >= _target;
         }
+        Serial.print("Drive Arc, Delta angle ");
+        Serial.println(_drive.getAccumulatedHeading() - _startAngle);
         return (_drive.getAccumulatedHeading() - _startAngle) >= _target;
     }
 
