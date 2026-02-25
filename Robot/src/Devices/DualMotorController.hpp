@@ -383,7 +383,7 @@ public:
     /**
      * Set a particular motor's kd to a nonlinear function
      * */
-    void setPIDkiFunction(KdFn fcn, bool motor = 0)
+    void setPIDkdFunction(KdFn fcn, bool motor = 0)
     {
         motor == 0 ? _pid1.reset() : _pid2.reset();
         motor == 0 ? _pid1.setKdFunction(fcn) : _pid2.setKdFunction(fcn);
@@ -392,7 +392,7 @@ public:
     /**
      * Set both motors' kd to nonlinear functions
      */
-    void setPIDKpFunction(KdFn fcn, KdFn fcn2)
+    void setPIDKdFunction(KdFn fcn, KdFn fcn2)
     {
         _pid1.reset();
         _pid2.reset();
