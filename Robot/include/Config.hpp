@@ -93,7 +93,7 @@ static const float SHOOTER_PULL_BACK_ROTATIONS = .75;
 /**
  * Minimum signal for drivetrain to move
  */
-static const int stallSignal = 50;
+static const int stallSignal = 120;
 static const int maxSignal = 400;
 static const float maxVelocity = 44.0; //in/s, velocity of the robot when drive motors are set to their maximum power
 static const float a = ( maxSignal- stallSignal)/(maxVelocity);
@@ -117,9 +117,9 @@ static const PIDConstants DRIVE_DISTANCE_PID = {
 
 // drivetrain
 static const PIDConstants DRIVE_L_PID = {
-    .kp = 70.0,
+    .kp = 30.0,
     .ki = 0,
-    .kd = 20};
+    .kd = 0};
 
 static const PIDConstants DRIVE_R_PID = DRIVE_L_PID;
 // {
@@ -128,14 +128,32 @@ static const PIDConstants DRIVE_R_PID = DRIVE_L_PID;
 //     .kd = .2
 // };
 
+static const int SHOOTER_STALL_SIGNAL = 60;
+/**
+ * FeedForward control for shoooter - overcomes frictional forces
+ * */
+static float shooterFF(float measurement, float target)
+{
+    float feed = fmod(target, 1.0) * 600;
+    float diff = target - measurement;
+    if( diff > 0.01){
+        return SHOOTER_STALL_SIGNAL + feed;
+    }
+    else if (diff < -.01){
+        return -SHOOTER_STALL_SIGNAL + feed;
+    }
+    return feed;
+}
+
+
 static const PIDConstants SHOOTER_POSITION_PID = {
-    .kp = -600.0,
-    .ki = 0.0,
-    .kd = 10.0
+    .kp = 6000.0,
+    .ki = 00.0,
+    .kd = -1000.0
 };
 
 static const PIDConstants SHOOTER_VELOCITY_PID = {
-    .kp = 120.0,
-    .ki = 0.0,
-    .kd = 0.0
+    .kp = 000.0,
+    .ki = 000.0,
+    .kd = 00.0
 };

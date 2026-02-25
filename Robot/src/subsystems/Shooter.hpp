@@ -23,7 +23,7 @@ public:
     Shooter(int encoderA, int encoderB, TB9051Pins pins, float analog_vref = 5.0,
             MotorController::DriverType driverType = MotorController::DriverType::TB9051) : 
                 _mode(OFF),
-                motor(pins, SHOOTER_VELOCITY_PID, false),
+                motor(pins, SHOOTER_POSITION_PID, false),
                 encoder(encoderA, encoderB)
     {
     }
@@ -35,10 +35,12 @@ public:
     void init() override
     {
         // Initialize servo to retracted position and reset timers
+        encoder.flipDirection();
         _cycleStartTime = 0;
         _onStartTime = 0;
         _mode = OFF;
         motor.init();
+        motor.setPIDKpFunction(shooterFF);
         Serial.println("Shooter initialized");
         // Set to retract angle on startup
     }
@@ -90,7 +92,7 @@ public:
             motor.resetPID();
             motor.setPID(SHOOTER_POSITION_PID);
         }
-        targetPosition = ceil(targetPosition) + .1;
+        targetPosition = ceil(targetPosition) + .12;
         motor.setTarget(targetPosition);
     }
 
@@ -138,7 +140,7 @@ public:
         //converting position to an integer using floor ensures the shooter will move in the positive direction
         //This has the assumption that the motor is in the deadband when the command is sent
         //Ensures shooter will not move in negative direction when rack is forward
-        targetPosition = floor(position + .1) + SHOOTER_PULL_BACK_ROTATIONS; //.1 is a safety factor in the event the shooter is slightly below an integer position. 
+        targetPosition = floor(targetPosition) + SHOOTER_PULL_BACK_ROTATIONS; //.1 is a safety factor in the event the shooter is slightly below an integer position. 
         motor.setTarget(targetPosition);
     }
 

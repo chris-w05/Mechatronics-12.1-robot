@@ -35,7 +35,7 @@ public:
     }
 
     void end(){
-        _drive.setSpeed(0);
+        _drive.hardSetSpeed(0);
     }
 
     void configure(float targetDistance, float targetVelocity){

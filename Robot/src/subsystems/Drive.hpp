@@ -158,9 +158,9 @@ class Drive : public Subsystem {
                 {
                     float distance = _distSensor.getDistanceCm();
                     float error = distance - targetDistance;
-                    Serial.print("Error");
-                    Serial.print(error);
-                    Serial.print(" ");
+                    // Serial.print("Error");
+                    // Serial.print(error);
+                    // Serial.print(" ");
                     // Serial.print(" Left:");
                     // Serial.print(_speedL);
                     // Serial.print(" Right:");
@@ -344,7 +344,7 @@ class Drive : public Subsystem {
         {
             mode = MODE::STOPPED;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
-            setSpeed(0);
+            hardSetSpeed(0);
         }
 
 };

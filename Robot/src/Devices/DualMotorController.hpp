@@ -136,19 +136,19 @@ public:
             pidOut2 = lastSignal2 - slewRateLimiter;
 
         // Debug prints: show PID output, limited send value, and the delta from last sent value
-        // Serial.print("V L: ");
-        // Serial.print(current_value1);
-        // Serial.print("  tL: ");
-        // Serial.print(_target1);
-        // Serial.print("  SglL ");
-        // Serial.print(pidOut1);
+        Serial.print("V L: ");
+        Serial.print(current_value1);
+        Serial.print("  tL: ");
+        Serial.print(_target1);
+        Serial.print("  SglL ");
+        Serial.print(pidOut1);
 
-        // Serial.print("\t\tV R: ");
-        // Serial.print(current_value2);
-        // Serial.print("  tR: ");
-        // Serial.print(_target2);
-        // Serial.print("  SglR ");
-        // Serial.println(pidOut2);
+        Serial.print("\t\tV R: ");
+        Serial.print(current_value2);
+        Serial.print("  tR: ");
+        Serial.print(_target2);
+        Serial.print("  SglR ");
+        Serial.println(pidOut2);
 
         // Send the limited signals to the driver
         dualDriver.setM1Speed(pidOut1);
@@ -189,7 +189,7 @@ public:
         Serial.print("  target: ");
         Serial.print(_target1);
         Serial.print("  Signal: ");
-        Serial.print(pidOut);
+        Serial.println(pidOut);
 
         // Send the limited signals to the driver
         motor == 0 ? dualDriver.setM1Speed(pidOut) : dualDriver.setM2Speed(pidOut);
@@ -327,6 +327,77 @@ public:
         _pid2.reset();
         _pid1.setFeedforwardFunction(fcn);
         _pid2.setFeedforwardFunction(fcn2);
+    }
+
+    /**
+     * Set the nonlinear kp function for a specific motor
+     *
+     * @param fcn The nonlinear kP function
+     *  Inputs: current measurement, target measurement
+     *  Outputs: motor signal
+     * @param motor Which motor to apply function to. 0 for M1, 1 for M2
+     */
+    void setPIDKpFunction(KpFn fcn, bool motor = 0){
+        motor == 0 ? _pid1.reset() : _pid2.reset();
+        motor == 0 ? _pid1.setKpFunction(fcn) : _pid2.setKpFunction(fcn);
+    }
+
+    /**
+     * Set the nonlinear kp function for two both motor controllers
+     *
+     * @param fcn The function to dictate motor bias.
+     *  Inputs: current measurement, target measurement
+     *  Outputs: motor signal
+     *
+     * @param fcn2 The function to dictate motor bias.
+     *  Inputs: current measurement, target measurement
+     *  Outputs: motor signal
+     * */
+    void setPIDKpFunction(KpFn fcn, KpFn fcn2)
+    {
+        _pid1.reset();
+        _pid2.reset();
+        _pid1.setKpFunction(fcn);
+        _pid2.setKpFunction(fcn2);
+    }
+
+    /**
+     * Set a particular motor's ki to a nonlinear function
+     * */
+    void setPIDkiFunction(KiFn fcn, bool motor = 0){
+        motor == 0 ? _pid1.reset() : _pid2.reset();
+        motor == 0 ? _pid1.setKiFunction(fcn) : _pid2.setKiFunction(fcn);
+    }
+
+    /**
+     * Set both motors' ki to nonlinear functions
+     */
+    void setPIDKpFunction(KiFn fcn, KiFn fcn2)
+    {
+        _pid1.reset();
+        _pid2.reset();
+        _pid1.setKiFunction(fcn);
+        _pid2.setKiFunction(fcn2);
+    }
+
+    /**
+     * Set a particular motor's kd to a nonlinear function
+     * */
+    void setPIDkiFunction(KdFn fcn, bool motor = 0)
+    {
+        motor == 0 ? _pid1.reset() : _pid2.reset();
+        motor == 0 ? _pid1.setKdFunction(fcn) : _pid2.setKdFunction(fcn);
+    }
+
+    /**
+     * Set both motors' kd to nonlinear functions
+     */
+    void setPIDKpFunction(KdFn fcn, KdFn fcn2)
+    {
+        _pid1.reset();
+        _pid2.reset();
+        _pid1.setKdFunction(fcn);
+        _pid2.setKdFunction(fcn2);
     }
 
     // float getM1current() { return dualDriver.getM1CurrentMilliamps(); }

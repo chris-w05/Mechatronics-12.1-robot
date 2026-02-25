@@ -17,6 +17,7 @@
 #include "Autonomous/Steps/MineBlock.hpp"
 #include "Autonomous/Steps/DelayStep.hpp"
 #include "Autonomous/Steps/FollowLineStep.hpp"
+#include "Autonomous/Steps/DriveRadiusAtVelocity.hpp"
 
 
 class Robot{
@@ -170,11 +171,9 @@ class Robot{
                 if (mode != AUTONOMOUS)
                 {
                     mode = AUTONOMOUS;
-                    float speed = 5;
+                    float speed = 8;
                     autonomous.add(new DriveDistance(drive, 10, speed));
-                    autonomous.add(new DriveArc(drive, 3.14, speed, 10, true));
-                    autonomous.add(new DriveDistance(drive, 10, speed));
-                    autonomous.add(new DriveArc(drive, -3.14, speed, -10, true));
+                    autonomous.add(new DriveRadiusAtVelocity(drive, speed, -30, 30));
 
                     // autonomous.add(new DriveDistance(drive, 16.031, speed));
                     // autonomous.add(new DriveArc(drive, 11.96649, speed, -18));
@@ -201,7 +200,7 @@ class Robot{
                 // start autonomous immediately
                 mode = AUTONOMOUS;
                 autonomous.reset();
-                autonomous.stop();
+                autonomous.start();
 
                 break;
 
@@ -237,9 +236,7 @@ class Robot{
             switch (cmd)
             {
             case 'M':
-                autonomous.clear();
-                autonomous.add(new MineBlockStep(miner, 5));
-                autonomous.start();
+                miner.startMiningIndefinitely();
                 Serial.println("Miner: mine() called.");
                 break;
 
@@ -288,6 +285,7 @@ class Robot{
                 Serial.println("Drive: Close loop turning called.");
                 break;
             case 'T':
+                Serial.println(drive.getAccumulatedHeading());
                 break;
             case 'q':
                 drive.setSpeed(0.0);
@@ -309,7 +307,7 @@ class Robot{
 
             case 'P':
                 shooter.stopFiring();
-                shooter.holdPosition(0.9);
+                shooter.prime();
                 Serial.println("Shooter: holdPosition() called.");
                 break;
 
@@ -323,7 +321,7 @@ class Robot{
                 // autonomous.clear();
                 // autonomous.add(new FireStep(shooter, 300000, true));
                 // autonomous.start();
-                shooter.fireHardSet(255);
+                shooter.fire();
                 Serial.println("Shooter: fire() called.");
                 break;
             
