@@ -48,7 +48,7 @@ class PID
 {
 public:
     // Constructors (unchanged behavior)
-    PID() : _kp(0.0), _ki(0.0), _kd(0.0) { _lastTime = millis();};
+    PID() : _kp(0.0), _ki(0.0), _kd(0.0) { _lastTime = micros();};
 
     PID(float kp,
         float ki,
@@ -67,10 +67,10 @@ public:
      */
     virtual float update(float measurement, float dmeasurement, float setpoint)
     {
-        unsigned long now = millis();
+        unsigned long now = micros();
         unsigned long dt_ms = now - _lastTime;
 
-        float dt = dt_ms * 0.001; // seconds
+        float dt = dt_ms * 0.000001; // seconds
 
         float error = setpoint - measurement;
 
@@ -100,7 +100,7 @@ public:
         _derivative = 0.0;
         _lastMeasurement = 0.0;
         _lastOutput = 0.0;
-        _lastTime = millis();
+        _lastTime = micros();
     }
 
     /**
