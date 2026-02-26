@@ -26,6 +26,10 @@ class Drive : public Subsystem {
         float _speedR = 0;
         float targetDistance = 0;
 
+        float leftTargetPosition = 0;
+        float rightTargetPosition = 0;
+        unsigned long lastTime = 0;
+
         EncoderWrapper _leftEncoder;
         EncoderWrapper _rightEncoder;
 
@@ -79,7 +83,7 @@ class Drive : public Subsystem {
             _motorController.init();
             _lineSensor.init();
 
-            _motorController.setPIDFeedForwardFunc(driveFF, driveFF);
+            // _motorController.setPIDFeedForwardFunc(driveFF, driveFF);
             Serial.println("Drivetrain initialized");
         }
 
@@ -90,14 +94,18 @@ class Drive : public Subsystem {
         void update()
         {
             //Update child sensors
+            unsigned long now = micros();
+            float dt = (now -lastTime) * .000001;
             _distSensor.update();
             _leftEncoder.update();
             _rightEncoder.update();
             _lineSensor.update();
+            float leftPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
+            float rightPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
             float leftVelocity = _leftEncoder.getVelocity() * DRIVETRAIN_TICKS_TO_IN; //inch/s
             float rightVelocity = _rightEncoder.getVelocity() * DRIVETRAIN_TICKS_TO_IN; //inch/s
-            float leftAcceleration = _leftEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
-            float rightAcceleration = _rightEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
+            // float leftAcceleration = _leftEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
+            // float rightAcceleration = _rightEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
 
             //Apply feedback/ open loop control depending on current mode
             switch( mode){
@@ -106,16 +114,25 @@ class Drive : public Subsystem {
                     float correction = _lineSensor.getPosition();
                     correction *= DRIVE_LINEFOLLOW_VELOCITY_GAIN; // Correction gain - velocity units/number sensors active
                     float newSpeedL = _speedL - correction/LINESENSOR_LR_RATIO;
-                    float newSPeedR = _speedR + correction;
-                    _motorController.setTarget( newSpeedL, newSPeedR);
-                    _motorController.update(leftVelocity, leftAcceleration, rightVelocity, rightAcceleration);
+                    float newSpeedR = _speedR + correction;
+                    leftTargetPosition += newSpeedL * dt;
+                    rightTargetPosition += newSpeedR * dt;
+                    Serial.println(correction);
+                    // Serial.print("Left target speed ");
+                    // Serial.print(newSpeedL);
+                    // Serial.print(" Right target speed");
+                    // Serial.println(newSpeedR);
+                    _motorController.setTarget(leftTargetPosition, rightTargetPosition);
+                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity);
                     break;
                 }
                 case STRAIGHT:
                 case ARC:
                 case STOPPED:
-                    _motorController.setTarget(_speedL, _speedR);
-                    _motorController.update(leftVelocity, leftAcceleration, rightVelocity, rightAcceleration);
+                    leftTargetPosition += _speedL * dt;
+                    rightTargetPosition += _speedR * dt;
+                    _motorController.setTarget(leftTargetPosition, rightTargetPosition);
+                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity);
                     break;
                 case LINEFOLLOWING_HARDSET:{
                     Serial.print("Commanding speeds Left:");
@@ -178,6 +195,7 @@ class Drive : public Subsystem {
                     _motorController.setPower(0, 0);
             }
 
+            lastTime = now;
             _odometry.update(_leftEncoder, _rightEncoder);
         }
         
@@ -217,6 +235,9 @@ class Drive : public Subsystem {
             mode = STRAIGHT;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             _motorController.resetPID();
+            
+            leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
+            rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
             _speedR = speed;
             _speedL = speed;
         }
@@ -260,6 +281,8 @@ class Drive : public Subsystem {
             // track half-width
             const float halfL = DRIVETRAIN_WIDTH / 2.0f;
 
+            leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
+            rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
             _speedL = omega_rad_s * (radius + halfL);
             _speedR = omega_rad_s * (radius - halfL);
         }
@@ -274,12 +297,37 @@ class Drive : public Subsystem {
         {
             mode = MODE::ARC;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
+
             // track half-width
             const float halfL = DRIVETRAIN_WIDTH / 2.0f;
-            float omega = (velocity / abs(radius));
-            bool sign = 2 * (short)(radius > 0) - 1;
-            _speedL = omega * (radius + sign * halfL);
-            _speedR = omega * (radius - sign * halfL);
+
+            // initialize target positions at current encoder readings (unchanged)
+            leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
+            rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
+
+            // Handle special case: radius == 0 (spin in place).
+            // Reasonable convention chosen: for radius == 0 we perform an in-place spin
+            // where positive velocity results in rightward (clockwise) spin on the robot.
+            // (If you prefer the opposite, flip the signs below.)
+            if (abs(radius) < 1e-6f)
+            {
+                // Make left and right opposite to spin in place.
+                // Here: left backward, right forward for a clockwise spin
+                _speedL = -velocity;
+                _speedR = velocity;
+                return;
+            }
+
+            // Compute angular velocity. Using the sign of radius:
+            // - positive radius => turn right (clockwise) => negative ω (we apply a - sign).
+            // - negative radius => turn left (counter-clockwise) => positive ω.
+            float omega = -velocity / radius; // no abs() so sign of radius matters
+
+            // Convert centre tangential velocity + angular velocity to wheel linear speeds:
+            // v_l = v - h * ω
+            // v_r = v + h * ω
+            _speedL = velocity - halfL * omega;
+            _speedR = velocity + halfL * omega;
         }
 
         /**
@@ -291,6 +339,9 @@ class Drive : public Subsystem {
         {
             mode = MODE::LINEFOLLOWING;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
+
+            leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
+            rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
             _speedL = speed;
             _speedR = speed;
         }
@@ -318,6 +369,8 @@ class Drive : public Subsystem {
             // track half-width
             const float halfL = DRIVETRAIN_WIDTH / 2.0f;
 
+            leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
+            rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
             _speedL = omega_rad_s * (radius - halfL);
             _speedR = omega_rad_s * (radius + halfL);
         }
@@ -331,6 +384,7 @@ class Drive : public Subsystem {
             mode = MODE::DISTANCE;
             _motorController.setPID(DRIVE_DISTANCE_PID, DRIVE_DISTANCE_PID);
             targetDistance = distance;
+            
             _speedL = 0;
             _speedR = 0;
         }

@@ -136,19 +136,19 @@ public:
             pidOut2 = lastSignal2 - slewRateLimiter;
 
         // Debug prints: show PID output, limited send value, and the delta from last sent value
-        Serial.print("V L: ");
-        Serial.print(current_value1);
-        Serial.print("  tL: ");
-        Serial.print(_target1);
-        Serial.print("  SglL ");
-        Serial.print(pidOut1);
+        // Serial.print("V L: ");
+        // Serial.print(current_value1);
+        // Serial.print("  tL: ");
+        // Serial.print(_target1);
+        // Serial.print("  SglL ");
+        // Serial.print(pidOut1);
 
-        Serial.print("\t\tV R: ");
-        Serial.print(current_value2);
-        Serial.print("  tR: ");
-        Serial.print(_target2);
-        Serial.print("  SglR ");
-        Serial.println(pidOut2);
+        // Serial.print("\t\tV R: ");
+        // Serial.print(current_value2);
+        // Serial.print("  tR: ");
+        // Serial.print(_target2);
+        // Serial.print("  SglR ");
+        // Serial.println(pidOut2);
 
         // Send the limited signals to the driver
         dualDriver.setM1Speed(pidOut1);
@@ -184,12 +184,12 @@ public:
             pidOut = lastSignal + slewRateLimiter;
 
         // Debug prints: show PID output, limited send value, and the delta from last sent value
-        Serial.print("Current value: ");
-        Serial.print(current_value);
-        Serial.print("  target: ");
-        Serial.print(_target1);
-        Serial.print("  Signal: ");
-        Serial.println(pidOut);
+        // Serial.print("Current value: ");
+        // Serial.print(current_value);
+        // Serial.print("  target: ");
+        // Serial.print(_target1);
+        // Serial.print("  Signal: ");
+        // Serial.println(pidOut);
 
         // Send the limited signals to the driver
         motor == 0 ? dualDriver.setM1Speed(pidOut) : dualDriver.setM2Speed(pidOut);

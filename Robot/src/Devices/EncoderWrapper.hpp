@@ -92,5 +92,5 @@ private:
     float acceleration = 0;
 
     /** IIR Filter constant for velocity and acceleration  */
-    float alpha = .07;
+    float alpha = .5;
 };

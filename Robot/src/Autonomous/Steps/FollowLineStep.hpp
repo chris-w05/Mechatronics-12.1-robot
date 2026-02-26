@@ -21,7 +21,7 @@ public:
     void start() override
     {
         _startDistance = _drive.getDistance(); // or encoder average
-        _drive.followLine(_velocity);
+        _drive.followLineHardset(_velocity);
     }
 
     void update() override

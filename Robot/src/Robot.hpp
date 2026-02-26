@@ -172,15 +172,15 @@ class Robot{
                 {
                     mode = AUTONOMOUS;
                     float speed = 8;
-                    autonomous.add(new DriveDistance(drive, 10, speed));
-                    autonomous.add(new DriveRadiusAtVelocity(drive, speed, -30, 30));
+                    // autonomous.add(new DriveDistance(drive, 10, speed));
+                    // autonomous.add(new DriveRadiusAtVelocity(drive, speed, 30, 30));
 
-                    // autonomous.add(new DriveDistance(drive, 16.031, speed));
-                    // autonomous.add(new DriveArc(drive, 11.96649, speed, -18));
-                    // autonomous.add(new DriveArc(drive, 23.93298, speed, 36));
-                    // autonomous.add(new DriveDistance(drive, 13.84810, speed));
-                    // autonomous.add(new DriveArc(drive, 23.56194, speed, -30));
-                    // autonomous.add(new FollowLineStep(drive, 4, speed));
+                    autonomous.add(new DriveDistance(drive, 16.031, speed));
+                    autonomous.add(new DriveRadiusAtVelocity(drive, speed, -18, 14.96649)); //was 11
+                    autonomous.add(new DriveRadiusAtVelocity(drive, speed, 36, 24.93298));
+                    autonomous.add(new DriveDistance(drive, 20.84810, speed));
+                    autonomous.add(new DriveRadiusAtVelocity(drive, speed, -10, 9.56194));
+                    autonomous.add(new FollowLineStep(drive, 20, 120));
                     // autonomous.add(new FireStep(shooter, 30000, false));
                     autonomous.start();
                     Serial.println("Autonomous started.");
@@ -246,26 +246,15 @@ class Robot{
                 Serial.println("Miner: stopMining() called.");
                 break;
 
-            case 'D':
-                // Conservative default: stop drive and prompt user how to implement a diagnostic pulse safely.
-                // autonomous.clear();
-                // autonomous.add(new DriveDistance(drive, 10.0f, 3.0f));
-                // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
-                // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
-                // autonomous.start();
-                drive.setSpeed(10);
-                Serial.println("Drive: start() called.");
-                break;
-
             case 'L':
                 // drive.hardSetSpeed(150, -150);
-                drive.followRadiusAtVelocity(-10, -18);
+                drive.followRadiusAtVelocity(10, -18);
                 // drive.setSpeed(20);
                 Serial.println("Drive: turn left called.");
                 break;
 
             case 'R':
-                drive.hardSetSpeed(-150, 150);
+                drive.followRadiusAtVelocity(10, 18);
                 // drive.setSpeed(20);
                 Serial.println("Drive: turn right called.");
                 break;
@@ -376,18 +365,29 @@ class Robot{
                 }
                 break;
 
+            case 'O':
+                if (paramValid)
+                {
+                    drive.followLine(param);
+                    serialComs.send("Following line");
+                }
+                else{
+                    drive.followLine(4);
+                }
+                break;
             case 'C':
-                if (paramValid){
+                if (paramValid)
+                {
                     drive.apporachDistance(param);
                     char buf[48];
                     snprintf(buf, sizeof(buf), "Drive: driving to wall distance of  %.2f", (double)param);
                     serialComs.send(buf);
                 }
                 else{
-                    drive.apporachDistance(10.0);
-                    serialComs.send("Drive: sapproachDistance at default 10.0cm");
-                }
-                break;
+                drive.apporachDistance(10.0);
+                serialComs.send("Drive: sapproachDistance at default 10.0cm");
+            }
+            break;
 
             case 'l':
             case 'r':

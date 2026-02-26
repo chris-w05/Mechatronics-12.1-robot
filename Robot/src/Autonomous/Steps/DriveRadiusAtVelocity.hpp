@@ -6,15 +6,14 @@
 class DriveRadiusAtVelocity : public AutoStep
 {
 public:
-    /**
-     * @param direction true -> Counter-clockwise | false -> clockwise
-     */
+   
     DriveRadiusAtVelocity(Drive &drive,
              float targetVelocity,
              float radius,
              float distance)
         : _drive(drive),
           _velocity(targetVelocity),
+          _radius(radius),
           _target_distance(distance) {}
 
     DriveRadiusAtVelocity(Drive &drive)
