@@ -110,10 +110,10 @@ class Drive : public Subsystem {
             //Apply feedback/ open loop control depending on current mode
             switch( mode){
                 case LINEFOLLOWING:{
-                    
+
                     float correction = _lineSensor.getPosition();
                     correction *= DRIVE_LINEFOLLOW_VELOCITY_GAIN; // Correction gain - velocity units/number sensors active
-                    float newSpeedL = _speedL - correction/LINESENSOR_LR_RATIO;
+                    float newSpeedL = _speedL - correction / LINESENSOR_LR_RATIO;
                     float newSpeedR = _speedR + correction;
                     leftTargetPosition += newSpeedL * dt;
                     rightTargetPosition += newSpeedR * dt;
@@ -135,19 +135,13 @@ class Drive : public Subsystem {
                     _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity);
                     break;
                 case LINEFOLLOWING_HARDSET:{
-                    Serial.print("Commanding speeds Left:");
-                    Serial.print(_speedL);
-                    Serial.print(" Right:");
-                    Serial.print(_speedR);
-                    Serial.print(" leftVel(inch/s): ");
-                    Serial.print(leftVelocity);
-                    Serial.print(" rightVel(inch/s): ");
-                    Serial.println(rightVelocity);
+                    
 
                     _lineSensor.update();
                     float correction = _lineSensor.getPosition();
-                    correction *= DRIVE_LINEFOLLOW_GAIN * (_speedL + _speedR) / 2;
-                    int leftCmd = _speedL + correction/LINESENSOR_LR_RATIO; //Scale down left side command due to off-center nature of line sensor
+                    Serial.println(correction);
+                    correction *= DRIVE_LINEFOLLOW_GAIN * (_speedL +_speedR)/2;
+                    int leftCmd = _speedL + correction / LINESENSOR_LR_RATIO; // Scale down left side command due to off-center nature of line sensor
                     int rightCmd = _speedR  - correction;
                     _motorController.setPower(leftCmd, rightCmd);
                     break;

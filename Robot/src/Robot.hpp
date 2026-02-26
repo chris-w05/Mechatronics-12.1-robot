@@ -368,7 +368,7 @@ class Robot{
             case 'O':
                 if (paramValid)
                 {
-                    drive.followLine(param);
+                    drive.followLineHardset(param);
                     serialComs.send("Following line");
                 }
                 else{
