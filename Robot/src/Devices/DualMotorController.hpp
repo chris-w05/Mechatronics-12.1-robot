@@ -77,6 +77,11 @@ public:
         _pid2.reset();
     }
 
+    void makeLinear(){
+        _pid1.removeNonlinears();
+        _pid2.removeNonlinears();
+    }
+
 
     /**
      * Set a commanded power to both motors

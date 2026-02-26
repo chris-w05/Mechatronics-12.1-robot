@@ -167,8 +167,7 @@ class Drive : public Subsystem {
 
                 case DISTANCE:
                 {
-                    float distance = _distSensor.getDistanceCm();
-                    float error = distance - targetDistance;
+                    float distance = _distSensor.getDistanceCm();;
                     // Serial.print("Error");
                     // Serial.print(error);
                     // Serial.print(" ");
@@ -181,8 +180,8 @@ class Drive : public Subsystem {
                     // Serial.print(" rightVel(inch/s): ");
                     // Serial.println(rightVelocity);
 
-                    _motorController.setTarget(0, 0);
-                    _motorController.updateWithoutDerivatice(error, error);
+                    _motorController.setTarget(targetDistance, targetDistance);
+                    _motorController.updateWithoutDerivatice(distance, distance);
                     break;
                 }
                 default:
@@ -229,6 +228,7 @@ class Drive : public Subsystem {
             mode = STRAIGHT;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             _motorController.resetPID();
+            _motorController.makeLinear();
             
             leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
             rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
@@ -272,6 +272,7 @@ class Drive : public Subsystem {
         {
             mode = MODE::ARC;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
+            _motorController.makeLinear();
             // track half-width
             const float halfL = DRIVETRAIN_WIDTH / 2.0f;
 
@@ -291,6 +292,7 @@ class Drive : public Subsystem {
         {
             mode = MODE::ARC;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
+            _motorController.makeLinear();
 
             // track half-width
             const float halfL = DRIVETRAIN_WIDTH / 2.0f;
@@ -333,6 +335,7 @@ class Drive : public Subsystem {
         {
             mode = MODE::LINEFOLLOWING;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
+            _motorController.makeLinear();
 
             leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
             rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
@@ -359,6 +362,7 @@ class Drive : public Subsystem {
         {
             mode = MODE::ARC;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
+            _motorController.makeLinear();
 
             // track half-width
             const float halfL = DRIVETRAIN_WIDTH / 2.0f;
@@ -377,6 +381,7 @@ class Drive : public Subsystem {
         void apporachDistance(float distance){
             mode = MODE::DISTANCE;
             _motorController.setPID(DRIVE_DISTANCE_PID, DRIVE_DISTANCE_PID);
+            // _motorController.setPIDKpFunction(driveNonlinearP, driveNonlinearP);
             targetDistance = distance;
             
             _speedL = 0;

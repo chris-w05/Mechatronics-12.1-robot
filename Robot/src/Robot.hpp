@@ -171,16 +171,16 @@ class Robot{
                 if (mode != AUTONOMOUS)
                 {
                     mode = AUTONOMOUS;
-                    float speed = 8;
+                    float speed = 15;
                     // autonomous.add(new DriveDistance(drive, 10, speed));
                     // autonomous.add(new DriveRadiusAtVelocity(drive, speed, 30, 30));
 
                     autonomous.add(new DriveDistance(drive, 16.031, speed));
                     autonomous.add(new DriveRadiusAtVelocity(drive, speed, -18, 14.96649)); //was 11
                     autonomous.add(new DriveRadiusAtVelocity(drive, speed, 36, 24.93298));
-                    autonomous.add(new DriveDistance(drive, 20.84810, speed));
-                    autonomous.add(new DriveRadiusAtVelocity(drive, speed, -10, 9.56194));
-                    autonomous.add(new FollowLineStep(drive, 20, 120));
+                    autonomous.add(new DriveDistance(drive, 22, speed));
+                    autonomous.add(new DriveRadiusAtVelocity(drive, 10, -10, 11));
+                    autonomous.add(new FollowLineStep(drive, 10, 160));
                     // autonomous.add(new FireStep(shooter, 30000, false));
                     autonomous.start();
                     Serial.println("Autonomous started.");

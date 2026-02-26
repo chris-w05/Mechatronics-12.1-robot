@@ -288,6 +288,12 @@ public:
         _kdFunc = fn;
     }
 
+    void removeNonlinears(){
+        _kpFunc = nullptr;
+        _kiFunc = nullptr;
+        _kdFunc = nullptr;
+    }
+
 private:
 
     /**
