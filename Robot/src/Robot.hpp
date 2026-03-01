@@ -36,7 +36,7 @@ class Robot{
                   drivePins,
                   DISTANCE_SENSOR_PIN, LINE_SENSOR_PINS),
               miner(MINER_SERVO_PIN),
-              shooter(SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
+              shooter(SHOOTER_LIMIT_PIN, SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
                     shooterPins),
               serialComs(Serial2),
               planner(drive, miner, shooter)
@@ -274,7 +274,7 @@ class Robot{
                 Serial.println("Drive: Close loop turning called.");
                 break;
             case 'T':
-                Serial.println(drive.getAccumulatedHeading());
+                shooter.autoFire();
                 break;
             case 'q':
                 drive.setSpeed(0.0);
@@ -313,7 +313,7 @@ class Robot{
                 shooter.fire();
                 Serial.println("Shooter: fire() called.");
                 break;
-            
+
             case 'f':
                 autonomous.stop();
                 Serial.println("Shooter: stopFiring() called.");

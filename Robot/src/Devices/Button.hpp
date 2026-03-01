@@ -15,18 +15,22 @@ public:
     // Call in setup()
     void init()
     {
-        pinMode(_pin, INPUT);
-
+        pinMode(_pin, INPUT_PULLUP);
     }
 
     // Call in your loop at least as fast as the sensor's update rate (~60 Hz typical)
     void update()
     {
-        _isOn = digitalRead(_pin);
+        //XOR operator for reversed case
+        _isOn = digitalRead(_pin) ^ reversed;
     }
 
     bool getReading(){
         return _isOn;
+    }
+
+    void reverse(){
+        reversed = !reversed;
     }
 
 
@@ -34,6 +38,5 @@ public:
 private:
     uint8_t _pin;
     bool _isOn = false;
-
-
+    bool reversed = false;
 };

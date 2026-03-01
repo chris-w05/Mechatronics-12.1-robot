@@ -12,7 +12,7 @@ public:
 
     // startPin: first Arduino pin (pins must be provided consecutively)
     // calMin/calMax: arrays of length numberPins containing previously-saved bounds
-    LineSensor(const int pins[numberPins], const uint16_t calMin[numberPins], const uint16_t calMax[numberPins])
+    LineSensor(const uint16_t pins[numberPins], const uint16_t calMin[numberPins], const uint16_t calMax[numberPins])
     {
         for (uint8_t i = 0; i < numberPins; ++i)
         {
