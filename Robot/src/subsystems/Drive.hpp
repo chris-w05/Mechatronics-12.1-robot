@@ -82,6 +82,7 @@ class Drive : public Subsystem {
             _leftEncoder.flipDirection();
             _motorController.init();
             _lineSensor.init();
+            _motorController.setPIDFeedForwardFunc(driveFF, driveFF);
 
             // _motorController.setPIDFeedForwardFunc(driveFF, driveFF);
             Serial.println("Drivetrain initialized");
@@ -104,8 +105,8 @@ class Drive : public Subsystem {
             float rightPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
             float leftVelocity = _leftEncoder.getVelocity() * DRIVETRAIN_TICKS_TO_IN; //inch/s
             float rightVelocity = _rightEncoder.getVelocity() * DRIVETRAIN_TICKS_TO_IN; //inch/s
-            // float leftAcceleration = _leftEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
-            // float rightAcceleration = _rightEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
+            float leftAcceleration = _leftEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
+            float rightAcceleration = _rightEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
 
             //Apply feedback/ open loop control depending on current mode
             switch( mode){
@@ -131,8 +132,13 @@ class Drive : public Subsystem {
                 case STOPPED:
                     leftTargetPosition += _speedL * dt;
                     rightTargetPosition += _speedR * dt;
+                    // Position based control
                     _motorController.setTarget(leftTargetPosition, rightTargetPosition);
                     _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity);
+
+                    // Velocity based control:
+                    //  _motorController.setTarget(_speedL, _speedR);
+                    //  _motorController.update(leftVelocity, leftAcceleration, rightVelocity, rightAcceleration);
                     break;
                 case LINEFOLLOWING_HARDSET:{
                     
