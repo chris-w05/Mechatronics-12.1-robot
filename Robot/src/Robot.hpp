@@ -40,7 +40,6 @@ class Robot{
               shooter(SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
                     SHOOTER_PINS),
               serialComs(Serial2),
-              color_sensor(COLOR_SENSOR_PINS),
               planner(drive, miner, shooter)
         {
             //Sets up subsystems
@@ -80,8 +79,9 @@ class Robot{
             // Always update SerialComs first so commands are captured promptly
             serialComs.update();
 
-            // If a command is available, handle it (global commands are always accepted)
             
+            // If a command is available, handle it (global commands are always accepted)
+
             if (serialComs.hasCommand())
             {
                 // fetch the full command string (this clears the hasCommand flag)
@@ -237,6 +237,7 @@ class Robot{
         {
             switch (cmd)
             {
+
             case 'M':
                 miner.startMiningIndefinitely();
                 Serial.println("Miner: mine() called.");
@@ -377,18 +378,6 @@ class Robot{
                     drive.followLine(4);
                 }
                 break;
-            case 'C':
-                if (paramValid)
-                {
-                    drive.apporachDistance(param);
-                    char buf[48];
-                    snprintf(buf, sizeof(buf), "Drive: driving to wall distance of  %.2f", (double)param);
-                    serialComs.send(buf);
-                }
-                else{
-                drive.apporachDistance(10.0);
-                serialComs.send("Drive: sapproachDistance at default 10.0cm");
-            }
             break;
 
             case 'l':
@@ -419,8 +408,6 @@ class Robot{
         Miner miner;
         Shooter shooter;
         SerialComs serialComs;
-
-        ColorSensor color_sensor;
         
 
         Planner planner;

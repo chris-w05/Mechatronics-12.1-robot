@@ -7,6 +7,9 @@ const uint8_t RX_PIN = 2; // connect XBee TX -> Arduino pin 2
 const uint8_t TX_PIN = 3; // connect XBee RX <- Arduino pin 3
 SoftwareSerial xbee(RX_PIN, TX_PIN);
 
+unsigned long lastMicros = 0;
+unsigned long lastPrint = 0;
+
 void setup()
 {
   Serial.begin(115200); // USB serial to PC
@@ -32,4 +35,17 @@ void loop()
     int c = xbee.read();
     Serial.write((char)c);
   }
+
+
+  unsigned long now = micros();
+  //Cycle time check
+  // if (now - lastPrint > 10000 ){ // 10 ms
+    // Serial.print(">CycleTime:");
+    // Serial.print(now - lastMicros);
+    // Serial.print(",Now:");
+    // Serial.print(sin(now/10.0));
+    // Serial.println("\r");
+    // lastPrint = now;
+  // }
+  lastMicros = now;
 }

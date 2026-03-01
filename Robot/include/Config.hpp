@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 #include <Devices/DualMotorController.hpp>
+#include <Devices/ColorSensor.hpp>
 #include "utils/PID.hpp"
 #include <cmath>
 
@@ -34,12 +35,12 @@ const TB9051Pins SHOOTER_PINS = {
 };
 
 const ColorSensorPins COLOR_SENSOR_PINS = {
-    .s0_pin = 30,
-    .s1_pin = 32,
-    .s2_pin = 34,
-    .s3_pin = 36,
-    .out_pin = 38,
-    .led_pin = 40
+    .s0_pin = 52,
+    .s1_pin = 53,
+    .s2_pin = 51,
+    .s3_pin = 49,
+    .out_pin = 47,
+    .led_pin = 45
 };
 
 static const int SHOOTER_ENCODER_A  = 3;
