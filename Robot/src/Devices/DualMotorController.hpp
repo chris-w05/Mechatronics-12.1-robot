@@ -156,6 +156,16 @@ public:
         // Serial.println(pidOut2);
 
         // Send the limited signals to the driver
+        Serial.print(">TargetL:");
+        Serial.print(_target1);
+        Serial.print(",Measurement1L:");
+        Serial.print(current_value1);
+        Serial.print(",TargetR:");
+        Serial.print(_target2);
+        Serial.print(",MeasurementR:");
+        Serial.print(current_value2);
+        Serial.println("\r");
+
         dualDriver.setM1Speed(pidOut1);
         dualDriver.setM2Speed(pidOut2);
 

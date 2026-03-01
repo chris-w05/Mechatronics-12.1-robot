@@ -364,7 +364,22 @@ class Robot{
                     serialComs.send("Drive: start() at default speed 10");
                 }
                 break;
-
+            case 'I':
+                if (paramValid)
+                {
+                    // param is the desired speed (units you choose)
+                    drive.hardSetSpeed(param);
+                    char buf[48];
+                    snprintf(buf, sizeof(buf), "Drive: hardset speed at speed %.2f", (double)param);
+                    serialComs.send(buf);
+                }
+                else
+                {
+                    // no parameter: use existing safe default
+                    drive.hardSetSpeed(120);
+                    serialComs.send("Drive: hardsetspeed at default speed 120");
+                }
+                break;
             case 'O':
                 if (paramValid)
                 {

@@ -237,6 +237,8 @@ public:
         _lastOutput = output;
         _lastDerivative = derivative;
 
+        
+
         return output;
     }
 

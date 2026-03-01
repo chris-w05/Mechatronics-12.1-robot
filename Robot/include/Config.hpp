@@ -95,15 +95,15 @@ static const float SHOOTER_PULL_BACK_ROTATIONS = .75;
  */
 static const int stallSignal = 120;
 static const int maxSignal = 400;
-static const float maxVelocity = 44.0; //in/s, velocity of the robot when drive motors are set to their maximum power
+static const float maxVelocity = 45.0; //in/s, velocity of the robot when drive motors are set to their maximum power
 static const float a = ( maxSignal- stallSignal)/(maxVelocity);
 
 /**
  * FeedForward control for drivetrain - this gives an approximate expectiation of required motor signal for a given velocity
  */
-static constexpr float driveNonlinearD(float velocity){
-    // return 0;
+static constexpr float driveFF(float measurement, float target){
     return 0;
+    // return a * target + stallSignal;
 }
 
 
@@ -117,8 +117,8 @@ static const PIDConstants DRIVE_DISTANCE_PID = {
 
 // drivetrain
 static const PIDConstants DRIVE_L_PID = {
-    .kp = 100.0,
-    .ki = 20,
+    .kp = 50.0,
+    .ki = 0,
     .kd = 0};
 
 static const PIDConstants DRIVE_R_PID = DRIVE_L_PID;

@@ -161,6 +161,16 @@ class Drive : public Subsystem {
                         // Serial.print(_speedR);
                         // Serial.print(" rightVel(inch/s): ");
                         // Serial.println(rightVelocity);
+
+                        Serial.print(">SpeedL:");
+                        Serial.print(_speedL);
+                        Serial.print(",VelocityL:");
+                        Serial.print(leftVelocity);
+                        Serial.print(",SpeedR:");
+                        Serial.print(_speedR);
+                        Serial.print(",VelocityR:");
+                        Serial.print(rightVelocity);
+                        Serial.println("\r");
                     }
                     _motorController.setPower((int)_speedL, (int)_speedR);
                     break;
@@ -179,6 +189,8 @@ class Drive : public Subsystem {
                     // Serial.print(leftVelocity);
                     // Serial.print(" rightVel(inch/s): ");
                     // Serial.println(rightVelocity);
+
+                    
 
                     _motorController.setTarget(targetDistance, targetDistance);
                     _motorController.updateWithoutDerivatice(distance, distance);
