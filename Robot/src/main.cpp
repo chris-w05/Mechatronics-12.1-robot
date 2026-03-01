@@ -105,6 +105,10 @@ void loop()
 {
 
   robot.update();
+
+  // Serial.print(">Hall effect signal:");
+  // Serial.print( analogRead(HALL_EFFECT_PIN));
+  // Serial.println("\r");
   if (!Serial.available())
   { // If no input given do nothing
     return;
@@ -118,9 +122,16 @@ void loop()
     }
   }
 
-  //////// Take specified number of samples
-  // Select RED Filter
-  digitalWrite(s2, LOW);
+  if (analogRead(HALL_EFFECT_PIN) > 670 ){
+    Serial.println("Hall Effect: Magnet Detected");
+  }
+  else{
+    Serial.println("Hall Effect: No Magnet detected");
+  }
+
+    //////// Take specified number of samples
+    // Select RED Filter
+    digitalWrite(s2, LOW);
   digitalWrite(s3, LOW);
   delay(10);
   for (int i = 0; i < numSamples; i++)
