@@ -18,6 +18,7 @@
 #include "Autonomous/Steps/DelayStep.hpp"
 #include "Autonomous/Steps/FollowLineStep.hpp"
 #include "Autonomous/Steps/DriveRadiusAtVelocity.hpp"
+#include "Autonomous/Steps/DriveLineUntilWall.hpp"
 
 
 class Robot{
@@ -171,16 +172,18 @@ class Robot{
                 if (mode != AUTONOMOUS)
                 {
                     mode = AUTONOMOUS;
-                    float speed = 15;
+                    float speed = 25;
                     // autonomous.add(new DriveDistance(drive, 10, speed));
                     // autonomous.add(new DriveRadiusAtVelocity(drive, speed, 30, 30));
 
-                    autonomous.add(new DriveDistance(drive, 16.031, speed));
+                    autonomous.add(new DriveDistance(drive, 6, 10));
+                    autonomous.add(new DriveDistance(drive, 10, speed));
                     autonomous.add(new DriveRadiusAtVelocity(drive, speed, -18, 14.96649)); //was 11
-                    autonomous.add(new DriveRadiusAtVelocity(drive, speed, 36, 24.93298));
-                    autonomous.add(new DriveDistance(drive, 22, speed));
-                    autonomous.add(new DriveRadiusAtVelocity(drive, 10, -10, 11));
-                    autonomous.add(new FollowLineStep(drive, 10, 160));
+                    autonomous.add(new DriveRadiusAtVelocity(drive, speed, 36, 26));
+                    autonomous.add(new DriveDistance(drive, 23.5, speed));
+                    autonomous.add(new DriveRadiusAtVelocity(drive, 10, -8, 11));
+                    autonomous.add(new DriveLineToWallStep(drive, 10, 200));
+                    // autonomous.add(new FollowLineStep(drive, 10, 160));
                     // autonomous.add(new FireStep(shooter, 30000, false));
                     autonomous.start();
                     Serial.println("Autonomous started.");
@@ -266,7 +269,7 @@ class Robot{
                 // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
                 // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
                 // autonomous.start();
-                drive.followLineHardset(200);
+                drive.followLine(5);
                 Serial.println("Drive: Close loop control called.");
                 break;
             case 'W':

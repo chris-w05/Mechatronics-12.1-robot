@@ -105,8 +105,8 @@ class Drive : public Subsystem {
             float rightPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
             float leftVelocity = _leftEncoder.getVelocity() * DRIVETRAIN_TICKS_TO_IN; //inch/s
             float rightVelocity = _rightEncoder.getVelocity() * DRIVETRAIN_TICKS_TO_IN; //inch/s
-            float leftAcceleration = _leftEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
-            float rightAcceleration = _rightEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
+            // float leftAcceleration = _leftEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
+            // float rightAcceleration = _rightEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
 
             //Apply feedback/ open loop control depending on current mode
             switch( mode){
@@ -114,8 +114,8 @@ class Drive : public Subsystem {
 
                     float correction = _lineSensor.getPosition();
                     correction *= DRIVE_LINEFOLLOW_VELOCITY_GAIN; // Correction gain - velocity units/number sensors active
-                    float newSpeedL = _speedL - correction / LINESENSOR_LR_RATIO;
-                    float newSpeedR = _speedR + correction;
+                    float newSpeedL = _speedL + correction / LINESENSOR_LR_RATIO;
+                    float newSpeedR = _speedR - correction;
                     leftTargetPosition += newSpeedL * dt;
                     rightTargetPosition += newSpeedR * dt;
                     Serial.println(correction);
@@ -130,6 +130,21 @@ class Drive : public Subsystem {
                 case STRAIGHT:
                 case ARC:
                 case STOPPED:
+
+                    // Limit maximum speeds to be achieveable
+                    if (abs(_speedL) > MAXVELOCITY)
+                    {
+                        float scale = MAXVELOCITY / _speedL;
+                        _speedL *= scale;
+                        _speedR *= scale;
+                    }
+                    if (abs(_speedR) > MAXVELOCITY)
+                    {
+                        float scale = MAXVELOCITY / _speedR;
+                        _speedL *= scale;
+                        _speedR *= scale;
+                    }
+
                     leftTargetPosition += _speedL * dt;
                     rightTargetPosition += _speedR * dt;
                     // Position based control
@@ -154,29 +169,16 @@ class Drive : public Subsystem {
                 }
                 case HARDSET:
                     if (_speedL != 0.0 && _speedR != 0.0){
-                        // Serial.print("Velocity L: ");
-                        // Serial.print(_leftEncoder.getVelocity());
-                        // Serial.print(" targetL: ");
+
+                        // Serial.print(">SpeedL:");
                         // Serial.print(_speedL);
-                        // Serial.print(" leftVel(inch/s): ");
+                        // Serial.print(",VelocityL:");
                         // Serial.print(leftVelocity);
-
-                        // Serial.print(" Velocity R: ");
-                        // Serial.print(_rightEncoder.getVelocity());
-                        // Serial.print(" targetR: ");
+                        // Serial.print(",SpeedR:");
                         // Serial.print(_speedR);
-                        // Serial.print(" rightVel(inch/s): ");
-                        // Serial.println(rightVelocity);
-
-                        Serial.print(">SpeedL:");
-                        Serial.print(_speedL);
-                        Serial.print(",VelocityL:");
-                        Serial.print(leftVelocity);
-                        Serial.print(",SpeedR:");
-                        Serial.print(_speedR);
-                        Serial.print(",VelocityR:");
-                        Serial.print(rightVelocity);
-                        Serial.println("\r");
+                        // Serial.print(",VelocityR:");
+                        // Serial.print(rightVelocity);
+                        // Serial.println("\r");
                     }
                     _motorController.setPower((int)_speedL, (int)_speedR);
                     break;
@@ -195,8 +197,6 @@ class Drive : public Subsystem {
                     // Serial.print(leftVelocity);
                     // Serial.print(" rightVel(inch/s): ");
                     // Serial.println(rightVelocity);
-
-                    
 
                     _motorController.setTarget(targetDistance, targetDistance);
                     _motorController.updateWithoutDerivatice(distance, distance);
@@ -236,6 +236,13 @@ class Drive : public Subsystem {
          * Passes total distance travelled from odometry
          */
         float getDistance() { return _odometry.distanceTravelled(); };
+
+        /**
+         * returns the average of wheel velocities
+         */
+        float getAvgVelocity(){
+            return (_leftEncoder.getVelocity() + _rightEncoder.getVelocity()) * DRIVETRAIN_TICKS_TO_IN / 2;
+        }
 
 
         /**

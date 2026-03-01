@@ -61,7 +61,7 @@ public:
 
         if (step->isFinished())
         {
-            Serial.println("Step is finished");
+            // Serial.println("Step is finished");
             step->end();
             _index++;
             if (_index < _count && _steps[_index])
@@ -103,7 +103,7 @@ public:
     {
         if (_count >= MAX_STEPS)
         {
-            Serial.print("AutonomousRoutine - add - Max steps reached!");
+            // Serial.print("AutonomousRoutine - add - Max steps reached!");
             return;
         }
         _steps[_count++] = step;

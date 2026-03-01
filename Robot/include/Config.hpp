@@ -95,8 +95,8 @@ static const float SHOOTER_PULL_BACK_ROTATIONS = .75;
  */
 static const int stallSignal = 120;
 static const int maxSignal = 400;
-static const float maxVelocity = 45.0; //in/s, velocity of the robot when drive motors are set to their maximum power
-static const float a = ( maxSignal- stallSignal)/(maxVelocity);
+static const float MAXVELOCITY = 45.0; //in/s, velocity of the robot when drive motors are set to their maximum power
+static const float a = ( maxSignal- stallSignal)/(MAXVELOCITY);
 
 /**
  * FeedForward control for drivetrain - this gives an approximate expectiation of required motor signal for a given velocity

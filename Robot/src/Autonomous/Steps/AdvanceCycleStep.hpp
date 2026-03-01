@@ -8,7 +8,7 @@ class AdvanceCycleStep : public AutoStep
 public:
     void start() override
     {
-        Serial.println("AdvanceCycleStep: advancing strategy cycle");
+        // Serial.println("AdvanceCycleStep: advancing strategy cycle");
         Strategy::getInstance().advanceCycle();
         _done = true;
     }

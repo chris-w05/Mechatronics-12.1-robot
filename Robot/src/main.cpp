@@ -3,6 +3,8 @@
 
 Robot robot;
 
+// unsigned long lastTime = 0.0;
+
 void setup()
 {
   Serial.begin(115200);
@@ -12,5 +14,11 @@ void setup()
 
 void loop()
 {
+  //Cycle time debug
+  // unsigned long now = micros();
+  // Serial.print(">CycleTime:");
+  // Serial.print(now - lastTime);
+  // Serial.println("\r");
+  // lastTime = now;
   robot.update();
 }

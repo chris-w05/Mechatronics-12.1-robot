@@ -23,8 +23,8 @@ public:
 
     bool isFinished() const override
     {
-        Serial.print("Time until finished: ");
-        Serial.println(_time + _startTime - millis());
+        // Serial.print("Time until finished: ");
+        // Serial.println(_time + _startTime - millis());
         return (millis() - _startTime) > _time;
     }
 

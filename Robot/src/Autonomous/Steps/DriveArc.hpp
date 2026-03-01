@@ -56,12 +56,12 @@ public:
         // Serial.print("  ");
         // Serial.println(_target);
         if(_distanceBased){
-            Serial.print("Drive Arc, Delta distance ");
-            Serial.println((_drive.getDistance() - _startDistance));
+            // Serial.print("Drive Arc, Delta distance ");
+            // Serial.println((_drive.getDistance() - _startDistance));
             return (_drive.getDistance() - _startDistance) >= _target;
         }
-        Serial.print("Drive Arc, Delta angle ");
-        Serial.println(_drive.getAccumulatedHeading() - _startAngle);
+        // Serial.print("Drive Arc, Delta angle ");
+        // Serial.println(_drive.getAccumulatedHeading() - _startAngle);
         return (_drive.getAccumulatedHeading() - _startAngle) >= _target;
     }
 
