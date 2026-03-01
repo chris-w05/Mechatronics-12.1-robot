@@ -1,13 +1,6 @@
 #pragma once
 // ColorSensor.hpp
 // Small, single-file Arduino-friendly driver for a TCS-style color sensor
-// (the example Arduino sketch the user provided uses the same pins/signalling).
-//
-// - Header-only C++ class designed to match the style/architecture used across
-//   the Mechatronics project (init(), update(), small public API).
-// - Uses pulseIn() to measure the sensor output like your example sketch.
-// - Simple moving-average filtering across N samples (configurable up to a safe max).
-//
 // Example usage:
 //
 //   // default pins match your sketch: s0=6,s1=5,s2=4,s3=3, out=2, led=13
@@ -28,6 +21,16 @@
 
 #include <Arduino.h>
 
+struct ColorSensorPins
+{
+    uint8_t s0_pin;
+    uint8_t s1_pin;
+    uint8_t s2_pin;
+    uint8_t s3_pin;
+    uint8_t out_pin;
+    uint8_t led_pin;
+};
+
 class ColorSensor
 {
 public:
@@ -43,22 +46,19 @@ public:
         FILTER_CLEAR
     };
 
-    // Construct with pin assignment and number of samples for moving average.
-    // numSamples will be clamped to [1, MAX_SAMPLES].
+
+    /**
+     * Construct with pin assignment and number of samples for moving average.
+     * numSamples will be clamped to [1, MAX_SAMPLES]. */
     ColorSensor(
-        uint8_t s0_pin = 6,
-        uint8_t s1_pin = 5,
-        uint8_t s2_pin = 4,
-        uint8_t s3_pin = 3,
-        uint8_t out_pin = 2,
-        uint8_t led_pin = 13,
+        ColorSensorPins pins,
         uint8_t numSamples = 8)
-        : _s0(s0_pin),
-          _s1(s1_pin),
-          _s2(s2_pin),
-          _s3(s3_pin),
-          _out(out_pin),
-          _led(led_pin),
+        : _s0(pins.s0_pin),
+          _s1(pins.s1_pin),
+          _s2(pins.s2_pin),
+          _s3(pins.s3_pin),
+          _out(pins.out_pin),
+          _led(pins.led_pin),
           _numSamples(numSamples > 0 ? (numSamples > MAX_SAMPLES ? MAX_SAMPLES : numSamples) : 1)
     {
         // initialize arrays to zero
@@ -69,7 +69,7 @@ public:
         _redFiltered = _greenFiltered = _blueFiltered = _clearFiltered = 0.0f;
     }
 
-    // Must be called from setup()
+    /** Must be called from setup()*/
     void init()
     {
         pinMode(_s0, OUTPUT);
@@ -139,6 +139,10 @@ public:
     inline float getBlue() const { return _blueFiltered; }
     inline float getClear() const { return _clearFiltered; }
 
+    inline float getRedNorm()   const { return _redFiltered   / _clearFiltered; }
+    inline float getGreenNorm() const { return _greenFiltered / _clearFiltered; }
+    inline float getBlueNorm()  const { return _blueFiltered  / _clearFiltered; }
+
     // Access to raw sample buffers (const pointers). Each buffer has _numSamples valid entries.
     inline const float *rawRed() const { return _rawR; }
     inline const float *rawGreen() const { return _rawG; }
@@ -196,7 +200,7 @@ private:
     }
 
     // Fill provided buffer with _numSamples samples from the OUT pin.
-    // Each entry is the same metric used in your sketch:
+    // Each entry is the same metric used in lab sketch:
     //    pulseIn(out, LOW) + pulseIn(out, HIGH)
     inline void takeSamplesIntoArray(float *buffer)
     {
@@ -213,7 +217,7 @@ private:
         }
     }
 
-    // The same readPulse() implementation from the sketch
+    // The same readPulse() implementation from lab code
     inline float readPulse()
     {
         // pulseIn returns unsigned long; convert to float
@@ -232,4 +236,5 @@ private:
         }
         return sum / float(_numSamples);
     }
+
 };

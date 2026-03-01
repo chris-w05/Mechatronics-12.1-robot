@@ -10,6 +10,7 @@
 #include "subsystems/Miner.hpp"
 #include "subsystems/SerialComs.hpp"
 #include "subsystems/Shooter.hpp"
+#include "Devices/ColorSensor.hpp"
 #include "SoftwareSerial.h"
 #include "Config.hpp"
 #include "Devices/MotorController.hpp"
@@ -33,12 +34,13 @@ class Robot{
             : drive(
                   LEFT_ENCODER_A, LEFT_ENCODER_B,
                   RIGHT_ENCODER_A, RIGHT_ENCODER_B,
-                  drivePins,
+                  DRIVE_PINS,
                   DISTANCE_SENSOR_PIN, LINE_SENSOR_PINS),
               miner(MINER_SERVO_PIN),
               shooter(SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
-                    shooterPins),
+                    SHOOTER_PINS),
               serialComs(Serial2),
+              color_sensor(COLOR_SENSOR_PINS),
               planner(drive, miner, shooter)
         {
             //Sets up subsystems
@@ -417,6 +419,9 @@ class Robot{
         Miner miner;
         Shooter shooter;
         SerialComs serialComs;
+
+        ColorSensor color_sensor;
+        
 
         Planner planner;
         AutonomousRoutine autonomous;

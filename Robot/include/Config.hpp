@@ -14,7 +14,7 @@ static const int RIGHT_ENCODER_B = 21;
 
 // Motor pins
 
-const TB9051Pins drivePins = {
+const TB9051Pins DRIVE_PINS = {
     //Drive motor pins
     .m1PWM = 6,
     .m1Direction1 = 31,
@@ -23,7 +23,7 @@ const TB9051Pins drivePins = {
     .m2Direction1 = 35,
     .m2Direction2 = 37};
 
-const TB9051Pins shooterPins = {
+const TB9051Pins SHOOTER_PINS = {
     //Shooter pins
     .m1PWM = 2,
     .m1Direction1 = 39,
@@ -31,6 +31,15 @@ const TB9051Pins shooterPins = {
     .m2PWM = 255,
     .m2Direction1 = 255,
     .m2Direction2 = 255
+};
+
+const ColorSensorPins COLOR_SENSOR_PINS = {
+    .s0_pin = 30,
+    .s1_pin = 32,
+    .s2_pin = 34,
+    .s3_pin = 36,
+    .out_pin = 38,
+    .led_pin = 40
 };
 
 static const int SHOOTER_ENCODER_A  = 3;
@@ -45,10 +54,9 @@ static const int SERIAL_TX = 17;
 static const long SERIAL_BAUD_RATE = 115200;
 
 //Sensor pins
-static const int HALL_EFFECT_PIN = -1;
+static const int HALL_EFFECT_PIN = A2;
 static const int LINE_SENSOR_PINS[8] = {28, 30, 32, 34, 36, 38, 40, 42}; 
-static const int COLOR_SENSOR_START_PIN = -1; // CHANGE ME
-static const int DISTANCE_SENSOR_PIN = A4; // CHANGE ME
+static const int DISTANCE_SENSOR_PIN = A4; 
 
 //----------------------------------Software constants
 static const int MAX_STEPS = 10; // Maximum allowed steps in autonomous. This prevents too much memory from being used
