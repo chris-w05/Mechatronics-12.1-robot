@@ -146,6 +146,10 @@ class Robot{
         }
 
     private:
+
+
+        //----------------------------------- SERIAL STUFF ------------------------------------------------------------------
+
         /**
          * Global commands are handled even from AWAIT state.
          * - 'S' : enter SERIAL_TEST
@@ -218,6 +222,8 @@ class Robot{
                 break;
             }
         }
+
+
 
         /**
          * Commands that are available while in SERIAL_TEST mode.
@@ -423,6 +429,12 @@ class Robot{
                 break;
             }
         }
+
+
+
+
+
+        // ------------------------------------------------------------------------------------------------------------
 
         enum RobotMode
         {

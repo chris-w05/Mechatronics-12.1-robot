@@ -12,19 +12,26 @@ public:
     {
     }
 
-    // Call in setup()
+    /**
+     * Set pin mode for button
+     */
     void init()
     {
         pinMode(_pin, INPUT);
 
     }
 
-    // Call in your loop at least as fast as the sensor's update rate (~60 Hz typical)
+    /**
+     * Read and store value from button
+     */
     void update()
     {
         _isOn = digitalRead(_pin);
     }
 
+    /**
+     * Get reading from button
+     */
     bool getReading(){
         return _isOn;
     }

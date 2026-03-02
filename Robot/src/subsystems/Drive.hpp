@@ -248,6 +248,8 @@ class Drive : public Subsystem {
         /**
          * Sets the desired speed for driving in a straight line
          * This assumes PID control is being used and accurate
+         * @param speed Target speed for the drivetrain to drive in a straight line
+         * @param resetPID If this is set to true, the PID controller will be reset. i.e. the integral value will be set to 0, but all gains will be retained
          */
         void setSpeed(float speed, bool resetPID = true){
             mode = STRAIGHT;

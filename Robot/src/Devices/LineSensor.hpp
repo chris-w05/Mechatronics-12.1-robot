@@ -4,7 +4,6 @@
 #include <QTRSensors.h>
 
 // LineSensor class using Pololu QTRSensors (for QTR-MD-08RC)
-// Assumes calibration arrays (calMin/calMax) were produced previously.
 class LineSensor
 {
 public:
@@ -31,7 +30,9 @@ public:
 
     }
 
-    // Read sensors and compute signed position in cm
+    /**
+     * Read sensors and compute signed position in cm
+     * */
     void update()
     {
         qtr.read(sensorValues);
