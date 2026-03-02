@@ -39,8 +39,7 @@ class Robot{
               miner(MINER_SERVO_PIN),
               shooter(SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
                     shooterPins),
-              serialComs(Serial2),
-              planner(drive, miner, shooter)
+              serialComs(Serial2)
         {
             //Sets up subsystems
             subsystems[subsystemCount++] = &drive;
@@ -241,26 +240,26 @@ class Robot{
             {
             case 'M':
                 miner.startMiningIndefinitely();
-                Serial.println("Miner: mine() called.");
+                // Serial.println("Miner: mine() called.");
                 break;
 
             case 'm':
                 autonomous.stop();
                 miner.store();
-                Serial.println("Miner: stopMining() called.");
+                // Serial.println("Miner: stopMining() called.");
                 break;
 
             case 'L':
                 // drive.hardSetSpeed(150, -150);
                 drive.followRadiusAtVelocity(10, -18);
                 // drive.setSpeed(20);
-                Serial.println("Drive: turn left called.");
+                // Serial.println("Drive: turn left called.");
                 break;
 
             case 'R':
                 drive.followRadiusAtVelocity(10, 18);
                 // drive.setSpeed(20);
-                Serial.println("Drive: turn right called.");
+                // Serial.println("Drive: turn right called.");
                 break;
 
             case 'Q':
@@ -271,11 +270,11 @@ class Robot{
                 // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
                 // autonomous.start();
                 drive.followLine(12);
-                Serial.println("Drive: Close loop control called.");
+                // Serial.println("Drive: Close loop control called.");
                 break;
             case 'W':
                 drive.followRadiusCCW( .5, 8);
-                Serial.println("Drive: Close loop turning called.");
+                // Serial.println("Drive: Close loop turning called.");
                 break;
             case 'T':
                 Serial.println(drive.getAccumulatedHeading());
@@ -289,25 +288,25 @@ class Robot{
             case 'd':
                 autonomous.stop();
                 drive.hardSetSpeed(0);
-                Serial.println("Drive: stop() called.");
+                // Serial.println("Drive: stop() called.");
                 break;
             case 'E':
                 // Exit serial testing and go back to awaiting mode (stop subsystems if needed)
                 autonomous.stop();
                 mode = AWAIT;
-                Serial.println("Exited SERIAL_TEST. Back to AWAIT.");
+                // Serial.println("Exited SERIAL_TEST. Back to AWAIT.");
                 break;
 
             case 'P':
                 shooter.stopFiring();
                 shooter.prime();
-                Serial.println("Shooter: holdPosition() called.");
+                // Serial.println("Shooter: holdPosition() called.");
                 break;
 
             case 'p':
                 shooter.stopFiring();
                 shooter.holdPosition(1.1);
-                Serial.println("Shooter: holdPosition() called.");
+                // Serial.println("Shooter: holdPosition() called.");
                 break;
 
             case 'F':
@@ -315,12 +314,12 @@ class Robot{
                 // autonomous.add(new FireStep(shooter, 300000, true));
                 // autonomous.start();
                 shooter.fire();
-                Serial.println("Shooter: fire() called.");
+                // Serial.println("Shooter: fire() called.");
                 break;
             
             case 'f':
                 autonomous.stop();
-                Serial.println("Shooter: stopFiring() called.");
+                // Serial.println("Shooter: stopFiring() called.");
                 break;
             
             case '1':
@@ -357,15 +356,15 @@ class Robot{
                 {
                     // param is the desired speed (units you choose)
                     drive.setSpeed(param);
-                    char buf[48];
-                    snprintf(buf, sizeof(buf), "Drive: start() at speed %.2f", (double)param);
-                    serialComs.send(buf);
+                    // char buf[48];
+                    // snprintf(buf, sizeof(buf), "Drive: start() at speed %.2f", (double)param);
+                    // serialComs.send(buf);
                 }
                 else
                 {
                     // no parameter: use existing safe default
                     drive.setSpeed(10);
-                    serialComs.send("Drive: start() at default speed 10");
+                    // serialComs.send("Drive: start() at default speed 10");
                 }
                 break;
             case 'I':
@@ -373,22 +372,22 @@ class Robot{
                 {
                     // param is the desired speed (units you choose)
                     drive.hardSetSpeed(param);
-                    char buf[48];
-                    snprintf(buf, sizeof(buf), "Drive: hardset speed at speed %.2f", (double)param);
-                    serialComs.send(buf);
+                    // char buf[48];
+                    // snprintf(buf, sizeof(buf), "Drive: hardset speed at speed %.2f", (double)param);
+                    // serialComs.send(buf);
                 }
                 else
                 {
                     // no parameter: use existing safe default
                     drive.hardSetSpeed(120);
-                    serialComs.send("Drive: hardsetspeed at default speed 120");
+                    // serialComs.send("Drive: hardsetspeed at default speed 120");
                 }
                 break;
             case 'O':
                 if (paramValid)
                 {
                     drive.followLineHardset(param);
-                    serialComs.send("Following line");
+                    // serialComs.send("Following line");
                 }
                 else{
                     drive.followLine(4);
@@ -398,13 +397,13 @@ class Robot{
                 if (paramValid)
                 {
                     drive.apporachDistance(param);
-                    char buf[48];
-                    snprintf(buf, sizeof(buf), "Drive: driving to wall distance of  %.2f", (double)param);
-                    serialComs.send(buf);
+                    // char buf[48];
+                    // snprintf(buf, sizeof(buf), "Drive: driving to wall distance of  %.2f", (double)param);
+                    // serialComs.send(buf);
                 }
                 else{
                 drive.apporachDistance(10.0);
-                serialComs.send("Drive: sapproachDistance at default 10.0cm");
+                // serialComs.send("Drive: sapproachDistance at default 10.0cm");
             }
             break;
 
@@ -413,7 +412,7 @@ class Robot{
             case 'd':
                 autonomous.stop();
                 drive.hardSetSpeed(0);
-                serialComs.send("Drive: stop() called.");
+                // serialComs.send("Drive: stop() called.");
                 break;
 
                 // ... keep other cases unchanged, or add param-aware behavior for other commands.
@@ -437,7 +436,6 @@ class Robot{
         Shooter shooter;
         SerialComs serialComs;
 
-        Planner planner;
         AutonomousRoutine autonomous;
         Subsystem *subsystems[MAX_SUBSYSTEMS];
         RobotMode mode = AWAIT;

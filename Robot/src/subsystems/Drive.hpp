@@ -314,7 +314,7 @@ class Drive : public Subsystem {
          * @param velocity The tangential velocity to follow the arc at
          * @param radius The radius of the arc for the robot to follow
          */
-        void followRadiusAtVelocity(float velocity, float radius, bool resetPID)
+        void followRadiusAtVelocity(float velocity, float radius, bool resetPID = true)
         {
             mode = MODE::ARC;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
