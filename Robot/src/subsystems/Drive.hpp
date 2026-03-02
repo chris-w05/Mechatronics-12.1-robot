@@ -249,11 +249,12 @@ class Drive : public Subsystem {
          * Sets the desired speed for driving in a straight line
          * This assumes PID control is being used and accurate
          */
-        void setSpeed(float speed){
+        void setSpeed(float speed, bool resetPID = true){
             mode = STRAIGHT;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
-            _motorController.resetPID();
-            _motorController.makeLinear();
+            if( resetPID ){
+                _motorController.resetPID();
+            }
             
             leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
             rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
@@ -313,11 +314,15 @@ class Drive : public Subsystem {
          * @param velocity The tangential velocity to follow the arc at
          * @param radius The radius of the arc for the robot to follow
          */
-        void followRadiusAtVelocity(float velocity, float radius)
+        void followRadiusAtVelocity(float velocity, float radius, bool resetPID)
         {
             mode = MODE::ARC;
             _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
-            _motorController.makeLinear();
+            if (resetPID)
+            {
+                _motorController.resetPID();
+            }
+            
 
             // track half-width
             const float halfL = DRIVETRAIN_WIDTH / 2.0f;
