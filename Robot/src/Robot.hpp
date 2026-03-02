@@ -19,6 +19,7 @@
 #include "Autonomous/Steps/FollowLineStep.hpp"
 #include "Autonomous/Steps/DriveRadiusAtVelocity.hpp"
 #include "Autonomous/Steps/DriveLineUntilWall.hpp"
+#include "Autonomous/Steps/AccelerateStraightLine.hpp"
 
 
 class Robot{
@@ -182,6 +183,7 @@ class Robot{
                     autonomous.add(new DriveDistance(drive, 8, 10));
                     autonomous.add(new DriveDistance(drive, 4, 15));
                     autonomous.add(new DriveDistance(drive, 4, speed));
+                    // autonomous.add(new AccelerateStraightLine(drive, 16, 18, 5, 20000));
                     autonomous.add(new DriveRadiusAtVelocity(drive, speed, -18, 14.96649)); //was 11
                     autonomous.add(new DriveRadiusAtVelocity(drive, speed, 36, 26));
                     autonomous.add(new DriveDistance(drive, 23.5, speed));
