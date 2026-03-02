@@ -86,7 +86,10 @@ public:
     }
 
 
-    // Start mining with a specific number of hits (finite)
+    /**
+     *  Start mining with a specific number of hits (finite)
+     * @param hits_to_mine Number of hits before the miner stops mining
+     * */
     void startMining(int32_t hits_to_mine)
     {
         if (hits_to_mine < 0)
@@ -245,21 +248,34 @@ private:
     }
 
     // Helper wrappers to set servo position
+    /**
+     * Chang the position of the miner to hit the button
+     */
     void setServoToPress()
     {
         servo.setAngle(MINER_SERVO_PRESS_ANGLE);
     }
 
+    /**
+     * Change the position of the miner to be fully in the robot
+     */
     void setServoToRetract()
     {
         servo.setAngle(MINER_SERVO_RETRACT_ANGLE);
     }
 
+
+    /**
+     * Change the posiiton of the miner to store the ramp
+     */
     void setServoToStore()
     {
         servo.setAngle(MINER_SERVO_STORE_ANGLE);
     }
 
+    /**
+     * Start the sequency of hitting/retracting
+     */
     void startMining()
     {
         if (_mode != MINING)
@@ -273,6 +289,9 @@ private:
         }
     }
 
+    /**
+     * Stop hitting the button
+     */
     void stopMiningInternal()
     {
         _mode = OFF;
