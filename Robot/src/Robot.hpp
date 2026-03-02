@@ -176,8 +176,9 @@ class Robot{
                     // autonomous.add(new DriveDistance(drive, 10, speed));
                     // autonomous.add(new DriveRadiusAtVelocity(drive, speed, 30, 30));
 
-                    // autonomous.add(new DriveDistance(drive, 6, 10));
-                    autonomous.add(new DriveDistance(drive, 16, speed));
+                    autonomous.add(new DriveDistance(drive, 8, 10));
+                    autonomous.add(new DriveDistance(drive, 4, 15));
+                    autonomous.add(new DriveDistance(drive, 4, speed));
                     autonomous.add(new DriveRadiusAtVelocity(drive, speed, -18, 14.96649)); //was 11
                     autonomous.add(new DriveRadiusAtVelocity(drive, speed, 36, 26));
                     autonomous.add(new DriveDistance(drive, 23.5, speed));
@@ -269,7 +270,7 @@ class Robot{
                 // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
                 // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
                 // autonomous.start();
-                drive.followLine(5);
+                drive.followLine(12);
                 Serial.println("Drive: Close loop control called.");
                 break;
             case 'W':

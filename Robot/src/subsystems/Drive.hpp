@@ -113,7 +113,7 @@ class Drive : public Subsystem {
                 case LINEFOLLOWING:{
 
                     float correction = _lineSensor.getPosition();
-                    correction *= DRIVE_LINEFOLLOW_VELOCITY_GAIN; // Correction gain - velocity units/number sensors active
+                    correction *= DRIVE_LINEFOLLOW_VELOCITY_GAIN * _speedL; // Correction gain - velocity units/number sensors active
                     float newSpeedL = _speedL + correction / LINESENSOR_LR_RATIO;
                     float newSpeedR = _speedR - correction;
                     leftTargetPosition += newSpeedL * dt;

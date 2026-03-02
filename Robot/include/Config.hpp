@@ -118,9 +118,9 @@ static const PIDConstants DRIVE_DISTANCE_PID = {
 
 // drivetrain
 static const PIDConstants DRIVE_L_PID = {
-    .kp = 600.0,
-    .ki = 300,
-    .kd = -70};
+    .kp = 100.0,
+    .ki = 50,
+    .kd = -10};
 // static const PIDConstants DRIVE_L_PID = {
 //     .kp = 15.0,
 //     .ki = 00,
