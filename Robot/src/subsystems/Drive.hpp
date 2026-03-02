@@ -82,7 +82,7 @@ class Drive : public Subsystem {
             _leftEncoder.flipDirection();
             _motorController.init();
             _lineSensor.init();
-            _motorController.setPIDFeedForwardFunc(driveFF, driveFF);
+            // _motorController.setPIDDerivativeFeedForwardFunc(drivedFF, drivedFF);
 
             // _motorController.setPIDFeedForwardFunc(driveFF, driveFF);
             Serial.println("Drivetrain initialized");
@@ -149,9 +149,9 @@ class Drive : public Subsystem {
                     rightTargetPosition += _speedR * dt;
                     // Position based control
                     _motorController.setTarget(leftTargetPosition, rightTargetPosition);
-                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity);
+                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity, _speedL, _speedR);
 
-                    // Velocity based control:
+                    // // Velocity based control:
                     //  _motorController.setTarget(_speedL, _speedR);
                     //  _motorController.update(leftVelocity, leftAcceleration, rightVelocity, rightAcceleration);
                     break;

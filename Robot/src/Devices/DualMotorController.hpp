@@ -116,13 +116,16 @@ public:
      * @param current_value1 The current time derivative of motor 1 (position/velocity/etc.)
      * @param current_value2 The current state of motor 2 (position/velocity/etc.) This defaults to 0.0 for use when manipulating only 1 motor
      * @param current_value2 The current time derivative of motor 2 (position/velocity/etc.)
+     * @param dSetPoint1     The rate of change of the target value for 1
+     * @param dSetPoint2     The rate of change of the target value for 2
      */
     void update(
-        float current_value1, float dcurrent_value1, 
-        float current_value2, float dcurrent_value2)
+        float current_value1, float dcurrent_value1,
+        float current_value2, float dcurrent_value2, 
+        float dSetPoint1 = 0, float dSetPoint2 = 0)
     {
-        int pidOut1 = _pid1.update(current_value1, dcurrent_value1, _target1);
-        int pidOut2 = _pid2.update(current_value2, dcurrent_value2, _target2);
+        int pidOut1 = _pid1.update(current_value1, dcurrent_value1, _target1, dSetPoint1);
+        int pidOut2 = _pid2.update(current_value2, dcurrent_value2, _target2, dSetPoint2);
 
         // Compute deltas relative to last sent signals
         int delta1 = pidOut1 - lastSignal1;
@@ -156,15 +159,19 @@ public:
         // Serial.println(pidOut2);
 
         // Send the limited signals to the driver
-        // Serial.print(">TargetL:");
-        // Serial.print(_target1);
-        // Serial.print(",Measurement1L:");
-        // Serial.print(current_value1);
-        // Serial.print(",TargetR:");
-        // Serial.print(_target2);
-        // Serial.print(",MeasurementR:");
-        // Serial.print(current_value2);
-        // Serial.println("\r");
+        Serial.print(">TargetL:");
+        Serial.print(_target1);
+        Serial.print(",Measurement1L:");
+        Serial.print(current_value1);
+        Serial.print(",PidL:");
+        Serial.print(pidOut1);
+        Serial.print(",TargetR:");
+        Serial.print(_target2);
+        Serial.print(",MeasurementR:");
+        Serial.print(current_value2);
+        Serial.print(",PidR:");
+        Serial.print(pidOut2);
+        Serial.println("\r");
 
         dualDriver.setM1Speed(pidOut1);
         dualDriver.setM2Speed(pidOut2);
@@ -325,6 +332,7 @@ public:
         motor == 0 ? _pid1.setFeedforwardFunction(fcn) : _pid2.setFeedforwardFunction(fcn);
     }
 
+
     /**
      * Set the feedforward function for one motor's controller
      *
@@ -342,6 +350,20 @@ public:
         _pid2.reset();
         _pid1.setFeedforwardFunction(fcn);
         _pid2.setFeedforwardFunction(fcn2);
+    }
+
+    void setPIDDerivativeFeedForwardFunc(DerivativeFeedforwardFn fcn, bool motor = 0)
+    {
+        motor == 0 ? _pid1.reset() : _pid2.reset();
+        motor == 0 ? _pid1.setDerivativeFeedforwardFunction(fcn) : _pid2.setDerivativeFeedforwardFunction(fcn);
+    }
+
+    void setPIDDerivativeFeedForwardFunc(DerivativeFeedforwardFn fcn, DerivativeFeedforwardFn fcn2)
+    {
+        _pid1.reset();
+        _pid2.reset();
+        _pid1.setDerivativeFeedforwardFunction(fcn);
+        _pid2.setDerivativeFeedforwardFunction(fcn2);
     }
 
     /**
@@ -415,6 +437,8 @@ public:
         _pid2.setKdFunction(fcn2);
     }
 
+    
+
     // float getM1current() { return dualDriver.getM1CurrentMilliamps(); }
     // float getM2current() { return dualDriver.getM2CurrentMilliamps(); }
 
@@ -426,7 +450,7 @@ private:
     bool _m2reversed = true;
 
     unsigned long lastMillis = 0;
-    
+
     PIDController _pid1;
     PIDController _pid2;
 

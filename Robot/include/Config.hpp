@@ -101,8 +101,8 @@ static const float a = ( maxSignal- stallSignal)/(MAXVELOCITY);
 /**
  * FeedForward control for drivetrain - this gives an approximate expectiation of required motor signal for a given velocity
  */
-static constexpr float driveFF( float target){
-    return 0.0;
+static constexpr float drivedFF( float dtarget){
+    return 5 * dtarget;
     // return target * 10;
     // return a * target + stallSignal;
 }
@@ -118,9 +118,13 @@ static const PIDConstants DRIVE_DISTANCE_PID = {
 
 // drivetrain
 static const PIDConstants DRIVE_L_PID = {
-    .kp = 200.0,
-    .ki = 100,
-    .kd = -5};
+    .kp = 600.0,
+    .ki = 300,
+    .kd = -70};
+// static const PIDConstants DRIVE_L_PID = {
+//     .kp = 15.0,
+//     .ki = 00,
+//     .kd = -20};
 
 static const PIDConstants DRIVE_R_PID = DRIVE_L_PID;
 // {

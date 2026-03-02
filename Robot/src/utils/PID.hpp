@@ -19,6 +19,11 @@ struct PIDConstants
 typedef float (*FeedforwardFn)(float setpoint);
 
 /**
+ * DerivativeFeedforward Fn relates a changing target to a predicted signal.
+ */
+typedef float (*DerivativeFeedforwardFn)(float dsetpoint);
+
+/**
  * Kp function - creates a nonlinear kp term
  */
 typedef float (*KpFn)(float measurement, float target);
@@ -43,6 +48,9 @@ struct NonlinearPID{
     KiFn ki;
     KdFn kd;
 };
+
+/**Sets filter strength for PID controller */
+static const unsigned int filterStrength = 10;
 
 class PID
 {
@@ -176,7 +184,7 @@ public:
      * @param dmeasurement The rate of change of the parameter of interest. If the PID is being used on position, this would be the velocity
      * @param setpoint The target value for the parameter of interest
      */
-    float update(float measurement, float dmeasurement, float setpoint) override
+    float update(float measurement, float dmeasurement, float setpoint, float dSetpoint = 0)
     {
         unsigned long now = micros();
         unsigned long dt_micros = now - _lastTime;
@@ -192,7 +200,7 @@ public:
         _integral += error * dt;
         _integral = constrain(_integral, _iMin, _iMax); // anti-windup via clamping
 
-        float output = calculate(measurement, setpoint, dmeasurement, _integral);
+        float output = calculate(measurement, setpoint, dmeasurement, _integral, dSetpoint);
 
         // Save state
         _lastMeasurement = measurement;
@@ -229,7 +237,7 @@ public:
 
 
         // Feedforward: if user supplied a custom function use it; otherwise use simple kff * setpoint
-        float output = calculate(measurement, setpoint, derivative, _integral );
+        float output = calculate(measurement, setpoint, derivative, _integral, 0);
 
         // Save state
         _lastMeasurement = measurement;
@@ -264,6 +272,11 @@ public:
     void setFeedforwardFunction(FeedforwardFn fn)
     {
         _ffFunc = fn;
+    }
+
+    void setDerivativeFeedforwardFunction(DerivativeFeedforwardFn fn)
+    {
+        _dffFunc = fn;
     }
 
     /**
@@ -306,7 +319,7 @@ private:
      * @param derivative The time rate of change of measurement
      * @param integral The accumulated error of (Setpoint - measurement);
      */
-    float calculate(float measurement, float setpoint, float derivative, float integral){
+    float calculate(float measurement, float setpoint, float derivative, float integral, float dSetpoint){
         float error = setpoint - measurement;
         float feedforward = 0.0;
         if (_ffFunc)
@@ -316,6 +329,11 @@ private:
         else
         {
             feedforward = _kff * setpoint;
+        }
+
+        float dFeedForward = 0.0;
+        if (_dffFunc){
+            dFeedForward = _dffFunc(dSetpoint);
         }
 
         float kpNonlinear = 0.0;
@@ -335,16 +353,29 @@ private:
         {
             kdNonlinear = _kdFunc(derivative);
         }
+        float signal = _kp * error + _kd * (derivative - dSetpoint) + _ki * integral + 
+            feedforward + dFeedForward + kpNonlinear + kiNonlinear + kdNonlinear;
+        filterSum += signal;
+        filterSum -= values[filterIndex];
+        values[filterIndex] = signal;
+        filterIndex ++;
+        filterIndex %= filterStrength;
+        return filterSum / filterStrength;
 
-        return _kp * error + _kd * derivative + _ki * integral + feedforward + kpNonlinear + kiNonlinear + kdNonlinear;
     }
     
     // Feedforward
     float _kff = 0.0;               // simple FF gain (FF = kff * setpoint)
     FeedforwardFn _ffFunc = nullptr; // optional custom FF function
+    DerivativeFeedforwardFn _dffFunc = nullptr;
     KpFn _kpFunc = nullptr;
     KiFn _kiFunc = nullptr;
     KdFn _kdFunc = nullptr;
+
+    
+    float values[filterStrength] = {0};
+    float filterSum = 0;
+    int filterIndex = 0;
 
     // State
     float _integral = 0.0;
