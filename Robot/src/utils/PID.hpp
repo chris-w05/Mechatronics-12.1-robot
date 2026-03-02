@@ -44,7 +44,6 @@ typedef float (*KdFn)(float measurement);
  */
 struct NonlinearPID{
     FeedforwardFn ff;
-    DerivativeFeedforwardFn dff;
     KpFn kp;
     KiFn ki;
     KdFn kd;
@@ -161,7 +160,6 @@ public:
     PIDController(PIDConstants consts, NonlinearPID funcs)
         : PID(consts),
           _ffFunc(funcs.ff),
-          _dffFunc(funcs.dff),
           _kpFunc(funcs.kp),
           _kiFunc(funcs.ki),
           _kdFunc(funcs.kd)
@@ -174,7 +172,6 @@ public:
     PIDController(NonlinearPID funcs)
         : PID(0, 0, 0),
         _ffFunc(funcs.ff), 
-        _dffFunc(funcs.dff),
         _kpFunc(funcs.kp),
         _kiFunc(funcs.ki),
         _kdFunc(funcs.kd)
@@ -277,11 +274,6 @@ public:
         _ffFunc = fn;
     }
 
-    /**
-     * Set a custon function in terms of the derivative of the target. 
-     * the funciton signature needs to match:
-     *  float function(float  arg)
-     */
     void setDerivativeFeedforwardFunction(DerivativeFeedforwardFn fn)
     {
         _dffFunc = fn;
@@ -311,9 +303,6 @@ public:
         _kdFunc = fn;
     }
 
-    /**
-     * Gets rid of all of the nonlinear functions in the PID controller
-     */
     void removeNonlinears(){
         _kpFunc = nullptr;
         _kiFunc = nullptr;
@@ -333,8 +322,6 @@ private:
     float calculate(float measurement, float setpoint, float derivative, float integral, float dSetpoint){
         float error = setpoint - measurement;
         float feedforward = 0.0;
-
-        // nonlinear optional functions. In most cases these are zero. 
         if (_ffFunc)
         {
             feedforward = _ffFunc(setpoint);

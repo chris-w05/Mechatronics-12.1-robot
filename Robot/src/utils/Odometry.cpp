@@ -9,7 +9,6 @@ void Odometry::init(const Pose2D &pose)
     _prevRightDistance = 0;
 }
 
-
 void Odometry::update(EncoderWrapper &left, EncoderWrapper &right)
 {
     float leftDist = left.getCount() * PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV);

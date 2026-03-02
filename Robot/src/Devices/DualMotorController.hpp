@@ -352,30 +352,12 @@ public:
         _pid2.setFeedforwardFunction(fcn2);
     }
 
-    /**
-     * Set the derivative feedforward function for one motor's controller. This function handles the case where the target position changes with time so an expected signal can be added in terms of the rate of change of the target position. 
-     *
-     * @param fcn The function to dictate motor power by target rate.
-     *  Inputs: setpoint time derivative
-     *  Outputs: motor signal
-     * @param motor Which motor to apply function to. 0 for M1, 1 for M2
-     */
     void setPIDDerivativeFeedForwardFunc(DerivativeFeedforwardFn fcn, bool motor = 0)
     {
         motor == 0 ? _pid1.reset() : _pid2.reset();
         motor == 0 ? _pid1.setDerivativeFeedforwardFunction(fcn) : _pid2.setDerivativeFeedforwardFunction(fcn);
     }
 
-    /**
-     * Set the derivative feedforward function for both motors' controllers. This function handles the case where the target position changes with time so an expected signal can be added in terms of the rate of change of the target position.
-     *
-     * @param fcn The function to dictate motor power by target rate.
-     *  Inputs: setpoint time derivative
-     *  Outputs: motor signal
-     * @param fcn2 The function to dictate motor power by target rate.
-     *  Inputs: setpoint time derivative
-     *  Outputs: motor signal
-     */
     void setPIDDerivativeFeedForwardFunc(DerivativeFeedforwardFn fcn, DerivativeFeedforwardFn fcn2)
     {
         _pid1.reset();

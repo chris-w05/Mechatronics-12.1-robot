@@ -37,9 +37,7 @@ public:
     {
     }
 
-    /**
-     * Initialize the distance sensor
-     */
+    // Call in setup()
     void init()
     {
         pinMode(_pin, INPUT);
@@ -49,9 +47,7 @@ public:
             _voltageEMA = v;
     }
 
-    /**
-     * Get a reading from the distance sensor, and store internally
-     */
+    // Call in your loop at least as fast as the sensor's update rate (~60 Hz typical)
     void update()
     {
         float v = readVoltageRaw();
@@ -66,53 +62,40 @@ public:
 
     }
 
-    /**
-     * Return the last-smoothed voltage (volts)
-     */
+    // Return the last-smoothed voltage (volts)
     float getVoltage() const { return _voltageEMA; }
 
-    /**
-     * Returns the most recent distance measurement from the sensor
-     */
+    // Convert to distance in centimeters using current calibration
+    // If not calibrated, returns -1 and you should call calibrate() first or setCalibration()
     float getDistanceCm() const
     {
         return _current_distance;
         
     }
 
-    /**
-     * Set smoothing for sensor
-     */
+    // Set smoothing alpha (0..1). Lower = smoother/longer memory
     void setEMAalpha(float a) { _alpha = constrain(a, 0.01f, 0.99f); }
 
-    /** 
-     * Set expected physical min/max range for clamping
-     * */
+    // Set expected physical min/max range for clamping
     void setRangeCm(float minCm, float maxCm)
     {
         _minRangeCm = minCm;
         _maxRangeCm = maxCm;
     }
 
-    /**
-     * Raw ADC reading (0..adcMax)
-     */
+    // Raw ADC reading (0..adcMax)
     uint16_t readAdcRaw() const
     {
         return analogRead(_pin);
     }
 
-    /**
-     * Convert a raw ADC reading to voltage
-     */
+    // Convert a raw ADC reading to voltage
     float adcToVoltage(uint16_t raw) const
     {
         return ((float)raw * _vref) / (float)_adcMax;
     }
 
-    /**
-     * Read voltage once (no smoothing)
-     */
+    // Read voltage once (no smoothing)
     float readVoltageRaw() const
     {
         uint16_t raw = analogRead(_pin);
