@@ -128,6 +128,9 @@ public:
         _mode = TEST;
     }
 
+    /**
+     * Have the motor go to the prime position. This will enable close-loop position control
+     */
     void prime(){
         _mode = POSITION;
         if (_mode != POSITION)
@@ -144,19 +147,28 @@ public:
         motor.setTarget(targetPosition);
     }
 
+    /**
+     * Turns off the shooter motor.
+     */
     void stopFiring()
     {
         _mode = OFF;
         targetVelocity = 0;
     }
 
+
+    /**
+     * Inherited from Subsystem. This does the same thing as stopFiring()
+     */
     void stop() override
     {
         _mode = OFF;
         targetVelocity = 0;
     }
 
-    /**Hold the current position of the shooter */
+    /**
+     * Hold the current position of the shooter. This can be used as a "pause"
+     * */
     void hold(){
         holdPosition(position);
     }

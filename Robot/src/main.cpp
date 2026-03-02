@@ -5,6 +5,11 @@ Robot robot;
 
 // unsigned long lastTime = 0.0;
 
+/**
+ * Arduino Setup
+ * 
+ * EVERYTHING OTHER THAN SERIAL SHOULD BE INIT FRO CHILDREN OF ROBOT.INIT()
+ */
 void setup()
 {
   Serial.begin(115200);
@@ -12,6 +17,12 @@ void setup()
   robot.init();
 }
 
+
+/**
+ * Arduino main loop. 
+ * 
+ * DO NOT PUT ANYTHING HERE OUTSIDE OF THE ROBOT
+ */
 void loop()
 {
   //Cycle time debug
