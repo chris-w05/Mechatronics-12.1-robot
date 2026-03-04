@@ -36,3 +36,21 @@ void Odometry::update(EncoderWrapper &left, EncoderWrapper &right)
     _pose.x += dCenter * cos(_pose.heading);
     _pose.y += dCenter * sin(_pose.heading);
 }
+
+void Odometry::update(float dLeft, float dRight)
+{
+    float dCenter = (dLeft + dRight) * 0.5f;
+    float dTheta = (dRight - dLeft) / DRIVETRAIN_WIDTH;
+
+    _distanceTravelled += dCenter;
+    _accumulated_heading += dTheta;
+    _pose.heading = _accumulated_heading;
+
+    while (_pose.heading > M_PI)
+        _pose.heading -= 2.0f * M_PI;
+    while (_pose.heading < -M_PI)
+        _pose.heading += 2.0f * M_PI;
+
+    _pose.x += dCenter * cos(_pose.heading);
+    _pose.y += dCenter * sin(_pose.heading);
+}

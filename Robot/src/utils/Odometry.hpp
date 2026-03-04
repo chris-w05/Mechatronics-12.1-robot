@@ -19,7 +19,12 @@ public:
      * Update the odometry. This will integrate the robot's velocity and heading to track its position in relative coordinates
      */
     void update(EncoderWrapper &left, EncoderWrapper &right);
-    
+
+    /**
+     * Update the odometry using speeds for the left and right wheels
+     */
+    void update(float dLeftPosition, float dRightPosition);
+
     /**
      * Get the x, y, theta of the robot 
      */
