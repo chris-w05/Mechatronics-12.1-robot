@@ -89,10 +89,10 @@ class Robot{
                 Serial.println(raw);
 
                 char cmdChar = 0;
-                float param = 0.0f;
-                bool paramValid = false;
+                float p1 = 0.0f, p2 = 0.0f;
+                bool p1Valid = false, p2Valid = false;
 
-                if (serialComs.parseCmdWithOptionalFloat(raw, cmdChar, param, paramValid))
+                if (serialComs.parseCmdWithUpToTwoFloats(raw, cmdChar, p1, p1Valid, p2, p2Valid))
                 {
                     // Handle only true global commands here
                     handleGlobalCommand(cmdChar);
@@ -100,8 +100,10 @@ class Robot{
                     // Only forward to serial-test handler when we're actually in SERIAL_TEST
                     if (mode == SERIAL_TEST)
                     {
-                        if (paramValid)
-                            handleSerialTestCommand(cmdChar, param, paramValid);
+                        if (p1Valid && p2Valid)
+                            handleSerialTestCommand(cmdChar, p1, p2);
+                        else if (p1Valid)
+                            handleSerialTestCommand(cmdChar, p1, true);
                         else
                             handleSerialTestCommand(cmdChar);
                     }
@@ -202,7 +204,8 @@ class Robot{
                 {
                     subsystems[i]->stop();
                 }
-
+                autonomous.stop();
+                autonomous.reset();
                 break;
 
             case 'a':
@@ -279,10 +282,6 @@ class Robot{
                 // autonomous.start();
                 drive.followLine(12);
                 // Serial.println("Drive: Close loop control called.");
-                break;
-            case 'W':
-                drive.followRadiusCCW( .5, 8);
-                // Serial.println("Drive: Close loop turning called.");
                 break;
             case 'T':
                 Serial.println(drive.getAccumulatedHeading());
@@ -432,9 +431,49 @@ class Robot{
             }
         }
 
+        /**
+         * Overload for handleSerialTestCommand for when TWO parameters are passed
+         */
+        void handleSerialTestCommand(char cmd, float p1, float p2)
+        {
+            switch (cmd)
+            {
+            //PM 9 cases
+            case '!': //Drive in a straight line
+            {
+                // p1 is distance, p2 is velocity
+                autonomous.clear();
+                autonomous.add(new DriveDistance(drive, p1, p2));
+                autonomous.start();
+                break;
+            }
+            case '@': // Rotate in place
+            {
+                // p1 is distance, p2 is velocity - Rad/s
+                autonomous.clear();
+                autonomous.add(new DriveArc(drive, p1, p2, 0));
+                autonomous.start();
+                break;
+            }
+            case '#':
+            { //Follow arc
+                //p1 is radius, p2 is yaw angle
+                p2 *= PI / 180.0; // convert to radians
+                float distance = (p1 + DRIVETRAIN_WIDTH/2) * p2 ; // Find distance for robot to travel. from center of robot
+                float velocity = distance / 3; //Have the robot take 3 seconds to complete the maneuver
 
+                autonomous.clear();
+                autonomous.add( new DriveRadiusAtVelocity(drive, velocity, p1  + DRIVETRAIN_WIDTH/2, p2));
+                autonomous.start();
+                break;
+            }
 
-
+            default:
+                // If unknown, you can ignore or print a message
+                // serialComs.send("Command does not take two args");
+                break;
+            }
+        }
 
         // ------------------------------------------------------------------------------------------------------------
 

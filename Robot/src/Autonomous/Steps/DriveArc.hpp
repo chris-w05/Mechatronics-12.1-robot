@@ -13,21 +13,23 @@ public:
     DriveArc(Drive& drive,
                 float targetAngle,
                 float targetVelocity,
-                float radius, 
-                bool isDistancebased)
+                float radius)
         : _drive(drive),
           _target(targetAngle),
           _velocity(targetVelocity),
+          _radius(radius),
           _distanceBased(false) {}
 
     DriveArc(Drive &drive,
              float distance,
              float targetVelocity,
-             float radius)
+             float radius,
+             bool isDistanceBased)
         : _drive(drive),
           _target(distance),
           _velocity(targetVelocity),
-          _distanceBased(true) {}
+          _radius(radius),
+          _distanceBased(isDistanceBased) {}
 
     DriveArc(Drive &drive)
         : _drive(drive){}
