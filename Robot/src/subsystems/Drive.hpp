@@ -7,6 +7,9 @@
 #include "Devices/DistanceSensor.hpp"
 #include "utils/Odometry.hpp"
 #include "Subsystem.h"
+#include "utils/OdometryPlotting.hpp"
+
+static unsigned long lastTelemetryMs = 0;
 
 class Drive : public Subsystem {
 
@@ -42,7 +45,6 @@ class Drive : public Subsystem {
         Odometry _odometry;
 
         MODE mode = HARDSET;
-
 
     public:
 
@@ -86,6 +88,7 @@ class Drive : public Subsystem {
 
             // _motorController.setPIDFeedForwardFunc(driveFF, driveFF);
             Serial.println("Drivetrain initialized");
+            
         }
 
         /**
@@ -149,7 +152,24 @@ class Drive : public Subsystem {
                     rightTargetPosition += _speedR * dt;
                     // Position based control
                     _motorController.setTarget(leftTargetPosition, rightTargetPosition);
-                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity, _speedL, _speedR);
+                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity);
+
+                    
+                    if (millis() - lastTelemetryMs >= 50) // 20 Hz
+                    {
+                        lastTelemetryMs = millis();
+                        //Log the odometry
+                        emitTelemetryJSON(
+                            Serial,
+                            _odometry,
+                            leftVelocity,
+                            rightVelocity,
+                            leftPosition,
+                            rightPosition,
+                            leftTargetPosition,
+                            rightTargetPosition
+                        );
+                    }
 
                     // // Velocity based control:
                     //  _motorController.setTarget(_speedL, _speedR);
@@ -253,7 +273,7 @@ class Drive : public Subsystem {
          */
         void setSpeed(float speed, bool resetPID = true){
             mode = STRAIGHT;
-            _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
+            // _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             if( resetPID ){
                 _motorController.resetPID();
             }
@@ -299,7 +319,7 @@ class Drive : public Subsystem {
         void followRadiusClockwise(float omega_rad_s, float radius)
         {
             mode = MODE::ARC;
-            _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
+            // _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             _motorController.makeLinear();
             // track half-width
             const float halfL = DRIVETRAIN_WIDTH / 2.0f;
@@ -319,7 +339,7 @@ class Drive : public Subsystem {
         void followRadiusAtVelocity(float velocity, float radius, bool resetPID = true)
         {
             mode = MODE::ARC;
-            _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
+            // _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             if (resetPID)
             {
                 _motorController.resetPID();
@@ -366,7 +386,7 @@ class Drive : public Subsystem {
         void followLine(float speed)
         {
             mode = MODE::LINEFOLLOWING;
-            _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
+            // _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             _motorController.makeLinear();
 
             leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
@@ -393,7 +413,7 @@ class Drive : public Subsystem {
         void followRadiusCCW(float omega_rad_s, float radius)
         {
             mode = MODE::ARC;
-            _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
+            // _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             _motorController.makeLinear();
 
             // track half-width
@@ -412,12 +432,20 @@ class Drive : public Subsystem {
          */
         void apporachDistance(float distance){
             mode = MODE::DISTANCE;
-            _motorController.setPID(DRIVE_DISTANCE_PID, DRIVE_DISTANCE_PID);
+            // _motorController.setPID(DRIVE_DISTANCE_PID, DRIVE_DISTANCE_PID);
             // _motorController.setPIDKpFunction(driveNonlinearP, driveNonlinearP);
             targetDistance = distance;
             
             _speedL = 0;
             _speedR = 0;
+        }
+
+
+        /**
+         * Set the value for a PID constant 
+         */
+        void setDriveMotorPIDConstant(float value, float index){
+            _motorController.setPIDConstant(value, index);
         }
 
         /**
@@ -428,7 +456,7 @@ class Drive : public Subsystem {
         void stop()
         {
             mode = MODE::STOPPED;
-            _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
+            // _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
             hardSetSpeed(0);
         }
 

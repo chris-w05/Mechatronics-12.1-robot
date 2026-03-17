@@ -51,7 +51,7 @@ struct NonlinearPID{
 };
 
 /**Sets filter strength for PID controller */
-static const unsigned int filterStrength = 10;
+static const unsigned int filterStrength = 1;
 
 class PID
 {
@@ -130,6 +130,30 @@ public:
         _kp = consts.kp;
         _ki = consts.ki;
         _kd = consts.kd;
+    }
+
+    /**
+     * Set the parameters of the PID controller using the value of the parameter and which one to set (0, 1, 2) for kp ki kd
+     */
+    void set(float value, short index)
+    {
+        switch(index){
+            case 0:
+                _kp = value;
+                Serial.println(_kp);
+                Serial.println("KP");
+                break;
+            case 1:
+                _ki = value;
+                Serial.println(_ki);
+                Serial.println("KI");
+                break;
+            case 2:
+                _kd = value;
+                Serial.println(_kd);
+                Serial.println("KD");
+                break;
+        }
     }
 
 protected:
@@ -373,6 +397,7 @@ private:
         values[filterIndex] = signal;
         filterIndex ++;
         filterIndex %= filterStrength;
+        Serial.println(_integral);
         return filterSum / filterStrength;
 
     }

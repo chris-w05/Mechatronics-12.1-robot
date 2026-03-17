@@ -58,9 +58,9 @@ static const int MAX_SUBSYSTEMS = 10;
 //Robot params
 
 static const int TICKS_PER_REV = 64; //Number of ticks per motor revolution
-static const float DRIVETRAIN_WIDTH = 9.375; // inches
-static const float DRIVETRAIN_MOTOR_RATIO = 50 * 45 / 100;
-static const float DRIVETRAIN_WHEEL_DIAMETER = 3.93700787402; // in
+static const float DRIVETRAIN_WIDTH = 9.449; // inches
+static const float DRIVETRAIN_MOTOR_RATIO = 50 * 30 / 45;
+static const float DRIVETRAIN_WHEEL_DIAMETER = 3.9192; // in
 static const float DRIVETRAIN_TICKS_TO_IN = PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV);
 
 static const float LINESENSOR_LOCATION  = 3;//in (from middle of left wheel)
@@ -119,8 +119,8 @@ static const PIDConstants DRIVE_DISTANCE_PID = {
 // drivetrain
 static const PIDConstants DRIVE_L_PID = {
     .kp = 100.0,
-    .ki = 80,
-    .kd = -30};
+    .ki = 120,
+    .kd = -2.5};
 // static const PIDConstants DRIVE_L_PID = {
 //     .kp = 15.0,
 //     .ki = 00,
