@@ -52,13 +52,13 @@ class Drive : public Subsystem {
          * Drive contructor
          */
         Drive(
-            const int left_enc_a,
-            const int left_enc_b,
-            const int right_enc_a,
-            const int right_enc_b,
+            const uint16_t left_enc_a,
+            const uint16_t left_enc_b,
+            const uint16_t right_enc_a,
+            const uint16_t right_enc_b,
             const TB9051Pins pins,
-            const int distPin,
-            const int lineFollowerPins[8])
+            const uint16_t distPin,
+            const uint16_t lineFollowerPins[8])
             : _leftEncoder(left_enc_a, left_enc_b),
               _rightEncoder(right_enc_a, right_enc_b),
               _lineSensor(lineFollowerPins, lineSensorCalMin, lineSensorCalMax),

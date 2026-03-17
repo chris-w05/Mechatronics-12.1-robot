@@ -7,10 +7,10 @@
 
 //----------------------------Pin allocation
 // Encoder pins
-static const int LEFT_ENCODER_A = 18;
-static const int LEFT_ENCODER_B = 19;
-static const int RIGHT_ENCODER_A = 20;
-static const int RIGHT_ENCODER_B = 21;
+static const uint16_t LEFT_ENCODER_A = 18;
+static const uint16_t LEFT_ENCODER_B = 19;
+static const uint16_t RIGHT_ENCODER_A = 20;
+static const uint16_t RIGHT_ENCODER_B = 21;
 
 // Motor pins
 
@@ -33,22 +33,24 @@ const TB9051Pins shooterPins = {
     .m2Direction2 = 255
 };
 
-static const int SHOOTER_ENCODER_A  = 3;
-static const int SHOOTER_ENCODER_B = 26;
+static const uint16_t SHOOTER_ENCODER_A  = 3;
+static const uint16_t SHOOTER_ENCODER_B = 26;
 
 // Servo pins
-static const int MINER_SERVO_PIN = 11;
+static const uint16_t MINER_SERVO_PIN = 11;
 
 //Serial pins
-static const int SERIAL_RX = 16;
-static const int SERIAL_TX = 17;
+static const uint16_t SERIAL_RX = 16;
+static const uint16_t SERIAL_TX = 17;
 static const long SERIAL_BAUD_RATE = 115200;
 
 //Sensor pins
-static const int HALL_EFFECT_PIN = -1;
-static const int LINE_SENSOR_PINS[8] = {28, 30, 32, 34, 36, 38, 40, 42}; 
-static const int COLOR_SENSOR_START_PIN = -1; // CHANGE ME
-static const int DISTANCE_SENSOR_PIN = A4; // CHANGE ME
+static const uint16_t HALL_EFFECT_PIN = -1;
+static const uint16_t LINE_SENSOR_PINS[8] = {28, 30, 32, 34, 36, 38, 40, 42}; 
+static const uint16_t COLOR_SENSOR_START_PIN = -1; // CHANGE ME
+static const uint16_t DISTANCE_SENSOR_PIN = A4; // CHANGE ME
+
+static const uint16_t SHOOTER_LIMIT_PIN = 27;
 
 //----------------------------------Software constants
 static const int MAX_STEPS = 10; // Maximum allowed steps in autonomous. This prevents too much memory from being used
@@ -87,6 +89,8 @@ static const int MINER_SERVO_STORE_ANGLE = 00;
 static const int MINER_SERVO_RETRACT_ANGLE = 180;
 
 static const float SHOOTER_PULL_BACK_ROTATIONS = .75;
+static const int SHOOTER_SETTLE_TIME = 200; //Time for block to settle in shooter ms
+static const int SHOOTER_FIRE_TIME = 800; //Time after shooter firing before priming again
 
 //----------------------------------PID constants
 

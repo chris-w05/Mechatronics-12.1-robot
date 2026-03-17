@@ -30,7 +30,7 @@ public:
               drivePins,
               DISTANCE_SENSOR_PIN, LINE_SENSOR_PINS),
           miner(MINER_SERVO_PIN),
-          shooter(SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
+          shooter(SHOOTER_LIMIT_PIN, SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
                   shooterPins),
           serialComs(Serial2)
     {
@@ -337,32 +337,40 @@ private:
             drive.followRadiusAtVelocity(10, 18);
             break;
 
-        case 'Q':
-            autonomous.clear();
-            drive.followLine(12);
-            break;
-
-        case 'T':
-            Serial.println(drive.getAccumulatedHeading());
-            break;
-
-        case 'q':
-            drive.setSpeed(0.0);
-            reply(replyPort, "Closed loop on 0 velocity called.");
-            break;
-
-        case 'l':
-        case 'r':
-        case 'd':
-            autonomous.stop();
-            drive.hardSetSpeed(0);
-            break;
-
-        case 'E':
-            autonomous.stop();
-            mode = AWAIT;
-            reply(replyPort, "Exited SERIAL_TEST. Back to AWAIT.");
-            break;
+            case 'Q':
+                // drive.setSpeed(10.0);
+                autonomous.clear();
+                // autonomous.add(new DriveDistance(drive, 30.0f, 3.0f));
+                // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
+                // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
+                // autonomous.start();
+                drive.followLineHardset(200);
+                Serial.println("Drive: Close loop control called.");
+                break;
+            case 'W':
+                drive.followRadiusCCW( .5, 8);
+                Serial.println("Drive: Close loop turning called.");
+                break;
+            case 'T':
+                shooter.autoFire();
+                break;
+            case 'q':
+                drive.setSpeed(0.0);
+                Serial.println("Closed loop on 0 velocity called.");
+                break;
+            case 'l':
+            case 'r':
+            case 'd':
+                autonomous.stop();
+                drive.hardSetSpeed(0);
+                Serial.println("Drive: stop() called.");
+                break;
+            case 'E':
+                // Exit serial testing and go back to awaiting mode (stop subsystems if needed)
+                autonomous.stop();
+                mode = AWAIT;
+                Serial.println("Exited SERIAL_TEST. Back to AWAIT.");
+                break;
 
         case 'P':
             shooter.stopFiring();
