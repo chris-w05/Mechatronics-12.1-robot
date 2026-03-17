@@ -179,6 +179,92 @@ public:
         return true;
     }
 
+    /**
+     * Parse a single-char command optionally followed by up to TWO numeric parameters.
+     * Accepts formats like:
+     *   D 10 20
+     *   D:10,20
+     *   D,10,20
+     *   D10 20
+     *   D10,20
+     *
+     * Returns true if a command was parsed.
+     * - If param1 exists: outP1Valid=true and outP1 set.
+     * - If param2 exists: outP2Valid=true and outP2 set.
+     */
+    bool parseCmdWithUpToTwoFloats(const char *cmdStr,
+                                   char &outCmd,
+                                   float &outP1, bool &outP1Valid,
+                                   float &outP2, bool &outP2Valid)
+    {
+        if (!cmdStr || cmdStr[0] == '\0')
+            return false;
+
+        // Copy into modifiable buffer and normalize separators to spaces
+        char buf[SerialComs::MAX_CMD_LEN];
+        strncpy(buf, cmdStr, sizeof(buf));
+        buf[sizeof(buf) - 1] = '\0';
+
+        for (char *p = buf; *p; ++p)
+        {
+            if (*p == ',' || *p == ':' || *p == '\t')
+                *p = ' ';
+        }
+
+        // Skip leading whitespace
+        char *p = buf;
+        while (*p && isspace((unsigned char)*p))
+            ++p;
+        if (!*p)
+            return false;
+
+        // First non-space char is the command
+        outCmd = *p++;
+        outP1Valid = false;
+        outP2Valid = false;
+        outP1 = 0.0f;
+        outP2 = 0.0f;
+
+        // Helper: parse a float token if present at *p
+        auto parseFloatAt = [](char *&ptr, float &outVal) -> bool
+        {
+            while (*ptr && isspace((unsigned char)*ptr))
+                ++ptr;
+            if (!*ptr)
+                return false;
+
+            // check if token could be a number
+            char *s = ptr;
+            if (*s == '+' || *s == '-')
+                ++s;
+            if (!(isdigit((unsigned char)*s) || *s == '.'))
+                return false;
+
+            outVal = (float)atof(ptr);
+
+            // advance ptr to end of this token
+            while (*ptr && !isspace((unsigned char)*ptr))
+                ++ptr;
+            return true;
+        };
+
+        // Parse up to two floats
+        float v;
+        if (parseFloatAt(p, v))
+        {
+            outP1 = v;
+            outP1Valid = true;
+
+            if (parseFloatAt(p, v))
+            {
+                outP2 = v;
+                outP2Valid = true;
+            }
+        }
+
+        return true;
+    }
+
 private:
     HardwareSerial &_serial;
     char _buffer[MAX_CMD_LEN];

@@ -319,6 +319,18 @@ public:
         _pid2.set(consts2);
     };
 
+
+    /**
+     * Sets a PID constant (index) to a specificed value (value)
+     */
+    void setPIDConstant(float value, short index)
+    {
+        _pid1.set(value, index);
+        _pid2.set(value, index);
+        _pid1.reset();
+        _pid2.reset();
+    };
+
     /**
      * Set the feedforward function for one motor's controller
      * 

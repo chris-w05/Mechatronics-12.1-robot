@@ -36,7 +36,7 @@ public:
         //If the robot is going below target velocity and less distance than target acceleration period is done
         if( _velocity < _finalVelocity && _drive.getDistance() - _startDistance >= _accelerationDistance ){
             _velocity += _acceleration * dt;
-            _drive.setSpeed(_velocity, false);
+            _drive.setSpeed(_velocity);
         }
 
     }

@@ -22,7 +22,7 @@ void loop()
   {
     String s = Serial.readStringUntil('\n'); // read a line from USB
     xbee.println(s);                         // send to XBee
-    Serial.print("TX->XBee: ");
+    Serial.print("");
     Serial.println(s);
   }
 
