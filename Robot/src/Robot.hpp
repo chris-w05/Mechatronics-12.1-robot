@@ -480,27 +480,22 @@ private:
             p2 *= PI / 180.0f;
 
             float halfW = DRIVETRAIN_WIDTH / 2.0f;
-            float arcRadius; // radius to the moving (outer) wheel
+            float arcRadius;
             float distance;
 
             if (p1 > 0)
-            {
-                // Turn about right wheel — left wheel is the outer wheel
                 arcRadius = p1 + halfW;
-                distance = arcRadius * p2;
-            }
             else
-            {
-                // Turn about left wheel — right wheel is the outer wheel
-                arcRadius = p1 - halfW;    // e.g. -halfW - halfW = -DRIVETRAIN_WIDTH
-                distance = arcRadius * p2; // preserve sign so isFinished() works
-            }
+                arcRadius = p1 - halfW;
 
+            // p2 is signed: positive = forward, negative = backward
+            distance = arcRadius * p2;
             float velocity = distance / 3.0f;
 
             autonomous.clear();
             autonomous.add(new DriveRadiusAtVelocity(drive, velocity, arcRadius, distance));
             autonomous.start();
+            break;
         }
 
         case '$':

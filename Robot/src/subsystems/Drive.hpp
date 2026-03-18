@@ -127,7 +127,7 @@ class Drive : public Subsystem {
                     // Serial.print(" Right target speed");
                     // Serial.println(newSpeedR);
                     _motorController.setTarget(leftTargetPosition, rightTargetPosition);
-                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity);
+                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity, _speedL, _speedR);
                     break;
                 }
                 case STRAIGHT:
@@ -152,7 +152,7 @@ class Drive : public Subsystem {
                     rightTargetPosition += _speedR * dt;
                     // Position based control
                     _motorController.setTarget(leftTargetPosition, rightTargetPosition);
-                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity);
+                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity, _speedL, _speedR);
 
                     
                     if (millis() - lastTelemetryMs >= 50) // 20 Hz

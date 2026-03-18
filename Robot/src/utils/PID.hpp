@@ -173,10 +173,18 @@ class PIDController : public PID
 public:
     // Constructors (unchanged behavior)
     PIDController(float kp, float ki, float kd)
-        : PID(_kp, _ki, _kd), _kff(0.0f), _ffFunc(nullptr){}
+        : PID(_kp, _ki, _kd), _kff(0.0f), _ffFunc(nullptr){
+        // Set integral limits to not oversaturate values
+        _iMin = 400 / ki;
+        _iMin = -400 / ki;
+        }
 
     PIDController(PIDConstants consts)
-        : PID(consts), _kff(0.0f), _ffFunc(nullptr) {}
+        : PID(consts), _kff(0.0f), _ffFunc(nullptr) {
+        // Set integral limits to not oversaturate values
+            _iMin = 400 / consts.ki;
+            _iMin = -400 / consts.ki;
+        }
 
     
     /**
@@ -190,6 +198,9 @@ public:
           _kiFunc(funcs.ki),
           _kdFunc(funcs.kd)
     {
+        // Set integral limits to not oversaturate values
+        _iMin = 400 / consts.ki;
+        _iMin = -400 / consts.ki;
     }
 
     /**
