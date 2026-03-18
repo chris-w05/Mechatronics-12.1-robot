@@ -397,7 +397,7 @@ private:
         values[filterIndex] = signal;
         filterIndex ++;
         filterIndex %= filterStrength;
-        Serial.println(_integral);
+        // Serial.println(_integral);
         return filterSum / filterStrength;
 
     }
@@ -427,3 +427,4 @@ private:
 };
 
 #endif
+

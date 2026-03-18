@@ -337,40 +337,40 @@ private:
             drive.followRadiusAtVelocity(10, 18);
             break;
 
-            case 'Q':
-                // drive.setSpeed(10.0);
-                autonomous.clear();
-                // autonomous.add(new DriveDistance(drive, 30.0f, 3.0f));
-                // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
-                // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
-                // autonomous.start();
-                drive.followLineHardset(200);
-                Serial.println("Drive: Close loop control called.");
-                break;
-            case 'W':
-                drive.followRadiusCCW( .5, 8);
-                Serial.println("Drive: Close loop turning called.");
-                break;
-            case 'T':
-                shooter.autoFire();
-                break;
-            case 'q':
-                drive.setSpeed(0.0);
-                Serial.println("Closed loop on 0 velocity called.");
-                break;
-            case 'l':
-            case 'r':
-            case 'd':
-                autonomous.stop();
-                drive.hardSetSpeed(0);
-                Serial.println("Drive: stop() called.");
-                break;
-            case 'E':
-                // Exit serial testing and go back to awaiting mode (stop subsystems if needed)
-                autonomous.stop();
-                mode = AWAIT;
-                Serial.println("Exited SERIAL_TEST. Back to AWAIT.");
-                break;
+        case 'Q':
+            // drive.setSpeed(10.0);
+            autonomous.clear();
+            // autonomous.add(new DriveDistance(drive, 30.0f, 3.0f));
+            // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
+            // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
+            // autonomous.start();
+            drive.followLineHardset(200);
+            Serial.println("Drive: Close loop control called.");
+            break;
+        case 'W':
+            drive.followRadiusCCW( .5, 8);
+            Serial.println("Drive: Close loop turning called.");
+            break;
+        case 'T':
+            shooter.autoFire();
+            break;
+        case 'q':
+            drive.setSpeed(0.0);
+            Serial.println("Closed loop on 0 velocity called.");
+            break;
+        case 'l':
+        case 'r':
+        case 'd':
+            autonomous.stop();
+            drive.hardSetSpeed(0);
+            Serial.println("Drive: stop() called.");
+            break;
+        case 'E':
+            // Exit serial testing and go back to awaiting mode (stop subsystems if needed)
+            autonomous.stop();
+            mode = AWAIT;
+            Serial.println("Exited SERIAL_TEST. Back to AWAIT.");
+            break;
 
         case 'P':
             shooter.stopFiring();
@@ -476,14 +476,31 @@ private:
 
         case '#':
         {
+            //convert degrees to radians - how far to turn
             p2 *= PI / 180.0f;
-            float distance = (p1 + DRIVETRAIN_WIDTH / 2.0f) * p2;
+
+            float halfW = DRIVETRAIN_WIDTH / 2.0f;
+            float arcRadius; // radius to the moving (outer) wheel
+            float distance;
+
+            if (p1 > 0)
+            {
+                // Turn about right wheel — left wheel is the outer wheel
+                arcRadius = p1 + halfW;
+                distance = arcRadius * p2;
+            }
+            else
+            {
+                // Turn about left wheel — right wheel is the outer wheel
+                arcRadius = p1 - halfW;    // e.g. -halfW - halfW = -DRIVETRAIN_WIDTH
+                distance = arcRadius * p2; // preserve sign so isFinished() works
+            }
+
             float velocity = distance / 3.0f;
 
             autonomous.clear();
-            autonomous.add(new DriveRadiusAtVelocity(drive, velocity, p1 + DRIVETRAIN_WIDTH / 2.0f, p2));
+            autonomous.add(new DriveRadiusAtVelocity(drive, velocity, arcRadius, distance));
             autonomous.start();
-            break;
         }
 
         case '$':

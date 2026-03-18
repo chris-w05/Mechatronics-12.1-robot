@@ -372,8 +372,6 @@ class Drive : public Subsystem {
             float omega = -velocity / radius; // no abs() so sign of radius matters
 
             // Convert centre tangential velocity + angular velocity to wheel linear speeds:
-            // v_l = v - h * ω
-            // v_r = v + h * ω
             _speedL = velocity - halfL * omega;
             _speedR = velocity + halfL * omega;
         }
