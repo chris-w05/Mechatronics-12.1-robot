@@ -17,8 +17,7 @@ public:
      */
     void init()
     {
-        pinMode(_pin, INPUT);
-
+        pinMode(_pin, INPUT_PULLUP);
     }
 
     /**
@@ -26,7 +25,8 @@ public:
      */
     void update()
     {
-        _isOn = digitalRead(_pin);
+        //XOR operator for reversed case
+        _isOn = digitalRead(_pin) ^ reversed;
     }
 
     /**
@@ -36,11 +36,14 @@ public:
         return _isOn;
     }
 
+    void reverse(){
+        reversed = !reversed;
+    }
+
 
 
 private:
     uint8_t _pin;
     bool _isOn = false;
-
-
+    bool reversed = false;
 };

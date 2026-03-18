@@ -30,7 +30,7 @@ public:
               drivePins,
               DISTANCE_SENSOR_PIN, LINE_SENSOR_PINS),
           miner(MINER_SERVO_PIN),
-          shooter(SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
+          shooter(SHOOTER_LIMIT_PIN, SHOOTER_ENCODER_A, SHOOTER_ENCODER_B,
                   shooterPins),
           serialComs(Serial2)
     {
@@ -338,30 +338,38 @@ private:
             break;
 
         case 'Q':
+            // drive.setSpeed(10.0);
             autonomous.clear();
-            drive.followLine(12);
+            // autonomous.add(new DriveDistance(drive, 30.0f, 3.0f));
+            // autonomous.add(new DriveArc(drive, 2 * PI, .5f, 0.0f, false));
+            // autonomous.add(new DriveDistance(drive, -10.0f, -3.0f));
+            // autonomous.start();
+            drive.followLineHardset(200);
+            Serial.println("Drive: Close loop control called.");
             break;
-
+        case 'W':
+            drive.followRadiusCCW( .5, 8);
+            Serial.println("Drive: Close loop turning called.");
+            break;
         case 'T':
-            Serial.println(drive.getAccumulatedHeading());
+            shooter.autoFire();
             break;
-
         case 'q':
             drive.setSpeed(0.0);
-            reply(replyPort, "Closed loop on 0 velocity called.");
+            Serial.println("Closed loop on 0 velocity called.");
             break;
-
         case 'l':
         case 'r':
         case 'd':
             autonomous.stop();
             drive.hardSetSpeed(0);
+            Serial.println("Drive: stop() called.");
             break;
-
         case 'E':
+            // Exit serial testing and go back to awaiting mode (stop subsystems if needed)
             autonomous.stop();
             mode = AWAIT;
-            reply(replyPort, "Exited SERIAL_TEST. Back to AWAIT.");
+            Serial.println("Exited SERIAL_TEST. Back to AWAIT.");
             break;
 
         case 'P':
@@ -468,12 +476,24 @@ private:
 
         case '#':
         {
+            //convert degrees to radians - how far to turn
             p2 *= PI / 180.0f;
-            float distance = (p1 + DRIVETRAIN_WIDTH / 2.0f) * p2;
+
+            float halfW = DRIVETRAIN_WIDTH / 2.0f;
+            float arcRadius;
+            float distance;
+
+            if (p1 > 0)
+                arcRadius = p1 + halfW;
+            else
+                arcRadius = p1 - halfW;
+
+            // p2 is signed: positive = forward, negative = backward
+            distance = arcRadius * p2;
             float velocity = distance / 3.0f;
 
             autonomous.clear();
-            autonomous.add(new DriveRadiusAtVelocity(drive, velocity, p1 + DRIVETRAIN_WIDTH / 2.0f, p2));
+            autonomous.add(new DriveRadiusAtVelocity(drive, velocity, arcRadius, distance));
             autonomous.start();
             break;
         }

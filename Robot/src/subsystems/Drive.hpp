@@ -113,13 +113,13 @@ class Drive : public Subsystem {
          * Drive contructor
          */
         Drive(
-            const int left_enc_a,
-            const int left_enc_b,
-            const int right_enc_a,
-            const int right_enc_b,
+            const uint16_t left_enc_a,
+            const uint16_t left_enc_b,
+            const uint16_t right_enc_a,
+            const uint16_t right_enc_b,
             const TB9051Pins pins,
-            const int distPin,
-            const int lineFollowerPins[8])
+            const uint16_t distPin,
+            const uint16_t lineFollowerPins[8])
             : _leftEncoder(left_enc_a, left_enc_b),
               _rightEncoder(right_enc_a, right_enc_b),
               _lineSensor(lineFollowerPins, lineSensorCalMin, lineSensorCalMax),
@@ -198,7 +198,7 @@ class Drive : public Subsystem {
                     // Serial.print(" Right target speed");
                     // Serial.println(newSpeedR);
                     _motorController.setTarget(leftTargetPosition, rightTargetPosition);
-                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity);
+                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity, _speedL, _speedR);
                     break;
                 }
                 case STRAIGHT:
@@ -251,7 +251,7 @@ class Drive : public Subsystem {
 
                     // Wheel position controller, with dSetpoint = wheel velocity feedforward
                     _motorController.setTarget(leftTargetPosition, rightTargetPosition);
-
+                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity, _speedL, _speedR);
 
                     
                     if (millis() - lastTelemetryMs >= 50) // 20 Hz
@@ -472,8 +472,6 @@ class Drive : public Subsystem {
             float omega = -velocity / radius; // no abs() so sign of radius matters
 
             // Convert centre tangential velocity + angular velocity to wheel linear speeds:
-            // v_l = v - h * ω
-            // v_r = v + h * ω
             _speedL = velocity - halfL * omega;
             _speedR = velocity + halfL * omega;
         }

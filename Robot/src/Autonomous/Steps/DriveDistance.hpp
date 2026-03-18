@@ -29,10 +29,9 @@ public:
 
     bool isFinished() const override
     {
-        // Serial.print("Drive Distance: Distance Elapsed ");
-        // Serial.println(_drive.getDistance());
-        return (_drive.getDistance() - _startDistance) >= _target;
+        return abs(_drive.getDistance() - _startDistance) >= abs(_target);
     }
+    
 
     void end(){
         _drive.hardSetSpeed(0);
