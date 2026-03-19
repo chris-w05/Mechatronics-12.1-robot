@@ -27,8 +27,10 @@ class Drive : public Subsystem {
     private:
         float _targetSpeedL = 0;
         float _targetSpeedR = 0;
-        float _speedL = 0;
-        float _speedR = 0;
+        float _speedL = 0;   // ramped velocity setpoint (in/s)
+        float _speedR = 0;   // ramped velocity setpoint (in/s)
+        int16_t _signalL = 0; // raw motor signal (HARDSET / LINEFOLLOWING_HARDSET)
+        int16_t _signalR = 0; // raw motor signal (HARDSET / LINEFOLLOWING_HARDSET)
          float targetDistance = 0;
 
         float leftTargetPosition = 0;
@@ -303,31 +305,31 @@ class Drive : public Subsystem {
                     break;
                 }
                 case LINEFOLLOWING_HARDSET:{
-                    
+
 
                     _lineSensor.update();
                     float correction = _lineSensor.getPosition();
                     Serial.println(correction);
-                    correction *= DRIVE_LINEFOLLOW_GAIN * (_speedL +_speedR)/2;
-                    int leftCmd = _speedL + correction / LINESENSOR_LR_RATIO; // Scale down left side command due to off-center nature of line sensor
-                    int rightCmd = _speedR  - correction;
+                    correction *= DRIVE_LINEFOLLOW_GAIN * (_signalL + _signalR) / 2;
+                    int leftCmd = _signalL + correction / LINESENSOR_LR_RATIO;
+                    int rightCmd = _signalR  - correction;
                     _motorController.setPower(leftCmd, rightCmd);
                     break;
                 }
                 case HARDSET:
-                    if (_speedL != 0.0 && _speedR != 0.0){
+                    if (_signalL != 0 && _signalR != 0){
 
-                        // Serial.print(">SpeedL:");
-                        // Serial.print(_speedL);
+                        // Serial.print(">SignalL:");
+                        // Serial.print(_signalL);
                         // Serial.print(",VelocityL:");
                         // Serial.print(leftVelocity);
-                        // Serial.print(",SpeedR:");
-                        // Serial.print(_speedR);
+                        // Serial.print(",SignalR:");
+                        // Serial.print(_signalR);
                         // Serial.print(",VelocityR:");
                         // Serial.print(rightVelocity);
                         // Serial.println("\r");
                     }
-                    _motorController.setPower((int)_speedL, (int)_speedR);
+                    _motorController.setPower(_signalL, _signalR);
                     break;
 
                 case DISTANCE:
@@ -440,8 +442,8 @@ class Drive : public Subsystem {
          */
         void hardSetSpeed(int16_t speed){
             mode = HARDSET;
-            _speedR = speed;
-            _speedL = speed;
+            _signalL = speed;
+            _signalR = speed;
             _motorController.setPower(speed, speed);
         }
 
@@ -453,8 +455,8 @@ class Drive : public Subsystem {
         void hardSetSpeed(int16_t speed1, int16_t speed2)
         {
             mode = HARDSET;
-            _speedR = speed1;
-            _speedL = speed2;
+            _signalL = speed1;
+            _signalR = speed2;
             _motorController.setPower(speed1, speed2);
         }
 
@@ -550,8 +552,8 @@ class Drive : public Subsystem {
         void followLineHardset(int speed)
         {
             mode = MODE::LINEFOLLOWING_HARDSET;
-            _speedL = speed;
-            _speedR = speed;
+            _signalL = speed;
+            _signalR = speed;
         }
 
         /**
@@ -582,9 +584,6 @@ class Drive : public Subsystem {
             // _motorController.setPID(DRIVE_DISTANCE_PID, DRIVE_DISTANCE_PID);
             // _motorController.setPIDKpFunction(driveNonlinearP, driveNonlinearP);
             targetDistance = distance;
-            
-            _speedL = 0;
-            _speedR = 0;
         }
 
 
