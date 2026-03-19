@@ -25,9 +25,11 @@ class Drive : public Subsystem {
     };
 
     private:
+        float _targetSpeedL = 0;
+        float _targetSpeedR = 0;
         float _speedL = 0;
         float _speedR = 0;
-        float targetDistance = 0;
+         float targetDistance = 0;
 
         float leftTargetPosition = 0;
         float rightTargetPosition = 0;
@@ -49,8 +51,8 @@ class Drive : public Subsystem {
         MODE mode = HARDSET;
 
         // Ramsete parameters (good defaults)
-        float _ramseteB = 2.0f;
-        float _ramseteZeta = 0.7f;
+        float _ramseteB = .03f;
+        float _ramseteZeta = 0.8f;
         bool _useRamsete = true; // enable/disable easily
 
         static float wrapPi(float a)
@@ -204,6 +206,28 @@ class Drive : public Subsystem {
                 case STRAIGHT:
                 case ARC:
                 case STOPPED:{
+                    //Acceleration control
+                    const float maxDelta = 20.0f * dt;
+
+                    float deltaL = _targetSpeedL - _speedL;
+                    float deltaR = _targetSpeedR - _speedR;
+
+                    // Find which wheel needs to move more
+                    float maxChange = max(fabs(deltaL), fabs(deltaR));
+
+                    //Preserve curvature
+                    if (maxChange > maxDelta)
+                    {
+                        float scale = maxDelta / maxChange;
+                        _speedL += deltaL * scale;
+                        _speedR += deltaR * scale;
+                    }
+                    else
+                    {
+                        // Both wheels are close enough, snap to target
+                        _speedL = _targetSpeedL;
+                        _speedR = _targetSpeedR;
+                    }
 
                     // RAMSETE TRAJECTORY FOLLOWING ----------------------------------------------------------------------------------------------
                     // Reference wheel speeds from your profile (feedforward)
@@ -251,7 +275,6 @@ class Drive : public Subsystem {
 
                     // Wheel position controller, with dSetpoint = wheel velocity feedforward
                     _motorController.setTarget(leftTargetPosition, rightTargetPosition);
-                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity, _speedL, _speedR);
 
                     
                     if (millis() - lastTelemetryMs >= 50) // 20 Hz
@@ -261,8 +284,11 @@ class Drive : public Subsystem {
                         emitTelemetryJSON(
                             Serial,
                             _odometry,
+                            _desiredOdometry,
                             leftVelocity,
                             rightVelocity,
+                            _speedL,
+                            _speedR,
                             leftPosition,
                             rightPosition,
                             leftTargetPosition,
@@ -272,7 +298,7 @@ class Drive : public Subsystem {
                     _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity,
                                             vL_cmd, vR_cmd);
                     //Update the ramsete target odometry
-                    _desiredOdometry.update(vL_ref * dt, vR_ref * dt);
+                    _desiredOdometry.update(_targetSpeedL* dt, _targetSpeedR*dt);
 
                     break;
                 }
@@ -330,14 +356,24 @@ class Drive : public Subsystem {
             //Update odometry 
             _odometry.update(_leftEncoder, _rightEncoder);
         }
-        
+
+        /**
+         * Gets the pose from the ideal path
+         */
+        Odometry::Pose2D getPose()
+        {
+            return _desiredOdometry.getPose();
+        }
 
         /** 
          * Gets the current position and orientation of the robot
          */
-        Odometry::Pose2D getPose(){
+        Odometry::Pose2D getTruePose(){
             return _odometry.getPose();
         }
+
+        float getRampedSpeedL() { return _speedL; }
+        float getRampedSpeedR() { return _speedR; }
 
         /**
          * Passes the current distance reading from the distance sensor
@@ -347,16 +383,29 @@ class Drive : public Subsystem {
         }
 
         /**
-         * Passes the current heading, not modded by PI (range is -inf -> inf)
+         * Passes the current heading from the trajectory
          */
         float getAccumulatedHeading(){
+            return _desiredOdometry.getAccumulatedHeading();
+        }
+
+        /**
+         * Return the true heading of the robot
+         */
+        float getTrueAccumulatedHeading()
+        {
             return _odometry.getAccumulatedHeading();
         }
 
         /**
+         * Passes total distance travelled from desired odometry
+         */
+        float getDistance() { return _desiredOdometry.distanceTravelled(); };
+
+        /**
          * Passes total distance travelled from odometry
          */
-        float getDistance() { return _odometry.distanceTravelled(); };
+        float getTrueDistance() { return _odometry.distanceTravelled(); };
 
         /**
          * returns the average of wheel velocities
@@ -380,8 +429,8 @@ class Drive : public Subsystem {
             
             leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
             rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            _speedR = speed;
-            _speedL = speed;
+            _targetSpeedL = speed;
+            _targetSpeedR = speed;
         }
 
 
@@ -426,8 +475,8 @@ class Drive : public Subsystem {
 
             leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
             rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            _speedL = omega_rad_s * (radius + halfL);
-            _speedR = omega_rad_s * (radius - halfL);
+            _targetSpeedL = omega_rad_s * (radius + halfL);
+            _targetSpeedR = omega_rad_s * (radius - halfL);
         }
 
         /**
@@ -461,8 +510,8 @@ class Drive : public Subsystem {
             {
                 // Make left and right opposite to spin in place.
                 // Here: left backward, right forward for a clockwise spin
-                _speedL = -velocity;
-                _speedR = velocity;
+                _targetSpeedL = -velocity;
+                _targetSpeedR = velocity;
                 return;
             }
 
@@ -472,8 +521,8 @@ class Drive : public Subsystem {
             float omega = -velocity / radius; // no abs() so sign of radius matters
 
             // Convert centre tangential velocity + angular velocity to wheel linear speeds:
-            _speedL = velocity - halfL * omega;
-            _speedR = velocity + halfL * omega;
+            _targetSpeedL = velocity - halfL * omega;
+            _targetSpeedR = velocity + halfL * omega;
         }
 
         /**
@@ -519,8 +568,8 @@ class Drive : public Subsystem {
 
             leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
             rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            _speedL = omega_rad_s * (radius - halfL);
-            _speedR = omega_rad_s * (radius + halfL);
+            _targetSpeedL = omega_rad_s * (radius - halfL);
+            _targetSpeedR = omega_rad_s * (radius + halfL);
         }
 
         /**

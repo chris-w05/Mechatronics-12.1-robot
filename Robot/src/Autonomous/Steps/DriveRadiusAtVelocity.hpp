@@ -38,11 +38,13 @@ public:
         // Serial.println(_target);
         // Serial.print("Drive Arc, Delta distance ");
         // Serial.println((_drive.getDistance() - _startDistance));
-        return (_drive.getDistance() - _startDistance) >= _target_distance;
+        return abs(_drive.getDistance() - _startDistance) >= abs(_target_distance);
     }
 
     void end()
     {
+        Serial.print("heading: ");
+        Serial.println(_drive.getPose().heading);
         _drive.hardSetSpeed(0);
     }
 
