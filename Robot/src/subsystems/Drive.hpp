@@ -51,8 +51,8 @@ class Drive : public Subsystem {
         MODE mode = HARDSET;
 
         // Ramsete parameters (good defaults)
-        float _ramseteB = .03f;
-        float _ramseteZeta = 0.8f;
+        float _ramseteB = .006f;
+        float _ramseteZeta = 0.9f;
         bool _useRamsete = true; // enable/disable easily
 
         static float wrapPi(float a)
@@ -277,24 +277,24 @@ class Drive : public Subsystem {
                     _motorController.setTarget(leftTargetPosition, rightTargetPosition);
 
                     
-                    if (millis() - lastTelemetryMs >= 50) // 20 Hz
-                    {
-                        lastTelemetryMs = millis();
-                        //Log the odometry
-                        emitTelemetryJSON(
-                            Serial,
-                            _odometry,
-                            _desiredOdometry,
-                            leftVelocity,
-                            rightVelocity,
-                            _speedL,
-                            _speedR,
-                            leftPosition,
-                            rightPosition,
-                            leftTargetPosition,
-                            rightTargetPosition
-                        );
-                    }
+                    // if (millis() - lastTelemetryMs >= 100) // 20 Hz
+                    // {
+                    //     lastTelemetryMs = millis();
+                    //     //Log the odometry
+                    //     emitTelemetryJSON(
+                    //         Serial,
+                    //         _odometry,
+                    //         _desiredOdometry,
+                    //         leftVelocity,
+                    //         rightVelocity,
+                    //         _speedL,
+                    //         _speedR,
+                    //         leftPosition,
+                    //         rightPosition,
+                    //         leftTargetPosition,
+                    //         rightTargetPosition
+                    //     );
+                    // }
                     _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity,
                                             vL_cmd, vR_cmd);
                     //Update the ramsete target odometry

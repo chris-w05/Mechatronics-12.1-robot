@@ -19,6 +19,7 @@
 #include "Autonomous/Steps/DriveRadiusAtVelocity.hpp"
 #include "Autonomous/Steps/DriveLineUntilWall.hpp"
 #include "Autonomous/Steps/AccelerateStraightLine.hpp"
+#include "Autonomous/Steps/DriveRadiusAngle.hpp"
 
 class Robot
 {
@@ -271,17 +272,12 @@ private:
             if (mode != AUTONOMOUS)
             {
                 mode = AUTONOMOUS;
-                float speed = 20;
+                autonomous.add(new DriveDistance(       drive,  18, 10));
+                autonomous.add(new DriveRadiusAngle(    drive,  10, -18, 45));
+                autonomous.add(new DriveRadiusAngle(    drive,  10, 18, -45));
+                autonomous.add(new DriveDistance(       drive,  10, 14));
 
-                autonomous.add(new DriveDistance(drive, 8, 10));
-                autonomous.add(new DriveDistance(drive, 4, 15));
-                autonomous.add(new DriveDistance(drive, 4, speed));
-                autonomous.add(new DriveRadiusAtVelocity(drive, speed, -18, 14.96649));
-                autonomous.add(new DriveRadiusAtVelocity(drive, speed, 36, 26));
-                autonomous.add(new DriveDistance(drive, 23.5, speed));
-                autonomous.add(new DriveRadiusAtVelocity(drive, 10, -8, 11));
-                autonomous.add(new DriveLineToWallStep(drive, 10, 200));
-                autonomous.start();
+                    autonomous.start();
 
                 reply(replyPort, "Autonomous started.");
             }

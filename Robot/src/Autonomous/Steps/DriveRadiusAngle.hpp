@@ -3,27 +3,27 @@
 #include "Autonomous/AutoStep.h"
 #include "subsystems/Drive.hpp"
 
-class DriveRadiusAtVelocity : public AutoStep
+class DriveRadiusAngle : public AutoStep
 {
 public:
    
-    DriveRadiusAtVelocity(Drive &drive,
+    DriveRadiusAngle(Drive &drive,
              float targetVelocity,
              float radius,
-             float distance)
+             float angleToTurnDeg)
         : _drive(drive),
           _velocity(targetVelocity),
           _radius(radius),
-          _target_distance(distance) {}
+          _target_angle(angleToTurnDeg * PI/180.0) {}
 
-    DriveRadiusAtVelocity(Drive &drive)
+    DriveRadiusAngle(Drive &drive)
         : _drive(drive) {}
 
-    DriveRadiusAtVelocity();
+    DriveRadiusAngle();
 
     void start() override
     {
-        _startDistance = _drive.getDistance();
+        _startAngle = _drive.getAccumulatedHeading();
         _drive.followRadiusAtVelocity(_velocity, _radius);
     }
 
@@ -33,12 +33,7 @@ public:
 
     bool isFinished() const override
     {
-        // Serial.print(_drive.getAccumulatedHeading() - _startAngle);
-        // Serial.print("  ");
-        // Serial.println(_target);
-        // Serial.print("Drive Arc, Delta distance ");
-        // Serial.println((_drive.getDistance() - _startDistance));
-        return abs(_drive.getDistance() - _startDistance) >= abs(_target_distance);
+        return abs(_drive.getAccumulatedHeading() - _startAngle) >= abs(_target_angle);
     }
 
     void end()
@@ -48,7 +43,7 @@ public:
 
     void configure(float target_distance, float target_velocity, float radius)
     {
-        _target_distance = target_distance;
+        _target_angle = target_distance;
         _velocity = target_velocity;
         _radius = radius;
     }
@@ -57,6 +52,6 @@ private:
     Drive &_drive;
     float _velocity = 0;
     float _radius = 10;
-    float _target_distance = 0;
-    float _startDistance = 0;
+    float _target_angle = 0;
+    float _startAngle = 0;
 };
