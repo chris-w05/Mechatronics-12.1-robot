@@ -28,6 +28,7 @@ class PoseTab(QtWidgets.QWidget):
         self.ax_err = self.pose_canvas.fig.add_subplot(gs[2, 1])
 
         style_axes(self.ax_xy, "World XY trajectory", "x [in]", "y [in]")
+        self.ax_xy.set_aspect('equal', adjustable='datalim')
         style_axes(self.ax_th, "Heading", "sample", "heading [rad]")
         style_axes(self.ax_v, "Chassis linear velocity", "sample", "v [in/s]")
         style_axes(self.ax_err, "Pose error", "sample", "error")

@@ -43,6 +43,8 @@ public:
 
     void end()
     {
+        Serial.print("heading: ");
+        Serial.println(_drive.getPose().heading);
         _drive.hardSetSpeed(0);
     }
 
