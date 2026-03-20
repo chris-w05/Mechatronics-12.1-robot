@@ -61,7 +61,7 @@ static const int MAX_SUBSYSTEMS = 10;
 
 static const int TICKS_PER_REV = 64; //Number of ticks per motor revolution
 static const float DRIVETRAIN_WIDTH = 9.449; // inches
-static const float DRIVETRAIN_MOTOR_RATIO = 50 * 30 / 45;
+static const float DRIVETRAIN_MOTOR_RATIO = 50.0 * 30.0 / 45.0;
 static const float DRIVETRAIN_WHEEL_DIAMETER = 3.9192; // in
 static const float DRIVETRAIN_TICKS_TO_IN = PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV);
 

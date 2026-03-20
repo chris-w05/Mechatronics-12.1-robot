@@ -175,14 +175,14 @@ public:
     PIDController(float kp, float ki, float kd)
         : PID(_kp, _ki, _kd), _kff(0.0f), _ffFunc(nullptr){
         // Set integral limits to not oversaturate values
-        _iMin = 400 / ki;
+        _iMax = 400 / ki;
         _iMin = -400 / ki;
         }
 
     PIDController(PIDConstants consts)
         : PID(consts), _kff(0.0f), _ffFunc(nullptr) {
         // Set integral limits to not oversaturate values
-            _iMin = 400 / consts.ki;
+            _iMax = 400 / consts.ki;
             _iMin = -400 / consts.ki;
         }
 

@@ -139,7 +139,7 @@ public:
             pidOut1 = lastSignal1 - slewRateLimiter;
 
         if (delta2 > slewRateLimiter)
-            pidOut1 = lastSignal2 + slewRateLimiter;
+            pidOut2 = lastSignal2 + slewRateLimiter;
         else if (delta2 < -slewRateLimiter)
             pidOut2 = lastSignal2 - slewRateLimiter;
 
@@ -496,7 +496,7 @@ private:
     /**
      * Maximum change in motor power per cycle
      */
-    int slewRateLimiter = 100;
+    int slewRateLimiter = 800;
 
     
 };
