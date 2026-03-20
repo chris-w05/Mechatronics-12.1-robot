@@ -84,9 +84,9 @@ static float distanceSensor_VoltageToDistance(float voltage){
 //Miner constants
 static const unsigned long MINER_CYCLE_MS = 400UL;                  //ms
 static const unsigned long MINER_PRESS_MS = 100UL;
-static const int MINER_SERVO_PRESS_ANGLE = 140;
-static const int MINER_SERVO_STORE_ANGLE = 00;
-static const int MINER_SERVO_RETRACT_ANGLE = 180;
+static const int MINER_SERVO_PRESS_ANGLE = 110;
+static const int MINER_SERVO_STORE_ANGLE = 180;
+static const int MINER_SERVO_RETRACT_ANGLE = 130;
 
 static const float SHOOTER_PULL_BACK_ROTATIONS = .75;
 static const int SHOOTER_SETTLE_TIME = 200; //Time for block to settle in shooter ms

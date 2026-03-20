@@ -124,10 +124,14 @@ inline void Robot::handleGlobalCommand(char cmd, Stream *replyPort)
     case 'A':
         if (mode != AUTONOMOUS) {
             mode = AUTONOMOUS;
-            autonomous.add(new DriveDistance(   drive, 18, 10));
-            autonomous.add(new DriveRadiusAngle(drive, 10, -18,  45));
-            autonomous.add(new DriveRadiusAngle(drive, 10,  18, -45));
-            autonomous.add(new DriveDistance(   drive, 10, 14));
+            float speed = 15;
+            autonomous.add(new DriveDistance(   drive, 18, speed));
+            autonomous.add(new DriveRadiusAngle(drive, speed*1, -18,  45));
+            autonomous.add(new DriveRadiusAngle(drive, speed*1,  18, -45));
+            autonomous.add(new DriveDistance(   drive, 26, speed));
+            autonomous.add(new DriveRadiusAngle(drive, speed * .5, -15, 90));
+            autonomous.add(new DriveDistance(   drive, 2, speed*.25));
+            autonomous.add(new MineBlockStep(   miner, 10000000));
             autonomous.start();
             reply(replyPort, "Autonomous started.");
         }
@@ -263,7 +267,7 @@ inline void Robot::handleSerialTestCommand(char cmd, float p1, float p2,
         float halfW    = DRIVETRAIN_WIDTH / 2.0f;
         float arcRadius = (p1 > 0) ? p1 + halfW : p1 - halfW;
         float distance  = arcRadius * angleRad;
-        float velocity  = distance / 3.0f;
+        float velocity  = distance / 4.0f;
         autonomous.clear();
         autonomous.add(new DriveRadiusAtVelocity(drive, velocity, arcRadius, distance));
         autonomous.start();

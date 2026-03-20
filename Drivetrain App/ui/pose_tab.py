@@ -28,8 +28,8 @@ class PoseTab(QtWidgets.QWidget):
         self.ax_err = self.pose_canvas.fig.add_subplot(gs[2, 1])
 
         style_axes(self.ax_xy, "World XY trajectory", "x [in]", "y [in]")
-        self.ax_xy.set_xlim(0, 96)
-        self.ax_xy.set_ylim(0, 48)
+        self.ax_xy.set_xlim(-4, 100)
+        self.ax_xy.set_ylim(-4, 52)
         self.ax_xy.set_aspect('equal', adjustable='box')
         style_axes(self.ax_th, "Heading", "sample", "heading [rad]")
         style_axes(self.ax_v, "Chassis linear velocity", "sample", "v [in/s]")
