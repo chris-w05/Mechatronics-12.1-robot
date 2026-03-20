@@ -22,12 +22,14 @@ public:
         }
     }
 
-    // Call from setup(). emitterPin default: QTRNoEmitterPin (255) -> no explicit emitter control
-    void init(uint16_t timeout = QTRRCDefaultTimeout, uint8_t emitterPin = QTRNoEmitterPin)
+    // Call from setup(). emitterPin default: QTRNoEmitterPin (255) -> no explicit emitter control.
+    // timeout: max RC discharge wait in µs. Lowering this reduces read time at the cost of
+    // accuracy on very dark surfaces. 1000 µs is reliable for typical competition mats.
+    void init(uint16_t timeout = 1000, uint8_t emitterPin = QTRNoEmitterPin)
     {
         qtr.setTypeRC();
+        qtr.setTimeout(timeout);
         qtr.setSensorPins(_pins, numberPins);
-
     }
 
     /**

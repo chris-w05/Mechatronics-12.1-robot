@@ -18,7 +18,7 @@ public:
 
     void start() override
     {
-        _drive.apporachDistance(_target);
+        _drive.approachDistance(_target);
     }
 
     void update() override

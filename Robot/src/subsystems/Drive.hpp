@@ -6,604 +6,428 @@
 #include "Devices/LineSensor.hpp"
 #include "Devices/DistanceSensor.hpp"
 #include "utils/Odometry.hpp"
+#include "utils/RamseteController.hpp"
 #include "Subsystem.h"
-#include "utils/OdometryPlotting.hpp"
 
-static unsigned long lastTelemetryMs = 0;
-
+/**
+ * Differential-drive subsystem.
+ *
+ * Supports several drive modes (see MODE enum). Call one of the
+ * set-point methods (setSpeed, followRadiusAtVelocity, etc.) to
+ * change mode, then call update() every loop iteration.
+ */
 class Drive : public Subsystem {
 
-    enum MODE
-    {   
-        LINEFOLLOWING,
-         STRAIGHT,
-         ARC,
-         STOPPED,
-         HARDSET,
-         LINEFOLLOWING_HARDSET,
-         DISTANCE
+
+    // =========================================================================
+    // Drive mode
+    // =========================================================================
+    enum MODE {
+        STRAIGHT,              ///< Closed-loop straight-line drive
+        ARC,                   ///< Closed-loop arc/curve drive
+        STOPPED,               ///< Actively braking (target velocity = 0)
+        LINEFOLLOWING,         ///< Closed-loop line following via sensor
+        LINEFOLLOWING_HARDSET, ///< Open-loop line following via raw motor signal
+        HARDSET,               ///< Open-loop: raw left/right motor signals
+        DISTANCE               ///< Holds a fixed distance from a wall
     };
 
-    private:
-        float _targetSpeedL = 0;
-        float _targetSpeedR = 0;
-        float _speedL = 0;   // ramped velocity setpoint (in/s)
-        float _speedR = 0;   // ramped velocity setpoint (in/s)
-        int16_t _signalL = 0; // raw motor signal (HARDSET / LINEFOLLOWING_HARDSET)
-        int16_t _signalR = 0; // raw motor signal (HARDSET / LINEFOLLOWING_HARDSET)
-         float targetDistance = 0;
+private:
+    // =========================================================================
+    // Velocity state (all speeds in in/s, signals in raw motor units)
+    // =========================================================================
+    float    _targetSpeedL = 0;  ///< Desired closed-loop speed, left wheel
+    float    _targetSpeedR = 0;  ///< Desired closed-loop speed, right wheel
+    float    _speedL       = 0;  ///< Ramped (actual) setpoint, left wheel
+    float    _speedR       = 0;  ///< Ramped (actual) setpoint, right wheel
+    int16_t  _signalL      = 0;  ///< Raw motor signal for HARDSET modes
+    int16_t  _signalR      = 0;
 
-        float leftTargetPosition = 0;
-        float rightTargetPosition = 0;
+    float _targetDistance  = 0;  ///< Distance setpoint for DISTANCE mode (cm)
+    float _leftTargetPos   = 0;  ///< Integrated position target, left wheel (in)
+    float _rightTargetPos  = 0;  ///< Integrated position target, right wheel (in)
 
-        unsigned long lastTime = 0;
+    unsigned long _lastTime = 0;
 
-        EncoderWrapper _leftEncoder;
-        EncoderWrapper _rightEncoder;
+    // =========================================================================
+    // Devices
+    // =========================================================================
+    EncoderWrapper      _leftEncoder;
+    EncoderWrapper      _rightEncoder;
+    LineSensor          _lineSensor;
+    DualMotorController _motorController;
+    SharpGP2Y0A51       _distSensor;
 
-        LineSensor _lineSensor;
+    // =========================================================================
+    // Odometry
+    // =========================================================================
+    Odometry _odometry;        ///< True pose, integrated from encoder ticks
+    Odometry _desiredOdometry; ///< Feedforward pose, integrated from target speeds
 
-        DualMotorController _motorController;
+    // =========================================================================
+    // Control
+    // =========================================================================
+    MODE              _mode   = HARDSET;
+    RamseteController _ramsete;  ///< Default tuning: b = 0.006, zeta = 0.9
 
-        SharpGP2Y0A51 _distSensor;
+    // =========================================================================
+    // Internal helpers
+    // =========================================================================
 
-        Odometry _odometry;
-        Odometry _desiredOdometry;
+    /** Sync position targets to current encoder positions to avoid jumps on mode switch. */
+    void syncTargetPositions()
+    {
+        _leftTargetPos  = _leftEncoder.getCount()  * DRIVETRAIN_TICKS_TO_IN;
+        _rightTargetPos = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
+    }
 
-        MODE mode = HARDSET;
+public:
+    // =========================================================================
+    // Construction / lifecycle
+    // =========================================================================
 
-        // Ramsete parameters (good defaults)
-        float _ramseteB = .006f;
-        float _ramseteZeta = 0.9f;
-        bool _useRamsete = true; // enable/disable easily
+    Drive(const uint16_t left_enc_a,
+          const uint16_t left_enc_b,
+          const uint16_t right_enc_a,
+          const uint16_t right_enc_b,
+          const TB9051Pins pins,
+          const uint16_t distPin,
+          const uint16_t lineFollowerPins[8])
+        : _leftEncoder(left_enc_a, left_enc_b),
+          _rightEncoder(right_enc_a, right_enc_b),
+          _lineSensor(lineFollowerPins, lineSensorCalMin, lineSensorCalMax),
+          _motorController(pins,
+                           DRIVE_L_PID, true,
+                           DRIVE_R_PID, false,
+                           false, false),
+          _distSensor(distPin, distanceSensor_VoltageToDistance)
+    {}
 
-        static float wrapPi(float a)
-        {
-            while (a > M_PI)
-                a -= 2.0f * M_PI;
-            while (a < -M_PI)
-                a += 2.0f * M_PI;
-            return a;
-        }
+    /** Called once on startup. Initializes sensors and resets odometry. */
+    void init() override
+    {
+        _odometry.init({0, 0, 0});
+        _desiredOdometry.init({0, 0, 0});
+        _leftEncoder.init();
+        _rightEncoder.init();
+        _leftEncoder.flipDirection();
+        _motorController.init();
+        _lineSensor.init();
+        _lastTime = micros();
+        Serial.println("Drivetrain initialized");
+    }
 
-        static float sinc(float x)
-        {
-            if (fabs(x) < 1e-4f)
-                return 1.0f - x * x / 6.0f; // small-angle approx
-            return sinf(x) / x;
-        }
+    /** Called every loop iteration. Updates sensors and applies control. */
+    void update() override
+    {
+        unsigned long now = micros();
+        float dt = (now - _lastTime) * 1e-6f;
+        _lastTime = now;
 
-        struct ChassisCmd
-        {
-            float v; // in/s
-            float w; // rad/s
-        };
-
-        /**
-         * Increment the ramsete trajectory. 
-         * The purpose of this is to get the drrivetrain to correct itself to achieve a desired pose.
-         * @param ref pointer to desired pose
-         * @param vRef the current feedforward drivetrain velocity ( the "blind" trajectory velocity)
-         * @param wRef the current angular velocity of the chassis ("blind rotational velocity")
-         * @param cur the current true (best estimate from encoders assuming 0 slip condition) pose of the robot
-         */
-        ChassisCmd ramseteStep(const Odometry::Pose2D &ref,
-                               float vRef, float wRef,
-                               const Odometry::Pose2D &cur)
-        {
-            // error in world
-            float dx = ref.x - cur.x;
-            float dy = ref.y - cur.y;
-
-            // rotate into robot frame (cur frame)
-            float c = cosf(cur.heading);
-            float s = sinf(cur.heading);
-            float ex = c * dx + s * dy;
-            float ey = -s * dx + c * dy;
-            float etheta = wrapPi(ref.heading - cur.heading);
-
-            float k = 2.0f * _ramseteZeta * sqrtf(wRef * wRef + _ramseteB * vRef * vRef);
-
-            ChassisCmd out;
-            out.v = vRef * cosf(etheta) + k * ex;
-            out.w = wRef + k * etheta + _ramseteB * vRef * sinc(etheta) * ey;
-            return out;
-        }
-
-
-    public:
-
-        /**
-         * Drive contructor
-         */
-        Drive(
-            const uint16_t left_enc_a,
-            const uint16_t left_enc_b,
-            const uint16_t right_enc_a,
-            const uint16_t right_enc_b,
-            const TB9051Pins pins,
-            const uint16_t distPin,
-            const uint16_t lineFollowerPins[8])
-            : _leftEncoder(left_enc_a, left_enc_b),
-              _rightEncoder(right_enc_a, right_enc_b),
-              _lineSensor(lineFollowerPins, lineSensorCalMin, lineSensorCalMax),
-              _motorController(
-                  pins,
-                  DRIVE_L_PID, true,
-                  DRIVE_R_PID, false,
-                  false, false),
-              _distSensor(distPin, distanceSensor_VoltageToDistance)
-        {
-        }
-
-
-        /**
-         * Should be called once on startup
-         * Starts odometry, inits sensors, etc. 
-         */
-        void init()
-        {
-            _odometry.init({0, 0, 0});
-            _desiredOdometry.init({0,0,0});
-            _leftEncoder.init();
-            _rightEncoder.init();
-            _leftEncoder.flipDirection();
-            _motorController.init();
-            _lineSensor.init();
-            // _motorController.setPIDDerivativeFeedForwardFunc(drivedFF, drivedFF);
-            lastTime = micros();
-            // _motorController.setPIDFeedForwardFunc(driveFF, driveFF);
-            Serial.println("Drivetrain initialized");
-            
-        }
-
-        /**
-         * Called once per loop of arduino,
-         * This is where feedback control is updated
-         */
-        void update()
-        {
-            //Update child sensors
-            unsigned long now = micros();
-            float dt = (now -lastTime) * .000001;
-            lastTime = now;
-            _distSensor.update();
-            _leftEncoder.update();
-            _rightEncoder.update();
+        // --- Update sensors ---
+        // Encoders are always needed for odometry and PID.
+        _leftEncoder.update();
+        _rightEncoder.update();
+        // Gate expensive peripheral reads to the modes that actually use them.
+        // The QTR RC line sensor blocks for up to its timeout (default 1000 µs) per read;
+        // the distance sensor adds ~100 µs for analogRead().
+        if (_mode == LINEFOLLOWING || _mode == LINEFOLLOWING_HARDSET)
             _lineSensor.update();
-            float leftPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            float rightPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            float leftVelocity = _leftEncoder.getVelocity() * DRIVETRAIN_TICKS_TO_IN; //inch/s
-            float rightVelocity = _rightEncoder.getVelocity() * DRIVETRAIN_TICKS_TO_IN; //inch/s
-            // float leftAcceleration = _leftEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
-            // float rightAcceleration = _rightEncoder.getAcceleration() * DRIVETRAIN_TICKS_TO_IN; //in/s^2
+        if (_mode == DISTANCE)
+            _distSensor.update();
 
-            float deltaLeftTargetPosition = 0;
-            float deltaRightTargetPosiiton = 0;
+        float leftPos  = _leftEncoder.getCount()    * DRIVETRAIN_TICKS_TO_IN;
+        float rightPos = _rightEncoder.getCount()   * DRIVETRAIN_TICKS_TO_IN;
+        float leftVel  = _leftEncoder.getVelocity() * DRIVETRAIN_TICKS_TO_IN; // in/s
+        float rightVel = _rightEncoder.getVelocity()* DRIVETRAIN_TICKS_TO_IN;
 
-            //Apply feedback/ open loop control depending on current mode
-            switch( mode){
-                case LINEFOLLOWING:{
+        // --- Mode-specific control ---
+        switch (_mode) {
 
-                    float correction = _lineSensor.getPosition();
-                    correction *= DRIVE_LINEFOLLOW_VELOCITY_GAIN * _speedL; // Correction gain - velocity units/number sensors active
-                    float newSpeedL = _speedL + correction / LINESENSOR_LR_RATIO;
-                    float newSpeedR = _speedR - correction;
+            case LINEFOLLOWING: {
+                float correction = _lineSensor.getPosition()
+                                   * DRIVE_LINEFOLLOW_VELOCITY_GAIN * _speedL;
+                float newSpeedL = _speedL + correction / LINESENSOR_LR_RATIO;
+                float newSpeedR = _speedR - correction;
 
-                    deltaLeftTargetPosition = newSpeedL *dt;
-                    deltaRightTargetPosiiton = newSpeedR *dt;
+                _leftTargetPos  += newSpeedL * dt;
+                _rightTargetPos += newSpeedR * dt;
 
-                    leftTargetPosition += deltaLeftTargetPosition;
-                    rightTargetPosition += deltaRightTargetPosiiton;
-
-                    // Serial.println(correction);
-                    // Serial.print("Left target speed ");
-                    // Serial.print(newSpeedL);
-                    // Serial.print(" Right target speed");
-                    // Serial.println(newSpeedR);
-                    _motorController.setTarget(leftTargetPosition, rightTargetPosition);
-                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity, _speedL, _speedR);
-                    break;
-                }
-                case STRAIGHT:
-                case ARC:
-                case STOPPED:{
-                    //Acceleration control
-                    const float maxDelta = 20.0f * dt;
-
-                    float deltaL = _targetSpeedL - _speedL;
-                    float deltaR = _targetSpeedR - _speedR;
-
-                    // Find which wheel needs to move more
-                    float maxChange = max(fabs(deltaL), fabs(deltaR));
-
-                    //Preserve curvature
-                    if (maxChange > maxDelta)
-                    {
-                        float scale = maxDelta / maxChange;
-                        _speedL += deltaL * scale;
-                        _speedR += deltaR * scale;
-                    }
-                    else
-                    {
-                        // Both wheels are close enough, snap to target
-                        _speedL = _targetSpeedL;
-                        _speedR = _targetSpeedR;
-                    }
-
-                    // RAMSETE TRAJECTORY FOLLOWING ----------------------------------------------------------------------------------------------
-                    // Reference wheel speeds from your profile (feedforward)
-                    float vL_ref = _speedL;
-                    float vR_ref = _speedR;
-
-                    // Clamp refs to achievable wheel speed
-                    vL_ref = constrain(vL_ref, -MAXVELOCITY, MAXVELOCITY);
-                    vR_ref = constrain(vR_ref, -MAXVELOCITY, MAXVELOCITY);
-
-                    // Reference chassis speeds
-                    float vRef = 0.5f * (vL_ref + vR_ref);
-                    float wRef = (vR_ref - vL_ref) / DRIVETRAIN_WIDTH;
-
-                    // Get poses
-                    auto curPose = _odometry.getPose();
-                    auto refPose = _desiredOdometry.getPose();
-
-                    // Ramsete gives corrected chassis commands
-                    float vCmd = vRef;
-                    float wCmd = wRef;
-
-                    if (_useRamsete)
-                    {
-                        ChassisCmd cmd = ramseteStep(refPose, vRef, wRef, curPose);
-                        vCmd = cmd.v;
-                        wCmd = cmd.w;
-                    }
-
-                    // Convert commanded chassis speeds to commanded wheel speeds
-                    float halfW = DRIVETRAIN_WIDTH * 0.5f;
-                    float vL_cmd = vCmd - halfW * wCmd;
-                    float vR_cmd = vCmd + halfW * wCmd;
-
-                    // Clamp commanded wheel speeds
-                    vL_cmd = constrain(vL_cmd, -MAXVELOCITY, MAXVELOCITY);
-                    vR_cmd = constrain(vR_cmd, -MAXVELOCITY, MAXVELOCITY);
-
-                    // Integrate commanded speeds into position targets 
-                    deltaLeftTargetPosition = vL_cmd * dt;
-                    deltaRightTargetPosiiton = vR_cmd * dt;
-
-                    leftTargetPosition += deltaLeftTargetPosition;
-                    rightTargetPosition += deltaRightTargetPosiiton;
-
-                    // Wheel position controller, with dSetpoint = wheel velocity feedforward
-                    _motorController.setTarget(leftTargetPosition, rightTargetPosition);
-
-                    
-                    // if (millis() - lastTelemetryMs >= 100) // 20 Hz
-                    // {
-                    //     lastTelemetryMs = millis();
-                    //     //Log the odometry
-                    //     emitTelemetryJSON(
-                    //         Serial,
-                    //         _odometry,
-                    //         _desiredOdometry,
-                    //         leftVelocity,
-                    //         rightVelocity,
-                    //         _speedL,
-                    //         _speedR,
-                    //         leftPosition,
-                    //         rightPosition,
-                    //         leftTargetPosition,
-                    //         rightTargetPosition
-                    //     );
-                    // }
-                    _motorController.update(leftPosition, leftVelocity, rightPosition, rightVelocity,
-                                            vL_cmd, vR_cmd);
-                    //Update the ramsete target odometry
-                    _desiredOdometry.update(_targetSpeedL* dt, _targetSpeedR*dt);
-
-                    break;
-                }
-                case LINEFOLLOWING_HARDSET:{
-
-
-                    _lineSensor.update();
-                    float correction = _lineSensor.getPosition();
-                    Serial.println(correction);
-                    correction *= DRIVE_LINEFOLLOW_GAIN * (_signalL + _signalR) / 2;
-                    int leftCmd = _signalL + correction / LINESENSOR_LR_RATIO;
-                    int rightCmd = _signalR  - correction;
-                    _motorController.setPower(leftCmd, rightCmd);
-                    break;
-                }
-                case HARDSET:
-                    if (_signalL != 0 && _signalR != 0){
-
-                        // Serial.print(">SignalL:");
-                        // Serial.print(_signalL);
-                        // Serial.print(",VelocityL:");
-                        // Serial.print(leftVelocity);
-                        // Serial.print(",SignalR:");
-                        // Serial.print(_signalR);
-                        // Serial.print(",VelocityR:");
-                        // Serial.print(rightVelocity);
-                        // Serial.println("\r");
-                    }
-                    _motorController.setPower(_signalL, _signalR);
-                    break;
-
-                case DISTANCE:
-                {
-                    float distance = _distSensor.getDistanceCm();;
-                    // Serial.print("Error");
-                    // Serial.print(error);
-                    // Serial.print(" ");
-                    // Serial.print(" Left:");
-                    // Serial.print(_speedL);
-                    // Serial.print(" Right:");
-                    // Serial.print(_speedR);
-                    // Serial.print(" leftVel(inch/s): ");
-                    // Serial.print(leftVelocity);
-                    // Serial.print(" rightVel(inch/s): ");
-                    // Serial.println(rightVelocity);
-
-                    _motorController.setTarget(targetDistance, targetDistance);
-                    _motorController.updateWithoutDerivatice(distance, distance);
-                    break;
-                }
-                default:
-                    _motorController.setPower(0, 0);
+                _motorController.setTarget(_leftTargetPos, _rightTargetPos);
+                _motorController.update(leftPos, leftVel, rightPos, rightVel,
+                                        _speedL, _speedR);
+                break;
             }
 
-            //Update odometry 
-            _odometry.update(_leftEncoder, _rightEncoder);
-        }
+            case STRAIGHT:
+            case ARC:
+            case STOPPED: {
+                // Ramp the actual setpoint toward the target to limit acceleration
+                const float maxDelta = 20.0f * dt;
+                float deltaL = _targetSpeedL - _speedL;
+                float deltaR = _targetSpeedR - _speedR;
+                float maxChange = max(fabsf(deltaL), fabsf(deltaR));
 
-        /**
-         * Gets the pose from the ideal path
-         */
-        Odometry::Pose2D getPose()
-        {
-            return _desiredOdometry.getPose();
-        }
+                if (maxChange > maxDelta) {
+                    float scale = maxDelta / maxChange;
+                    _speedL += deltaL * scale;
+                    _speedR += deltaR * scale;
+                } else {
+                    _speedL = _targetSpeedL;
+                    _speedR = _targetSpeedR;
+                }
 
-        /** 
-         * Gets the current position and orientation of the robot
-         */
-        Odometry::Pose2D getTruePose(){
-            return _odometry.getPose();
-        }
+                // Clamp feedforward wheel speeds
+                float vL_ref = constrain(_speedL, -MAXVELOCITY, MAXVELOCITY);
+                float vR_ref = constrain(_speedR, -MAXVELOCITY, MAXVELOCITY);
 
-        float getRampedSpeedL() { return _speedL; }
-        float getRampedSpeedR() { return _speedR; }
+                // Feedforward chassis velocities
+                float vRef = 0.5f * (vL_ref + vR_ref);
+                float wRef = (vR_ref - vL_ref) / DRIVETRAIN_WIDTH;
 
-        /**
-         * Passes the current distance reading from the distance sensor
-         */
-        float getDistanceSensorReading(){
-            return _distSensor.getDistanceCm();
-        }
+                // Ramsete correction toward the feedforward pose
+                float vCmd = vRef, wCmd = wRef;
+                if (_ramsete.isEnabled()) {
+                    auto cmd = _ramsete.step(
+                        _desiredOdometry.getPose(), vRef, wRef,
+                        _odometry.getPose());
+                    vCmd = cmd.v;
+                    wCmd = cmd.w;
+                }
 
-        /**
-         * Passes the current heading from the trajectory
-         */
-        float getAccumulatedHeading(){
-            return _desiredOdometry.getAccumulatedHeading();
-        }
+                // Convert chassis → individual wheel speeds
+                float halfW  = DRIVETRAIN_WIDTH * 0.5f;
+                float vL_cmd = constrain(vCmd - halfW * wCmd, -MAXVELOCITY, MAXVELOCITY);
+                float vR_cmd = constrain(vCmd + halfW * wCmd, -MAXVELOCITY, MAXVELOCITY);
 
-        /**
-         * Return the true heading of the robot
-         */
-        float getTrueAccumulatedHeading()
-        {
-            return _odometry.getAccumulatedHeading();
-        }
+                _leftTargetPos  += vL_cmd * dt;
+                _rightTargetPos += vR_cmd * dt;
 
-        /**
-         * Passes total distance travelled from desired odometry
-         */
-        float getDistance() { return _desiredOdometry.distanceTravelled(); };
+                _motorController.setTarget(_leftTargetPos, _rightTargetPos);
+                _motorController.update(leftPos, leftVel, rightPos, rightVel,
+                                        vL_cmd, vR_cmd);
 
-        /**
-         * Passes total distance travelled from odometry
-         */
-        float getTrueDistance() { return _odometry.distanceTravelled(); };
-
-        /**
-         * returns the average of wheel velocities
-         */
-        float getAvgVelocity(){
-            return (_leftEncoder.getVelocity() + _rightEncoder.getVelocity()) * DRIVETRAIN_TICKS_TO_IN / 2;
-        }
-
-        /**
-         * Sets the desired speed for driving in a straight line
-         * This assumes PID control is being used and accurate
-         * @param speed Target speed for the drivetrain to drive in a straight line
-         * @param resetPID If this is set to true, the PID controller will be reset. i.e. the integral value will be set to 0, but all gains will be retained
-         */
-        void setSpeed(float speed, bool resetPID = true){
-            mode = STRAIGHT;
-            // _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
-            if( resetPID ){
-                _motorController.resetPID();
-            }
-            
-            leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            _targetSpeedL = speed;
-            _targetSpeedR = speed;
-        }
-
-
-        /**
-         * Sends a raw speed command (no feedback control) to both motors
-         * This will make the robot drive in a straight-ish line
-         */
-        void hardSetSpeed(int16_t speed){
-            mode = HARDSET;
-            _signalL = speed;
-            _signalR = speed;
-            _motorController.setPower(speed, speed);
-        }
-
-
-        /**
-         * Individually set the speeds of both drive motors
-         * This is done outside of feedback control
-         */
-        void hardSetSpeed(int16_t speed1, int16_t speed2)
-        {
-            mode = HARDSET;
-            _signalL = speed1;
-            _signalR = speed2;
-            _motorController.setPower(speed1, speed2);
-        }
-
-
-        /**
-         * Sets target velocities for feedback control to follow a specified arc at a specified angular velocity
-         * 
-         * @param omega_rad_s The angular velocity of the robot following the curve, in radians/s
-         * @param radius The radius of the curve to follow, in inches
-         */
-        void followRadiusClockwise(float omega_rad_s, float radius)
-        {
-            mode = MODE::ARC;
-            // _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
-            _motorController.makeLinear();
-            // track half-width
-            const float halfL = DRIVETRAIN_WIDTH / 2.0f;
-
-            leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            _targetSpeedL = omega_rad_s * (radius + halfL);
-            _targetSpeedR = omega_rad_s * (radius - halfL);
-        }
-
-        /**
-         * Sets target velocities for feedback control to follow a specified arc at a specific tangential velocity
-         * 
-         * @param velocity The tangential velocity to follow the arc at
-         * @param radius The radius of the arc for the robot to follow
-         */
-        void followRadiusAtVelocity(float velocity, float radius, bool resetPID = true)
-        {
-            mode = MODE::ARC;
-            // _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
-            if (resetPID)
-            {
-                _motorController.resetPID();
-            }
-            
-
-            // track half-width
-            const float halfL = DRIVETRAIN_WIDTH / 2.0f;
-
-            // initialize target positions at current encoder readings (unchanged)
-            leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-
-            // Handle special case: radius == 0 (spin in place).
-            // Reasonable convention chosen: for radius == 0 we perform an in-place spin
-            // where positive velocity results in rightward (clockwise) spin on the robot.
-            // (If you prefer the opposite, flip the signs below.)
-            if (abs(radius) < 1e-6f)
-            {
-                // Make left and right opposite to spin in place.
-                // Here: left backward, right forward for a clockwise spin
-                _targetSpeedL = -velocity;
-                _targetSpeedR = velocity;
-                return;
+                // Advance the feedforward (ideal) trajectory
+                _desiredOdometry.update(_targetSpeedL * dt, _targetSpeedR * dt);
+                break;
             }
 
-            // Compute angular velocity. Using the sign of radius:
-            // - positive radius => turn right (clockwise) => negative ω (we apply a - sign).
-            // - negative radius => turn left (counter-clockwise) => positive ω.
-            float omega = -velocity / radius; // no abs() so sign of radius matters
+            case LINEFOLLOWING_HARDSET: {
+                float correction = _lineSensor.getPosition();
+                Serial.println(correction);
+                correction *= DRIVE_LINEFOLLOW_GAIN * (_signalL + _signalR) / 2;
+                _motorController.setPower(
+                    _signalL + (int)(correction / LINESENSOR_LR_RATIO),
+                    _signalR - (int)correction);
+                break;
+            }
 
-            // Convert centre tangential velocity + angular velocity to wheel linear speeds:
-            _targetSpeedL = velocity - halfL * omega;
-            _targetSpeedR = velocity + halfL * omega;
+            case HARDSET:
+                _motorController.setPower(_signalL, _signalR);
+                break;
+
+            case DISTANCE: {
+                float dist = _distSensor.getDistanceCm();
+                _motorController.setTarget(_targetDistance, _targetDistance);
+                _motorController.updateWithoutDerivatice(dist, dist);
+                break;
+            }
+
+            default:
+                _motorController.setPower(0, 0);
         }
 
-        /**
-         * Changes mode to LINEFOLLOWING, and gives a target speed for feedback control
-         * 
-         * @param speed The speed in in/s for the robot to drive at
-         */
-        void followLine(float speed)
-        {
-            mode = MODE::LINEFOLLOWING;
-            // _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
-            _motorController.makeLinear();
+        // Update true-pose odometry from encoder ticks
+        _odometry.update(_leftEncoder, _rightEncoder);
+    }
 
-            leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            _speedL = speed;
-            _speedR = speed;
+    // =========================================================================
+    // Public API — setpoints
+    // =========================================================================
+
+    /**
+     * Drive straight at the given speed using closed-loop (PID) control.
+     * @param speed    Target speed (in/s)
+     * @param resetPID If true, resets PID integrators before starting
+     */
+    void setSpeed(float speed, bool resetPID = true)
+    {
+        _mode = STRAIGHT;
+        if (resetPID) _motorController.resetPID();
+        syncTargetPositions();
+        _targetSpeedL = speed;
+        _targetSpeedR = speed;
+    }
+
+    /**
+     * Drive straight using raw (open-loop) motor signals. No encoder feedback.
+     * @param speed Raw signal for both motors
+     */
+    void hardSetSpeed(int16_t speed)
+    {
+        _mode    = HARDSET;
+        _signalL = speed;
+        _signalR = speed;
+        _motorController.setPower(speed, speed);
+    }
+
+    /**
+     * Set independent raw motor signals. No encoder feedback.
+     */
+    void hardSetSpeed(int16_t left, int16_t right)
+    {
+        _mode    = HARDSET;
+        _signalL = left;
+        _signalR = right;
+        _motorController.setPower(left, right);
+    }
+
+    /**
+     * Follow a clockwise arc at a given angular velocity.
+     * @param omega_rad_s Angular velocity of the robot (rad/s)
+     * @param radius      Arc radius (inches)
+     */
+    void followRadiusClockwise(float omega_rad_s, float radius)
+    {
+        _mode = MODE::ARC;
+        _motorController.makeLinear();
+        syncTargetPositions();
+        const float halfL = DRIVETRAIN_WIDTH / 2.0f;
+        _targetSpeedL = omega_rad_s * (radius + halfL);
+        _targetSpeedR = omega_rad_s * (radius - halfL);
+    }
+
+    /**
+     * Follow an arc at a given tangential (center) velocity.
+     * Positive radius turns right (clockwise); negative turns left; zero spins in place.
+     * @param velocity  Tangential velocity at the robot center (in/s)
+     * @param radius    Arc radius (inches, signed)
+     * @param resetPID  If true, resets PID integrators before starting
+     */
+    void followRadiusAtVelocity(float velocity, float radius, bool resetPID = true)
+    {
+        _mode = MODE::ARC;
+        if (resetPID) _motorController.resetPID();
+        syncTargetPositions();
+
+        const float halfL = DRIVETRAIN_WIDTH / 2.0f;
+
+        if (fabsf(radius) < 1e-6f) {
+            // Spin in place: positive velocity → clockwise
+            _targetSpeedL = -velocity;
+            _targetSpeedR =  velocity;
+            return;
         }
 
-        /**
-         * Changes mode to LINEFOLLOWING_HARDSET, and gives a target speed for feedback control
-         * 
-         * @param speed The signal to send the motor from (-400 to 400). Values outside this range will be constrained by the motor controller
-         */
-        void followLineHardset(int speed)
-        {
-            mode = MODE::LINEFOLLOWING_HARDSET;
-            _signalL = speed;
-            _signalR = speed;
-        }
+        float omega   = -velocity / radius; // sign of radius determines turn direction
+        _targetSpeedL = velocity - halfL * omega;
+        _targetSpeedR = velocity + halfL * omega;
+    }
 
-        /**
-         * Follow a radius in the Counter-clockwise direction
-         */
-        void followRadiusCCW(float omega_rad_s, float radius)
-        {
-            mode = MODE::ARC;
-            // _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
-            _motorController.makeLinear();
+    /**
+     * Follow a counter-clockwise arc at a given angular velocity.
+     * @param omega_rad_s Angular velocity of the robot (rad/s)
+     * @param radius      Arc radius (inches)
+     */
+    void followRadiusCCW(float omega_rad_s, float radius)
+    {
+        _mode = MODE::ARC;
+        _motorController.makeLinear();
+        syncTargetPositions();
+        const float halfL = DRIVETRAIN_WIDTH / 2.0f;
+        _targetSpeedL = omega_rad_s * (radius - halfL);
+        _targetSpeedR = omega_rad_s * (radius + halfL);
+    }
 
-            // track half-width
-            const float halfL = DRIVETRAIN_WIDTH / 2.0f;
+    /**
+     * Follow the line sensor at the given speed using closed-loop control.
+     * @param speed Target drive speed (in/s)
+     */
+    void followLine(float speed)
+    {
+        _mode = MODE::LINEFOLLOWING;
+        _motorController.makeLinear();
+        syncTargetPositions();
+        _speedL = speed;
+        _speedR = speed;
+    }
 
-            leftTargetPosition = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            rightTargetPosition = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
-            _targetSpeedL = omega_rad_s * (radius - halfL);
-            _targetSpeedR = omega_rad_s * (radius + halfL);
-        }
+    /**
+     * Follow the line sensor using raw open-loop motor signals (no PID).
+     * @param speed Raw motor signal (-400 to 400)
+     */
+    void followLineHardset(int speed)
+    {
+        _mode    = MODE::LINEFOLLOWING_HARDSET;
+        _signalL = speed;
+        _signalR = speed;
+    }
 
-        /**
-         * Have the robot hold a specific distance from the wall
-         * 
-         * @param distance The distance for the robot to hold from the wall
-         */
-        void apporachDistance(float distance){
-            mode = MODE::DISTANCE;
-            // _motorController.setPID(DRIVE_DISTANCE_PID, DRIVE_DISTANCE_PID);
-            // _motorController.setPIDKpFunction(driveNonlinearP, driveNonlinearP);
-            targetDistance = distance;
-        }
+    /**
+     * Hold the robot at a fixed distance from a wall using the distance sensor.
+     * @param distance Target distance (cm)
+     */
+    void approachDistance(float distance)
+    {
+        _mode           = MODE::DISTANCE;
+        _targetDistance = distance;
+    }
 
+    /**
+     * Actively stop the robot by driving target velocity to zero.
+     * For an immediate power-off stop, use hardSetSpeed(0) instead.
+     */
+    void stop() override
+    {
+        _mode = MODE::STOPPED;
+        hardSetSpeed(0);
+    }
 
-        /**
-         * Set the value for a PID constant 
-         */
-        void setDriveMotorPIDConstant(float value, float index){
-            _motorController.setPIDConstant(value, index);
-        }
+    /**
+     * Set a single PID constant on the motor controller.
+     * @param value New constant value
+     * @param index Constant index (see DualMotorController)
+     */
+    void setDriveMotorPIDConstant(float value, int index)
+    {
+        _motorController.setPIDConstant(value, index);
+    }
 
-        /**
-         * Closed-loop control for stopping the robot. 
-         * Sets the desired velocity to 0, so the robot will actively brake
-         * If you want to set power to 0 as a soft-stop, use hardSetSpeed(0);
-         */
-        void stop()
-        {
-            mode = MODE::STOPPED;
-            // _motorController.setPID(DRIVE_L_PID, DRIVE_R_PID);
-            hardSetSpeed(0);
-        }
+    // =========================================================================
+    // Public API — state queries
+    // =========================================================================
 
+    /** Ideal pose derived from the feedforward (target) trajectory. */
+    Odometry::Pose2D getPose()             { return _desiredOdometry.getPose(); }
+
+    /** Best-estimate robot pose integrated from encoder ticks. */
+    Odometry::Pose2D getTruePose()         { return _odometry.getPose(); }
+
+    /** Ramped (actual) left-wheel velocity setpoint (in/s). */
+    float getRampedSpeedL()                { return _speedL; }
+
+    /** Ramped (actual) right-wheel velocity setpoint (in/s). */
+    float getRampedSpeedR()                { return _speedR; }
+
+    /** Total path distance from the feedforward trajectory (inches). */
+    float getDistance()                    { return _desiredOdometry.distanceTravelled(); }
+
+    /** Total path distance from the encoder-integrated odometry (inches). */
+    float getTrueDistance()                { return _odometry.distanceTravelled(); }
+
+    /** Net accumulated heading from the feedforward trajectory (radians). */
+    float getAccumulatedHeading()          { return _desiredOdometry.getAccumulatedHeading(); }
+
+    /** Net accumulated heading from the encoder-integrated odometry (radians). */
+    float getTrueAccumulatedHeading()      { return _odometry.getAccumulatedHeading(); }
+
+    /** Average of both wheel velocities (in/s). */
+    float getAvgVelocity()
+    {
+        return (_leftEncoder.getVelocity() + _rightEncoder.getVelocity())
+               * DRIVETRAIN_TICKS_TO_IN / 2.0f;
+    }
+
+    /** Most recent distance-sensor reading (cm). */
+    float getDistanceSensorReading()       { return _distSensor.getDistanceCm(); }
 };
