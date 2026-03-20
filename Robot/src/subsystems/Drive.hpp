@@ -7,6 +7,7 @@
 #include "Devices/DistanceSensor.hpp"
 #include "utils/Odometry.hpp"
 #include "utils/RamseteController.hpp"
+#include "utils/OdometryPlotting.hpp"
 #include "Subsystem.h"
 
 /**
@@ -67,8 +68,9 @@ private:
     // =========================================================================
     // Control
     // =========================================================================
-    MODE              _mode   = HARDSET;
-    RamseteController _ramsete;  ///< Default tuning: b = 0.006, zeta = 0.9
+    MODE              _mode            = HARDSET;
+    RamseteController _ramsete;               ///< Default tuning: b = 0.006, zeta = 0.9
+    unsigned long     _lastTelemetryMs = 0;   ///< Throttle telemetry output to 20 Hz
 
     // =========================================================================
     // Internal helpers
@@ -206,6 +208,18 @@ public:
                 _motorController.setTarget(_leftTargetPos, _rightTargetPos);
                 _motorController.update(leftPos, leftVel, rightPos, rightVel,
                                         vL_cmd, vR_cmd);
+
+                // Emit telemetry at 20 Hz for real-time plotting / debugging
+                if (millis() - _lastTelemetryMs >= 50) {
+                    _lastTelemetryMs = millis();
+                    emitTelemetryJSON(
+                        Serial,
+                        _odometry, _desiredOdometry,
+                        leftVel,  rightVel,
+                        vL_cmd,   vR_cmd,
+                        leftPos,  rightPos,
+                        _leftTargetPos, _rightTargetPos);
+                }
 
                 // Advance the feedforward (ideal) trajectory
                 _desiredOdometry.update(_targetSpeedL * dt, _targetSpeedR * dt);

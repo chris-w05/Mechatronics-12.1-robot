@@ -13,7 +13,7 @@ from serial.tools import list_ports
 
 from mpl_theme import setup_dark_mpl
 from parser import wrap_pi
-from plotting import PlotContainer, PopoutWindow, MplCanvas, autoscale_xy_all_points, autoscale_y, last_window, set_scroll_xlim
+from plotting import PlotContainer, PopoutWindow, MplCanvas, autoscale_y, last_window, set_scroll_xlim
 from serial_worker import SerialWorker
 from ui.console_tab import ConsoleTab
 from ui.controls import ControlsPanel
@@ -455,7 +455,13 @@ class RobotDebugUI(QtWidgets.QMainWindow):
         eys = last_window(self.eys, self.window_points)
         eths = last_window(self.eths, self.window_points)
 
-        p.xy_actual_line.set_data(xs, ys)
+        xs_full = np.asarray(self.xs, dtype=float)
+        ys_full = np.asarray(self.ys, dtype=float)
+        xds_full = np.asarray(self.xds, dtype=float)
+        yds_full = np.asarray(self.yds, dtype=float)
+        thds_full = np.asarray(self.thds, dtype=float)
+
+        p.xy_actual_line.set_data(xs_full, ys_full)
         if xs.size and ys.size:
             p.xy_actual_pt.set_data([xs[-1]], [ys[-1]])
             th = float(ths[-1])
@@ -468,16 +474,16 @@ class RobotDebugUI(QtWidgets.QMainWindow):
             p.xy_actual_pt.set_data([], [])
             p.xy_heading_line.set_data([], [])
 
-        valid_des = np.isfinite(xds) & np.isfinite(yds)
-        p.xy_des_line.set_data(xds[valid_des], yds[valid_des])
-        if np.any(valid_des):
-            xd_last = xds[valid_des][-1]
-            yd_last = yds[valid_des][-1]
+        valid_des_full = np.isfinite(xds_full) & np.isfinite(yds_full)
+        p.xy_des_line.set_data(xds_full[valid_des_full], yds_full[valid_des_full])
+        if np.any(valid_des_full):
+            xd_last = xds_full[valid_des_full][-1]
+            yd_last = yds_full[valid_des_full][-1]
             p.xy_des_pt.set_data([xd_last], [yd_last])
 
-            valid_thd = np.isfinite(thds)
-            if np.any(valid_thd):
-                thd_last = thds[valid_thd][-1]
+            valid_thd_full = np.isfinite(thds_full)
+            if np.any(valid_thd_full):
+                thd_last = thds_full[valid_thd_full][-1]
                 p.xy_heading_des_line.set_data(
                     [xd_last, xd_last + self.arrow_len * math.cos(thd_last)],
                     [yd_last, yd_last + self.arrow_len * math.sin(thd_last)],
@@ -487,8 +493,6 @@ class RobotDebugUI(QtWidgets.QMainWindow):
         else:
             p.xy_des_pt.set_data([], [])
             p.xy_heading_des_line.set_data([], [])
-
-        autoscale_xy_all_points(p.ax_xy, self.xs, self.ys, self.xds, self.yds)
 
         th_plot = np.degrees(ths) if self.heading_deg else ths
         p.th_line.set_data(idx, th_plot)
