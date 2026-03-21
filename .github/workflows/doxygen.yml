@@ -1,0 +1,48 @@
+name: Deploy Doxygen to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Doxygen
+        uses: mattnotmitt/doxygen-action@v1.9.8
+        with:
+          doxyfile-path: ./Robot/Doxyfile
+
+      - name: Verify Doxygen output
+        run: |
+          echo "Contents of Robot/html/:"
+          ls -la Robot/html/
+          echo "index.html exists: $(test -f Robot/html/index.html && echo YES || echo NO)"
+
+      - name: Disable Jekyll
+        run: touch Robot/html/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: Robot/html
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
