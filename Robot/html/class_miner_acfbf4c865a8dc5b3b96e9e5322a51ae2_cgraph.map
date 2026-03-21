@@ -1,0 +1,10 @@
+<map id="Miner::mine" name="Miner::mine">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,95,82"/>
+<area shape="rect" id="Node000002" href="$class_miner.html#a9e800360111af4b673ba51eab5eace0a" title=" " alt="" coords="146,5,307,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,54,166,34,162,38,96,59"/>
+<area shape="rect" id="Node000003" href="$class_miner.html#a437a0fdc0f9be6b0ffc27da25ab928b1" title=" " alt="" coords="358,81,528,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="95,69,343,85,342,90,95,74"/>
+<area shape="rect" id="Node000004" href="$class_miner.html#a26f3ff0ceeae35f37c087bbb17767f17" title=" " alt="" coords="143,107,310,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="95,79,167,100,162,103,95,84"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="310,107,340,106,345,106,311,112"/>
+</map>

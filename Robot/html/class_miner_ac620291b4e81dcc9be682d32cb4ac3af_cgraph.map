@@ -1,0 +1,7 @@
+<map id="Miner::stopMining" name="Miner::stopMining">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,130,31"/>
+<area shape="rect" id="Node000002" href="$class_miner.html#a26f3ff0ceeae35f37c087bbb17767f17" title=" " alt="" coords="178,5,345,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,16,165,18,160,18,130,21"/>
+<area shape="rect" id="Node000003" href="$class_miner.html#a437a0fdc0f9be6b0ffc27da25ab928b1" title=" " alt="" coords="393,5,563,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="345,16,380,18,375,18,346,21"/>
+</map>

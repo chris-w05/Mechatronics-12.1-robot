@@ -1,0 +1,36 @@
+name: Deploy Doxygen to GitHub Pages
+
+on:
+  push:
+    branches:
+      - '**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "pages-${{ github.ref_name }}"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Doxygen
+        uses: mattnotmitt/doxygen-action@v1.9.8
+        with:
+          doxyfile-path: ./Robot/Doxyfile
+
+      - name: Disable Jekyll
+        run: touch Robot/html/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: Robot/html
+          target-folder: ${{ github.ref_name }}
+          clean: false

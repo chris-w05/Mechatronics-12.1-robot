@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['m1direction1_0',['m1Direction1',['../struct_t_b9051_pins.html#ab58b342f291a259e7eecf3883a810d3e',1,'TB9051Pins']]],
+  ['m1direction2_1',['m1Direction2',['../struct_t_b9051_pins.html#ac9fc196a902861e539f76cb9a537a145',1,'TB9051Pins']]],
+  ['m1pwm_2',['m1PWM',['../struct_t_b9051_pins.html#adbe00676e735c39c7021f208f934ffd6',1,'TB9051Pins']]],
+  ['m2direction1_3',['m2Direction1',['../struct_t_b9051_pins.html#ad4952c01064f8cd5392c82378aeecc88',1,'TB9051Pins']]],
+  ['m2direction2_4',['m2Direction2',['../struct_t_b9051_pins.html#aa52b3e16ac7fc48c686c9ff6ed5e8948',1,'TB9051Pins']]],
+  ['m2pwm_5',['m2PWM',['../struct_t_b9051_pins.html#ad0808a8c702f9b67e27c9dc49c3ef56b',1,'TB9051Pins']]],
+  ['main_2ecpp_6',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['makelinear_7',['makeLinear',['../class_dual_motor_controller.html#a2d83c6289b4c11b2e27418c48d1b4fbf',1,'DualMotorController']]],
+  ['max_5fcmd_5flen_8',['MAX_CMD_LEN',['../class_serial_coms.html#add9e76347118e34a87bc26f248b19ea9',1,'SerialComs']]],
+  ['max_5fsub_5fsteps_9',['MAX_SUB_STEPS',['../_composite_step_8hpp.html#acb9201bc5b13f9f9c58a5f68ae2a8299',1,'CompositeStep.hpp']]],
+  ['mine_10',['MINE',['../class_strategy_controller_step.html#a8603fdaca2785b3214c84fbb2259d088aa54829d454e759904d9594897686dc7b',1,'StrategyControllerStep']]],
+  ['mine_11',['mine',['../class_miner.html#acfbf4c865a8dc5b3b96e9e5322a51ae2',1,'Miner']]],
+  ['mineblock_12',['mineBlock',['../class_strategy_controller_step.html#a9f755ff051baa54d73831f29aec1fb31',1,'StrategyControllerStep']]],
+  ['mineblock_2ehpp_13',['MineBlock.hpp',['../_mine_block_8hpp.html',1,'']]],
+  ['mineblockstep_14',['MineBlockStep',['../class_mine_block_step.html',1,'MineBlockStep'],['../class_mine_block_step.html#a2bf4d16dee48e27a0667b54deee962fd',1,'MineBlockStep::MineBlockStep()']]],
+  ['miner_15',['Miner',['../class_miner.html',1,'Miner'],['../class_miner.html#a62968234f5b871d62ddfb15bc3b749d7',1,'Miner::Miner()']]],
+  ['miner_16',['miner',['../class_mine_block_step.html#ae38bf2b3f425329df782d0ed7302820e',1,'MineBlockStep::miner'],['../class_robot.html#a1c92214d8ab441e65b448522b62b494c',1,'Robot::miner']]],
+  ['miner_2ehpp_17',['Miner.hpp',['../_miner_8hpp.html',1,'']]],
+  ['mining_18',['MINING',['../class_miner.html#a4a403b6f2ef88a9c473b96fcefa8ca83ad4bb7071448b4d986646d3fc8a02d007',1,'Miner']]],
+  ['mode_19',['MODE',['../class_drive.html#aa63b49a3040de9a78da21e57c86f6ca4',1,'Drive']]],
+  ['mode_20',['Mode',['../class_miner.html#a4a403b6f2ef88a9c473b96fcefa8ca83',1,'Miner::Mode'],['../class_shooter.html#a5291f320a5163784866d707adb81b889',1,'Shooter::Mode']]],
+  ['mode_21',['mode',['../class_robot.html#a0e518babbea08e7d2e3560cc15ea5a35',1,'Robot']]],
+  ['motor_22',['motor',['../class_shooter.html#a3b598cd7dda893db5c61884295750e9a',1,'Shooter']]],
+  ['motorcontroller_23',['MotorController',['../class_motor_controller.html',1,'MotorController'],['../class_motor_controller.html#a7d782fc3aa310f6443367e77964be908',1,'MotorController::MotorController(int pwm1_pin, int pwm2_pin=-1, int en_pin=-1, int enb_pin=-1, int diag_pin=-1, int ocm_pin=-1, int occ_pin=-1, float analog_vref=5.0f, float kp=0.0f, float ki=0.0f, float kd=0.0f, DriverType driver=DriverType::TB9051)'],['../class_motor_controller.html#abf6a2bdab53cefcfa0a77b44a3772d66',1,'MotorController::MotorController(int pwm1_pin, int pwm2_pin=-1, int en_pin=-1, int enb_pin=-1, int diag_pin=-1, int ocm_pin=-1, int occ_pin=-1, float analog_vref=5.0f, PIDConstants consts={0, 0, 0}, DriverType driver=DriverType::TB9051)']]],
+  ['motorcontroller_2ehpp_24',['MotorController.hpp',['../_motor_controller_8hpp.html',1,'']]]
+];
