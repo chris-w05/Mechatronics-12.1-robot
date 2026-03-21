@@ -1,0 +1,11 @@
+<map id="MotorController::setSpeed" name="MotorController::setSpeed">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,46,179,72"/>
+<area shape="rect" id="Node000002" href="$class_motor_controller.html#ae7f7a697a2d194eba4cba3fa5a395e1f" title=" " alt="" coords="227,5,400,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,43,214,40,209,42,180,48"/>
+<area shape="rect" id="Node000003" href="$class_motor_controller.html#aca9d68ab9cb3b64e6b2b33ff93f79664" title=" " alt="" coords="227,71,400,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,69,214,76,208,77,179,74"/>
+<area shape="rect" id="Node000004" href="$class_motor_controller.html#a28b151f09bca93a7c300868d2947667f" title=" " alt="" coords="451,53,601,78"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="400,78,433,77,439,76,400,83"/>
+<area shape="rect" id="Node000005" href="$class_motor_controller.html#ae86064872aabbe0df6df0c51828f3fd9" title=" " alt="" coords="448,102,604,128"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="400,98,435,104,430,104,400,103"/>
+</map>

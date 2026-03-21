@@ -1,0 +1,9 @@
+<map id="DualMotorController" name="DualMotorController">
+<area shape="rect" id="Node000001" title=" " alt="" coords="79,197,216,223"/>
+<area shape="rect" id="Node000002" href="$class_l298_n_motor_driver_mega.html" title=" " alt="" coords="5,80,165,106"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,119,103,146,116,172,136,197,131,197,112,175,98,148,91,124"/>
+<area shape="rect" id="Node000003" href="$class_p_i_d_controller.html" title=" " alt="" coords="188,80,288,106"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="224,118,183,175,161,199,158,194,179,172,219,120"/>
+<area shape="rect" id="Node000004" href="$class_p_i_d.html" title=" " alt="" coords="216,5,260,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="240,44,241,81,236,79,237,49"/>
+</map>

@@ -1,0 +1,25 @@
+var class_sharp_g_p2_y0_a51 =
+[
+    [ "SharpGP2Y0A51", "class_sharp_g_p2_y0_a51.html#a17d151c28b61bcd6d4434e66d20d7d9f", null ],
+    [ "adcToVoltage", "class_sharp_g_p2_y0_a51.html#a4bea79a192282ae5a5890d3f2aab8210", null ],
+    [ "getDistanceCm", "class_sharp_g_p2_y0_a51.html#a03ef26c571304eff042485cf2f38bcfb", null ],
+    [ "getVoltage", "class_sharp_g_p2_y0_a51.html#a56bbd3028ef1351d5dffe0b755e79076", null ],
+    [ "init", "class_sharp_g_p2_y0_a51.html#a69f915992eb3779d66e8f57f01ce9932", null ],
+    [ "readAdcRaw", "class_sharp_g_p2_y0_a51.html#a1e99aff82db362d908c683e3ff8cd76a", null ],
+    [ "readVoltageRaw", "class_sharp_g_p2_y0_a51.html#a5c043dee546d9eb940a74f20e7d9fb30", null ],
+    [ "setEMAalpha", "class_sharp_g_p2_y0_a51.html#a44b5620c069baff126a15fb9d3fdf146", null ],
+    [ "setRangeCm", "class_sharp_g_p2_y0_a51.html#abeece379750d2ccd4c0b275f197163ff", null ],
+    [ "update", "class_sharp_g_p2_y0_a51.html#af5722cc253af28308c465b106089901c", null ],
+    [ "_adcMax", "class_sharp_g_p2_y0_a51.html#a857e7231145d7d0291528465ffb2f035", null ],
+    [ "_alpha", "class_sharp_g_p2_y0_a51.html#a2b00b23c1972e417527d4e7ec6fb847b", null ],
+    [ "_b", "class_sharp_g_p2_y0_a51.html#a66ca1b69d976155d5d2f6c2518226d68", null ],
+    [ "_current_distance", "class_sharp_g_p2_y0_a51.html#aed891e22591f0c9441bf1714227879cf", null ],
+    [ "_isCalibrated", "class_sharp_g_p2_y0_a51.html#aff10fff724ae81993be8b10fd89316cc", null ],
+    [ "_k", "class_sharp_g_p2_y0_a51.html#a8960f8a4bc95637f41c42f209a20b33e", null ],
+    [ "_maxRangeCm", "class_sharp_g_p2_y0_a51.html#af03fb7625b45ca712abc4bf2c89ba5a7", null ],
+    [ "_minRangeCm", "class_sharp_g_p2_y0_a51.html#a5ca1707f98dcc9fe567c9642fcf40606", null ],
+    [ "_pin", "class_sharp_g_p2_y0_a51.html#a4952ac96c1f63a01174c17c5bd7096a3", null ],
+    [ "_voltageEMA", "class_sharp_g_p2_y0_a51.html#a26a3392949409532d3610b263f5f80a0", null ],
+    [ "_vref", "class_sharp_g_p2_y0_a51.html#a0a7ef89e007dfd4228213e9378c6136f", null ],
+    [ "getDistanceFromVoltage", "class_sharp_g_p2_y0_a51.html#a861876c6dc1201523313152a80d1ac95", null ]
+];

@@ -1,0 +1,16 @@
+<map id="Miner::update" name="Miner::update">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,132,106,158"/>
+<area shape="rect" id="Node000002" href="$class_miner.html#acfbf4c865a8dc5b3b96e9e5322a51ae2" title=" " alt="" coords="188,56,278,82"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,129,153,98,186,87,182,90,155,103,87,134"/>
+<area shape="rect" id="Node000004" href="$class_miner.html#a437a0fdc0f9be6b0ffc27da25ab928b1" title=" " alt="" coords="575,107,746,132"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="106,145,292,151,409,149,527,142,589,136,584,136,528,147,409,155,291,156,106,151"/>
+<area shape="rect" id="Node000005" href="$class_miner.html#a26f3ff0ceeae35f37c087bbb17767f17" title=" " alt="" coords="360,107,527,132"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="106,139,345,123,344,129,106,144"/>
+<area shape="rect" id="Node000006" href="$class_miner.html#a1e9e4d2f46296b496c59993039786eb4" title=" " alt="" coords="154,208,312,234"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="86,156,155,186,187,201,181,202,153,191,85,161"/>
+<area shape="rect" id="Node000003" href="$class_miner.html#a9e800360111af4b673ba51eab5eace0a" title=" " alt="" coords="363,5,524,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="277,56,375,34,370,36,279,61"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="278,69,391,77,528,92,584,103,579,103,527,97,391,82,278,74"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="278,77,375,102,370,103,278,82"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="528,117,562,119,557,120,528,122"/>
+</map>

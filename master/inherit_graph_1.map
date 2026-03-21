@@ -1,0 +1,45 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$class_auto_step.html" title=" " alt="" coords="5,499,81,524"/>
+<area shape="rect" id="Node000001" href="$class_accelerate_straight_line.html" title=" " alt="" coords="129,5,282,31"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="43,483,50,385,64,253,75,187,89,126,106,75,127,40,143,29,140,34,131,44,111,78,94,127,81,188,70,254,55,386,48,484"/>
+<area shape="rect" id="Node000002" href="$class_advance_cycle_step.html" title=" " alt="" coords="139,55,272,80"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="44,483,52,394,68,277,92,165,108,121,127,90,143,79,140,83,131,93,113,123,97,166,73,278,57,395,49,483"/>
+<area shape="rect" id="Node000003" href="$class_composite_step.html" title=" " alt="" coords="150,104,261,130"/>
+<area shape="poly" id="edge3_Node000000_Node000003" title=" " alt="" coords="45,483,54,403,71,301,95,204,110,166,127,139,151,124,148,129,131,143,115,168,100,205,76,302,60,404,50,483"/>
+<area shape="rect" id="Node000004" href="$class_deferred_step.html" title=" " alt="" coords="156,153,254,179"/>
+<area shape="poly" id="edge4_Node000000_Node000004" title=" " alt="" coords="41,483,43,423,53,344,64,302,79,261,100,223,127,188,140,178,157,172,154,176,143,183,131,192,105,226,84,263,69,304,59,345,48,423,46,483"/>
+<area shape="rect" id="Node000005" href="$class_delay_step.html" title=" " alt="" coords="164,203,246,228"/>
+<area shape="poly" id="edge5_Node000000_Node000005" title=" " alt="" coords="42,483,47,431,60,365,85,297,104,266,127,238,144,226,165,219,162,223,146,230,130,241,108,269,90,300,65,367,52,432,48,483"/>
+<area shape="rect" id="Node000006" href="$class_detect_block_step.html" title=" " alt="" coords="145,252,266,278"/>
+<area shape="poly" id="edge6_Node000000_Node000006" title=" " alt="" coords="45,483,52,440,67,387,91,334,107,309,127,287,146,276,143,280,130,291,111,312,95,336,72,389,57,441,50,484"/>
+<area shape="rect" id="Node000007" href="$class_drive_arc.html" title=" " alt="" coords="169,301,242,327"/>
+<area shape="poly" id="edge7_Node000000_Node000007" title=" " alt="" coords="48,483,58,449,74,410,97,370,127,336,147,324,171,317,167,321,149,329,130,340,101,373,79,412,63,451,53,484"/>
+<area shape="rect" id="Node000008" href="$class_drive_distance.html" title=" " alt="" coords="153,351,258,376"/>
+<area shape="poly" id="edge8_Node000000_Node000008" title=" " alt="" coords="54,483,83,433,103,408,127,385,154,373,151,377,130,390,107,411,87,436,59,485"/>
+<area shape="rect" id="Node000009" href="$class_drive_line_to_wall_step.html" title=" " alt="" coords="134,400,276,426"/>
+<area shape="poly" id="edge9_Node000000_Node000009" title=" " alt="" coords="64,486,93,459,127,435,154,424,150,428,130,439,96,463,69,488"/>
+<area shape="rect" id="Node000010" href="$class_drive_radius_angle.html" title=" " alt="" coords="142,449,268,475"/>
+<area shape="poly" id="edge10_Node000000_Node000010" title=" " alt="" coords="94,494,162,473,159,478,97,498"/>
+<area shape="rect" id="Node000011" href="$class_drive_radius_at_velocity.html" title=" " alt="" coords="129,499,282,524"/>
+<area shape="poly" id="edge11_Node000000_Node000011" title=" " alt="" coords="94,509,130,510,126,513,98,514"/>
+<area shape="rect" id="Node000012" href="$class_drive_to_wall_step.html" title=" " alt="" coords="146,548,264,574"/>
+<area shape="poly" id="edge12_Node000000_Node000012" title=" " alt="" coords="95,525,163,546,159,549,97,530"/>
+<area shape="rect" id="Node000013" href="$class_fire_step.html" title=" " alt="" coords="170,597,240,623"/>
+<area shape="poly" id="edge13_Node000000_Node000013" title=" " alt="" coords="66,533,96,560,130,584,172,601,167,604,127,589,93,564,67,538"/>
+<area shape="rect" id="Node000014" href="$class_follow_line_step.html" title=" " alt="" coords="150,647,260,672"/>
+<area shape="poly" id="edge14_Node000000_Node000014" title=" " alt="" coords="56,536,87,587,107,612,130,633,152,646,147,648,127,638,103,615,83,590,57,541"/>
+<area shape="rect" id="Node000015" href="$class_index_block_step.html" title=" " alt="" coords="149,696,262,722"/>
+<area shape="poly" id="edge15_Node000000_Node000015" title=" " alt="" coords="51,537,63,572,79,611,101,650,130,683,151,696,146,698,127,687,97,653,74,613,58,574,51,543"/>
+<area shape="rect" id="Node000016" href="$class_mine_block_step.html" title=" " alt="" coords="151,745,260,771"/>
+<area shape="poly" id="edge16_Node000000_Node000016" title=" " alt="" coords="47,537,57,582,72,634,95,687,111,711,130,732,153,747,148,749,127,736,107,714,91,689,67,636,52,583,47,542"/>
+<area shape="rect" id="Node000017" href="$class_parallel_step.html" title=" " alt="" coords="160,795,251,820"/>
+<area shape="poly" id="edge17_Node000000_Node000017" title=" " alt="" coords="45,537,52,591,65,656,90,723,108,754,131,782,144,792,162,800,157,802,141,796,127,785,104,757,85,726,60,658,47,592,45,543"/>
+<area shape="rect" id="Node000018" href="$class_place_on_table_step.html" title=" " alt="" coords="141,844,270,870"/>
+<area shape="poly" id="edge18_Node000000_Node000018" title=" " alt="" coords="43,537,48,600,59,678,69,719,84,760,105,797,131,831,145,843,140,844,127,835,100,800,79,762,64,721,53,679,43,600,43,543"/>
+<area shape="rect" id="Node000019" href="$class_reject_block_step.html" title=" " alt="" coords="146,893,265,919"/>
+<area shape="poly" id="edge19_Node000000_Node000019" title=" " alt="" coords="47,537,60,619,76,721,100,818,115,855,131,880,148,894,143,895,127,884,110,857,95,819,71,722,54,620,47,543"/>
+<area shape="rect" id="Node000020" href="$class_replan_step.html" title=" " alt="" coords="161,943,250,968"/>
+<area shape="poly" id="edge20_Node000000_Node000020" title=" " alt="" coords="46,537,57,628,73,745,97,857,113,900,131,930,144,940,163,950,157,950,142,945,127,933,108,902,92,858,68,746,52,629,46,543"/>
+<area shape="rect" id="Node000021" href="$class_strategy_controller_step.html" title=" " alt="" coords="129,992,282,1018"/>
+<area shape="poly" id="edge21_Node000000_Node000021" title=" " alt="" coords="46,537,55,637,70,769,81,835,94,896,111,945,131,979,144,992,139,991,127,983,106,948,89,897,75,836,64,770,50,638,46,542"/>
+</map>
