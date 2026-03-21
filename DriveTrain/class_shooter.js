@@ -1,0 +1,45 @@
+var class_shooter =
+[
+    [ "AUTOFIRE_STATE", "class_shooter.html#ad94d92a792c28452980036352865088a", [
+      [ "WAITFORBLOCK", "class_shooter.html#ad94d92a792c28452980036352865088aad232a92851a87a579e97f4a5c6d87430", null ],
+      [ "HASBLOCK", "class_shooter.html#ad94d92a792c28452980036352865088aa600dead4d4abf869440b24c5b1eb5a67", null ],
+      [ "FIRE", "class_shooter.html#ad94d92a792c28452980036352865088aab089a457f62ea75667f26b8c8bd85b20", null ]
+    ] ],
+    [ "Mode", "class_shooter.html#a5291f320a5163784866d707adb81b889", [
+      [ "POSITION", "class_shooter.html#a5291f320a5163784866d707adb81b889aa0be16d3dcb7e2ae0eddac907ea3fc9a", null ],
+      [ "VELOCITY", "class_shooter.html#a5291f320a5163784866d707adb81b889ada1b76e7bb6d2da132eda170d676a9b0", null ],
+      [ "OFF", "class_shooter.html#a5291f320a5163784866d707adb81b889a3d52a2ecd4c5f9b327bf4f48301e790b", null ],
+      [ "TEST", "class_shooter.html#a5291f320a5163784866d707adb81b889a22a5536f72d622c648a82f05d8c079b5", null ],
+      [ "AUTO", "class_shooter.html#a5291f320a5163784866d707adb81b889ae0bc7d673a4a6f308b5ba931554b59ad", null ]
+    ] ],
+    [ "Shooter", "class_shooter.html#a6ffacba16a67829d221a9ba0083f3973", null ],
+    [ "autoFire", "class_shooter.html#ab9be933154c9000f6e8c9df45bb377fc", null ],
+    [ "fire", "class_shooter.html#a5fe71bafea8937d95cb42ce79127d059", null ],
+    [ "fire", "class_shooter.html#ae6f607d2eecf450325dee40ceebc337c", null ],
+    [ "fireHardSet", "class_shooter.html#a99266d5fb475a9a65f37819b811ce363", null ],
+    [ "handleAutoFire", "class_shooter.html#aba382aed6deb0a552a92f315351ac5e4", null ],
+    [ "hold", "class_shooter.html#ad854b01bf4c4344f3e99dcc0efe86e68", null ],
+    [ "holdPosition", "class_shooter.html#a42e47c263638538629b4d8ff240c168c", null ],
+    [ "init", "class_shooter.html#a0bc5222a774efac0dc81e77d2cd0ca72", null ],
+    [ "nextFirePosition", "class_shooter.html#a30a31145ab7b3148a0adb2d0c0152713", null ],
+    [ "nextPrimePosition", "class_shooter.html#a1ed9592886f4679cb2805c9857defcf9", null ],
+    [ "prime", "class_shooter.html#a1e54a1ee73aba3f35917bc0866a62196", null ],
+    [ "stop", "class_shooter.html#ad6965b56c1412488767a25f5069c2979", null ],
+    [ "stopFiring", "class_shooter.html#a2546baa346497764c2eb3ac6d153aa46", null ],
+    [ "update", "class_shooter.html#a9509c1da04e8e4128e1071b9b888eb32", null ],
+    [ "_blockDetectedTime", "class_shooter.html#a64fedb77e2ae82b408d5f53f4fa5a44e", null ],
+    [ "_cycleStartTime", "class_shooter.html#ae0ab46e492d28e3cac119e82011f4e30", null ],
+    [ "_fireTime", "class_shooter.html#a43d3f679f7503f346738ae4a26c8b398", null ],
+    [ "_mode", "class_shooter.html#a106b1a176be649ace09b7dbba32e85fc", null ],
+    [ "_onStartTime", "class_shooter.html#ab7175557fbac54a8dad6fc4d876935e0", null ],
+    [ "acceleration", "class_shooter.html#a81b1876c91481d09684ffc86b554e0fd", null ],
+    [ "autoFire_state", "class_shooter.html#a2e5dbba610bbcd0cc563d0058ceec4ae", null ],
+    [ "block_switch", "class_shooter.html#a9c39443d4d1f15b22fe3515e9125c059", null ],
+    [ "encoder", "class_shooter.html#aab7346009503cb1953d8b316c19e7549", null ],
+    [ "last_switch_value", "class_shooter.html#a39bce98995512d0a9f922628c6d0a054", null ],
+    [ "motor", "class_shooter.html#a3b598cd7dda893db5c61884295750e9a", null ],
+    [ "position", "class_shooter.html#a1b66475fedfa95874d61dbdafa05b068", null ],
+    [ "targetPosition", "class_shooter.html#ad16319e93112579df1aa24d04997c92c", null ],
+    [ "targetVelocity", "class_shooter.html#a9f0e568d4c548d7b91ff6d751970eed3", null ],
+    [ "velocity", "class_shooter.html#a3b6ecd61d61bb259d51e39e15d59ff75", null ]
+];

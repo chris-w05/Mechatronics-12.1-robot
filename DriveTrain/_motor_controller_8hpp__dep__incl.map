@@ -1,0 +1,23 @@
+<map id="src/Devices/MotorController.hpp" name="src/Devices/MotorController.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,214,31"/>
+<area shape="rect" id="Node000002" href="$_robot_8hpp.html" title=" " alt="" coords="140,241,244,267"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,48,89,78,81,116,81,155,85,174,93,192,105,207,121,220,156,240,151,241,118,224,101,211,89,195,80,176,75,156,76,115,84,76,98,43"/>
+<area shape="rect" id="Node000005" href="$_shooter_8hpp.html" title=" " alt="" coords="98,79,286,105"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="135,39,181,78,176,79,135,44"/>
+<area shape="rect" id="Node000003" href="$_strategy_controller_step_8hpp.html" title=" " alt="" coords="20,315,202,356"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="171,277,133,317,129,312,166,279"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html" title=" " alt="" coords="227,322,323,348"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="217,275,265,322,259,322,215,280"/>
+<area shape="poly" id="edge12_Node000005_Node000002" title=" " alt="" coords="145,114,124,131,105,154,99,173,105,192,116,207,130,220,163,240,157,241,127,224,112,211,100,195,94,173,100,151,120,127,148,110"/>
+<area shape="rect" id="Node000006" href="$_planner_8hpp.html" title=" " alt="" coords="473,160,661,186"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="265,106,511,158,507,161,264,111"/>
+<area shape="rect" id="Node000008" href="$_delay_step_8hpp.html" title=" " alt="" coords="115,153,269,193"/>
+<area shape="poly" id="edge8_Node000005_Node000008" title=" " alt="" coords="193,118,195,153,190,151,191,123"/>
+<area shape="rect" id="Node000009" href="$_fire_step_8hpp.html" title=" " alt="" coords="294,153,448,193"/>
+<area shape="poly" id="edge10_Node000005_Node000009" title=" " alt="" coords="234,109,329,151,324,153,234,114"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="493,192,245,245,243,239,496,187"/>
+<area shape="rect" id="Node000007" href="$_planner_8cpp.html" title=" " alt="" coords="473,241,661,267"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="569,200,569,242,565,239,565,204"/>
+<area shape="poly" id="edge9_Node000008_Node000002" title=" " alt="" coords="194,207,195,242,190,240,191,211"/>
+<area shape="poly" id="edge11_Node000009_Node000002" title=" " alt="" coords="310,201,221,243,218,238,315,199"/>
+</map>
