@@ -16,9 +16,12 @@ static const uint16_t RIGHT_ENCODER_B = 21;
 
 const TB9051Pins drivePins = {
     //Drive motor pins
+    //Left motor
     .m1PWM = 6,
     .m1Direction1 = 31,
     .m1Direction2 = 33,
+
+    //Right motor
     .m2PWM = 7,
     .m2Direction1 = 35,
     .m2Direction2 = 37};
@@ -28,6 +31,8 @@ const TB9051Pins shooterPins = {
     .m1PWM = 2,
     .m1Direction1 = 39,
     .m1Direction2 = 41,
+
+    //These are unused
     .m2PWM = 255,
     .m2Direction1 = 255,
     .m2Direction2 = 255
@@ -39,7 +44,7 @@ static const uint16_t SHOOTER_ENCODER_B = 26;
 // Servo pins
 static const uint16_t MINER_SERVO_PIN = 11;
 
-//Serial pins
+//Serial pins - Xbee coms
 static const uint16_t SERIAL_RX = 16;
 static const uint16_t SERIAL_TX = 17;
 static const long SERIAL_BAUD_RATE = 115200;
@@ -48,7 +53,7 @@ static const long SERIAL_BAUD_RATE = 115200;
 static const uint16_t HALL_EFFECT_PIN = -1;
 static const uint16_t LINE_SENSOR_PINS[8] = {28, 30, 32, 34, 36, 38, 40, 42}; 
 static const uint16_t COLOR_SENSOR_START_PIN = -1; // CHANGE ME
-static const uint16_t DISTANCE_SENSOR_PIN = A4; // CHANGE ME
+static const uint16_t DISTANCE_SENSOR_PIN = A4;
 
 static const uint16_t SHOOTER_LIMIT_PIN = 27;
 
@@ -61,7 +66,7 @@ static const int MAX_SUBSYSTEMS = 10;
 
 static const int TICKS_PER_REV = 64; //Number of ticks per motor revolution
 static const float DRIVETRAIN_WIDTH = 9.449; // inches
-static const float DRIVETRAIN_MOTOR_RATIO = 50.0 * 30.0 / 45.0;
+static const float DRIVETRAIN_MOTOR_RATIO =  50.0 * 30.0 / 45.0; /*Motor gearbox ratio * driven teeth/driving teeth*/
 static const float DRIVETRAIN_WHEEL_DIAMETER = 3.9192; // in
 static const float DRIVETRAIN_TICKS_TO_IN = PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV);
 
@@ -99,47 +104,36 @@ static const int SHOOTER_FIRE_TIME = 800; //Time after shooter firing before pri
  */
 static const int stallSignal = 120;
 static const int maxSignal = 400;
-static const float MAXVELOCITY = 45.0; //in/s, velocity of the robot when drive motors are set to their maximum power
-static const float a = ( maxSignal- stallSignal)/(MAXVELOCITY);
+static const float MAXVELOCITY = 27.0; //in/s, velocity of the robot when drive motors are set to their maximum power
 
-/**
- * FeedForward control for drivetrain - this gives an approximate expectiation of required motor signal for a given velocity
- */
-static constexpr float drivedFF( float dtarget){
-    return 5 * dtarget;
-    // return target * 10;
-    // return a * target + stallSignal;
-}
-
-
-static const float DRIVE_LINEFOLLOW_GAIN = 3.8;
 static const float DRIVE_LINEFOLLOW_VELOCITY_GAIN = 6;
 
-static const PIDConstants DRIVE_DISTANCE_PID = {
-    .kp = -20.0,
+static const PIDConstants DRIVE_LINEFOLLOW_GAINS = {
+    .kp = 3.8,
     .ki = 0,
+    .kd = 0
+};
+
+static const float DRIVE_LINEFOLLOW_GAIN = DRIVE_LINEFOLLOW_GAINS.kp;
+
+static const PIDConstants DRIVE_DISTANCE_PID = {
+    .kp = 20.0, 
+    .ki = 0, 
     .kd = 8};
 
 // drivetrain
 static const PIDConstants DRIVE_L_PID = {
     .kp = 200.0,
     .ki = 280,
-    .kd = -8};
-// static const PIDConstants DRIVE_L_PID = {
-//     .kp = 15.0,
-//     .ki = 00,
-//     .kd = -20};
+    .kd = 8
+};
 
 static const PIDConstants DRIVE_R_PID = DRIVE_L_PID;
-// {
-//     .kp = 30.0,
-//     .ki = 2,
-//     .kd = .2
-// };
 
 static const int SHOOTER_STALL_SIGNAL = 60;
+
 /**
- * FeedForward control for shoooter - overcomes frictional forces
+ * FeedForward control for shoooter - overcomes forces from rubber bands
  * */
 static float shooterFF(float measurement, float target)
 {
@@ -158,7 +152,7 @@ static float shooterFF(float measurement, float target)
 static const PIDConstants SHOOTER_POSITION_PID = {
     .kp = 6000.0,
     .ki = 00.0,
-    .kd = -1000.0
+    .kd = 1000.0
 };
 
 static const PIDConstants SHOOTER_VELOCITY_PID = {

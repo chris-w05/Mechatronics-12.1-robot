@@ -27,10 +27,12 @@ class Drive : public Subsystem {
         STRAIGHT,              ///< Closed-loop straight-line drive
         ARC,                   ///< Closed-loop arc/curve drive
         STOPPED,               ///< Actively braking (target velocity = 0)
-        LINEFOLLOWING,         ///< Closed-loop line following via sensor
-        LINEFOLLOWING_HARDSET, ///< Open-loop line following via raw motor signal
+        LINEFOLLOWING,         ///< Line following by commanding velocities
+        LINEFOLLOWING_HARDSET, ///< Line following using motor signals
+        LINEFOLLOWING_DISTANCE,///< Simulataneous line following and distance follwing using motor signals
         HARDSET,               ///< Open-loop: raw left/right motor signals
         DISTANCE               ///< Holds a fixed distance from a wall
+
     };
 
 private:
@@ -70,7 +72,10 @@ private:
     // =========================================================================
     MODE              _mode            = HARDSET;
     RamseteController _ramsete;               ///< Default tuning: b = 0.006, zeta = 0.9
+    PIDController     _distanceSensorPID;     ///< PID controller for driving using distance sensor - This is at the drive level so its signal can be added to _lineSensorPID's signal
+    PIDController     _lineSensorPID;         ///< PID controller for line following
     unsigned long     _lastTelemetryMs = 0;   ///< Throttle telemetry output to 20 Hz
+    bool              _resetTargetPosBetweenSegments    = false;    ///< Changes whether syncTargetPositions() is called between trajectories
 
     // =========================================================================
     // Internal helpers
@@ -108,15 +113,20 @@ public:
     /** Called once on startup. Initializes sensors and resets odometry. */
     void init() override
     {
-        _odometry.init({0, 0, 0});
-        _desiredOdometry.init({0, 0, 0});
+        //Robot starts with odometry point 2 in from wall, in the middle of the start corral
+        _odometry.init({2, 6, 0});
+        _desiredOdometry.init({2, 6, 0});
         _leftEncoder.init();
         _rightEncoder.init();
         _leftEncoder.flipDirection();
         _motorController.init();
         _lineSensor.init();
         _lastTime = micros();
+        _distanceSensorPID.set(DRIVE_DISTANCE_PID);
+        _lineSensorPID.set(DRIVE_LINEFOLLOW_GAINS);
         Serial.println("Drivetrain initialized");
+        
+        _ramsete.disable();
     }
 
     /** Called every loop iteration. Updates sensors and applies control. */
@@ -133,9 +143,9 @@ public:
         // Gate expensive peripheral reads to the modes that actually use them.
         // The QTR RC line sensor blocks for up to its timeout (default 1000 µs) per read;
         // the distance sensor adds ~100 µs for analogRead().
-        if (_mode == LINEFOLLOWING || _mode == LINEFOLLOWING_HARDSET)
+        if (_mode == LINEFOLLOWING || _mode == LINEFOLLOWING_HARDSET || _mode == LINEFOLLOWING_DISTANCE)
             _lineSensor.update();
-        if (_mode == DISTANCE)
+        if (_mode == DISTANCE || _mode == LINEFOLLOWING_DISTANCE)
             _distSensor.update();
 
         float leftPos  = _leftEncoder.getCount()    * DRIVETRAIN_TICKS_TO_IN;
@@ -190,7 +200,7 @@ public:
                 // Ramsete correction toward the feedforward pose
                 float vCmd = vRef, wCmd = wRef;
                 if (_ramsete.isEnabled()) {
-                    auto cmd = _ramsete.step(
+                    RamseteController::Cmd cmd = _ramsete.step(
                         _desiredOdometry.getPose(), vRef, wRef,
                         _odometry.getPose());
                     vCmd = cmd.v;
@@ -236,6 +246,21 @@ public:
                 break;
             }
 
+            case LINEFOLLOWING_DISTANCE:{
+                //Distance sensor sets the base signal for control:
+                float dist = _distSensor.getDistanceCm();
+                float signalBase = _distanceSensorPID.update(dist, _targetDistance);
+                _signalL = signalBase;
+                _signalR = signalBase;
+                //Line sensor applies steering correction to distance sensor commands
+                float correction = _lineSensor.getPosition();
+                float correction_signal = _lineSensorPID.update(correction, 0);     //Scale signal by how fast the robot is moving
+                _motorController.setPower(
+                    _signalL + (int)(correction_signal / LINESENSOR_LR_RATIO),      //Accounts for offcenter position of line sensor
+                    _signalR - (int)correction_signal);
+                break;
+            }
+
             case HARDSET:
                 _motorController.setPower(_signalL, _signalR);
                 break;
@@ -268,10 +293,15 @@ public:
     {
         _mode = STRAIGHT;
         if (resetPID) _motorController.resetPID();
-        syncTargetPositions();
+        if (_resetTargetPosBetweenSegments)
+        {
+            syncTargetPositions();
+        }
         _targetSpeedL = speed;
         _targetSpeedR = speed;
     }
+
+
 
     /**
      * Drive straight using raw (open-loop) motor signals. No encoder feedback.
@@ -305,7 +335,10 @@ public:
     {
         _mode = MODE::ARC;
         _motorController.makeLinear();
-        syncTargetPositions();
+        if (_resetTargetPosBetweenSegments)
+        {
+            syncTargetPositions();
+        }
         const float halfL = DRIVETRAIN_WIDTH / 2.0f;
         _targetSpeedL = omega_rad_s * (radius + halfL);
         _targetSpeedR = omega_rad_s * (radius - halfL);
@@ -322,7 +355,9 @@ public:
     {
         _mode = MODE::ARC;
         if (resetPID) _motorController.resetPID();
-        syncTargetPositions();
+        if (_resetTargetPosBetweenSegments){            
+            syncTargetPositions();
+        }
 
         const float halfL = DRIVETRAIN_WIDTH / 2.0f;
 
@@ -347,7 +382,10 @@ public:
     {
         _mode = MODE::ARC;
         _motorController.makeLinear();
-        syncTargetPositions();
+        if (_resetTargetPosBetweenSegments)
+        {
+            syncTargetPositions();
+        }
         const float halfL = DRIVETRAIN_WIDTH / 2.0f;
         _targetSpeedL = omega_rad_s * (radius - halfL);
         _targetSpeedR = omega_rad_s * (radius + halfL);
@@ -361,7 +399,10 @@ public:
     {
         _mode = MODE::LINEFOLLOWING;
         _motorController.makeLinear();
-        syncTargetPositions();
+        if (_resetTargetPosBetweenSegments)
+        {
+            syncTargetPositions();
+        }
         _speedL = speed;
         _speedR = speed;
     }
@@ -387,6 +428,11 @@ public:
         _targetDistance = distance;
     }
 
+    void approachAlongLine(float distance){
+        _mode           = MODE::LINEFOLLOWING_DISTANCE;
+        _targetDistance = distance;
+    }
+
     /**
      * Actively stop the robot by driving target velocity to zero.
      * For an immediate power-off stop, use hardSetSpeed(0) instead.
@@ -405,6 +451,18 @@ public:
     void setDriveMotorPIDConstant(float value, int index)
     {
         _motorController.setPIDConstant(value, index);
+    }
+
+    /**
+     * Toggle whether the ramsete controller is enabled/disabled
+     */
+    void toggleRamseteCorrection(){
+        if(_ramsete.isEnabled()){
+            _ramsete.disable();
+        }
+        else{
+            _ramsete.enable();
+        }
     }
 
     // =========================================================================

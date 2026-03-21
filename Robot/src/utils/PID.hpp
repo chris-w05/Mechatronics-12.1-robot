@@ -89,7 +89,7 @@ public:
         _derivative = dmeasurement;
 
         float output =
-            _kp * error + _kd * _derivative + _ki * _integral;
+            _kp * error - _kd * _derivative + _ki * _integral;
 
         // Save state
         _lastMeasurement = measurement;
@@ -171,6 +171,10 @@ protected:
 class PIDController : public PID
 {
 public:
+    PIDController() : PID(0,0,0), _kff(0.0f), _ffFunc(nullptr)
+    {
+    }
+
     // Constructors (unchanged behavior)
     PIDController(float kp, float ki, float kd)
         : PID(_kp, _ki, _kd), _kff(0.0f), _ffFunc(nullptr){
@@ -214,6 +218,42 @@ public:
         _kiFunc(funcs.ki),
         _kdFunc(funcs.kd)
     {}
+
+    /**
+     * Set the values for all PID constants
+     */
+    void set(PIDConstants consts) { 
+        _kp = consts.kp;
+        _ki = consts.ki;
+        _kd = consts.kd;
+        _iMin = 400 / consts.ki;
+        _iMin = -400 / consts.ki;
+    }
+
+    /**
+     * Set the parameters of the PID controller using the value of the parameter and which one to set (0, 1, 2) for kp ki kd
+     */
+    void set(float value, short index)
+    {
+        switch (index)
+        {
+        case 0:
+            _kp = value;
+            Serial.println(_kp);
+            Serial.println("KP");
+            break;
+        case 1:
+            _ki = value;
+            Serial.println(_ki);
+            Serial.println("KI");
+            break;
+        case 2:
+            _kd = value;
+            Serial.println(_kd);
+            Serial.println("KD");
+            break;
+        }
+    }
 
     /**
      * Gets signal from controller. PIDConcontroller's update(...) differs from PID's update because of its implementation of a feedforward function. 
@@ -401,7 +441,7 @@ private:
         {
             kdNonlinear = _kdFunc(derivative);
         }
-        float signal = _kp * error + _kd * (derivative - dSetpoint) + _ki * integral + 
+        float signal = _kp * error - _kd * (derivative - dSetpoint) + _ki * integral + 
             feedforward + dFeedForward + kpNonlinear + kiNonlinear + kdNonlinear;
         filterSum += signal;
         filterSum -= values[filterIndex];
