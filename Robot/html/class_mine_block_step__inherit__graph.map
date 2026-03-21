@@ -1,0 +1,5 @@
+<map id="MineBlockStep" name="MineBlockStep">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,115,105"/>
+<area shape="rect" id="Node000002" href="$class_auto_step.html" title=" " alt="" coords="22,5,98,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,45,63,79,57,78,58,48"/>
+</map>

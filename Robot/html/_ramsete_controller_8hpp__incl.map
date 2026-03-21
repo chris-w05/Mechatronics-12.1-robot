@@ -1,0 +1,12 @@
+<map id="src/utils/RamseteController.hpp" name="src/utils/RamseteController.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,210,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="36,226,112,252"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,30,86,153,79,211,74,210,81,152,103,33"/>
+<area shape="rect" id="Node000003" href="$_odometry_8hpp.html" title=" " alt="" coords="111,79,240,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="119,29,156,67,151,68,119,34"/>
+<area shape="rect" id="Node000004" href="$_encoder_wrapper_8hpp.html" title=" " alt="" coords="95,153,288,178"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="179,103,188,138,183,137,177,107"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="174,178,108,220,106,216,169,179"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="152,226,231,252"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="193,177,194,212,189,209,190,180"/>
+</map>

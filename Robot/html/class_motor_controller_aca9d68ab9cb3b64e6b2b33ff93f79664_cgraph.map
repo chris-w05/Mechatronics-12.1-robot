@@ -1,0 +1,7 @@
+<map id="MotorController::setSpeedTB9051" name="MotorController::setSpeedTB9051">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,179,64"/>
+<area shape="rect" id="Node000002" href="$class_motor_controller.html#a28b151f09bca93a7c300868d2947667f" title=" " alt="" coords="230,5,380,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,31,217,28,212,29,179,36"/>
+<area shape="rect" id="Node000003" href="$class_motor_controller.html#ae86064872aabbe0df6df0c51828f3fd9" title=" " alt="" coords="227,55,383,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,51,214,57,209,57,179,56"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="MotorController::update" name="MotorController::update">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,163,80"/>
+<area shape="rect" id="Node000002" href="$class_motor_controller.html#a7ef4e66c4c2471b59f9bffe13ef745f0" title=" " alt="" coords="218,5,377,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,52,226,33,222,37,144,57"/>
+<area shape="rect" id="Node000003" href="$class_motor_controller.html#a0459ba5cfeaf049e91a97333a52c7bf3" title=" " alt="" coords="213,55,382,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,65,200,67,195,68,164,70"/>
+<area shape="rect" id="Node000004" href="$class_motor_controller.html#ad6537e115b5e5e671339b13181bfc991" title=" " alt="" coords="211,104,384,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="143,78,226,99,221,101,143,84"/>
+<area shape="rect" id="Node000005" href="$class_motor_controller.html#ae7f7a697a2d194eba4cba3fa5a395e1f" title=" " alt="" coords="432,63,605,104"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="384,101,419,98,414,99,385,106"/>
+<area shape="rect" id="Node000006" href="$class_motor_controller.html#aca9d68ab9cb3b64e6b2b33ff93f79664" title=" " alt="" coords="432,128,605,169"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="385,127,419,134,414,134,384,132"/>
+<area shape="rect" id="Node000007" href="$class_motor_controller.html#a28b151f09bca93a7c300868d2947667f" title=" " alt="" coords="656,111,807,136"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="605,136,639,134,644,134,606,141"/>
+<area shape="rect" id="Node000008" href="$class_motor_controller.html#ae86064872aabbe0df6df0c51828f3fd9" title=" " alt="" coords="653,160,810,186"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="606,156,641,162,635,162,605,161"/>
+</map>
