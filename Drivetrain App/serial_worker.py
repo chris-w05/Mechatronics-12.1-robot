@@ -115,6 +115,9 @@ class SerialWorker(QtCore.QObject):
         if len(self._text_buffer) > self._max_buffer:
             self._text_buffer = self._text_buffer[-self._max_buffer:]
 
+        display_chunk = chunk.replace("\r\n", "\n").replace("\r", "\n")
+        self.raw_rx.emit(display_chunk)
+
         self._extract_packets()
 
     def _extract_packets(self):
@@ -123,15 +126,8 @@ class SerialWorker(QtCore.QObject):
         while True:
             start = buf.find("{")
             if start < 0:
-                tail = buf.strip()
-                if tail:
-                    self.raw_rx.emit(tail)
                 self._text_buffer = ""
                 return
-
-            prefix = buf[:start].strip()
-            if prefix:
-                self.raw_rx.emit(prefix)
 
             depth = 0
             in_string = False
@@ -164,7 +160,6 @@ class SerialWorker(QtCore.QObject):
                 return
 
             packet = buf[start:end + 1]
-            self.raw_rx.emit(packet)
 
             s = parse_line(packet, track_width_in=self._track_width_in)
             if s is None:

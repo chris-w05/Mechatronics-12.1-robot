@@ -76,6 +76,7 @@ public:
             if (subsystems[i]) subsystems[i]->init();
 
         Serial.println("Subsystems initialized");
+        printSerialHelp();
     }
 
     void update()
@@ -119,6 +120,7 @@ private:
     // USB serial input buffer
     // =========================================================================
     static const uint8_t USB_CMD_MAX_LEN = 48;
+    static const uint8_t CMD_TOKEN_MAX   = 16; // max chars in a command keyword
     char    _usbBuffer[USB_CMD_MAX_LEN];
     uint8_t _usbBufLen     = 0;
     bool    _usbHasCommand = false;
@@ -130,13 +132,14 @@ private:
     void reply(Stream *port, const char *msg);
     void processCommandString(const char *raw, Stream *replyPort);
     bool parseCmdWithUpToTwoFloats(const char *cmdStr,
-                                   char  &outCmd,
+                                   char  *outCmd,          // receives null-terminated token
                                    float &outP1, bool &outP1Valid,
                                    float &outP2, bool &outP2Valid);
-    void handleGlobalCommand(char cmd, Stream *replyPort);
-    void handleSerialTestCommand(char cmd, Stream *replyPort);
-    void handleSerialTestCommand(char cmd, float param, bool paramValid, Stream *replyPort);
-    void handleSerialTestCommand(char cmd, float p1, float p2, Stream *replyPort);
+    void printSerialHelp(Stream *port = nullptr);
+    void handleGlobalCommand(const char *cmd, Stream *replyPort);
+    void handleSerialTestCommand(const char *cmd, Stream *replyPort);
+    void handleSerialTestCommand(const char *cmd, float param, bool paramValid, Stream *replyPort);
+    void handleSerialTestCommand(const char *cmd, float p1, float p2, Stream *replyPort);
 };
 
 // Implementations of serial command methods — kept in a separate file

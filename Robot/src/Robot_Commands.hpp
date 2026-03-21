@@ -29,6 +29,36 @@ inline void Robot::updateUsbSerial()
     }
 }
 
+inline void Robot::printSerialHelp(Stream *port)
+{
+    reply(port, "  Robot Serial Command Reference");
+    reply(port, "--- Global (all modes) ---------------");
+    reply(port, "  Help                 : print this help");
+    reply(port, "  S                    : enter SERIAL_TEST mode");
+    reply(port, "  A                    : start autonomous routine");
+    reply(port, "  a                    : reset & restart autonomous");
+    reply(port, "  stop                 : stop all subsystems");
+    reply(port, "------- SERIAL_TEST mode -------------");
+    reply(port, "     E                 : exit to AWAIT mode");
+    reply(port, "     Mine              : start miner (runs indefinitely)");
+    reply(port, "     m                 : stop miner");
+    reply(port, "     ramsete           : toggle Ramsete heading correction");
+    reply(port, "     ReadDistance      : print distance sensor reading");
+    reply(port, "     Fire              : auto-fire shooter");
+    reply(port, "     F                 : fire shooter (manual)");
+    reply(port, "     f                 : stop firing, prime shooter");
+    reply(port, "     p                 : stop firing, hold position");
+    reply(port, "     Drive <sp>        : closed-loop drive (in/s)");
+    reply(port, "     Linefollow <d>    : follow line (optional PWM override)");
+    reply(port, "     Distance <d>      : approach wall at distance (in)");
+    reply(port, "     Approach <d>      : approach along line");
+    reply(port, "     Line <d> <sp>     : queue drive-distance step (in, in/s)");
+    reply(port, "     Turn <ang> <sp>   : queue in-place turn (rad, rad/s)");
+    reply(port, "     Arc <r> <deg>     : queue arc turn (radius in, angle deg)");
+    reply(port, "     SetPID <val> <i>  : set drive PID constant [value, index]");
+    reply(port, "======================================");
+}
+
 inline void Robot::reply(Stream *port, const char *msg)
 {
     if (port) port->println(msg);
@@ -38,12 +68,13 @@ inline void Robot::reply(Stream *port, const char *msg)
 // --- Command parsing ---------------------------------------------------------
 
 /**
- * Parse a command string of the form:  <letter> [float] [float]
+ * Parse a command string of the form:  <keyword> [float] [float]
+ * The keyword may be one or more characters (up to CMD_TOKEN_MAX-1).
  * Delimiters between tokens may be spaces, commas, colons, or tabs.
- * Returns true if at least the command character was found.
+ * Returns true if at least the command keyword was found.
  */
 inline bool Robot::parseCmdWithUpToTwoFloats(const char *cmdStr,
-                                              char  &outCmd,
+                                              char  *outCmd,
                                               float &outP1, bool &outP1Valid,
                                               float &outP2, bool &outP2Valid)
 {
@@ -61,7 +92,14 @@ inline bool Robot::parseCmdWithUpToTwoFloats(const char *cmdStr,
     while (*p && isspace((unsigned char)*p)) ++p;
     if (!*p) return false;
 
-    outCmd     = *p++;
+    // Read the full command keyword (all non-whitespace chars)
+    int tokLen = 0;
+    while (*p && !isspace((unsigned char)*p) && tokLen < CMD_TOKEN_MAX - 1)
+        outCmd[tokLen++] = *p++;
+    while (*p && !isspace((unsigned char)*p)) ++p; // skip overflow chars
+    outCmd[tokLen] = '\0';
+    if (tokLen == 0) return false;
+
     outP1Valid = outP2Valid = false;
     outP1 = outP2 = 0.0f;
 
@@ -90,178 +128,145 @@ inline void Robot::processCommandString(const char *raw, Stream *replyPort)
 
     Serial.print("RCV: "); Serial.println(raw);
 
-    char  cmdChar = 0;
+    char  cmdStr[CMD_TOKEN_MAX] = "";
     float p1 = 0.0f, p2 = 0.0f;
     bool  p1Valid = false, p2Valid = false;
 
-    if (!parseCmdWithUpToTwoFloats(raw, cmdChar, p1, p1Valid, p2, p2Valid)) {
+    if (!parseCmdWithUpToTwoFloats(raw, cmdStr, p1, p1Valid, p2, p2Valid)) {
         reply(replyPort, "Invalid command format");
         return;
     }
 
-    handleGlobalCommand(cmdChar, replyPort);
+    handleGlobalCommand(cmdStr, replyPort);
 
     if (mode == SERIAL_TEST) {
-        if      (p1Valid && p2Valid) handleSerialTestCommand(cmdChar, p1, p2,     replyPort);
-        else if (p1Valid)            handleSerialTestCommand(cmdChar, p1, p1Valid, replyPort);
-        else                         handleSerialTestCommand(cmdChar,              replyPort);
+        if      (p1Valid && p2Valid) handleSerialTestCommand(cmdStr, p1, p2,     replyPort);
+        else if (p1Valid)            handleSerialTestCommand(cmdStr, p1, p1Valid, replyPort);
+        else                         handleSerialTestCommand(cmdStr,              replyPort);
     }
 }
 
 // --- Global commands (active in all modes) -----------------------------------
 
-inline void Robot::handleGlobalCommand(char cmd, Stream *replyPort)
+inline void Robot::handleGlobalCommand(const char *cmd, Stream *replyPort)
 {
-    switch (cmd) {
-
-    case 'S':
+    if (strcmp(cmd, "A") == 0)
+    {
+        if (mode != AUTONOMOUS)
+        {
+            mode = AUTONOMOUS;
+            float speed = 15;
+            autonomous.add(new DriveDistance(drive, 18, speed));
+            autonomous.add(new DriveRadiusAngle(drive, speed * 1, -18, 45));
+            autonomous.add(new DriveRadiusAngle(drive, speed * 1, 18, -45));
+            autonomous.add(new DriveDistance(drive, 26, speed));
+            autonomous.add(new DriveRadiusAngle(drive, speed * .5, -15, 90));
+            autonomous.add(new DriveDistance(drive, 2, speed * .25));
+            autonomous.add(new MineBlockStep(miner, 10000));
+            autonomous.start();
+            reply(replyPort, "Autonomous started.");
+        }
+    }
+    else if (strcmp(cmd, "S") == 0) {
         if (mode != SERIAL_TEST) {
             mode = SERIAL_TEST;
             reply(replyPort, "Entered SERIAL_TEST mode. Send 'H' for help.");
         }
-        break;
-
-    case 'A':
-        if (mode != AUTONOMOUS) {
-            mode = AUTONOMOUS;
-            float speed = 15;
-            autonomous.add(new DriveDistance(   drive, 18, speed));
-            autonomous.add(new DriveRadiusAngle(drive, speed*1, -18,  45));
-            autonomous.add(new DriveRadiusAngle(drive, speed*1,  18, -45));
-            autonomous.add(new DriveDistance(   drive, 26, speed));
-            autonomous.add(new DriveRadiusAngle(drive, speed * .5, -15, 90));
-            autonomous.add(new DriveDistance(   drive, 2, speed*.25));
-            autonomous.add(new MineBlockStep(   miner, 10000000));
-            autonomous.start();
-            reply(replyPort, "Autonomous started.");
-        }
-        break;
-
-    case '=':
+    }
+    
+    else if (strcmp(cmd, "stop") == 0) {
         for (int i = 0; i < subsystemCount; ++i)
             subsystems[i]->stop();
         autonomous.stop();
-        autonomous.reset();
         reply(replyPort, "Stopped all subsystems.");
-        break;
-
-    case 'a':
+    }
+    else if (strcmp(cmd, "a") == 0) {
         mode = AUTONOMOUS;
         autonomous.reset();
         autonomous.start();
         reply(replyPort, "Autonomous reset and started.");
-        break;
-
-    default:
+    }
+    else if (strcmp(cmd, "Help") == 0)
+    {
+        printSerialHelp(replyPort);
+    }
+    else {
         if (mode != SERIAL_TEST) {
             char buf[64];
             snprintf(buf, sizeof(buf),
-                     "Unknown cmd '%c'. Send 'S' for serial test, 'A' for autonomous.", cmd);
+                     "Unknown cmd '%s'. Send 'S' for serial test, 'A' for autonomous.", cmd);
             reply(replyPort, buf);
         }
-        break;
     }
 }
 
 // --- SERIAL_TEST commands (no parameters) ------------------------------------
 
-inline void Robot::handleSerialTestCommand(char cmd, Stream *replyPort)
+inline void Robot::handleSerialTestCommand(const char *cmd, Stream *replyPort)
 {
-    switch (cmd) {
-    case 'M': miner.startMiningIndefinitely();                break;
-    case 'm': autonomous.stop(); miner.store();               break;
-    case 'L': drive.followRadiusAtVelocity(10, -18);          break;
-    case 'R': drive.followRadiusAtVelocity(10,  18);          break;
-    case 'Q':
+    if      (strcmp(cmd, "Mine") == 0) { miner.startMiningIndefinitely(); }
+    else if (strcmp(cmd, "m") == 0) { autonomous.stop(); miner.store(); }
+    else if (strcmp(cmd, "ramsete") == 0) { drive.toggleRamseteCorrection(); }
+    else if (strcmp(cmd, "Linefollow") == 0) {
         autonomous.clear();
         drive.followLineHardset(200);
-        break;
-    case 'W': drive.followRadiusCCW(0.5f, 8);                 break;
-    case 'T': shooter.autoFire();                              break;
-    case 'q': drive.setSpeed(0.0f);                            break;
-    case 'l':
-    case 'r':
-    case 'd':
+    }
+    else if (strcmp(cmd, "Fire") == 0) { shooter.autoFire(); }
+    else if (strcmp(cmd, "l") == 0 || strcmp(cmd, "r") == 0 || strcmp(cmd, "d") == 0) {
         autonomous.stop();
         drive.hardSetSpeed(0);
-        break;
-    case 'E':
+    }
+    else if (strcmp(cmd, "E") == 0) {
         autonomous.stop();
         mode = AWAIT;
         Serial.println("Exited SERIAL_TEST. Back to AWAIT.");
-        break;
-    case 'P': shooter.stopFiring(); shooter.prime();           break;
-    case 'p': shooter.stopFiring(); shooter.holdPosition(1.1); break;
-    case 'F': shooter.fire();                                  break;
-    case 'f': autonomous.stop();                               break;
-    case '1':
+    }
+    else if (strcmp(cmd, "f") == 0) { shooter.stopFiring(); shooter.prime(); }
+    else if (strcmp(cmd, "p") == 0) { shooter.stopFiring(); shooter.holdPosition(1.1); }
+    else if (strcmp(cmd, "F") == 0) { shooter.fire(); }
+    else if (strcmp(cmd, "ReadDistance") == 0) {
         Serial.print("Distance sensor: ");
         Serial.println(drive.getDistanceSensorReading());
-        break;
-    case 'H':
-        reply(replyPort, "SERIAL_TEST commands:");
-        reply(replyPort, "  M               : start miner");
-        reply(replyPort, "  m               : stop miner");
-        reply(replyPort, "  D <speed>        : closed-loop drive speed (in/s)");
-        reply(replyPort, "  I <pwm>          : hard-set drive output (raw signal)");
-        reply(replyPort, "  O <speed>        : follow line");
-        reply(replyPort, "  C <dist>         : approach wall at distance (cm)");
-        reply(replyPort, "  ! <dist> <vel>   : drive distance step");
-        reply(replyPort, "  @ <angle> <omega>: rotate step");
-        reply(replyPort, "  # <radius> <deg> : follow arc step");
-        reply(replyPort, "  $ <val> <index>  : set PID constant");
-        reply(replyPort, "  E                : exit SERIAL_TEST -> AWAIT");
-        break;
-    default:
-        break;
     }
 }
 
 // --- SERIAL_TEST commands (one float parameter) ------------------------------
 
-inline void Robot::handleSerialTestCommand(char cmd, float param, bool paramValid,
+inline void Robot::handleSerialTestCommand(const char *cmd, float param, bool paramValid,
                                             Stream *replyPort)
 {
-    switch (cmd) {
-    case 'D': drive.setSpeed(paramValid ? param : 10.0f);         break;
-    case 'I': drive.hardSetSpeed(paramValid ? (int16_t)param : 120); break;
-    case 'O':
-        if (paramValid) drive.followLineHardset((int)param);
-        else            drive.followLine(4.0f);
-        break;
-    case 'C': drive.approachDistance(paramValid ? param : 10.0f); break;
-    case 'l':
-    case 'r':
-    case 'd':
+    if      (strcmp(cmd, "Drive") == 0) { drive.setSpeed(paramValid ? param : 10.0f); }
+    else if (strcmp(cmd, "Linefollow") == 0) {
+        if (paramValid) drive.followLineHardset(paramValid ? (int)param : 100);
+    }
+    else if (strcmp(cmd, "Distance") == 0) { drive.approachDistance(paramValid ? param : 10.0f); }
+    else if (strcmp(cmd, "Approach") == 0) { drive.approachAlongLine(paramValid ? param : 50.0f); }
+    else if (strcmp(cmd, "l") == 0 || strcmp(cmd, "r") == 0 || strcmp(cmd, "d") == 0)
+    {
         autonomous.stop();
         drive.hardSetSpeed(0);
-        break;
-    default:
+    }
+    else {
         handleSerialTestCommand(cmd, replyPort);
-        break;
     }
 }
 
 // --- SERIAL_TEST commands (two float parameters) -----------------------------
 
-inline void Robot::handleSerialTestCommand(char cmd, float p1, float p2,
+inline void Robot::handleSerialTestCommand(const char *cmd, float p1, float p2,
                                             Stream *replyPort)
 {
-    switch (cmd) {
-
-    case '!':
+    if (strcmp(cmd, "Line") == 0) {
         autonomous.clear();
         autonomous.add(new DriveDistance(drive, p1, p2));
         autonomous.start();
-        break;
-
-    case '@':
+    }
+    else if (strcmp(cmd, "Turn") == 0) {
         autonomous.clear();
         autonomous.add(new DriveArc(drive, p1, p2, 0));
         autonomous.start();
-        break;
-
-    case '#': {
+    }
+    else if (strcmp(cmd, "Arc") == 0) {
         // p1 = radius (inches), p2 = arc angle (degrees)
         float angleRad = p2 * PI / 180.0f;
         float halfW    = DRIVETRAIN_WIDTH / 2.0f;
@@ -271,18 +276,11 @@ inline void Robot::handleSerialTestCommand(char cmd, float p1, float p2,
         autonomous.clear();
         autonomous.add(new DriveRadiusAtVelocity(drive, velocity, arcRadius, distance));
         autonomous.start();
-        break;
     }
-
-    case '$': {
+    else if (strcmp(cmd, "SetPID") == 0) {
         drive.setDriveMotorPIDConstant(p1, (int)p2);
         char buf[64];
         snprintf(buf, sizeof(buf), "Set PID constant index %d to %.5f", (int)p2, (double)p1);
         reply(replyPort, buf);
-        break;
-    }
-
-    default:
-        break;
     }
 }

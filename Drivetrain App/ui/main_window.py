@@ -8,7 +8,7 @@ from collections import deque
 from typing import Deque
 
 import numpy as np
-from PySide6 import QtCore, QtWidgets
+from PySide6 import QtCore, QtGui, QtWidgets
 from serial.tools import list_ports
 
 from mpl_theme import setup_dark_mpl
@@ -355,7 +355,13 @@ class RobotDebugUI(QtWidgets.QMainWindow):
 
     @QtCore.Slot(str)
     def on_raw_line(self, line: str):
-        self.console_tab.console_view.appendPlainText(line)
+        console = self.console_tab.console_view
+        sb = console.verticalScrollBar()
+        at_bottom = sb.value() >= sb.maximum() - 4
+        console.moveCursor(QtGui.QTextCursor.MoveOperation.End)
+        console.insertPlainText(line)
+        if at_bottom:
+            sb.setValue(sb.maximum())
 
     @QtCore.Slot(object)
     def on_sample(self, s):
