@@ -5,22 +5,23 @@
 #include "Autonomous/AutoStep.h"
 #include "subsystems/Drive.hpp"
 
+/**
+ * A single autonomous step for driving along a line using linefollowing up until a wall is found
+ */
 class DriveLineToWallStep : public AutoStep
 {
 public:
     DriveLineToWallStep(Drive &drive,
-                    float targetDistance,
-                    float targetVelocity)
+                    float targetDistance)
         : _drive(drive),
-          _target(targetDistance),
-          _velocity(targetVelocity) {}
+          _target(targetDistance) {}
 
     DriveLineToWallStep(Drive &drive)
         : _drive(drive) {}
 
     void start() override
     {
-        _drive.followLineHardset(_velocity);
+        _drive.approachAlongLine(_target);
     }
 
     void update() override
@@ -38,27 +39,26 @@ public:
     {
         // Within 1cm of target, and travelling at less than 1 in/s
         float distance = _drive.getDistanceSensorReading();
-        Serial.print(">Distance:");
-        Serial.print(distance);
-        Serial.println("\r");
-        return ( abs( distance - _target) < 1 ) ;
+        // Serial.print(">Distance:");
+        // Serial.print(distance);
+        // Serial.println("\r");
+        return ( abs( distance - _target) < .5 ) ;
     }
 
     void end()
     {
-        _drive.setSpeed(0);
+        //Special case where the drive should continue being snapped to the wall, even as other steps are queued
+        //Drive doesn't stop control until other commands are sent
     }
 
-    void configure(float targetDistance, float targetVelocity)
+    void configure(float targetDistance)
     {
         _target = targetDistance;
-        _velocity = targetVelocity;
     }
 
 private:
     Drive &_drive;
     float _target = 5;
-    float _velocity = 0;
     float _startDistance = 0;
 };
 

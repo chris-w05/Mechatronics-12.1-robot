@@ -81,6 +81,13 @@ public:
     }
 
     /**
+     * Returns the most recent distance measurement from the sensor in inches
+     */
+    float getDistanceIn() const{
+        return _current_distance / 2.54;
+    }
+
+    /**
      * Set smoothing for sensor
      */
     void setEMAalpha(float a) { _alpha = constrain(a, 0.01f, 0.99f); }

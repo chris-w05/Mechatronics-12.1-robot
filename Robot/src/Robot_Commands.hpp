@@ -162,7 +162,9 @@ inline void Robot::handleGlobalCommand(const char *cmd, Stream *replyPort)
             autonomous.add(new DriveDistance(drive, 26, speed));
             autonomous.add(new DriveRadiusAngle(drive, speed * .5, -15, 90));
             autonomous.add(new DriveDistance(drive, 2, speed * .25));
+            autonomous.add(new DriveLineToWallStep(drive, 1));
             autonomous.add(new MineBlockStep(miner, 10000));
+
             autonomous.start();
             reply(replyPort, "Autonomous started.");
         }

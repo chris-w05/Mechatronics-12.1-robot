@@ -248,7 +248,7 @@ public:
 
             case LINEFOLLOWING_DISTANCE:{
                 //Distance sensor sets the base signal for control:
-                float dist = _distSensor.getDistanceCm();
+                float dist = _distSensor.getDistanceIn();
                 float signalBase = _distanceSensorPID.update(dist, _targetDistance);
                 _signalL = signalBase;
                 _signalR = signalBase;
@@ -266,7 +266,7 @@ public:
                 break;
 
             case DISTANCE: {
-                float dist = _distSensor.getDistanceCm();
+                float dist = _distSensor.getDistanceIn();
                 _motorController.setTarget(_targetDistance, _targetDistance);
                 _motorController.updateWithoutDerivatice(dist, dist);
                 break;
@@ -500,6 +500,6 @@ public:
                * DRIVETRAIN_TICKS_TO_IN / 2.0f;
     }
 
-    /** Most recent distance-sensor reading (cm). */
-    float getDistanceSensorReading()       { return _distSensor.getDistanceCm(); }
+    /** Most recent distance-sensor reading (In). */
+    float getDistanceSensorReading()       { return _distSensor.getDistanceIn(); }
 };

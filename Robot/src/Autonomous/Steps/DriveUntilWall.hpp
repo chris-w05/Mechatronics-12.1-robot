@@ -5,6 +5,9 @@
 #include "Autonomous/AutoStep.h"
 #include "subsystems/Drive.hpp"
 
+/**
+ * Drive straight at a wall
+ */
 class DriveToWallStep : public AutoStep
 {
 public:
@@ -29,7 +32,7 @@ public:
     bool isFinished() const override
     {
         //Within 1cm of target, and travelling at less than 1 in/s
-        return ( abs(_drive.getDistanceSensorReading() - _target) < 1 ) && abs( _drive.getAvgVelocity() ) < 1 ;
+        return ( abs(_drive.getDistanceSensorReading() - _target) < .5 ) && abs( _drive.getAvgVelocity() ) < 1 ;
     }
 
     void end()

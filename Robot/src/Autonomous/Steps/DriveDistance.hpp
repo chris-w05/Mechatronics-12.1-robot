@@ -4,6 +4,9 @@
 #include "Autonomous/AutoStep.h"
 #include "subsystems/Drive.hpp"
 
+/**
+ * A single autonomous step for driving in a straight line for a distance at a specified velocity
+ */
 class DriveDistance : public AutoStep{
 public:
     DriveDistance(Drive &drive,
@@ -34,7 +37,7 @@ public:
     
 
     void end(){
-        _drive.hardSetSpeed(0);
+        _drive.setSpeed(0);
     }
 
     void configure(float targetDistance, float targetVelocity){

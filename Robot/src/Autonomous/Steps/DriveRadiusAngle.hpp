@@ -3,6 +3,9 @@
 #include "Autonomous/AutoStep.h"
 #include "subsystems/Drive.hpp"
 
+/**
+ * A single autonomous step for driving a certain number of degrees along an arc at a specified velocity and radius
+ */
 class DriveRadiusAngle : public AutoStep
 {
 public:
