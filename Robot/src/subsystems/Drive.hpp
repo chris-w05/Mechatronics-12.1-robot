@@ -126,7 +126,7 @@ public:
         _lineSensorPID.set(DRIVE_LINEFOLLOW_GAINS);
         Serial.println("Drivetrain initialized");
         
-        _ramsete.disable();
+        // _ramsete.disable();
     }
 
     /** Called every loop iteration. Updates sensors and applies control. */
@@ -175,7 +175,7 @@ public:
             case ARC:
             case STOPPED: {
                 // Ramp the actual setpoint toward the target to limit acceleration
-                const float maxDelta = 20.0f * dt;
+                const float maxDelta = 20000000.0f * dt;
                 float deltaL = _targetSpeedL - _speedL;
                 float deltaR = _targetSpeedR - _speedR;
                 float maxChange = max(fabsf(deltaL), fabsf(deltaR));
@@ -220,16 +220,16 @@ public:
                                         vL_cmd, vR_cmd);
 
                 // Emit telemetry at 20 Hz for real-time plotting / debugging
-                if (millis() - _lastTelemetryMs >= 50) {
-                    _lastTelemetryMs = millis();
-                    emitTelemetryJSON(
-                        Serial,
-                        _odometry, _desiredOdometry,
-                        leftVel,  rightVel,
-                        vL_cmd,   vR_cmd,
-                        leftPos,  rightPos,
-                        _leftTargetPos, _rightTargetPos);
-                }
+                // if (millis() - _lastTelemetryMs >= 50) {
+                //     _lastTelemetryMs = millis();
+                //     emitTelemetryJSON(
+                //         Serial,
+                //         _odometry, _desiredOdometry,
+                //         leftVel,  rightVel,
+                //         vL_cmd,   vR_cmd,
+                //         leftPos,  rightPos,
+                //         _leftTargetPos, _rightTargetPos);
+                // }
 
                 // Advance the feedforward (ideal) trajectory
                 _desiredOdometry.update(_targetSpeedL * dt, _targetSpeedR * dt);

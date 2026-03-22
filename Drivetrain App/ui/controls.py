@@ -34,7 +34,7 @@ class ControlsPanel(QtWidgets.QWidget):
         self.track_width = QtWidgets.QDoubleSpinBox()
         self.track_width.setRange(0.0, 1000.0)
         self.track_width.setDecimals(3)
-        self.track_width.setValue(9.449)
+        self.track_width.setValue(9.3700)
         self.track_width.setSuffix(" in")
 
         self.window_spin = QtWidgets.QSpinBox()

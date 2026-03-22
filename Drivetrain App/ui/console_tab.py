@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from PySide6 import QtWidgets
+from PySide6.QtGui import QFont
 
 
 class ConsoleTab(QtWidgets.QWidget):
@@ -11,6 +12,7 @@ class ConsoleTab(QtWidgets.QWidget):
 
         self.console_view = QtWidgets.QPlainTextEdit()
         self.console_view.setReadOnly(True)
+        self.console_view.setFont( QFont("Courier New", 12) )
         self.console_view.setMaximumBlockCount(console_max_lines)
 
         self.console_input = QtWidgets.QLineEdit()

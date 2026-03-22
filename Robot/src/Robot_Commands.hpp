@@ -157,12 +157,12 @@ inline void Robot::handleGlobalCommand(const char *cmd, Stream *replyPort)
             mode = AUTONOMOUS;
             float speed = 15;
             autonomous.add(new DriveDistance(drive, 18, speed));
-            autonomous.add(new DriveRadiusAngle(drive, speed * 1, -18, 45));
-            autonomous.add(new DriveRadiusAngle(drive, speed * 1, 18, -45));
-            autonomous.add(new DriveDistance(drive, 26, speed));
+            autonomous.add(new DriveRadiusAngle(drive, speed * 1, -20, 45));
+            autonomous.add(new DriveRadiusAngle(drive, speed * 1, 20, -45));
+            autonomous.add(new DriveDistance(drive, 23, speed));
             autonomous.add(new DriveRadiusAngle(drive, speed * .5, -15, 90));
             autonomous.add(new DriveDistance(drive, 2, speed * .25));
-            autonomous.add(new DriveLineToWallStep(drive, 1));
+            autonomous.add(new DriveLineToWallStep(drive, 0));
             autonomous.add(new MineBlockStep(miner, 10000));
 
             autonomous.start();
@@ -242,7 +242,7 @@ inline void Robot::handleSerialTestCommand(const char *cmd, float param, bool pa
         if (paramValid) drive.followLineHardset(paramValid ? (int)param : 100);
     }
     else if (strcmp(cmd, "Distance") == 0) { drive.approachDistance(paramValid ? param : 10.0f); }
-    else if (strcmp(cmd, "Approach") == 0) { drive.approachAlongLine(paramValid ? param : 50.0f); }
+    else if (strcmp(cmd, "Approach") == 0) { drive.approachAlongLine(paramValid ? param : 2.0f); }
     else if (strcmp(cmd, "l") == 0 || strcmp(cmd, "r") == 0 || strcmp(cmd, "d") == 0)
     {
         autonomous.stop();

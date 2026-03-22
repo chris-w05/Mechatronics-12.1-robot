@@ -65,9 +65,9 @@ static const int MAX_SUBSYSTEMS = 10;
 //Robot params
 
 static const int TICKS_PER_REV = 64; //Number of ticks per motor revolution
-static const float DRIVETRAIN_WIDTH = 9.449; // inches
+static const float DRIVETRAIN_WIDTH = 9.5; // inches
 static const float DRIVETRAIN_MOTOR_RATIO =  50.0 * 30.0 / 45.0; /*Motor gearbox ratio * driven teeth/driving teeth*/
-static const float DRIVETRAIN_WHEEL_DIAMETER = 3.9192; // in
+static const float DRIVETRAIN_WHEEL_DIAMETER = 100 / 25.4; // in
 static const float DRIVETRAIN_TICKS_TO_IN = PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV);
 
 static const float LINESENSOR_LOCATION  = 3;//in (from middle of left wheel)
@@ -87,11 +87,12 @@ static float distanceSensor_VoltageToDistance(float voltage){
 
 
 //Miner constants
-static const unsigned long MINER_CYCLE_MS = 400UL;                  //ms
-static const unsigned long MINER_PRESS_MS = 100UL;
-static const int MINER_SERVO_PRESS_ANGLE = 110;
-static const int MINER_SERVO_STORE_ANGLE = 180;
-static const int MINER_SERVO_RETRACT_ANGLE = 130;
+static const unsigned long MINER_CYCLE_MS   = 400UL;                  //ms
+static const unsigned long MINER_PRESS_MS   = 100UL;
+static const int MINER_SERVO_PRESS_ANGLE    = 140;
+static const int MINER_SERVO_RETRACT_ANGLE  = 160;
+static const int MINER_SERVO_STORE_ANGLE    = 180;
+
 
 static const float SHOOTER_PULL_BACK_ROTATIONS = .75;
 static const int SHOOTER_SETTLE_TIME = 200; //Time for block to settle in shooter ms
@@ -109,7 +110,7 @@ static const float MAXVELOCITY = 27.0; //in/s, velocity of the robot when drive 
 static const float DRIVE_LINEFOLLOW_VELOCITY_GAIN = 6;
 
 static const PIDConstants DRIVE_LINEFOLLOW_GAINS = {
-    .kp = 3.8,
+    .kp = 50,
     .ki = 0,
     .kd = 0
 };
@@ -117,14 +118,14 @@ static const PIDConstants DRIVE_LINEFOLLOW_GAINS = {
 static const float DRIVE_LINEFOLLOW_GAIN = DRIVE_LINEFOLLOW_GAINS.kp;
 
 static const PIDConstants DRIVE_DISTANCE_PID = {
-    .kp = 20.0, 
+    .kp = -40.0, 
     .ki = 0, 
-    .kd = 8};
+    .kd = -12};
 
 // drivetrain
 static const PIDConstants DRIVE_L_PID = {
-    .kp = 200.0,
-    .ki = 280,
+    .kp = 600.0,
+    .ki = 100,
     .kd = 8
 };
 
