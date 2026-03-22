@@ -11,13 +11,16 @@
 class Miner : public Subsystem
 {
 public:
-    Miner(const int servoPin)
-        : servo(servoPin, 0, 180, false)
+    Miner(const int minerServoPin, const int rampServoPin)
+        : minerServo(minerServoPin, 0, 180, false),
+          rampServo(rampServoPin, 0, 180, false)
     {
     }
 
     enum Mode
     {
+        IDLE,
+        PASSIVE,
         MINING,
         OFF,
         STORE
@@ -35,8 +38,10 @@ public:
         _miningStartTime = 0;
         _timedOut = false;
 
-        servo.init();
-        servo.setAngle(MINER_SERVO_STORE_ANGLE);
+        minerServo.init();
+        rampServo.init();
+        minerServo.setAngle(MINER_SERVO_STORE_ANGLE);
+        rampServo.setAngle(RAMP_SERVO_STORE_ANGLE);
         Serial.println("Miner initialized");
     }
 
@@ -54,27 +59,39 @@ public:
         // If we timed out previously, keep miner OFF until explicitly restarted
         if (_timedOut)
         {
-            // ensure servo retracted and don't auto-reset timers
+            // ensure minerServo retracted and don't auto-reset timers
             setServoToRetract();
-            servo.update();
+            minerServo.update();
             return;
         }
 
         switch(_mode){
+
+            case IDLE:
+                setServoToIdle();
+                rampServo.update();
+                return;
+
+            case PASSIVE:
+                setServoToPassive();
+                rampServo.update();
+                return;
+
             case STORE:
-                // Ensure servo is retracted while stopped and timers cleared for next start
+                // Ensure minerServo is retracted while stopped and timers cleared for next start
                 setServoToStore();
                 _cycleStartTime = 0;
                 _onStartTime = 0;
-                servo.update();
+                minerServo.update();
+                rampServo.update();
                 return;
             
             case OFF:
-                // Ensure servo is retracted while stopped and timers cleared for next start
+                // Ensure minerServo is retracted while stopped and timers cleared for next start
                 setServoToRetract();
                 _cycleStartTime = 0;
                 _onStartTime = 0;
-                servo.update();
+                minerServo.update();
                 return;
             
             case MINING:
@@ -152,7 +169,8 @@ public:
 
 private:
     Mode _mode = OFF;
-    ServoControl servo;
+    ServoControl minerServo;
+    ServoControl rampServo;
     /** Current time */
     unsigned long _now = 0;
     /**Start of current cycle */
@@ -181,7 +199,7 @@ private:
             _timedOut = true;
             stopMiningInternal();
             Serial.println("Miner timed out (max continuous time exceeded)");
-            servo.update();
+            minerServo.update();
             return;
         }
 
@@ -194,7 +212,7 @@ private:
             _cycleStartTime = _now;
             _onStartTime = _now; // start pressing immediately at cycle start
             setServoToPress();
-            servo.update();
+            minerServo.update();
             return;
         }
 
@@ -234,6 +252,11 @@ private:
 
                 // Increase hit count by the number of completed cycles
                 _number_hits += static_cast<uint32_t>(cyclesPassed);
+//                if ((_number_hits % 10) == 0)
+//                {
+//                    setServoToIdle();
+//                    rampServo.update();
+//                }
 
                 // If we reached / exceeded a finite goal, clamp and stop
                 if (_hits_to_mine != INDEFINITE && _number_hits >= static_cast<uint32_t>(_hits_to_mine))
@@ -243,17 +266,18 @@ private:
             }
         }
 
-        // Always update servo at end so PWM/system-level updates occur
-        servo.update();
+        // Always update minerServo at end so PWM/system-level updates occur
+        minerServo.update();
+        rampServo.update();
     }
 
-    // Helper wrappers to set servo position
+    // Helper wrappers to set minerServo position
     /**
      * Chang the position of the miner to hit the button
      */
     void setServoToPress()
     {
-        servo.setAngle(MINER_SERVO_PRESS_ANGLE);
+        minerServo.setAngle(MINER_SERVO_PRESS_ANGLE);
     }
 
     /**
@@ -261,7 +285,7 @@ private:
      */
     void setServoToRetract()
     {
-        servo.setAngle(MINER_SERVO_RETRACT_ANGLE);
+        minerServo.setAngle(MINER_SERVO_RETRACT_ANGLE);
     }
 
 
@@ -270,7 +294,24 @@ private:
      */
     void setServoToStore()
     {
-        servo.setAngle(MINER_SERVO_STORE_ANGLE);
+        minerServo.setAngle(MINER_SERVO_STORE_ANGLE);
+        rampServo.setAngle(RAMP_SERVO_STORE_ANGLE);
+    }
+
+    /**
+     * Change the posiiton of the miner to idle
+     */
+    void setServoToIdle()
+    {
+        rampServo.setAngle(RAMP_SERVO_IDLE_ANGLE);
+    }
+
+    /**
+     * Change the posiiton of the ramp to passive
+     */
+    void setServoToPassive()
+    {
+        rampServo.setAngle(RAMP_SERVO_PASSIVE_ANGLE);
     }
 
     /**
@@ -299,8 +340,8 @@ private:
         _onStartTime = 0;
         _miningStartTime = 0;
         // leave _number_hits as-is so caller can read progress
-        // ensure servo is retracted on next update (or we can retract immediately)
+        // ensure minerServo is retracted on next update (or we can retract immediately)
         setServoToRetract();
-        servo.update();
+        minerServo.update();
     }
 };

@@ -42,7 +42,8 @@ static const uint16_t SHOOTER_ENCODER_A  = 3;
 static const uint16_t SHOOTER_ENCODER_B = 26;
 
 // Servo pins
-static const uint16_t MINER_SERVO_PIN = 11;
+static const uint16_t MINER_SERVO_PIN = 10;
+static const uint16_t RAMP_SERVO_PIN = 11;
 
 //Serial pins - Xbee coms
 static const uint16_t SERIAL_RX = 16;
@@ -97,6 +98,13 @@ static const int MINER_SERVO_STORE_ANGLE    = 180;
 static const float SHOOTER_PULL_BACK_ROTATIONS = .75;
 static const int SHOOTER_SETTLE_TIME = 200; //Time for block to settle in shooter ms
 static const int SHOOTER_FIRE_TIME = 800; //Time after shooter firing before priming again
+
+
+//Ramp constants
+static const int RAMP_SERVO_STORE_ANGLE = 00;
+static const int RAMP_SERVO_IDLE_ANGLE = 30;
+static const int RAMP_SERVO_PASSIVE_ANGLE = 90;
+
 
 //----------------------------------PID constants
 
