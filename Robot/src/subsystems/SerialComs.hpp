@@ -54,13 +54,16 @@ public:
         {
             char c = (char)_serial.read();
 
-            // Ignore CR
+            // Treat CR as command terminator too (handles monitors configured for CR-only).
             if (c == '\r')
-                continue;
+                c = '\n';
 
             // End of command
             if (c == '\n')
             {
+                if (_bufLen == 0)
+                    continue; // ignore blank lines
+
                 // Null-terminate and mark command available
                 _buffer[_bufLen] = '\0';
                 _hasCommand = true;

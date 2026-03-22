@@ -175,7 +175,7 @@ public:
             case ARC:
             case STOPPED: {
                 // Ramp the actual setpoint toward the target to limit acceleration
-                const float maxDelta = 20000000.0f * dt;
+                const float maxDelta = 250.0f * dt;
                 float deltaL = _targetSpeedL - _speedL;
                 float deltaR = _targetSpeedR - _speedR;
                 float maxChange = max(fabsf(deltaL), fabsf(deltaR));
@@ -238,11 +238,11 @@ public:
 
             case LINEFOLLOWING_HARDSET: {
                 float correction = _lineSensor.getPosition();
-                Serial.println(correction);
-                correction *= DRIVE_LINEFOLLOW_GAIN * (_signalL + _signalR) / 2;
+                float correction_signal = _lineSensorPID.update(correction, 0); // Scale signal by how fast the robot is moving
+
                 _motorController.setPower(
-                    _signalL + (int)(correction / LINESENSOR_LR_RATIO),
-                    _signalR - (int)correction);
+                    _signalL + (int)(correction_signal / LINESENSOR_LR_RATIO), // Accounts for offcenter position of line sensor
+                    _signalR - (int)correction_signal);
                 break;
             }
 

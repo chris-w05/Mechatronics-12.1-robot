@@ -15,7 +15,6 @@
 #include "subsystems/Subsystem.h"
 #include "subsystems/Drive.hpp"
 #include "subsystems/Miner.hpp"
-#include "subsystems/Ramp.hpp"
 #include "subsystems/SerialComs.hpp"
 #include "subsystems/Shooter.hpp"
 
@@ -34,6 +33,7 @@
 #include "Autonomous/Steps/FollowLineStep.hpp"
 #include "Autonomous/Steps/MineBlock.hpp"
 #include "Autonomous/Steps/ParallelStep.hpp"
+#include "Autonomous/Steps/DeployRamp.hpp"
 
 // Devices / libraries
 #include "Devices/MotorController.hpp"
@@ -46,7 +46,6 @@ public:
     // =========================================================================
     Drive      drive;
     Miner      miner;
-    Ramp       ramp;
     Shooter    shooter;
     SerialComs serialComs;
 

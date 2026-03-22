@@ -66,7 +66,7 @@ static const int MAX_SUBSYSTEMS = 10;
 //Robot params
 
 static const int TICKS_PER_REV = 64; //Number of ticks per motor revolution
-static const float DRIVETRAIN_WIDTH = 9.5; // inches
+static const float DRIVETRAIN_WIDTH = 9.549;                     // inches
 static const float DRIVETRAIN_MOTOR_RATIO =  50.0 * 30.0 / 45.0; /*Motor gearbox ratio * driven teeth/driving teeth*/
 static const float DRIVETRAIN_WHEEL_DIAMETER = 100 / 25.4; // in
 static const float DRIVETRAIN_TICKS_TO_IN = PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV);
@@ -101,8 +101,8 @@ static const int SHOOTER_FIRE_TIME = 800; //Time after shooter firing before pri
 
 
 //Ramp constants
-static const int RAMP_SERVO_STORE_ANGLE = 00;
-static const int RAMP_SERVO_IDLE_ANGLE = 30;
+static const int RAMP_SERVO_STORE_ANGLE = 180;
+static const int RAMP_SERVO_LIFT_ANGLE = 150;
 static const int RAMP_SERVO_PASSIVE_ANGLE = 90;
 
 
@@ -132,7 +132,7 @@ static const PIDConstants DRIVE_DISTANCE_PID = {
 
 // drivetrain
 static const PIDConstants DRIVE_L_PID = {
-    .kp = 600.0,
+    .kp = 400.0,
     .ki = 100,
     .kd = 8
 };

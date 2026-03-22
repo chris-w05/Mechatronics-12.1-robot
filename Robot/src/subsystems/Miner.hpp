@@ -19,8 +19,7 @@ public:
 
     enum Mode
     {
-        IDLE,
-        PASSIVE,
+        LIFT,
         MINING,
         OFF,
         STORE
@@ -40,8 +39,9 @@ public:
 
         minerServo.init();
         rampServo.init();
-        minerServo.setAngle(MINER_SERVO_STORE_ANGLE);
-        rampServo.setAngle(RAMP_SERVO_STORE_ANGLE);
+        setServosToStore();
+        minerServo.update();
+        rampServo.update();
         Serial.println("Miner initialized");
     }
 
@@ -60,26 +60,21 @@ public:
         if (_timedOut)
         {
             // ensure minerServo retracted and don't auto-reset timers
-            setServoToRetract();
+            setMinerServoToRetract();
             minerServo.update();
             return;
         }
 
         switch(_mode){
 
-            case IDLE:
-                setServoToIdle();
-                rampServo.update();
-                return;
-
-            case PASSIVE:
-                setServoToPassive();
+            case LIFT:
+                setRampServoToLift();
                 rampServo.update();
                 return;
 
             case STORE:
                 // Ensure minerServo is retracted while stopped and timers cleared for next start
-                setServoToStore();
+                setServosToStore();
                 _cycleStartTime = 0;
                 _onStartTime = 0;
                 minerServo.update();
@@ -88,7 +83,7 @@ public:
             
             case OFF:
                 // Ensure minerServo is retracted while stopped and timers cleared for next start
-                setServoToRetract();
+                setMinerServoToRetract();
                 _cycleStartTime = 0;
                 _onStartTime = 0;
                 minerServo.update();
@@ -96,6 +91,8 @@ public:
             
             case MINING:
                 mine();
+                setRampServoToPassive();
+                rampServo.update();
                 return;
         }
 
@@ -128,9 +125,14 @@ public:
         stopMiningInternal();
     }
 
+    void deployRamp(){
+        setRampServoToPassive();
+    }
+
     void stop() override
     {
         stopMiningInternal();
+        setServosToStore();
     }
 
     bool isDoneMining() const
@@ -211,7 +213,7 @@ private:
         {
             _cycleStartTime = _now;
             _onStartTime = _now; // start pressing immediately at cycle start
-            setServoToPress();
+            setMinerServoToPress();
             minerServo.update();
             return;
         }
@@ -227,7 +229,7 @@ private:
             if (_onStartTime == 0 || (_now - _onStartTime) > cycleMs)
             {
                 _onStartTime = _now;
-                setServoToPress();
+                setMinerServoToPress();
             }
             // otherwise keep pressing (no-op)
         }
@@ -235,7 +237,7 @@ private:
         {
             // outside press window -> ensure retracted and reset onStart
             _onStartTime = 0;
-            setServoToRetract();
+            setMinerServoToRetract();
 
             // If one or more full cycles have elapsed since _cycleStartTime, advance and count hits
             if (elapsedSinceStart >= cycleMs)
@@ -268,14 +270,13 @@ private:
 
         // Always update minerServo at end so PWM/system-level updates occur
         minerServo.update();
-        rampServo.update();
     }
 
     // Helper wrappers to set minerServo position
     /**
      * Chang the position of the miner to hit the button
      */
-    void setServoToPress()
+    void setMinerServoToPress()
     {
         minerServo.setAngle(MINER_SERVO_PRESS_ANGLE);
     }
@@ -283,7 +284,7 @@ private:
     /**
      * Change the position of the miner to be fully in the robot
      */
-    void setServoToRetract()
+    void setMinerServoToRetract()
     {
         minerServo.setAngle(MINER_SERVO_RETRACT_ANGLE);
     }
@@ -292,24 +293,24 @@ private:
     /**
      * Change the posiiton of the miner to store the ramp
      */
-    void setServoToStore()
+    void setServosToStore()
     {
         minerServo.setAngle(MINER_SERVO_STORE_ANGLE);
         rampServo.setAngle(RAMP_SERVO_STORE_ANGLE);
     }
 
     /**
-     * Change the posiiton of the miner to idle
+     * Change the posiiton of the ramp to idle
      */
-    void setServoToIdle()
+    void setRampServoToLift()
     {
-        rampServo.setAngle(RAMP_SERVO_IDLE_ANGLE);
+        rampServo.setAngle(RAMP_SERVO_LIFT_ANGLE);
     }
 
     /**
      * Change the posiiton of the ramp to passive
      */
-    void setServoToPassive()
+    void setRampServoToPassive()
     {
         rampServo.setAngle(RAMP_SERVO_PASSIVE_ANGLE);
     }
@@ -341,7 +342,7 @@ private:
         _miningStartTime = 0;
         // leave _number_hits as-is so caller can read progress
         // ensure minerServo is retracted on next update (or we can retract immediately)
-        setServoToRetract();
+        setMinerServoToRetract();
         minerServo.update();
     }
 };

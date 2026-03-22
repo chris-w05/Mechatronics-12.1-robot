@@ -13,9 +13,11 @@ inline void Robot::updateUsbSerial()
     while (Serial.available() > 0) {
         char c = (char)Serial.read();
 
-        if (c == '\r') continue;
+        // Treat CR as command terminator too (handles CR-only line-ending settings).
+        if (c == '\r') c = '\n';
 
         if (c == '\n') {
+            if (_usbBufLen == 0) continue;
             _usbBuffer[_usbBufLen] = '\0';
             _usbHasCommand = true;
             _usbBufLen = 0;
@@ -163,7 +165,8 @@ inline void Robot::handleGlobalCommand(const char *cmd, Stream *replyPort)
             autonomous.add(new DriveRadiusAngle(drive, speed * .5, -15, 90));
             autonomous.add(new DriveDistance(drive, 2, speed * .25));
             autonomous.add(new DriveLineToWallStep(drive, 0));
-            autonomous.add(new MineBlockStep(miner, 10000));
+            autonomous.add(new DeployRamp(miner));
+            autonomous.add(new MineBlock(miner, 1000));
 
             autonomous.start();
             reply(replyPort, "Autonomous started.");
@@ -171,6 +174,7 @@ inline void Robot::handleGlobalCommand(const char *cmd, Stream *replyPort)
     }
     else if (strcmp(cmd, "S") == 0) {
         if (mode != SERIAL_TEST) {
+            autonomous.stop();
             mode = SERIAL_TEST;
             reply(replyPort, "Entered SERIAL_TEST mode. Send 'H' for help.");
         }
@@ -206,8 +210,16 @@ inline void Robot::handleGlobalCommand(const char *cmd, Stream *replyPort)
 
 inline void Robot::handleSerialTestCommand(const char *cmd, Stream *replyPort)
 {
-    if      (strcmp(cmd, "Mine") == 0) { miner.startMiningIndefinitely(); }
-    else if (strcmp(cmd, "m") == 0) { autonomous.stop(); miner.store(); }
+    if      (strcmp(cmd, "Mine") == 0) {
+        autonomous.stop();
+        miner.startMiningIndefinitely();
+        reply(replyPort, "Mine: miner started (indefinite).");
+    }
+    else if (strcmp(cmd, "m") == 0) {
+        autonomous.stop();
+        miner.store();
+        reply(replyPort, "Mine: miner stopped (store mode).");
+    }
     else if (strcmp(cmd, "ramsete") == 0) { drive.toggleRamseteCorrection(); }
     else if (strcmp(cmd, "Linefollow") == 0) {
         autonomous.clear();

@@ -14,11 +14,14 @@ public:
                 _pin(pin),
                 _minAngle(minAngle),
                 _maxAngle(maxAngle),
+                _targetAngle(minAngle),
+                _currentAngle(minAngle),
                 _inverted(inverted)
                 {}
 
     void init(){
         _servo.attach(_pin);
+        _currentAngle = _targetAngle;
         _servo.write(_currentAngle);
     }
 

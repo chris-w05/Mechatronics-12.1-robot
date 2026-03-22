@@ -4,17 +4,17 @@
 #include "subsystems/Drive.hpp"
 #include "subsystems/Miner.hpp"
 
-class MineBlock : public AutoStep
+class DeployRamp : public AutoStep
 {
 public:
-    MineBlock(Miner& miner, int hits ):
-    miner(miner), _numberHits(hits) {
+    DeployRamp(Miner& miner ):
+    miner(miner){
         
     }
 
     void start() override
     {
-        miner.startMining(_numberHits);
+        miner.deployRamp();
     }
 
     void update() override
@@ -24,20 +24,16 @@ public:
 
     bool isFinished() const override
     {
-        return miner.isDoneMining();
+        return true;
     }
 
     void end() override
     {
     }
 
-    void configure(int hits){
-        _numberHits = hits;
+    void configure(){
     }
 
 private:
     Miner &miner;
-
-    short _numberHits = 5;
-    bool hitsMet = false;
 };

@@ -74,7 +74,7 @@ private:
     DriveDistance _driveStep;
     DriveArc _driveArcStep;
     FollowLineStep _followLineStep;
-    MineBlockStep _mineStep;
+    MineBlock _mineStep;
     IndexBlockStep _indexStep;
     PlaceOnTableStep _placeStep;
     AdvanceCycleStep _advanceStep;
