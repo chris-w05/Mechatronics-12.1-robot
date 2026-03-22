@@ -15,6 +15,7 @@
 #include "subsystems/Subsystem.h"
 #include "subsystems/Drive.hpp"
 #include "subsystems/Miner.hpp"
+#include "subsystems/Ramp.hpp"
 #include "subsystems/SerialComs.hpp"
 #include "subsystems/Shooter.hpp"
 
@@ -44,6 +45,7 @@ public:
     // =========================================================================
     Drive      drive;
     Miner      miner;
+    Ramp       ramp;
     Shooter    shooter;
     SerialComs serialComs;
 
@@ -55,7 +57,7 @@ public:
         : drive(LEFT_ENCODER_A, LEFT_ENCODER_B,
                 RIGHT_ENCODER_A, RIGHT_ENCODER_B,
                 drivePins, DISTANCE_SENSOR_PIN, LINE_SENSOR_PINS),
-          miner(MINER_SERVO_PIN),
+          miner(MINER_SERVO_PIN, RAMP_SERVO_PIN),
           shooter(SHOOTER_LIMIT_PIN, SHOOTER_ENCODER_A, SHOOTER_ENCODER_B, shooterPins),
           serialComs(Serial2)
     {
