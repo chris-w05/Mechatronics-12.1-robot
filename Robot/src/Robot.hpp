@@ -32,7 +32,6 @@
 #include "Autonomous/Steps/FireStep.hpp"
 #include "Autonomous/Steps/FollowLineStep.hpp"
 #include "Autonomous/Steps/MineBlock.hpp"
-#include "Autonomous/Steps/ParallelStep.hpp"
 #include "Autonomous/Steps/DeployRamp.hpp"
 
 // Devices / libraries
