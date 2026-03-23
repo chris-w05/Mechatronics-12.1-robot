@@ -102,7 +102,7 @@ public:
           const uint16_t lineFollowerPins[8])
         : _leftEncoder(left_enc_a, left_enc_b),
           _rightEncoder(right_enc_a, right_enc_b),
-          _lineSensor(lineFollowerPins, lineSensorCalMin, lineSensorCalMax),
+          _lineSensor(lineFollowerPins, LINESENSORCALMIN, LINESENSORCALMAX),
           _motorController(pins,
                            DRIVE_L_PID, true,
                            DRIVE_R_PID, false,

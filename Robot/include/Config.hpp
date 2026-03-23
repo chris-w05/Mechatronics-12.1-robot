@@ -42,7 +42,7 @@ static const uint16_t SHOOTER_ENCODER_A  = 3;
 static const uint16_t SHOOTER_ENCODER_B = 26;
 
 // Servo pins
-static const uint16_t MINER_SERVO_PIN = 10;
+static const uint16_t MINER_SERVO_PIN = 8;
 static const uint16_t RAMP_SERVO_PIN = 11;
 
 //Serial pins - Xbee coms
@@ -52,6 +52,7 @@ static const long SERIAL_BAUD_RATE = 115200;
 
 //Sensor pins
 static const uint16_t HALL_EFFECT_PIN = -1;
+
 static const uint16_t LINE_SENSOR_PINS[8] = {28, 30, 32, 34, 36, 38, 40, 42}; 
 static const uint16_t COLOR_SENSOR_START_PIN = -1; // CHANGE ME
 static const uint16_t DISTANCE_SENSOR_PIN = A4;
@@ -71,11 +72,10 @@ static const float DRIVETRAIN_MOTOR_RATIO =  50.0 * 30.0 / 45.0; /*Motor gearbox
 static const float DRIVETRAIN_WHEEL_DIAMETER = 100 / 25.4; // in
 static const float DRIVETRAIN_TICKS_TO_IN = PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV);
 
-static const float LINESENSOR_LOCATION  = 3;//in (from middle of left wheel)
+static const float LINESENSOR_LOCATION  = 6/ 2.54;//in (from middle of left wheel)
 static const float LINESENSOR_LR_RATIO = (DRIVETRAIN_WIDTH - LINESENSOR_LOCATION) / LINESENSOR_LOCATION; //Handles the difference in kp required for left and right side of the robot for line following
-const uint16_t lineSensorCalMin[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-const uint16_t lineSensorCalMax[8] = {1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000};
-
+const uint16_t LINESENSORCALMIN[8] = {96, 96, 96, 48, 48, 48, 48, 48};
+const uint16_t LINESENSORCALMAX[8] = {1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000};
 static const float SHOOTER_MOTOR_RATIO = 70;
 static const float SHOOTER_TICKS_TO_ROTATIONS = 1.0/ (SHOOTER_MOTOR_RATIO * TICKS_PER_REV);
 
@@ -118,17 +118,17 @@ static const float MAXVELOCITY = 27.0; //in/s, velocity of the robot when drive 
 static const float DRIVE_LINEFOLLOW_VELOCITY_GAIN = 6;
 
 static const PIDConstants DRIVE_LINEFOLLOW_GAINS = {
-    .kp = 50,
+    .kp = 200,
     .ki = 0,
-    .kd = 0
+    .kd = 30
 };
 
 static const float DRIVE_LINEFOLLOW_GAIN = DRIVE_LINEFOLLOW_GAINS.kp;
 
 static const PIDConstants DRIVE_DISTANCE_PID = {
-    .kp = -40.0, 
+    .kp = -200.0, 
     .ki = 0, 
-    .kd = -12};
+    .kd = -60};
 
 // drivetrain
 static const PIDConstants DRIVE_L_PID = {
