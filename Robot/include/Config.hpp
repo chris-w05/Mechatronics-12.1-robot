@@ -64,7 +64,7 @@ static const int MAX_SUBSYSTEMS = 10;
 
 //----------------------------------Physical constants
 //Robot params
-
+static const float ROBOT_MASS = 3.26; //kg
 static const int TICKS_PER_REV = 64; //Number of ticks per motor revolution
 static const float DRIVETRAIN_WIDTH = 9.549;                     // inches
 static const float DRIVETRAIN_MOTOR_RATIO =  50.0 * 30.0 / 45.0; /*Motor gearbox ratio * driven teeth/driving teeth*/
