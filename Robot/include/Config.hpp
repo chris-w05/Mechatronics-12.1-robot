@@ -72,7 +72,7 @@ static const float DRIVETRAIN_WHEEL_DIAMETER = 100 / 25.4; // in
 static const float DRIVETRAIN_TICKS_TO_IN = PI * DRIVETRAIN_WHEEL_DIAMETER / (DRIVETRAIN_MOTOR_RATIO * TICKS_PER_REV);
 
 static const float LINESENSOR_LOCATION  = 3;//in (from middle of left wheel)
-static const float LINESENSOR_LR_RATIO = (DRIVETRAIN_WIDTH - LINESENSOR_LOCATION) - LINESENSOR_LOCATION; //Handles the difference in kp required for left and right side of the robot for line following
+static const float LINESENSOR_LR_RATIO = (DRIVETRAIN_WIDTH - LINESENSOR_LOCATION) / LINESENSOR_LOCATION; //Handles the difference in kp required for left and right side of the robot for line following
 const uint16_t lineSensorCalMin[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 const uint16_t lineSensorCalMax[8] = {1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000};
 
