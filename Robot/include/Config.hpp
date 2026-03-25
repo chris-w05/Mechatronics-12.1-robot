@@ -42,8 +42,8 @@ static const uint16_t SHOOTER_ENCODER_A  = 3;
 static const uint16_t SHOOTER_ENCODER_B = 26;
 
 // Servo pins
-static const uint16_t MINER_SERVO_PIN = 8;
-static const uint16_t RAMP_SERVO_PIN = 11;
+static const uint16_t MINER_SERVO_PIN = 11;
+static const uint16_t RAMP_SERVO_PIN = 12;
 
 //Serial pins - Xbee coms
 static const uint16_t SERIAL_RX = 16;
@@ -118,17 +118,17 @@ static const float MAXVELOCITY = 27.0; //in/s, velocity of the robot when drive 
 static const float DRIVE_LINEFOLLOW_VELOCITY_GAIN = 6;
 
 static const PIDConstants DRIVE_LINEFOLLOW_GAINS = {
-    .kp = 200,
+    .kp = 350,
     .ki = 0,
-    .kd = 30
+    .kd = 90
 };
 
 static const float DRIVE_LINEFOLLOW_GAIN = DRIVE_LINEFOLLOW_GAINS.kp;
 
 static const PIDConstants DRIVE_DISTANCE_PID = {
-    .kp = -200.0, 
+    .kp = -160.0, 
     .ki = 0, 
-    .kd = -60};
+    .kd = -30};
 
 // drivetrain
 static const PIDConstants DRIVE_L_PID = {

@@ -123,6 +123,7 @@ public:
         _lineSensor.init();
         _lastTime = micros();
         _distanceSensorPID.set(DRIVE_DISTANCE_PID);
+        _distanceSensorPID.setFilterStrength(1.0);
         _lineSensorPID.set(DRIVE_LINEFOLLOW_GAINS);
         Serial.println("Drivetrain initialized");
         
@@ -266,9 +267,14 @@ public:
                 break;
 
             case DISTANCE: {
+                // Distance sensor sets the base signal for control:
                 float dist = _distSensor.getDistanceIn();
-                _motorController.setTarget(_targetDistance, _targetDistance);
-                _motorController.updateWithoutDerivatice(dist, dist);
+                float signalBase = _distanceSensorPID.update(dist, _targetDistance);
+                _signalL = signalBase;
+                _signalR = signalBase;
+                _motorController.setPower(
+                    _signalL, // Accounts for offcenter position of line sensor
+                    _signalR);
                 break;
             }
 

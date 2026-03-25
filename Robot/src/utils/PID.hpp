@@ -50,8 +50,6 @@ struct NonlinearPID{
     KdFn kd;
 };
 
-/**Sets filter strength for PID controller */
-static const unsigned int filterStrength = 1;
 
 class PID
 {
@@ -256,6 +254,16 @@ public:
     }
 
     /**
+     * Sets the strength of the internal IIR filter
+     * 
+     * @param alpha The strength of the filter, with 0 being the strongest and 1 being the weakest. Min of 0 and max of 1
+     */
+    void setFilterStrength( float alpha ){
+        alpha = constrain( alpha, 0.0, 1.0);
+        _alpha = alpha;
+    }
+
+    /**
      * Gets signal from controller. PIDConcontroller's update(...) differs from PID's update because of its implementation of a feedforward function. 
      *
      * @param measurement The current parameter being controller (can be position, velocity, etc)
@@ -443,13 +451,10 @@ private:
         }
         float signal = _kp * error - _kd * (derivative - dSetpoint) + _ki * integral + 
             feedforward + dFeedForward + kpNonlinear + kiNonlinear + kdNonlinear;
-        filterSum += signal;
-        filterSum -= values[filterIndex];
-        values[filterIndex] = signal;
-        filterIndex ++;
-        filterIndex %= filterStrength;
-        // Serial.println(_integral);
-        return filterSum / filterStrength;
+
+        signal = (_alpha * signal) + (1-_alpha)*_lastOutput;
+        _lastOutput = signal;
+        return signal;
 
     }
     
@@ -461,10 +466,7 @@ private:
     KiFn _kiFunc = nullptr;
     KdFn _kdFunc = nullptr;
 
-    
-    float values[filterStrength] = {0};
-    float filterSum = 0;
-    int filterIndex = 0;
+    float _alpha = 1;
 
     // State
     float _integral = 0.0;

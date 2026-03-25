@@ -2,7 +2,7 @@
 #define SERVO_SUBSYSTEM_H
 
 #include <Arduino.h>
-#include <PWMServo.h>
+#include <Servo.h>
 
 class ServoControl
 {
@@ -21,12 +21,22 @@ public:
 
     void init(){
         _servo.attach(_pin);
+        _attached = _servo.attached();
         _currentAngle = _targetAngle;
-        _servo.write(_currentAngle);
+
+        if (_attached)
+        {
+            _servo.write(_currentAngle);
+        }
+        else
+        {
+            Serial.print("Servo attach failed on pin ");
+            Serial.println(_pin);
+        }
     }
 
     void update(){
-        if (!_enabled)
+        if (!_enabled || !_attached)
             return;
 
         if (_currentAngle != _targetAngle)
@@ -64,7 +74,7 @@ public:
     }
 
 private:
-    PWMServo _servo;
+    Servo _servo;
     uint8_t _pin;
 
     int _minAngle;
@@ -73,6 +83,7 @@ private:
     int _currentAngle;
 
     bool _enabled = true;
+    bool _attached = false;
     bool _inverted;
 
     int clamp(int angle) const{
