@@ -163,10 +163,9 @@ inline void Robot::handleGlobalCommand(const char *cmd, Stream *replyPort)
             autonomous.add(new DriveRadiusAngle(drive, speed * 1, 20, -45));
             autonomous.add(new DriveDistance(drive, 23, speed));
             autonomous.add(new DriveRadiusAngle(drive, speed * .5, -15, 90));
-            autonomous.add(new DriveDistance(drive, 2, speed * .25));
-            autonomous.add(new DriveLineToWallStep(drive, 1));
-            autonomous.add(new DeployRamp(miner));
-            autonomous.add(new MineBlock(miner, 1000));
+            autonomous.add(new DriveDistance(drive, 2, speed * .3));
+            autonomous.add(new DriveLineToWallStep(drive, .7));
+            autonomous.add(new MineBlockAutofire(miner, shooter, 5 * 60 ));
 
             autonomous.start();
             reply(replyPort, "Autonomous started.");

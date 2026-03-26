@@ -53,7 +53,8 @@ static const long SERIAL_BAUD_RATE = 115200;
 //Sensor pins
 static const uint16_t HALL_EFFECT_PIN = -1;
 
-static const uint16_t LINE_SENSOR_PINS[8] = {28, 30, 32, 34, 36, 38, 40, 42}; 
+// static const uint16_t LINE_SENSOR_PINS[8] = {28, 30, 32, 34, 36, 38, 40, 42};
+static const uint16_t LINE_SENSOR_PINS[8] = {46, 44, 43, 45, 47, 49, 51, 53 };
 static const uint16_t COLOR_SENSOR_START_PIN = -1; // CHANGE ME
 static const uint16_t DISTANCE_SENSOR_PIN = A4;
 
@@ -118,17 +119,17 @@ static const float MAXVELOCITY = 27.0; //in/s, velocity of the robot when drive 
 static const float DRIVE_LINEFOLLOW_VELOCITY_GAIN = 6;
 
 static const PIDConstants DRIVE_LINEFOLLOW_GAINS = {
-    .kp = 350,
+    .kp = 175,
     .ki = 0,
-    .kd = 90
+    .kd = 0
 };
 
 static const float DRIVE_LINEFOLLOW_GAIN = DRIVE_LINEFOLLOW_GAINS.kp;
 
 static const PIDConstants DRIVE_DISTANCE_PID = {
-    .kp = -160.0, 
+    .kp = -240.0, 
     .ki = 0, 
-    .kd = -30};
+    .kd = -45};
 
 // drivetrain
 static const PIDConstants DRIVE_L_PID = {

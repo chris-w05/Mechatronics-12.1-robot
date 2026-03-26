@@ -176,7 +176,7 @@ public:
             case ARC:
             case STOPPED: {
                 // Ramp the actual setpoint toward the target to limit acceleration
-                const float maxDelta = 250.0f * dt;
+                const float maxDelta = 3000.0f * dt;
                 float deltaL = _targetSpeedL - _speedL;
                 float deltaR = _targetSpeedR - _speedR;
                 float maxChange = max(fabsf(deltaL), fabsf(deltaR));

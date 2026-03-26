@@ -141,9 +141,8 @@ public:
     }
 
     /**
-     * Number of hits must be 0 for the miner to move from the retracted state
-
-     * @param _number_hits = 0
+     * Store the ramp
+     *
      */
     void store()
     {

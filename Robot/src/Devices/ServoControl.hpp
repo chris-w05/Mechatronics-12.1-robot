@@ -2,7 +2,7 @@
 #define SERVO_SUBSYSTEM_H
 
 #include <Arduino.h>
-#include <Servo.h>
+#include <PWMServo.h>
 
 class ServoControl
 {
@@ -74,7 +74,7 @@ public:
     }
 
 private:
-    Servo _servo;
+    PWMServo _servo;
     uint8_t _pin;
 
     int _minAngle;

@@ -33,6 +33,7 @@
 #include "Autonomous/Steps/FollowLineStep.hpp"
 #include "Autonomous/Steps/MineBlock.hpp"
 #include "Autonomous/Steps/DeployRamp.hpp"
+#include "Autonomous/Steps/MineBlockAutofire.hpp"
 
 // Devices / libraries
 #include "Devices/MotorController.hpp"
