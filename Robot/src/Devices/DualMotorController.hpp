@@ -1,3 +1,12 @@
+/**
+ * @file DualMotorController.hpp
+ * @brief Dual closed-loop motor controller wrapping an L298N driver with two independent PID loops.
+ *
+ * Each motor has its own #PIDController, slew-rate limiter, and optional feedforward /
+ * nonlinear gain callbacks.  The class is designed for the drivetrain (left + right wheels)
+ * but is also used for the shooter's single-motor controller via one of the single-motor
+ * `update()` / `setPower()` overloads.
+ */
 #ifndef DUAL_MOTOR_CONTROLLER_HPP
 #define DUAL_MOTOR_CONTROLLER_HPP
 
@@ -7,13 +16,26 @@
 #include <L298NMotorDriverMega.h>
 
 
-//Default pins for the board. When a second board is created, one of these shoudl be created for it
+/**
+ * @brief Pin bundle for a dual-channel L298N-style motor driver.
+ *
+ * Holds the PWM and direction pin numbers for both motor channels.  Pass an
+ * instance to `DualMotorController`'s constructor.
+ */
 struct TB9051Pins
 {
-    uint8_t m1PWM, m1Direction1, m1Direction2;
-    uint8_t m2PWM, m2Direction1, m2Direction2;
+    uint8_t m1PWM, m1Direction1, m1Direction2; ///< Motor 1 (left / primary) control pins
+    uint8_t m2PWM, m2Direction1, m2Direction2; ///< Motor 2 (right / secondary) control pins
 };
 
+/**
+ * @brief Dual-channel closed-loop motor controller.
+ *
+ * Wraps two independent #PIDController instances driving an L298N motor
+ * shield.  Supports position and velocity control modes, optional motor
+ * direction reversal, a configurable slew-rate limiter, and a suite of
+ * feedforward / nonlinear gain injection helpers.
+ */
 class DualMotorController
 {
 public:

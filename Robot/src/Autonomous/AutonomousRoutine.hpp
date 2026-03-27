@@ -1,15 +1,31 @@
+/**
+ * @file AutonomousRoutine.hpp
+ * @brief Sequential container that drives an ordered list of `AutoStep` objects.
+ *
+ * Steps are added with `add()` (ownership is transferred) and are executed
+ * one after the other: when the active step reports `isFinished()`, the
+ * routine calls `end()` on it, increments its internal index, and starts the
+ * next step via `start()`.
+ *
+ * The maximum number of steps is bounded by `MAX_STEPS` from Config.hpp.
+ */
 #ifndef AUTONOMOUS_ROUTINE_H
 #define AUTONOMOUS_ROUTINE_H
 
 #include "AutoStep.h"
 #include "Config.hpp"
 
+/**
+ * @brief Drives an ordered sequence of `AutoStep` objects to completion.
+ *
+ * Owns all steps added via `add()` and deletes them in the destructor.
+ */
 class AutonomousRoutine
 {
 private:
-    AutoStep *_steps[MAX_STEPS];
-    int _count = 0;
-    int _index = 0;
+    AutoStep *_steps[MAX_STEPS]; ///< Fixed-size array of step pointers
+    int _count = 0;              ///< Number of steps that have been added
+    int _index = 0;              ///< Index of the currently active step
 
 public:
     AutonomousRoutine()
@@ -28,8 +44,12 @@ public:
         }
     }
 
-    // Start the routine from the beginning.
-    // If a step is currently running, end it first to leave it in a clean state.
+    /**
+     * @brief Start the routine from the first step.
+     *
+     * If a step is currently in progress its `end()` is called first so the
+     * subsystems it owns are left in a clean state.
+     */
     void start()
     {
         // If currently running a step, end it so we restart cleanly.
@@ -45,7 +65,7 @@ public:
         }
     }
 
-    // Call repeatedly from main loop to drive the routine
+    /** @brief Advance the routine by one tick — call every loop iteration. */
     void update()
     {
         if (_index >= _count)
@@ -71,13 +91,16 @@ public:
         }
     }
 
+    /** @brief @return Total number of steps currently in the routine. */
     int getCount(){
         return _count;
     }
 
-    // Reset the routine so it can run again:
-    // - end the currently active step (if any)
-    // - set index to 0 and start the first step (if any)
+    /**
+     * @brief End the active step (if any) and rewind the index to 0.
+     *
+     * Does **not** restart the first step — call `start()` afterwards if needed.
+     */
     void reset()
     {
         // End the currently running step to put it into a clean state
@@ -89,8 +112,10 @@ public:
         _index = 0;
     }
 
-    void stop()
-    {
+    /**
+     * @brief End the active step and mark the routine as complete.
+     */
+    void stop(){
         if (_index < _count && _steps[_index])
         {
             _steps[_index]->end();
@@ -98,7 +123,10 @@ public:
         _index = _count; // mark complete
     }
 
-    // Add a step to the routine (ownership transferred to this object)
+    /**
+     * @brief Append a step to the end of the routine (transfers ownership).
+     * @param step Heap-allocated step — deleted by the routine's destructor.
+     */
     void add(AutoStep *step)
     {
         if (_count >= MAX_STEPS)
@@ -109,7 +137,12 @@ public:
         _steps[_count++] = step;
     }
 
-    // Remove a step at a specific index (ownership deleted here)
+    /**
+     * @brief Delete the step at `index` and shift remaining steps left.
+     *
+     * If the removed step is currently running, its `end()` is called first.
+     * @param index  Zero-based position of the step to remove.
+     */
     void removeAt(int index)
     {
         if (index < 0 || index >= _count)
@@ -145,7 +178,9 @@ public:
         }
     }
 
-    // Remove all steps and reset the routine
+    /**
+     * @brief Delete all steps and reset the routine to an empty state.
+     */
     void clear()
     {
         // End current step if running

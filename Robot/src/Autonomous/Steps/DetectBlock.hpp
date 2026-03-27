@@ -1,3 +1,10 @@
+/**
+ * @file DetectBlock.hpp
+ * @brief `AutoStep` that samples the color sensor and updates `Strategy` with the detected block type.
+ *
+ * Runs for `_checkTimeMs` milliseconds while polling the color sensor.
+ * On expiry the step marks itself finished.
+ */
 #ifndef DETECT_BLOCK_STEP_H
 #define DETECT_BLOCK_STEP_H
 
@@ -5,6 +12,9 @@
 #include "subsystems/Drive.hpp"
 #include "utils/Strategy.hpp"
 
+/**
+ * @brief Poll the color sensor for a configurable window, then finish.
+ */
 class DetectBlockStep : public AutoStep
 {
 public:
@@ -38,14 +48,18 @@ public:
     {
     }
 
+    /**
+     * @brief Set the sampling window duration.
+     * @param time  Duration to poll the sensor (ms).
+     */
     void configure(unsigned int time){
         _checkTimeMs = time;
     }
 
 private:
-    unsigned int _checkTimeMs = 100;
-    unsigned long _startTime = 0;
-    bool _isFinished = false;
+    unsigned int _checkTimeMs = 100; ///< Color-sensor sampling window (ms)
+    unsigned long _startTime = 0;    ///< millis() at step start
+    bool _isFinished = false;        ///< True after the sampling window expires
 
 };
 

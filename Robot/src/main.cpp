@@ -1,3 +1,11 @@
+/**
+ * @file main.cpp
+ * @brief Arduino entry point — instantiates the Robot and drives the main loop.
+ *
+ * All hardware initialisation is delegated to `Robot::init()` and all
+ * per-loop work is delegated to `Robot::update()`.  This file should remain
+ * as minimal as possible.
+ */
 #include <Arduino.h>
 #include "Robot.hpp"
 
@@ -6,9 +14,11 @@ Robot robot;
 // unsigned long lastTime = 0.0;
 
 /**
- * Arduino Setup
- * 
- * EVERYTHING OTHER THAN SERIAL SHOULD BE INIT FRO CHILDREN OF ROBOT.INIT()
+ * @brief Arduino `setup()` — called once on power-on or reset.
+ *
+ * Opens the USB serial port at 115200 baud, opens Serial2 for
+ * Arduino-to-Arduino comms, and delegates all remaining initialisation
+ * to `Robot::init()`.
  */
 void setup()
 {
@@ -21,9 +31,10 @@ void setup()
 
 
 /**
- * Arduino main loop. 
- * 
- * DO NOT PUT ANYTHING HERE OUTSIDE OF THE ROBOT
+ * @brief Arduino `loop()` — called repeatedly after `setup()`.
+ *
+ * All work is performed inside `Robot::update()`.
+ * Do not add logic here; extend `Robot` or its subsystems instead.
  */
 void loop()
 {

@@ -1,3 +1,7 @@
+/**
+ * @file Odometry.cpp
+ * @brief Implementation of the differential-drive odometry integrator.
+ */
 #include "Odometry.hpp"
 #include "Config.hpp"
 

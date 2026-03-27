@@ -1,12 +1,27 @@
+/**
+ * @file Button.hpp
+ * @brief Simple digital button (or limit-switch) driver.
+ *
+ * Wraps a single `INPUT_PULLUP` digital pin.  Reading is active-HIGH after
+ * the internal pull-up is applied; call `reverse()` to invert the polarity
+ * (useful for normally-closed switches wired to GND).
+ */
 #pragma once
 #include <Arduino.h>
 
+/**
+ * @brief Digital button / limit-switch driver.
+ *
+ * Call `init()` once in setup, then call `update()` every loop and read the
+ * debounced state with `getReading()`.
+ */
 class Button
 {
 public:
-    // adcPin: analog pin (e.g., A0)
-    // vref: ADC reference voltage in volts (default 5.0)
-    // adcMax: ADC max reading (1023 for 10-bit AVR; 4095 for 12-bit)
+    /**
+     * @brief Construct a button on a given pin.
+     * @param pin  Arduino digital pin number.
+     */
     Button(uint8_t pin)
         : _pin(pin)
     {
@@ -43,7 +58,7 @@ public:
 
 
 private:
-    uint8_t _pin;
-    bool _isOn = false;
-    bool reversed = false;
+    uint8_t _pin;         ///< Arduino pin number
+    bool _isOn    = false; ///< Debounced (instantaneous) reading, after polarity inversion
+    bool reversed = false; ///< When true, reading is XOR'd to invert active polarity
 };

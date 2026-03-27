@@ -1,31 +1,44 @@
+/**
+ * @file SerialComs.hpp
+ * @brief Newline-delimited ASCII serial command receiver subsystem.
+ *
+ * Wraps a `HardwareSerial` port and buffers incoming characters until a
+ * newline (`\n`) or carriage-return (`\r`) is received, then exposes the
+ * complete command string through `getCommand()` / `getCommandChar()`.
+ *
+ * Two parser helpers (`parseCmdWithOptionalFloat`, `parseCmdWithUpToTwoFloats`)
+ * decode commands of the form `<letter>[sep]<number>[sep]<number>` where sep
+ * may be a space, comma, or colon.
+ */
 #ifndef SERIAL_COMS_HPP
 #define SERIAL_COMS_HPP
 
 #include <Arduino.h>
 
 /**
- * SerialComs
+ * @brief Newline-delimited ASCII command receiver for Arduino-to-Arduino comms.
  *
- * Simple command receiver for Arduino-to-Arduino communication.
- * Commands are newline-terminated ASCII strings.
+ * Commands are ASCII strings terminated by `\n` (or `\r`, normalised to `\n`).
+ * Buffer overflow silently discards the malformed frame and resets for the
+ * next one.
  *
- * Usage:
- *   SerialComs serialComs(Serial1);
- *   serialComs.init();
+ * @code
+ *   SerialComs com(Serial1);
+ *   com.init();
  *   // in loop:
- *   serialComs.update();
- *   if (serialComs.hasCommand()) {
- *     const char *cmd = serialComs.getCommand();
- *     // or char c = serialComs.getCommandChar();
- *   }
+ *   com.update();
+ *   if (com.hasCommand()) Serial.println(com.getCommand());
+ * @endcode
  */
 class SerialComs : public Subsystem
 {
 public:
-    static const uint8_t MAX_CMD_LEN = 32;
+    static const uint8_t MAX_CMD_LEN = 32; ///< Maximum bytes in a single command (including NUL)
 
     /**
-     * @param serial Reference to a HardwareSerial (Serial, Serial1, etc)
+     * @brief Construct the SerialComs subsystem.
+     * @param serialPort  Reference to the `HardwareSerial` port to listen on.
+     *                    The caller is responsible for calling `begin()` on it.
      */
     SerialComs(HardwareSerial &serialPort)
         : _serial(serialPort), _bufLen(0), _hasCommand(false)
@@ -33,9 +46,7 @@ public:
         _buffer[0] = '\0';
     }
 
-    /**
-     * Call once in setup()
-     */
+    /** @brief Initialise the subsystem (call once in `setup()`). */
     void init() override
     {
         Serial.println("Serial communications initialized");
@@ -43,9 +54,10 @@ public:
     }
 
     /**
-     * Call periodically in loop()
-     * Non-blocking. Buffers up to MAX_CMD_LEN-1 chars and sets a flag when newline ('\n') is seen.
-     * Processes at most one complete command per call (returns after setting _hasCommand).
+     * @brief Non-blocking read — call every loop tick.
+     *
+     * Accumulates incoming characters.  Sets `_hasCommand` and returns after
+     * receiving one complete newline-terminated frame.
      */
     void update() override
     {
@@ -84,17 +96,16 @@ public:
         }
     }
 
-    /**
-     * @return true if a new command is available
-     */
+    /** @brief @return `true` if a complete command is waiting to be read. */
     bool hasCommand() const
     {
         return _hasCommand;
     }
 
     /**
-     * Get the latest command string (pointer).
-     * Calling this clears the command flag.
+     * @brief Return the latest command string and clear the pending flag.
+     * @return Pointer to the internal null-terminated command buffer.
+     * @note The pointer is valid until the next call to `update()`.
      */
     const char *getCommand()
     {
@@ -103,8 +114,8 @@ public:
     }
 
     /**
-     * Convenience: return the first char of the latest command (or 0 if none).
-     * Clears the command flag.
+     * @brief Return the first character of the latest command and clear the flag.
+     * @return First character of the command, or `0` if no command was pending.
      */
     char getCommandChar()
     {
@@ -117,24 +128,28 @@ public:
     }
 
     /**
-     * Send a message back (adds newline).
+     * @brief Transmit a message over the serial port (appends a newline).
+     * @param msg  Null-terminated string to send.
      */
     void send(const char *msg)
     {
         _serial.println(msg);
     }
 
+    /** @brief Stop the subsystem (no-op for SerialComs). */
     virtual void stop() override {}
 
     /**
-     * Parse a single-char command optionally followed by a numeric parameter.
-     * Accepts formats like:
-     *   D 10
-     *   D:10
-     *   D,10
-     *   D10
+     * @brief Parse a command letter followed by an optional float parameter.
      *
-     * Returns true if a command was parsed. If a numeric parameter exists, outParamIsValid is true and outParam contains it.
+     * Accepts separators: space, comma, colon, or no separator.
+     * Examples: `"D 10"`, `"D:10"`, `"D,10"`, `"D10"`.
+     *
+     * @param cmdStr        Null-terminated command string to parse.
+     * @param outCmd        Output: the leading command character.
+     * @param outParam      Output: the parsed float parameter (0 if absent).
+     * @param outParamIsValid Output: `true` if a numeric parameter was found.
+     * @return `true` if at least a command character was successfully parsed.
      */
     bool parseCmdWithOptionalFloat(const char *cmdStr, char &outCmd, float &outParam, bool &outParamIsValid)
     {
@@ -183,17 +198,18 @@ public:
     }
 
     /**
-     * Parse a single-char command optionally followed by up to TWO numeric parameters.
-     * Accepts formats like:
-     *   D 10 20
-     *   D:10,20
-     *   D,10,20
-     *   D10 20
-     *   D10,20
+     * @brief Parse a command letter followed by up to two optional float parameters.
      *
-     * Returns true if a command was parsed.
-     * - If param1 exists: outP1Valid=true and outP1 set.
-     * - If param2 exists: outP2Valid=true and outP2 set.
+     * Accepts separators: space, comma, colon, or tab.
+     * Examples: `"D 10 20"`, `"D:10,20"`, `"D10,20"`.
+     *
+     * @param cmdStr    Null-terminated command string to parse.
+     * @param outCmd    Output: the leading command character.
+     * @param outP1     Output: first numeric parameter (0 if absent).
+     * @param outP1Valid Output: `true` if the first parameter was parsed.
+     * @param outP2     Output: second numeric parameter (0 if absent).
+     * @param outP2Valid Output: `true` if the second parameter was parsed.
+     * @return `true` if at least a command character was successfully parsed.
      */
     bool parseCmdWithUpToTwoFloats(const char *cmdStr,
                                    char &outCmd,
@@ -269,10 +285,10 @@ public:
     }
 
 private:
-    HardwareSerial &_serial;
-    char _buffer[MAX_CMD_LEN];
-    uint8_t _bufLen;
-    bool _hasCommand;
+    HardwareSerial &_serial; ///< Hardware serial port used for TX and RX
+    char _buffer[MAX_CMD_LEN]; ///< Accumulation buffer for the in-progress command
+    uint8_t _bufLen;           ///< Number of bytes currently in `_buffer`
+    bool _hasCommand;          ///< True when a complete command is ready to be read
 };
 
 #endif // SERIAL_COMS_HPP

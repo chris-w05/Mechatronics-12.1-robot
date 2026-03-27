@@ -1,3 +1,17 @@
+/**
+ * @file Shooter.hpp
+ * @brief Rack-and-pinion block shooter subsystem.
+ *
+ * The Shooter drives a DC motor through a rack-and-pinion mechanism to fire
+ * foam blocks from the robot.  It supports four operating modes:
+ *   - **POSITION** — closed-loop encoder position control (used for priming and firing).
+ *   - **VELOCITY** — closed-loop encoder velocity control.
+ *   - **AUTO**     — autofire state machine: waits for a block on `block_switch`,
+ *                    settles, fires, then re-primes automatically.
+ *   - **OFF/TEST** — open-loop (coast or fixed power).
+ *
+ * The motor is tuned with a nonlinear feedforward via `shooterFF()` from Config.hpp.
+ */
 #pragma once
 
 #include <Arduino.h>
@@ -10,24 +24,41 @@
 #include "Devices/MotorController.hpp"
 #include "Devices/Button.hpp"
 
+/**
+ * @brief Rack-and-pinion block shooter controlled by encoder feedback.
+ *
+ * Owns a `DualMotorController`, an `EncoderWrapper` for position/velocity
+ * feedback, and a `Button` that detects when a block is seated in the chamber.
+ */
 class Shooter : public Subsystem
 {
 public:
+    /** @brief Motor control mode selection. */
     enum Mode
     {
-        POSITION,
-        VELOCITY,
-        OFF,
-        TEST,
-        AUTO
+        POSITION,   ///< Closed-loop encoder position control
+        VELOCITY,   ///< Closed-loop encoder velocity control
+        OFF,        ///< Motor coasting (zero power)
+        TEST,       ///< Fixed open-loop power for bench-testing
+        AUTO        ///< Autonomous autofire state machine
     };
 
+    /** @brief Sub-states of the autofire state machine (used in AUTO mode). */
     enum AUTOFIRE_STATE{
-        WAITFORBLOCK,
-        HASBLOCK,
-        FIRE
+        WAITFORBLOCK, ///< Idle — waiting for the block-present switch to trigger
+        HASBLOCK,     ///< Block detected — waiting for the settle delay
+        FIRE          ///< Block settled — motor driving to fire position
     };
 
+    /**
+     * @brief Construct the Shooter subsystem.
+     * @param block_switch_pin  Digital pin for the block-present switch.
+     * @param encoderA          Encoder channel A pin.
+     * @param encoderB          Encoder channel B pin.
+     * @param pins              TB9051 motor driver pin struct.
+     * @param analog_vref       ADC reference voltage (default 5.0 V, unused).
+     * @param driverType        Motor driver variant (default TB9051).
+     */
     Shooter(
         uint16_t block_switch_pin, 
         uint16_t encoderA, 
@@ -44,7 +75,10 @@ public:
     
 
     /**
-     * initializes shooter subsystem 
+     * @brief Initialise the shooter subsystem.
+     *
+     * Resets the encoder direction, zeroes cycle timers, sets the motor PID
+     * feedforward function, and places the subsystem in OFF mode.
      */
     void init() override
     {
@@ -63,11 +97,10 @@ public:
 
 
     /**
-     * Updates shooter subsystem:
-     * updates children
-     *  - encoder position/velocity
-     * 
-     * sets power to motor, depending on mode
+     * @brief Update the shooter — must be called every control loop tick.
+     *
+     * Refreshes encoder position/velocity, then dispatches to the active mode
+     * (OFF, TEST, POSITION, VELOCITY, or AUTO state machine).
      */
     void update() override
     {
@@ -104,7 +137,9 @@ public:
     }
 
     /**
-     * Move the motor to the next deadband position, in the positive direction
+     * @brief Fire one shot by advancing the rack to the next fire position.
+     *
+     * Switches to POSITION mode and commands the motor to `nextFirePosition()`.
      */
     void fire()
     {
@@ -119,7 +154,10 @@ public:
     }
 
 
-    /** Set the speed of the shooter to a specific velocity to shoot */
+    /**
+     * @brief Fire at a specific motor velocity (VELOCITY mode).
+     * @param velocity  Target rotational velocity in rotations/s.
+     */
     void fire(float velocity)
     {
         // begin mining immediately on next update
@@ -131,7 +169,10 @@ public:
         targetVelocity = velocity;
     }
 
-    /** Set the shooter to hold a specific position */
+    /**
+     * @brief Command a fractional position offset from the current integer position.
+     * @param amount  Fractional rotations to add to `floor(targetPosition)`.
+     */
     void holdPosition( float amount )
     {
         if (_mode != POSITION)
@@ -145,13 +186,19 @@ public:
         motor.setTarget(targetPosition);
     }
 
-    /** Command a power to the shooter motor */
+    /**
+     * @brief Enable TEST mode (fixed open-loop power) for bench testing.
+     * @param signal  (Unused in current implementation — mode is set to TEST.)
+     */
     void fireHardSet(int signal){
         _mode = TEST;
     }
 
     /**
-     * Have the motor go to the prime position. This will enable close-loop position control
+     * @brief Pull the rack back to the primed (loaded) position using POSITION control.
+     *
+     * Commands the motor to `nextPrimePosition()`, which is `SHOOTER_PULL_BACK_ROTATIONS`
+     * above the current integer encoder position.
      */
     void prime(){
         if (_mode != POSITION)
@@ -166,7 +213,7 @@ public:
     }
 
     /**
-     * Turns off the shooter motor.
+     * @brief Stop the shooter motor and clear the velocity target.
      */
     void stopFiring()
     {
@@ -175,8 +222,10 @@ public:
     }
 
     /**
-     * Fire the shooter if there is a block detected
-     * Otherwise, keep the shooter primed. 
+     * @brief Enable AUTO mode: fire automatically whenever `block_switch` detects a block.
+     *
+     * Enters the AUTOFIRE state machine which cycles through
+     * WAITFORBLOCK → HASBLOCK (settle delay) → FIRE → WAITFORBLOCK.
      */
     void autoFire(){
         if (_mode != AUTO)
@@ -193,7 +242,7 @@ public:
 
 
     /**
-     * Inherited from Subsystem. This does the same thing as stopFiring()
+     * @brief Stop the shooter (Subsystem interface — identical to stopFiring()).
      */
     void stop() override
     {
@@ -202,8 +251,8 @@ public:
     }
 
     /**
-     * Hold the current position of the shooter. This can be used as a "pause"
-     * */
+     * @brief Freeze the shooter at its current encoder position (POSITION mode hold).
+     */
     void hold(){
         holdPosition(position);
     }
@@ -211,9 +260,7 @@ public:
 private:
 
 
-    /**
-     * State machine handling for autofire mode
-     */
+    /** @brief Run one tick of the autofire state machine (called inside update()). */
     void handleAutoFire()
     {
         unsigned long now = millis();
@@ -262,7 +309,8 @@ private:
 
 
     /**
-     * Gets the next position for the encoder to go to to prime the shooter
+     * @brief Compute the encoder target for the primed (pulled-back) position.
+     * @return Target position in rotations.
      */
     float nextPrimePosition( ){
         // converting position to an integer using floor ensures the shooter will move in the positive direction
@@ -272,29 +320,29 @@ private:
     }
 
     /**
-     * Gets the position to got to in order to fire the shooter
+     * @brief Compute the encoder target for the fire (extended) position.
+     * @return Target position in rotations.
      */
     float nextFirePosition(){
         return ceil(targetPosition) + .12;
     }
 
-    Mode _mode = OFF;
-    AUTOFIRE_STATE autoFire_state = WAITFORBLOCK; 
+    Mode _mode = OFF;                              ///< Current operating mode
+    AUTOFIRE_STATE autoFire_state = WAITFORBLOCK;  ///< Current state of the autofire state machine
 
-    Button block_switch;
-    DualMotorController motor;
-    EncoderWrapper encoder;
+    Button block_switch;        ///< Switch that detects a seated block in the chamber
+    DualMotorController motor;  ///< PID-controlled dual motor driver for the rack
+    EncoderWrapper encoder;     ///< Quadrature encoder providing position and velocity
 
-
-    bool last_switch_value = 0;
-    unsigned long _fireTime = 0;
-    unsigned long _blockDetectedTime = 0;
-    unsigned long _cycleStartTime = 0;
-    unsigned long _onStartTime = 0;
-    float targetVelocity = 0;
-    float targetPosition = 0;
-    float position = 0;
-    float velocity = 0;
-    float acceleration = 0;
+    bool last_switch_value = 0;             ///< Previous block-switch reading (for edge detection)
+    unsigned long _fireTime = 0;            ///< millis() when the fire command was issued
+    unsigned long _blockDetectedTime = 0;   ///< millis() when the block-present switch triggered
+    unsigned long _cycleStartTime = 0;      ///< millis() at the start of the current fire cycle
+    unsigned long _onStartTime = 0;         ///< millis() when the motor was first energised this cycle
+    float targetVelocity = 0;              ///< Commanded velocity setpoint (rotations/s)
+    float targetPosition = 0;              ///< Commanded position setpoint (rotations)
+    float position = 0;                    ///< Current encoder position (rotations)
+    float velocity = 0;                    ///< Current encoder velocity (rotations/s)
+    float acceleration = 0;               ///< Current encoder acceleration (rotations/s²)
 
 };

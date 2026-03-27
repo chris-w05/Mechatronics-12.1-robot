@@ -1,24 +1,38 @@
+/**
+ * @file DriveRadiusAngle.hpp
+ * @brief `AutoStep` that drives along an arc for a specified heading change (degrees).
+ */
 #pragma once
 
 #include "Autonomous/AutoStep.h"
 #include "subsystems/Drive.hpp"
 
 /**
- * A single autonomous step for driving a certain number of degrees along an arc at a specified velocity and radius
+ * @brief Follow a constant-radius arc until the accumulated heading changes by `angleToTurnDeg`.
+ *
+ * A single autonomous step for driving a certain number of degrees along an arc
+ * at a specified velocity and radius.
  */
 class DriveRadiusAngle : public AutoStep
 {
 public:
-   
-    DriveRadiusAngle(Drive &drive,
-             float targetVelocity,
-             float radius,
-             float angleToTurnDeg)
+        /**
+         * @brief Full constructor.
+         * @param drive           Drive subsystem reference.
+         * @param targetVelocity  Arc speed (m/s).
+         * @param radius          Arc radius (m).
+         * @param angleToTurnDeg  Heading change to achieve (degrees).
+         */
+        DriveRadiusAngle(Drive &drive,
+                         float targetVelocity,
+                         float radius,
+                         float angleToTurnDeg)
         : _drive(drive),
           _velocity(targetVelocity),
           _radius(radius),
           _target_angle(angleToTurnDeg * PI/180.0) {}
 
+    /** @brief Deferred-configure constructor — call `configure()` before use. */
     DriveRadiusAngle(Drive &drive)
         : _drive(drive) {}
 
@@ -44,6 +58,12 @@ public:
         _drive.setSpeed(0);
     }
 
+    /**
+     * @brief Re-configure the step for reuse.
+     * @param target_distance  Target angle in the units used internally (rad after conversion).
+     * @param target_velocity  Arc speed (m/s).
+     * @param radius           Arc radius (m).
+     */
     void configure(float target_distance, float target_velocity, float radius)
     {
         _target_angle = target_distance;
@@ -52,9 +72,9 @@ public:
     }
 
 private:
-    Drive &_drive;
-    float _velocity = 0;
-    float _radius = 10;
-    float _target_angle = 0;
-    float _startAngle = 0;
+    Drive &_drive;          ///< Drive subsystem reference
+    float _velocity = 0;    ///< Arc speed (m/s)
+    float _radius = 10;     ///< Arc radius (m)
+    float _target_angle = 0; ///< Heading change to achieve (radians)
+    float _startAngle = 0;  ///< Accumulated heading at step start (rad)
 };

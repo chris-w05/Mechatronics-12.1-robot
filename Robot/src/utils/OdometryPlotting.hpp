@@ -1,8 +1,29 @@
+/**
+ * @file OdometryPlotting.hpp
+ * @brief Template helper functions for emitting JSON odometry telemetry over a serial port.
+ *
+ * Three overloads of `emitTelemetryJSON()` are provided, each adding more fields
+ * to the JSON object:
+ * 1. Actual pose + actual wheel velocities and positions.
+ * 2. Adds desired (reference) wheel positions.
+ * 3. Adds desired pose, desired wheel velocities, and 2-D pose error.
+ *
+ * The output is a single-line JSON object terminated by a newline, compatible with
+ * the Teleplot VS Code extension and other serial JSON consumers.
+ *
+ * @note These are template functions parameterised on an odometry type.  The type
+ *       must expose a `getPose()` method returning an object with public `x`, `y`,
+ *       and `heading` fields.
+ */
 #pragma once
 #include <Arduino.h>
 
-// Wrap angle to [-pi, pi]
-static float wrapAnglePi(float a)
+/**
+ * @brief Wrap an angle to the range [-pi, pi].
+ * @param a  Input angle (radians).
+ * @return   Equivalent angle in (-π, π].
+ */
+inline __attribute__((unused)) float wrapAnglePi(float a)
 {
     while (a > PI)
         a -= 2.0f * PI;
@@ -21,9 +42,33 @@ Expected Odometry API:
 */
 
 // =====================================================
-// JSON: actual only
-// Fields: t, x, y, th, vl, vr, pl, pr
+/// @name Telemetry emitters
+/// @{
 // =====================================================
+
+/**
+ * @brief Emit a JSON object with the robot's actual pose and wheel state.
+ *
+ * JSON fields:
+ * | Key  | Description                          | Units  |
+ * |------|--------------------------------------|--------|
+ * | t    | Timestamp from millis()              | ms     |
+ * | x    | Actual X position                    | inches |
+ * | y    | Actual Y position                    | inches |
+ * | th   | Actual heading                       | rad    |
+ * | vl   | Actual left-wheel velocity           | in/s   |
+ * | vr   | Actual right-wheel velocity          | in/s   |
+ * | pl   | Actual left-wheel position           | inches |
+ * | pr   | Actual right-wheel position          | inches |
+ *
+ * @tparam OdomT       Odometry type (must provide `getPose()`).
+ * @param serial        Serial port to write to.
+ * @param actualOdom    Current (measured) odometry object.
+ * @param vLeftActual   Left-wheel velocity (in/s).
+ * @param vRightActual  Right-wheel velocity (in/s).
+ * @param pLeftActual   Left-wheel position (in).
+ * @param pRightActual  Right-wheel position (in).
+ */
 template <typename OdomT>
 void emitTelemetryJSON(
     HardwareSerial &serial,
@@ -65,10 +110,28 @@ void emitTelemetryJSON(
     serial.println('}');
 }
 
-// =====================================================
-// JSON: actual + desired wheel positions only
-// Fields: t, x, y, th, vl, vr, pl, pr, pl_ref, pr_ref
-// =====================================================
+/**
+ * @brief Emit a JSON object with actual and desired wheel positions.
+ *
+ * Extends the basic overload with reference (desired) wheel positions so that
+ * tracking error can be computed on the receiving side.
+ *
+ * Additional fields beyond the basic overload:
+ * | Key    | Description                  | Units  |
+ * |--------|------------------------------|--------|
+ * | pl_ref | Desired left-wheel position  | inches |
+ * | pr_ref | Desired right-wheel position | inches |
+ *
+ * @tparam OdomT         Odometry type (must provide `getPose()`).
+ * @param serial          Serial port to write to.
+ * @param actualOdom      Current (measured) odometry object.
+ * @param vLeftActual     Actual left-wheel velocity (in/s).
+ * @param vRightActual    Actual right-wheel velocity (in/s).
+ * @param pLeftActual     Actual left-wheel position (in).
+ * @param pRightActual    Actual right-wheel position (in).
+ * @param pLeftDesired    Reference left-wheel position (in).
+ * @param pRightDesired   Reference right-wheel position (in).
+ */
 template <typename OdomT>
 void emitTelemetryJSON(
     HardwareSerial &serial,
@@ -118,25 +181,36 @@ void emitTelemetryJSON(
     serial.println('}');
 }
 
-// =====================================================
-// JSON: actual + desired odometry + desired wheel data
-// Fields: t, x, y, th, vl, vr, pl, pr,
-//         xd, yd, thd, vl_ref, vr_ref, pl_ref, pr_ref,
-//         ex, ey, eth
-// =====================================================
-template <typename OdomT>
-void emitTelemetryJSON(
+/**
+ * @brief Emit a JSON object with full actual + desired pose and 2-D tracking error.
+ *  The most complete telemetry overload.  
+ * In addition to the fields in the two\n * simpler overloads, it adds the desired pose, desired wheel velocities, and\n * the signed 2-D pose error (ex, ey, eth) so that trajectory tracking can be
+ *  visualised in real time.
+ *  @tparam OdomT          Odometry type (must provide `getPose()`)
+ *  @param serial           Serial port to write to.
+ *  @param actualOdom       Current (measured) odometry object.
+ *  @param desiredOdom      Reference (desired) odometry object.
+ *  @param vLeftActual      Actual left-wheel velocity (in/s).
+ *  @param vRightActual     Actual right-wheel velocity (in/s).
+ *  @param vLeftDesired     Reference left-wheel velocity (in/s).
+ *  @param vRightDesired    Reference right-wheel velocity (in/s).
+ *  @param pLeftActual      Actual left-wheel position (in).
+ *  @param pRightActual     Actual right-wheel position (in).
+ *  @param pLeftDesired     Reference left-wheel position (in).
+ *  @param pRightDesired    Reference right-wheel position (in).
+ *  */
+template <typename OdomT> void emitTelemetryJSON(
     HardwareSerial &serial,
-    const OdomT &actualOdom,
-    const OdomT &desiredOdom,
-    float vLeftActual,
-    float vRightActual,
-    float vLeftDesired,
-    float vRightDesired,
-    float pLeftActual,
-    float pRightActual,
-    float pLeftDesired,
-    float pRightDesired)
+        const OdomT &actualOdom,
+        const OdomT &desiredOdom,
+            float vLeftActual,
+            float vRightActual,
+            float vLeftDesired,
+            float vRightDesired,    
+            float pLeftActual,   
+            float pRightActual,    
+            float pLeftDesired,    
+            float pRightDesired)
 {
     const unsigned long t = millis();
 

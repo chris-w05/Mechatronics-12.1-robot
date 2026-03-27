@@ -1,3 +1,20 @@
+/**
+ * @file DistanceSensor.hpp
+ * @brief Driver for the Sharp GP2Y0A51SK0F short-range IR distance sensor (2–15 cm).
+ *
+ * Reads an analog voltage from the IR sensor, applies exponential moving
+ * average (EMA) smoothing, and converts the smoothed voltage to a distance
+ * using a user-supplied calibration function.
+ *
+ * Typical usage:
+ * @code
+ * SharpGP2Y0A51 dist(A4, distanceSensor_VoltageToDistance);
+ * dist.init();
+ * // in loop:
+ * dist.update();
+ * float cm = dist.getDistanceCm();
+ * @endcode
+ */
 #pragma once
 // SharpGP2Y0A51.hpp
 // Simple driver for Sharp GP2Y0A51SK0F (2-15 cm) for Arduino
@@ -8,18 +25,32 @@
 #include <Arduino.h>
 
 /**
- * Calibration function maps voltage to distances for a given sensor
+ * @brief Function-pointer type for a voltage-to-distance mapping.
+ * @param voltage Smoothed sensor output (V).
+ * @return        Distance (cm).
  */
 typedef float (*VtoDfunction)(float voltage);
 
+/**
+ * @brief Sharp GP2Y0A51 analog IR distance sensor driver.
+ *
+ * Reads the sensor ADC value, converts to voltage, applies EMA smoothing,
+ * and runs the result through a user-supplied calibration function to
+ * produce a distance in centimetres.
+ */
 class SharpGP2Y0A51
 {
 public:
     
 
-    // adcPin: analog pin (e.g., A0)
-    // vref: ADC reference voltage in volts (default 5.0)
-    // adcMax: ADC max reading (1023 for 10-bit AVR; 4095 for 12-bit)
+    /**
+     * @brief Construct the sensor driver.
+     * @param adcPin                    Arduino analog pin (e.g. A4).
+     * @param voltageToDistanceFunction Calibration function mapping voltage → cm.
+     * @param vref                      ADC reference voltage in volts (default 5.0).
+     * @param adcMax                    ADC full-scale count (1023 for 10-bit AVR).
+     * @param emaAlpha                  EMA smoothing factor.  Closer to 1.0 = less smoothing.
+     */
     SharpGP2Y0A51(uint8_t adcPin,
                   VtoDfunction voltageToDistanceFunction = nullptr,
                   float vref = 5.0f,

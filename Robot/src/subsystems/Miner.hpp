@@ -1,3 +1,15 @@
+/**
+ * @file Miner.hpp
+ * @brief Miner subsystem: servo-driven block-pressing mechanism and ramp deployment.
+ *
+ * The Miner subsystem controls two servos:
+ * - **Miner servo** — presses down on dispenser blocks in a cyclic motion.
+ * - **Ramp servo**  — deploys a ramp that funnels blocks toward the shooter.
+ *
+ * Mining runs in a timed cycle (MINER_CYCLE_MS) with a configurable press
+ * duration (MINER_PRESS_MS).  Mining can be set to run for a fixed number of
+ * press cycles or indefinitely with an optional safety timeout.
+ */
 #pragma once
 
 #include <Arduino.h>
@@ -8,6 +20,15 @@
 #include "Config.hpp"
 #include "Devices/Solenoid.hpp"
 
+/**
+ * @brief Servo-driven block-mining and ramp-deployment subsystem.
+ *
+ * Operates as a state machine with four modes:
+ * - **MINING** — Cyclic press-retract motion to knock blocks from the dispenser.
+ * - **OFF**    — Servo retracted at rest position; no motion.
+ * - **STORE**  — Servo and ramp both fully stowed for transport.
+ * - **LIFT**   — Ramp elevated to receive incoming blocks.
+ */
 class Miner : public Subsystem
 {
 public:
@@ -17,15 +38,18 @@ public:
     {
     }
 
+    /**
+     * @brief Operating mode for the miner state machine.
+     */
     enum Mode
     {
-        LIFT,
-        MINING,
-        OFF,
-        STORE
+        LIFT,   ///< Ramp raised to funnel blocks; miner servo idle
+        MINING, ///< Active press-retract cycling
+        OFF,    ///< Miner servo retracted, ramp unset
+        STORE   ///< Both servos stowed in transport position
     };
 
-    // Sentinel value for "mine indefinitely"
+    /** @brief Sentinel value for `startMining()` meaning "run indefinitely". */
     static constexpr int32_t INDEFINITE = -1;
 
     void init() override
@@ -101,9 +125,10 @@ public:
 
 
     /**
-     *  Start mining with a specific number of hits (finite)
-     * @param hits_to_mine Number of hits before the miner stops mining
-     * */
+     * @brief Start mining for a fixed number of press cycles.
+     * @param hits_to_mine  Number of press cycles to complete before stopping.
+     *                      Negative values are treated as INDEFINITE.
+     */
     void startMining(int32_t hits_to_mine)
     {
         if (hits_to_mine < 0)
@@ -113,6 +138,7 @@ public:
         startMining();
     }
 
+    /** @brief Start mining indefinitely. Use `stopMining()` or hit-count exhaustion to stop. */
     // Start indefinite mining (preferred over magic numbers)
     void startMiningIndefinitely()
     {
@@ -120,11 +146,13 @@ public:
         startMining();
     }
 
+    /** @brief Stop mining and retract miner servo. */
     void stopMining()
     {
         stopMiningInternal();
     }
 
+    /** @brief Raise the ramp to its passive (deployed) angle. */
     void deployRamp(){
         setRampServoToPassive();
     }
@@ -135,14 +163,14 @@ public:
         setServosToStore();
     }
 
+    /** @brief Return `true` when the miner has completed all requested hits (or timed out). */
     bool isDoneMining() const
     {
         return (_mode == OFF);
     }
 
     /**
-     * Store the ramp
-     *
+     * @brief Stow both servos in the transport position and reset the hit counter.
      */
     void store()
     {
@@ -150,18 +178,22 @@ public:
         _mode = STORE;
     }
 
-    // Return true if miner auto-stopped because of timeout (only relevant for indefinite)
+    /** @return `true` if mining was stopped because the safety timeout elapsed. */
     bool hasTimedOut() const { return _timedOut; }
 
-    // Accessors
+    /** @return Number of press cycles completed since `startMining()`. */
     uint32_t getHitsDone() const { return _number_hits; }
+
+    /** @return Configured hit target (INDEFINITE = -1 for unlimited). */
     int32_t getHitsTarget() const { return _hits_to_mine; }
 
-    // Configure safety timeout for indefinite mining: 0 = disabled.
-    // Default is 5 minutes (300000 ms). Call setMaxContinuousMillis(0) to disable.
+    /**
+     * @brief Set the safety timeout for indefinite mining (0 to disable).
+     * @param ms  Maximum continuous mining duration in milliseconds.  The default is 5 minutes.
+     */
     void setMaxContinuousMillis(unsigned long ms) { _maxContinuousMillis = ms; }
 
-    // Reset timeout state (allow restart after a timeout)
+    /** @brief Clear a previous timeout so mining can be restarted. */
     void clearTimeout()
     {
         _timedOut = false;
@@ -169,23 +201,20 @@ public:
     }
 
 private:
-    Mode _mode = OFF;
-    ServoControl minerServo;
-    ServoControl rampServo;
-    /** Current time */
-    unsigned long _now = 0;
-    /**Start of current cycle */
-    unsigned long _cycleStartTime = 0;
-    /**Start of press window */
-    unsigned long _onStartTime = 0;
-    uint32_t _number_hits = 0;         // how many cycles completed (unsigned)
-    int32_t _hits_to_mine = 10;        // target hits; INDEFINITE (-1) means run forever
+    Mode _mode = OFF;            ///< Current operating mode
+    ServoControl minerServo;     ///< Servo that presses down on the dispenser block
+    ServoControl rampServo;      ///< Servo that deploys/stows the feed ramp
+    unsigned long _now = 0;      ///< Snapshot of millis() taken at start of update()
+    unsigned long _cycleStartTime = 0; ///< millis() at the start of the current press cycle
+    unsigned long _onStartTime    = 0; ///< millis() when the current press window started
+    uint32_t  _number_hits  = 0;      ///< Number of press cycles completed
+    int32_t   _hits_to_mine = 10;     ///< Target hit count; INDEFINITE (-1) = unlimited
 
-    // Safety: guard against indefinite mining running forever by specifying a max duration
-    unsigned long _maxContinuousMillis = 300000UL; // default 5 minutes
-    unsigned long _miningStartTime = 0;            // when mining() first called
-    bool _timedOut = false;
+    unsigned long _maxContinuousMillis = 300000UL; ///< Safety timeout for indefinite mining (ms, default 5 min)
+    unsigned long _miningStartTime     = 0;        ///< millis() when MINING mode was first entered
+    bool _timedOut = false;                        ///< True if mining was halted by the safety timeout
 
+    /** @brief Drive the miner servo to the press-down angle. */
     void mine(){
         // MINING mode ---------------------------------------------------------
         // Start global mining timer on first transition to MINING
@@ -283,39 +312,34 @@ private:
     /**
      * Change the position of the miner to be fully in the robot
      */
+    /** @brief Retract the miner servo to clear the dispenser for the next block. */
     void setMinerServoToRetract()
     {
         minerServo.setAngle(MINER_SERVO_RETRACT_ANGLE);
     }
 
-
-    /**
-     * Change the posiiton of the miner to store the ramp
-     */
+    /** @brief Stow both the miner servo and the ramp servo in the transport position. */
     void setServosToStore()
     {
         minerServo.setAngle(MINER_SERVO_STORE_ANGLE);
         rampServo.setAngle(RAMP_SERVO_STORE_ANGLE);
     }
 
-    /**
-     * Change the posiiton of the ramp to idle
-     */
+    /** @brief Raise the ramp to the block-catching (LIFT) angle. */
     void setRampServoToLift()
     {
         rampServo.setAngle(RAMP_SERVO_LIFT_ANGLE);
     }
 
-    /**
-     * Change the posiiton of the ramp to passive
-     */
+    /** @brief Lower the ramp to the passive (neutral) angle between mining cycles. */
     void setRampServoToPassive()
     {
         rampServo.setAngle(RAMP_SERVO_PASSIVE_ANGLE);
     }
 
     /**
-     * Start the sequency of hitting/retracting
+     * @brief Internal transition to MINING mode; resets all hit and cycle counters.
+     * @note The actual mining timestamp is captured on the first call to update().
      */
     void startMining()
     {
@@ -331,7 +355,8 @@ private:
     }
 
     /**
-     * Stop hitting the button
+     * @brief Internal: transition to OFF mode, reset timers, and immediately retract the miner servo.
+     * @note `_number_hits` is intentionally preserved after stopping so the caller can inspect progress.
      */
     void stopMiningInternal()
     {

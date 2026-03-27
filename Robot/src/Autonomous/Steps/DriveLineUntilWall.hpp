@@ -1,3 +1,10 @@
+/**
+ * @file DriveLineUntilWall.hpp
+ * @brief `AutoStep` that follows a line until the distance sensor reads a target wall distance.
+ *
+ * Uses `Drive::approachAlongLine()` to combine line-following with distance-sensor feedback.
+ * Finishes when the front distance sensor is within 0.5 cm of `targetDistance`.
+ */
 #pragma once
 #ifndef DRIVE_LINE_UNTIL_WALL_STEP_H
 #define DRIVE_LINE_UNTIL_WALL_STEP_H
@@ -6,16 +13,22 @@
 #include "subsystems/Drive.hpp"
 
 /**
- * A single autonomous step for driving along a line using linefollowing up until a wall is found
+ * @brief Follow a line autonomously until the distance sensor indicates a wall at `_target` cm.
  */
 class DriveLineToWallStep : public AutoStep
 {
 public:
+    /**
+     * @brief Full constructor.
+     * @param drive          Drive subsystem reference.
+     * @param targetDistance Target wall distance in cm.
+     */
     DriveLineToWallStep(Drive &drive,
                     float targetDistance)
         : _drive(drive),
           _target(targetDistance) {}
 
+    /** @brief Deferred-configure constructor — call `configure()` before use. */
     DriveLineToWallStep(Drive &drive)
         : _drive(drive) {}
 
@@ -51,15 +64,19 @@ public:
         //Drive doesn't stop control until other commands are sent
     }
 
+    /**
+     * @brief Re-configure the target wall distance.
+     * @param targetDistance  Target distance in cm.
+     */
     void configure(float targetDistance)
     {
         _target = targetDistance;
     }
 
 private:
-    Drive &_drive;
-    float _target = 5;
-    float _startDistance = 0;
+    Drive &_drive;            ///< Drive subsystem reference
+    float _target = 5;        ///< Wall distance to approach (cm)
+    float _startDistance = 0; ///< Odometry snapshot at step start (unused)
 };
 
 #endif

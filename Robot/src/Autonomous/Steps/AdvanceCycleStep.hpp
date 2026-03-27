@@ -1,8 +1,15 @@
+/**
+ * @file AdvanceCycleStep.hpp
+ * @brief Instantaneous `AutoStep` that advances the `Strategy` craft cycle by one.
+ */
 #pragma once
 
 #include "Autonomous/AutoStep.h"
 #include "subsystems/Drive.hpp"
 
+/**
+ * @brief Calls `Strategy::advanceCycle()` once in `start()` and immediately finishes.
+ */
 class AdvanceCycleStep : public AutoStep
 {
 public:
@@ -18,5 +25,5 @@ public:
     void end() override { }
 
 private:
-    bool _done = false;
+    bool _done = false; ///< True after start() calls advanceCycle()
 };

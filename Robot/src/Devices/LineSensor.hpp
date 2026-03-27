@@ -1,16 +1,35 @@
+/**
+ * @file LineSensor.hpp
+ * @brief 8-channel reflective line sensor driver using the Pololu QTR-MD-08RC.
+ *
+ * Reads all eight RC-type sensors simultaneously and computes a weighted
+ * average position of the detected line in centimetres, relative to the
+ * sensor array's centre.  A negative position means the line is to the left;
+ * a positive position means the line is to the right.
+ */
 #pragma once
 
 #include <Arduino.h>
 #include <QTRSensors.h>
 
-// LineSensor class using Pololu QTRSensors (for QTR-MD-08RC)
+/**
+ * @brief Pololu QTR-MD-08RC 8-channel line sensor driver.
+ *
+ * Computes a signed cm position offset of the line from the sensor array
+ * centre.  Call `init()` once in setup and `update()` every iteration when
+ * line-following mode is active (it blocks for up to `timeout` µs per call).
+ */
 class LineSensor
 {
 public:
     static const uint16_t numberPins = 8;
 
-    // startPin: first Arduino pin (pins must be provided consecutively)
-    // calMin/calMax: arrays of length numberPins containing previously-saved bounds
+    /**
+     * @brief Construct the sensor with pin and calibration arrays.
+     * @param pins    Array of 8 Arduino pin numbers (left to right).
+     * @param calMin  Per-sensor minimum raw values (obtained during calibration).
+     * @param calMax  Per-sensor maximum raw values (obtained during calibration).
+     */
     LineSensor(const uint16_t pins[numberPins], const uint16_t calMin[numberPins], const uint16_t calMax[numberPins])
     {
         for (uint8_t i = 0; i < numberPins; ++i)
@@ -22,9 +41,12 @@ public:
         }
     }
 
-    // Call from setup(). emitterPin default: QTRNoEmitterPin (255) -> no explicit emitter control.
-    // timeout: max RC discharge wait in µs. Lowering this reduces read time at the cost of
-    // accuracy on very dark surfaces. 1000 µs is reliable for typical competition mats.
+    /**
+     * @brief Initialise the QTR sensor library.
+     * @param timeout    Maximum discharge time to wait per read cycle (µs).
+     *                   Lower values reduce blocking time at the cost of accuracy on dark surfaces.
+     * @param emitterPin Emitter control pin.  Use `QTRNoEmitterPin` (255) if not present.
+     */
     void init(uint16_t timeout = 1000, uint8_t emitterPin = QTRNoEmitterPin)
     {
         qtr.setTypeRC();
@@ -65,16 +87,15 @@ public:
     const uint16_t *getCalibrated() const { return _calibrated; }
 
 private:
-    QTRSensors qtr;
-    uint8_t _pins[numberPins];
-    
+    QTRSensors qtr;              ///< Pololu QTR library sensor object
+    uint8_t _pins[numberPins];   ///< Pin numbers for each sensor element
 
-    uint16_t _calMin[numberPins];
-    uint16_t _calMax[numberPins];
+    uint16_t _calMin[numberPins]; ///< Calibration minimum per sensor
+    uint16_t _calMax[numberPins]; ///< Calibration maximum per sensor
 
-    uint16_t sensorValues[numberPins] = {0};
-    uint16_t _calibrated[numberPins] = {0};
+    uint16_t sensorValues[numberPins] = {0}; ///< Raw RC discharge counts from last update()
+    uint16_t _calibrated[numberPins]  = {0}; ///< Normalised calibrated values (0–1000)
 
-    float _current_value = 0.0f;
-    const float _distance_between_sensors = 0.8f; // cm
+    float _current_value = 0.0f;          ///< Computed line position (cm, signed)
+    const float _distance_between_sensors = 0.8f; ///< Centre-to-centre sensor spacing (cm)
 };

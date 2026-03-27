@@ -1,3 +1,17 @@
+/**
+ * @file MotorController.hpp
+ * @brief Unified single-channel motor controller supporting TB9051FTG and L298N drivers.
+ *
+ * Provides a common PID-based speed controller API across two common motor
+ * driver topologies (Pololu TB9051FTG and generic L298N H-bridges).  Used
+ * internally by #DualMotorController for per-motor control.
+ *
+ * Driver wiring summary:
+ * - **TB9051** — pwm1 = PWM1 pin, pwm2 = PWM2 pin (or -1 for single-PWM mode),
+ *   en = EN pin, enb = ENB, diag = DIAG (active-LOW fault).
+ * - **L298N**  — pwm1 = IN1 (digital), pwm2 = IN2 (digital), en = EN (PWM output).
+ *   OCC/OCM are typically not present on L298N modules.
+ */
 // MotorController.hpp
 // Unified MotorController supporting both Pololu TB9051FTG carrier (Pololu #2997)
 // and a typical L298N H-bridge wiring. Arduino-style API.
@@ -20,17 +34,38 @@
     - Choose the driver type in the constructor (DriverType::TB9051 or DriverType::L298N).
 */
 
+/**
+ * @brief Single-channel closed-loop motor controller.
+ *
+ * Supports two driver hardware topologies selected at construction time.
+ * Call `begin()` once in setup, then call `update()` every loop to apply
+ * PID control, or `setSpeed()` for direct open-loop PWM output.
+ */
 class MotorController
 {
 public:
+    /// @brief Choice of motor driver topology.
     enum class DriverType
     {
-        TB9051,
-        L298N
+        TB9051, ///< Pololu TB9051FTG single-channel carrier
+        L298N   ///< Generic L298N H-bridge module
     };
 
-    // Constructor
-    // keep signature similar to prior version; add driverType param (defaults to TB9051).
+    /**
+     * @brief Construct with individual gain floats.
+     * @param pwm1_pin   PWM pin (TB9051 PWM1 or L298N IN1).
+     * @param pwm2_pin   Second PWM pin or -1 for single-PWM mode.
+     * @param en_pin     Enable pin (-1 to skip).
+     * @param enb_pin    ENB pin (-1 to skip).
+     * @param diag_pin   Diagnostic / fault pin (-1 to skip).
+     * @param ocm_pin    Over-current monitor analog pin (-1 to skip).
+     * @param occ_pin    Over-current control pin (-1 to skip).
+     * @param analog_vref ADC reference voltage (V).
+     * @param kp         Proportional gain for internal PID.
+     * @param ki         Integral gain for internal PID.
+     * @param kd         Derivative gain for internal PID.
+     * @param driver     Driver hardware type.
+     */
     MotorController(int pwm1_pin, int pwm2_pin = -1, int en_pin = -1, int enb_pin = -1,
                     int diag_pin = -1, int ocm_pin = -1, int occ_pin = -1, float analog_vref = 5.0f,
                     float kp = 0.0f, float ki = 0.0f, float kd = 0.0f,

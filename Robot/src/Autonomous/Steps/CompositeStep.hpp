@@ -1,3 +1,11 @@
+/**
+ * @file CompositeStep.hpp
+ * @brief `AutoStep` that runs a heap-owned sequence of child steps in order.
+ *
+ * Children are passed to the constructor (or `add()`) as raw pointers;
+ * `CompositeStep` takes ownership and `delete`s each one when it finishes.
+ * When the last child completes, `isFinished()` returns `true`.
+ */
 #ifndef COMPOSITE_STEP_H
 #define COMPOSITE_STEP_H
 
@@ -6,6 +14,9 @@
 
 const int MAX_SUB_STEPS = 10; // Adjust based on your max expected sub-steps per composite
 
+/**
+ * @brief Sequences heap-allocated child `AutoStep` objects, deleting each upon completion.
+ */
 class CompositeStep : public AutoStep
 {
 public:
@@ -16,6 +27,11 @@ public:
         return new CompositeStep(arr, sizeof...(steps));
     }
 
+    /**
+     * @brief Construct from an array of step pointers (ownership transferred).
+     * @param steps  Array of `AutoStep*` to run in order.
+     * @param count  Number of steps in the array.
+     */
     CompositeStep(AutoStep *steps[], uint8_t count)
         : _children(nullptr), _count(count), _currentIndex(-1), _started(false)
     {
@@ -144,6 +160,10 @@ public:
         _started = true;
     }
 
+    /**
+     * @brief Append a step to the end of the sequence (ownership transferred).
+     * @param step  Heap-allocated step to append.
+     */
     void add(AutoStep *step)
     {
         if (_count < MAX_STEPS)
@@ -153,10 +173,10 @@ public:
     }
 
 private:
-    AutoStep **_children;  // owned array of child pointers
-    uint8_t _count;        // number of child steps
-    int16_t _currentIndex; // -1 = not started, >=0 current child index
-    bool _started;         // whether start() has been called
+    AutoStep **_children;   ///< Owned heap-allocated array of child step pointers
+    uint8_t _count;         ///< Total number of child steps
+    int16_t _currentIndex;  ///< -1 = not started, >= 0 = index of active child
+    bool _started;          ///< True after start() has been called
 };
 
 #endif // COMPOSITE_STEP_H

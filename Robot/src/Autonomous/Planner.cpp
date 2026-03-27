@@ -1,3 +1,7 @@
+/**
+ * @file Planner.cpp
+ * @brief Implementation of the autonomous Planner state machine.
+ */
 // Planner.cpp
 #include "Planner.hpp"
 

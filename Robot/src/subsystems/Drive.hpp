@@ -1,3 +1,17 @@
+/**
+ * @file Drive.hpp
+ * @brief Differential-drive subsystem: closed-loop wheel control, line following,
+ *        wall-distance holding, and odometry integration.
+ *
+ * The Drive subsystem manages all motion of the robot as a differential drive.
+ * It supports several operating modes (see Drive::MODE) selected by calling a
+ * set-point method, then calling `update()` every loop iteration to execute
+ * closed-loop control and advance the odometry estimate.
+ *
+ * Both an encoder-derived (true) pose and a feedforward-derived (desired) pose
+ * are maintained so that trajectory-tracking error can be computed.  The
+ * RamseteController optionally corrects heading drift in STRAIGHT and ARC modes.
+ */
 #pragma once
 
 #include <Arduino.h>
@@ -434,6 +448,13 @@ public:
         _targetDistance = distance;
     }
 
+    /**
+     * @brief Follow the line sensor while simultaneously holding a fixed wall distance.
+     *
+     * The IR distance sensor provides a base forward speed; the line sensor
+     * adds a steering correction on top of that signal.
+     * @param distance  Target wall-to-robot-edge distance (cm).
+     */
     void approachAlongLine(float distance){
         _mode           = MODE::LINEFOLLOWING_DISTANCE;
         _targetDistance = distance;

@@ -1,3 +1,16 @@
+/**
+ * @file Planner.hpp
+ * @brief High-level autonomous planner used with `ReplanStep`.
+ *
+ * `Planner` implements a simple phase-based state machine that coordinates
+ * driving, detecting blocks, mining, indexing, and scoring.  It pre-allocates
+ * all step objects as members (no heap allocation during the match) and
+ * exposes a `planNext()` function compatible with `ReplanStep::PlanFn`.
+ *
+ * Phases progress in order:
+ * DRIVE_TO_SCAN → DETECT → DECIDE_AND_ACT → INDEX
+ * → DRIVE_TO_TABLE → PLACE → ADVANCE → DONE
+ */
 // Planner.hpp
 #pragma once
 
@@ -21,61 +34,79 @@
 #include "Steps/PlaceOnTable.hpp"
 #include "Steps/FollowLineStep.hpp"
 
+/**
+ * @brief Phase-based autonomous planner compatible with `ReplanStep`.
+ *
+ * Call `planThunk()` as the planning function for `ReplanStep` to drive the
+ * full autonomous cycle until `planNext()` returns `nullptr`.
+ */
 class Planner
 {
 public:
 
-    //Add all of the subsystems that would be used by the robot
+    /**
+     * @brief Construct the planner and bind it to the robot's subsystems.
+     * @param drive    Reference to the drive subsystem.
+     * @param miner    Reference to the miner subsystem.
+     * @param shooter  Reference to the shooter subsystem.
+     */
     explicit Planner(Drive &drive,
         Miner &miner,
         Shooter &shooter );
 
-    // Called repeatedly by ReplanStep.
-    // Returns pointer to the next step to run, or nullptr when finished.
+    /**
+     * @brief Return the next step to execute, or `nullptr` when the routine is done.
+     *
+     * Called by `ReplanStep` after each child step finishes.  Advances the
+     * internal phase and returns a pointer to the pre-allocated step object
+     * that should run next.
+     * @return Pointer to a pre-allocated `AutoStep`, or `nullptr` when DONE.
+     */
     AutoStep *planNext();
 
-    // Adapter for ReplanStep signature: AutoStep* (*)(void*)
+    /**
+     * @brief Thunk adaptor for use as a `ReplanStep::PlanFn`.
+     * @param ctx  Pointer to a `Planner` instance (cast internally).
+     * @return     Result of `planNext()` on the referenced Planner.
+     */
     static AutoStep *planThunk(void *ctx)
     {
         return static_cast<Planner *>(ctx)->planNext();
     }
 
 private:
+    /** @brief Autonomous execution phase. */
     enum Phase : uint8_t
     {
-        DRIVE_TO_SCAN,
-        DETECT,
-        DECIDE_AND_ACT,
-        INDEX,
-        DRIVE_TO_TABLE,
-        DRIVE_TO_CHEST,
-        PLACE,
-        ADVANCE,
-        DONE
+        DRIVE_TO_SCAN,   ///< Drive to the block dispenser scan position
+        DETECT,          ///< Detect which block type is present
+        DECIDE_AND_ACT,  ///< Mine/interact with the block at the dispenser
+        INDEX,           ///< Route the newly acquired block to the correct slot
+        DRIVE_TO_TABLE,  ///< Drive to the scoring table
+        DRIVE_TO_CHEST,  ///< Drive to the chest area (future use)
+        PLACE,           ///< Place the block on the table
+        ADVANCE,         ///< Advance the strategy cycle counter
+        DONE             ///< All planned actions complete
     };
 
 
-    //Add more subsystems
-    Drive &_drive;
-    Miner &_miner;
-    Shooter &_shooter;
+    Drive    &_drive;   ///< Reference to the drive subsystem
+    Miner    &_miner;   ///< Reference to the miner subsystem
+    Shooter  &_shooter; ///< Reference to the shooter subsystem
 
+    Phase _phase = DRIVE_TO_SCAN; ///< Current autonomous execution phase
 
-    
-    Phase _phase = DRIVE_TO_SCAN;
+    Strategy::Block _detected = Strategy::Block::NONE;                      ///< Block type identified by the detector step
+    Strategy::IndexDirection _slotDecision = Strategy::IndexDirection::REJECT; ///< Indexing decision for the current block
 
-    Strategy::Block _detected = Strategy::Block::NONE;
-    Strategy::IndexDirection _slotDecision = Strategy::IndexDirection::REJECT;
+    uint8_t _acceptedCount = 0; ///< Number of accepted blocks since last score
 
-    // Placeholder progress counter (replace with Strategy possession tracking later)
-    uint8_t _acceptedCount = 0;
-
-    // Pre-allocated reusable steps (no new/delete during match)
-    DriveDistance _driveStep;
-    DriveArc _driveArcStep;
-    FollowLineStep _followLineStep;
-    MineBlock _mineStep;
-    IndexBlockStep _indexStep;
-    PlaceOnTableStep _placeStep;
-    AdvanceCycleStep _advanceStep;
+    // Pre-allocated reusable steps (no heap allocation during the match)
+    DriveDistance    _driveStep;    ///< Reusable straight-drive step
+    DriveArc         _driveArcStep; ///< Reusable arc-drive step
+    FollowLineStep   _followLineStep; ///< Reusable line-follow step
+    MineBlock        _mineStep;     ///< Reusable mine-block step
+    IndexBlockStep   _indexStep;    ///< Reusable block-indexing step
+    PlaceOnTableStep _placeStep;    ///< Reusable place-on-table step
+    AdvanceCycleStep _advanceStep;  ///< Reusable cycle-advance step
 };

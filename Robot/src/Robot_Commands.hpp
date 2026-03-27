@@ -1,3 +1,41 @@
+/**
+ * @file Robot_Commands.hpp
+ * @brief Serial command protocol implementation for the `Robot` class.
+ *
+ * This file is `#include`d at the bottom of Robot.hpp — it is **not** a
+ * standalone header.  It provides `inline` implementations of all the
+ * private serial-command methods declared in `Robot`.
+ *
+ * ### Command Protocol Summary
+ * Commands are newline-terminated ASCII strings.  Two ports are monitored:
+ *   - **USB Serial** (`Serial`)   — direct PC connection.
+ *   - **Serial2**                 — Arduino-to-Arduino via `SerialComs`.
+ *
+ * | Command            | Mode        | Action |
+ * |--------------------|-------------|--------|
+ * | `A`                | Any         | Start autonomous routine |
+ * | `a`                | Any         | Reset & restart autonomous |
+ * | `S`                | Any         | Enter SERIAL_TEST mode |
+ * | `stop`             | Any         | Stop all subsystems |
+ * | `Help`             | Any         | Print this command reference |
+ * | `E`                | SERIAL_TEST | Exit to AWAIT mode |
+ * | `Mine`             | SERIAL_TEST | Start miner indefinitely |
+ * | `m`                | SERIAL_TEST | Stop miner (store) |
+ * | `Drive <sp>`       | SERIAL_TEST | Closed-loop drive at sp in/s |
+ * | `Linefollow [pwm]` | SERIAL_TEST | Start line-following |
+ * | `Distance <d>`     | SERIAL_TEST | Approach wall at d inches |
+ * | `Approach <d>`     | SERIAL_TEST | Approach along line to d inches |
+ * | `Line <d> <sp>`    | SERIAL_TEST | Queue DriveDistance step |
+ * | `Turn <ang> <sp>`  | SERIAL_TEST | Queue in-place arc turn |
+ * | `Arc <r> <deg>`    | SERIAL_TEST | Queue radius-arc step |
+ * | `SetPID <v> <i>`   | SERIAL_TEST | Set drive PID constant |
+ * | `Fire`             | SERIAL_TEST | Start shooter autofire |
+ * | `F`                | SERIAL_TEST | Fire one shot |
+ * | `f`                | SERIAL_TEST | Stop firing, prime shooter |
+ * | `p`                | SERIAL_TEST | Hold shooter position |
+ * | `ReadDistance`     | SERIAL_TEST | Print distance sensor reading |
+ * | `ramsete`          | SERIAL_TEST | Toggle Ramsete heading correction |
+ */
 // Robot_Commands.hpp
 // =============================================================================
 // Serial command protocol implementation for the Robot class.
@@ -70,10 +108,11 @@ inline void Robot::reply(Stream *port, const char *msg)
 // --- Command parsing ---------------------------------------------------------
 
 /**
- * Parse a command string of the form:  <keyword> [float] [float]
- * The keyword may be one or more characters (up to CMD_TOKEN_MAX-1).
+ * @brief Parse a command string of the form `<keyword> [float] [float]`.
+ *
+ * Keywords may be multi-character (up to CMD_TOKEN_MAX-1 chars).
  * Delimiters between tokens may be spaces, commas, colons, or tabs.
- * Returns true if at least the command keyword was found.
+ * @return `true` if at least the command keyword was found.
  */
 inline bool Robot::parseCmdWithUpToTwoFloats(const char *cmdStr,
                                               char  *outCmd,

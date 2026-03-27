@@ -1,56 +1,116 @@
+/**
+ * @file PID.hpp
+ * @brief PID controller classes with optional nonlinear extensions and feedforward support.
+ *
+ * Two classes are provided:
+ * - `PID` — A lightweight base controller with proportional, integral, and derivative
+ *   terms.  Derivative is supplied externally (from an encoder velocity signal, for example).
+ * - `PIDController` — Extends PID with anti-windup, an IIR output filter, and optional
+ *   nonlinear gain functions / feedforward callables for advanced control schemes.
+ *
+ * Function-pointer typedefs (#FeedforwardFn, #DerivativeFeedforwardFn, #KpFn, etc.) allow
+ * the caller to inject arbitrary nonlinear behaviours without subclassing.
+ */
 #ifndef PIDCONTROLLER_HPP
 #define PIDCONTROLLER_HPP
 
 #include <Arduino.h>
 
 /**
- * This file contains everything necessary to build a PID controller. It also has the added capability of being able to create a nonlinear controller using functions for kp ki and kd if wanted
+ * @brief This file contains everything necessary to build a PID controller. It also has the added capability of being able to create a nonlinear controller using functions for kp ki and kd if wanted
  */
 
 
+/**
+ * @brief Proportional, integral, and derivative gains.
+ *
+ * Passed as a single struct to avoid long argument lists wherever gains need to
+ * be configured or stored.
+ */
 struct PIDConstants
 {
-    float kp, ki, kd;
+    float kp; ///< Proportional gain
+    float ki; ///< Integral gain
+    float kd; ///< Derivative gain
 };
 
 /**
- * Feedforward Fn relates a target value to a predicted signal. This is useful for linearizing control schemes where the environment is highly predictable. 
+ * @brief Feedforward function pointer type.
+ *
+ * Maps a setpoint value to a predicted steady-state motor signal.
+ * Useful for linearising control where the plant response is predictable.
+ * @param setpoint  The target value for the controlled variable.
+ * @return          Estimated motor signal needed to achieve the setpoint.
  */
 typedef float (*FeedforwardFn)(float setpoint);
 
 /**
- * DerivativeFeedforward Fn relates a changing target to a predicted signal.
+ * @brief Derivative feedforward function pointer type.
+ *
+ * Maps the rate of change of the setpoint to an additional feed-forward signal,
+ * compensating for the lag introduced by a moving reference trajectory.
+ * @param dsetpoint  Time derivative of the setpoint.
+ * @return           Additional feedforward signal.
  */
 typedef float (*DerivativeFeedforwardFn)(float dsetpoint);
 
 /**
- * Kp function - creates a nonlinear kp term
+ * @brief Nonlinear proportional gain function pointer type.
+ *
+ * Replaces the constant kp term with a function of current measurement and target,
+ * enabling gain-scheduling or error-dependent proportional control.
+ * @param measurement  Current measured value.
+ * @param target       Desired setpoint.
+ * @return             Effective proportional control output.
  */
 typedef float (*KpFn)(float measurement, float target);
 
 /**
- * Kp function - creates a nonlinear ki term
+ * @brief Nonlinear integral gain function pointer type.
+ *
+ * Replaces the constant ki term with a function of the accumulated integral,
+ * enabling conditional integration or anti-windup schemes.
+ * @param measurement  Current measured value (or accumulated integral).
+ * @return             Effective integral control output.
  */
 typedef float (*KiFn)(float measurement);
 
 /**
- * Kp function - creates a nonlinear kd term
+ * @brief Nonlinear derivative gain function pointer type.
+ *
+ * Replaces the constant kd term with a function of the current measurement
+ * derivative, enabling derivative gain scheduling.
+ * @param measurement  Current measurement (or its derivative).
+ * @return             Effective derivative control output.
  */
 typedef float (*KdFn)(float measurement);
 
 
 /**
- * Nonlinear PID constant struct
+ * @brief Bundle of optional nonlinear gain functions for PIDController.
+ *
+ * Pass this to the #PIDController constructor to enable nonlinear behaviour.
+ * Any member left as `nullptr` falls back to the corresponding linear gain.
  */
 struct NonlinearPID{
-    FeedforwardFn ff;
-    DerivativeFeedforwardFn dff;
-    KpFn kp;
-    KiFn ki;
-    KdFn kd;
+    FeedforwardFn ff;           ///< Setpoint feedforward (replaces kff * setpoint)
+    DerivativeFeedforwardFn dff; ///< Derivative feedforward (replaces kff * dSetpoint)
+    KpFn kp;                    ///< Nonlinear proportional gain function
+    KiFn ki;                    ///< Nonlinear integral gain function
+    KdFn kd;                    ///< Nonlinear derivative gain function
 };
 
 
+/**
+ * @brief Lightweight PID controller base class.
+ *
+ * The derivative term is supplied by the caller (e.g. from an encoder velocity
+ * reading) rather than differentiating the measurement internally.  This avoids
+ * noise amplification on slow-MCU platforms like the Arduino Mega.
+ *
+ * Use `PIDController` (the derived class) when you need anti-windup, output
+ * filtering, or feedforward support.
+ */
 class PID
 {
 public:
@@ -166,6 +226,18 @@ protected:
 
 
 
+/**
+ * @brief Full-featured PID controller with anti-windup, output filtering, and optional nonlinear extensions.
+ *
+ * Extends #PID with:
+ * - Integral clamping (anti-windup) via configurable limits.
+ * - IIR output filter to smooth the command signal.
+ * - Optional feedforward functions (#FeedforwardFn, #DerivativeFeedforwardFn).
+ * - Optional nonlinear gain functions (#KpFn, #KiFn, #KdFn) for gain scheduling.
+ *
+ * When the nonlinear callbacks are `nullptr` the controller degrades to a
+ * standard PID with the linear kp / ki / kd constants.
+ */
 class PIDController : public PID
 {
 public:
@@ -459,24 +531,24 @@ private:
     }
     
     // Feedforward
-    float _kff = 0.0;               // simple FF gain (FF = kff * setpoint)
-    FeedforwardFn _ffFunc = nullptr; // optional custom FF function
-    DerivativeFeedforwardFn _dffFunc = nullptr;
-    KpFn _kpFunc = nullptr;
-    KiFn _kiFunc = nullptr;
-    KdFn _kdFunc = nullptr;
+    float _kff = 0.0;                        ///< Simple feedforward gain (FF = kff × setpoint)
+    FeedforwardFn _ffFunc = nullptr;          ///< Custom setpoint feedforward function (overrides _kff when set)
+    DerivativeFeedforwardFn _dffFunc = nullptr; ///< Custom derivative feedforward function
+    KpFn _kpFunc = nullptr;                  ///< Nonlinear proportional gain function (overrides _kp when set)
+    KiFn _kiFunc = nullptr;                  ///< Nonlinear integral gain function (overrides _ki when set)
+    KdFn _kdFunc = nullptr;                  ///< Nonlinear derivative gain function (overrides _kd when set)
 
-    float _alpha = 1;
+    float _alpha = 1;                        ///< IIR output filter coefficient (1 = off, smaller = stronger filter)
 
     // State
-    float _integral = 0.0;
-    float _lastMeasurement = 0.0;
-    float _lastOutput = 0.0;
-    float _lastDerivative = 0.0;
+    float _integral = 0.0;                   ///< Accumulated integral term
+    float _lastMeasurement = 0.0;            ///< Previous measurement (for internal derivative computation)
+    float _lastOutput = 0.0;                 ///< Previous filtered output (for IIR filter and slew)
+    float _lastDerivative = 0.0;             ///< Previous derivative estimate (for IIR derivative filtering)
 
     // Settings
-    float _iMin = -100000.0;
-    float _iMax = 100000.0;
+    float _iMin = -100000.0;                 ///< Lower clamp on the integral accumulator (anti-windup)
+    float _iMax = 100000.0;                  ///< Upper clamp on the integral accumulator (anti-windup)
 };
 
 #endif

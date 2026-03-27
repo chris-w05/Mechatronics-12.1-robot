@@ -1,3 +1,10 @@
+/**
+ * @file Solenoid.hpp
+ * @brief Simple digital solenoid driver (currently unused in primary code path).
+ *
+ * Controls a solenoid through a digital output pin.  Polarity is configurable
+ * so that both active-HIGH and active-LOW driver boards are supported.
+ */
 #ifndef SOLENOID_HPP
 #define SOLENOID_HPP
 

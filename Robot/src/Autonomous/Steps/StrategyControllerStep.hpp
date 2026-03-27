@@ -1,3 +1,16 @@
+/**
+ * @file StrategyControllerStep.hpp
+ * @brief High-level `AutoStep` that runs the full strategy loop inline.
+ *
+ * Rather than delegating to sub-steps, this step embeds the entire
+ * DECIDE → GOTO_SCAN → SCAN → MINE → STORE → CRAFT state machine
+ * inside a single `update()`.  It never finishes (`isFinished()` always
+ * returns `false`) so it must be stopped externally.
+ *
+ * @note Stub implementations of `detectBlock()`, `mineBlock()`,
+ * `indexBlock()`, `rejectBlock()`, and `runCraftSequence()` must be
+ * replaced with real sensor/subsystem calls before competition use.
+ */
 // StrategyControllerStep.hpp
 #ifndef STRATEGY_CONTROLLER_STEP_H
 #define STRATEGY_CONTROLLER_STEP_H
@@ -6,9 +19,16 @@
 #include "utils/Strategy.hpp"
 #include "Robot.hpp"
 
+/**
+ * @brief Inline strategy state machine that decides, scans, mines, stores, and crafts.
+ */
 class StrategyControllerStep : public AutoStep
 {
 public:
+    /**
+     * @brief Construct the step.
+     * @param robot  Reference to the top-level Robot object.
+     */
     StrategyControllerStep(Robot &robot) : _robot(robot) {}
 
     void start() override
@@ -93,23 +113,24 @@ public:
     }
 
 private:
+    /** @brief Internal states of the strategy execution loop. */
     enum class State
     {
-        DECIDE,
-        GOTO_SCAN,
-        SCAN,
-        MINE,
-        STORE,
-        CRAFT
+        DECIDE,    ///< Determine the next item to collect
+        GOTO_SCAN, ///< Drive to the block scanner position
+        SCAN,      ///< Poll the color sensor for a block
+        MINE,      ///< Mine the detected block
+        STORE,     ///< Index/store the mined block
+        CRAFT      ///< Execute the crafting/scoring sequence
     };
-    State _state = State::DECIDE;
+    State _state = State::DECIDE; ///< Active state of the strategy loop
 
-    Robot &_robot;
-    Strategy::CycleType _currentCycle;
-    Strategy::Block _lastDetected = Strategy::Block::NONE;
-    Strategy::IndexDirection _lastDecision = Strategy::IndexDirection::REJECT;
+    Robot &_robot;                                              ///< Top-level Robot reference
+    Strategy::CycleType _currentCycle;                          ///< Cycle item currently being pursued
+    Strategy::Block _lastDetected = Strategy::Block::NONE;      ///< Most recently identified block type
+    Strategy::IndexDirection _lastDecision = Strategy::IndexDirection::REJECT; ///< Indexing decision for last block
 
-    // Replace these with your real sensor/motion methods or sub-steps:
+    /** @brief Poll the color sensor and populate `outBlock`. @return `true` when a block is positively identified. */
     bool detectBlock(Strategy::Block &outBlock)
     {
         // poll color sensor and map to Block enum

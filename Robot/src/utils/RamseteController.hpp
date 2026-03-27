@@ -1,3 +1,19 @@
+/**
+ * @file RamseteController.hpp
+ * @brief Ramsete nonlinear trajectory-tracking controller for a differential-drive robot.
+ *
+ * Implements the RAMSETE algorithm (Banni, Brandin & Sciavicco, 1996).  Given a
+ * reference pose + feedforward wheel velocities at each time step, the controller
+ * outputs corrected linear (v) and angular (w) chassis velocities that drive the
+ * robot back onto the reference trajectory while avoiding oscillation.
+ *
+ * Typical usage inside the Drive `update()` loop:
+ * @code
+ * auto cmd = _ramsete.step(refPose, vRef, wRef, actualPose);
+ * float vL = cmd.v - cmd.w * DRIVETRAIN_WIDTH / 2.0f;
+ * float vR = cmd.v + cmd.w * DRIVETRAIN_WIDTH / 2.0f;
+ * @endcode
+ */
 #pragma once
 
 #include <Arduino.h>
