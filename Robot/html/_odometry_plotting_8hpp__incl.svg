@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Template helper functions for emitting JSON odometry telemetry over a serial port.">
 <polygon fill="#999999" stroke="#666666" points="148,-74.5 0,-74.5 0,-55.25 148,-55.25 148,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="74" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">src/utils/OdometryPlotting.hpp</text>
 </a>

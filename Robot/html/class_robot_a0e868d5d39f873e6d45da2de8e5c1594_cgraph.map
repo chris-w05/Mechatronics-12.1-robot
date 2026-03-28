@@ -1,0 +1,7 @@
+<map id="Robot::handleSerialTestCommand" name="Robot::handleSerialTestCommand">
+<area shape="rect" id="Node000001" title="Handle SERIAL_TEST commands with one numeric parameter." alt="" coords="5,5,226,31"/>
+<area shape="rect" id="Node000002" href="$class_robot.html#a701fe8e294bbf124925db433690174dd" title="Handle SERIAL_TEST commands with no numeric parameters." alt="" coords="274,5,494,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="226,16,261,18,256,18,226,21"/>
+<area shape="rect" id="Node000003" href="$class_robot.html#a3defa2b851d1a9267d6dbe251373ba7d" title="Send a message to a serial port (defaults to USB Serial if port is null)." alt="" coords="542,5,634,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="494,16,529,18,524,18,494,21"/>
+</map>

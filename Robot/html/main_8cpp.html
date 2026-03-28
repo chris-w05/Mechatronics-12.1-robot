@@ -91,24 +91,32 @@ $(function(){initNavTree('main_8cpp.html','',''); });
   <div class="headertitle"><div class="title">main.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Arduino entry point — instantiates the <a class="el" href="class_robot.html" title="Aggregates all robot subsystems and drives the main control loop.">Robot</a> and drives the main loop.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_robot_8hpp_source.html">Robot.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="main_8cpp__incl.svg" width="4720" height="642"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="main_8cpp__incl.svg" width="4955" height="642"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d" id="r_a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
+<tr class="memdesc:a4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino <span class="tt"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup() — called once on power-on or reset.">setup()</a></span> — called once on power-on or reset.  <br /></td></tr>
 <tr class="memitem:afe461d27b9c48d5921c00d521181f12f" id="r_afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="memdesc:afe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino <span class="tt"><a class="el" href="#afe461d27b9c48d5921c00d521181f12f" title="Arduino loop() — called repeatedly after setup().">loop()</a></span> — called repeatedly after <span class="tt"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup() — called once on power-on or reset.">setup()</a></span>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a212e6b8f7e9ed2662711ad228dfc3e25" id="r_a212e6b8f7e9ed2662711ad228dfc3e25"><td class="memItemLeft"><a class="el" href="class_robot.html">Robot</a>&#160;</td><td class="memItemRight"><a class="el" href="#a212e6b8f7e9ed2662711ad228dfc3e25">robot</a></td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Arduino entry point — instantiates the <a class="el" href="class_robot.html" title="Aggregates all robot subsystems and drives the main control loop.">Robot</a> and drives the main loop. </p>
+<p>All hardware initialisation is delegated to <span class="tt"><a class="el" href="class_robot.html#a990e86a39cb249629a0985e71211fa2e" title="Initialise all subsystems — call once in setup().">Robot::init()</a></span> and all per-loop work is delegated to <span class="tt"><a class="el" href="class_robot.html#adc34eec22821c2dce23904a5ea75cf13" title="Tick the robot — call every loop() iteration.">Robot::update()</a></span>. This file should remain as minimal as possible. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="afe461d27b9c48d5921c00d521181f12f" name="afe461d27b9c48d5921c00d521181f12f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afe461d27b9c48d5921c00d521181f12f">&#9670;&#160;</a></span>loop()</h2>
 
@@ -123,8 +131,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Arduino main loop.</p>
-<p>DO NOT PUT ANYTHING HERE OUTSIDE OF THE ROBOT </p>
+
+<p>Arduino <span class="tt"><a class="el" href="#afe461d27b9c48d5921c00d521181f12f" title="Arduino loop() — called repeatedly after setup().">loop()</a></span> — called repeatedly after <span class="tt"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup() — called once on power-on or reset.">setup()</a></span>. </p>
+<p>All work is performed inside <span class="tt"><a class="el" href="class_robot.html#adc34eec22821c2dce23904a5ea75cf13" title="Tick the robot — call every loop() iteration.">Robot::update()</a></span>. Do not add logic here; extend <span class="tt"><a class="el" href="class_robot.html" title="Aggregates all robot subsystems and drives the main control loop.">Robot</a></span> or its subsystems instead. </p>
 
 </div>
 </div>
@@ -142,8 +151,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Arduino Setup</p>
-<p>EVERYTHING OTHER THAN SERIAL SHOULD BE INIT FRO CHILDREN OF ROBOT.INIT() </p>
+
+<p>Arduino <span class="tt"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup() — called once on power-on or reset.">setup()</a></span> — called once on power-on or reset. </p>
+<p>Opens the USB serial port at 115200 baud, opens Serial2 for Arduino-to-Arduino comms, and delegates all remaining initialisation to <span class="tt"><a class="el" href="class_robot.html#a990e86a39cb249629a0985e71211fa2e" title="Initialise all subsystems — call once in setup().">Robot::init()</a></span>. </p>
 
 </div>
 </div>

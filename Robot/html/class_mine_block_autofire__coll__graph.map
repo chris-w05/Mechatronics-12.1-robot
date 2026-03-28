@@ -1,0 +1,26 @@
+<map id="MineBlockAutofire" name="MineBlockAutofire">
+<area shape="rect" id="Node000001" title="Runs the miner and shooter autofire concurrently for desiredSeconds seconds." alt="" coords="246,411,373,437"/>
+<area shape="rect" id="Node000002" href="$class_auto_step.html" title="Pure&#45;virtual base class for all autonomous steps." alt="" coords="177,314,253,340"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="239,349,300,411,295,410,236,353"/>
+<area shape="rect" id="Node000003" href="$class_miner.html" title="Servo&#45;driven block&#45;mining and ramp&#45;deployment subsystem." alt="" coords="410,314,463,340"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="414,349,367,389,331,413,329,408,364,385,409,351"/>
+<area shape="rect" id="Node000004" href="$class_subsystem.html" title="Polymorphic interface for a robot subsystem." alt="" coords="393,197,480,223"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="438,237,439,315,434,313,435,241"/>
+<area shape="rect" id="Node000006" href="$class_shooter.html" title="Rack&#45;and&#45;pinion block shooter controlled by encoder feedback." alt="" coords="276,314,343,340"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="422,234,399,265,371,292,336,316,333,311,368,288,395,261,417,237"/>
+<area shape="rect" id="Node000005" href="$class_servo_control.html" title="Servo driver with angle clamping, inversion, and deferred writes." alt="" coords="504,197,601,223"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="532,233,450,316,447,312,527,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="312,353,312,412,307,409,308,357"/>
+<area shape="rect" id="Node000007" href="$class_button.html" title="Digital button / limit&#45;switch driver." alt="" coords="5,197,65,223"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="53,233,83,263,119,288,157,302,189,306,223,306,265,312,279,317,273,317,264,317,222,312,189,311,156,307,116,293,80,267,53,238"/>
+<area shape="rect" id="Node000008" href="$class_dual_motor_controller.html" title="Dual&#45;channel closed&#45;loop motor controller." alt="" coords="89,197,226,223"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="186,230,296,313,291,315,185,235"/>
+<area shape="rect" id="Node000009" href="$class_l298_n_motor_driver_mega.html" title=" " alt="" coords="15,80,175,106"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="102,118,113,146,126,172,146,196,141,197,122,175,108,148,102,124"/>
+<area shape="rect" id="Node000010" href="$class_p_i_d_controller.html" title="Full&#45;featured PID controller with anti&#45;windup, output filtering, and optional nonlinear extensions." alt="" coords="198,80,298,106"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="230,121,193,175,172,198,168,195,189,172,233,117"/>
+<area shape="rect" id="Node000011" href="$class_p_i_d.html" title="Lightweight PID controller base class." alt="" coords="226,5,270,31"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="249,44,251,81,246,79,247,49"/>
+<area shape="rect" id="Node000012" href="$class_encoder_wrapper.html" title="Quadrature encoder driver with velocity and acceleration estimation." alt="" coords="251,197,368,223"/>
+<area shape="poly" id="edge12_Node000006_Node000012" title=" " alt="" coords="311,237,312,315,307,313,308,241"/>
+</map>

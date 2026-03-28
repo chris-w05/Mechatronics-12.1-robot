@@ -91,6 +91,9 @@ $(function(){initNavTree('_servo_control_8hpp.html','',''); });
   <div class="headertitle"><div class="title">ServoControl.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Buffered servo wrapper that defers writes until <span class="tt">update()</span> is called.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;PWMServo.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -101,7 +104,7 @@ Include dependency graph for ServoControl.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_servo_control_8hpp__dep__incl.svg" width="710" height="450"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_servo_control_8hpp__dep__incl.svg" width="952" height="450"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_servo_control_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -109,8 +112,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:ServoControl" id="r_ServoControl"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_servo_control.html">ServoControl</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Servo driver with angle clamping, inversion, and deferred writes.  <a href="class_servo_control.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Buffered servo wrapper that defers writes until <span class="tt">update()</span> is called. </p>
+<p>Owned by the <a class="el" href="class_miner.html" title="Servo-driven block-mining and ramp-deployment subsystem.">Miner</a> and Ramp subsystems. The angle is clamped to a configurable [minAngle, maxAngle] range and optionally mirrored so that the caller can think in terms of "logical" angles independent of the physical mounting orientation. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

@@ -1,6 +1,6 @@
 <map id="src/Autonomous/Steps/ParallelStep.hpp" name="src/Autonomous/Steps/ParallelStep.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="76,5,231,46"/>
-<area shape="rect" id="Node000002" href="$_auto_step_8h.html" title=" " alt="" coords="5,94,169,120"/>
+<area shape="rect" id="Node000001" title="AutoStep that runs multiple child steps concurrently." alt="" coords="76,5,231,46"/>
+<area shape="rect" id="Node000002" href="$_auto_step_8h.html" title="Abstract interface that every autonomous step must implement." alt="" coords="5,94,169,120"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,45,109,84,105,80,135,48"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="193,94,250,120"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="172,44,204,82,199,82,169,49"/>

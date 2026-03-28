@@ -1,12 +1,14 @@
 var class_miner =
 [
     [ "Mode", "class_miner.html#a4a403b6f2ef88a9c473b96fcefa8ca83", [
+      [ "LIFT", "class_miner.html#a4a403b6f2ef88a9c473b96fcefa8ca83a7243623c6e7a62cdac6117712b32f2ab", null ],
       [ "MINING", "class_miner.html#a4a403b6f2ef88a9c473b96fcefa8ca83ad4bb7071448b4d986646d3fc8a02d007", null ],
       [ "OFF", "class_miner.html#a4a403b6f2ef88a9c473b96fcefa8ca83a657dca9bbc9cab0a7c119cba6b4bf530", null ],
       [ "STORE", "class_miner.html#a4a403b6f2ef88a9c473b96fcefa8ca83a9cd6082eaaeeae9fd0ef8a9587141968", null ]
     ] ],
-    [ "Miner", "class_miner.html#a62968234f5b871d62ddfb15bc3b749d7", null ],
+    [ "Miner", "class_miner.html#a93ddd56ed4d16e2281c930a78176243f", null ],
     [ "clearTimeout", "class_miner.html#a5510f7d6fd2949316bd4b7917dc175ea", null ],
+    [ "deployRamp", "class_miner.html#ae155dd33f0a1dc4494f70b183566d688", null ],
     [ "getHitsDone", "class_miner.html#a8c9ef5d1c2efefb8a1d3a5570d10dc20", null ],
     [ "getHitsTarget", "class_miner.html#ab8a7a3e2979880e41d0c3fb2eecb9404", null ],
     [ "hasTimedOut", "class_miner.html#a0e4c6da50b029006194f86697cc9e5fe", null ],
@@ -14,9 +16,11 @@ var class_miner =
     [ "isDoneMining", "class_miner.html#a5bf00707124a7651d779094aed88e39a", null ],
     [ "mine", "class_miner.html#acfbf4c865a8dc5b3b96e9e5322a51ae2", null ],
     [ "setMaxContinuousMillis", "class_miner.html#af390d03f8c8b96d77cc8430c8d61464c", null ],
-    [ "setServoToPress", "class_miner.html#a9e800360111af4b673ba51eab5eace0a", null ],
-    [ "setServoToRetract", "class_miner.html#a437a0fdc0f9be6b0ffc27da25ab928b1", null ],
-    [ "setServoToStore", "class_miner.html#a1e9e4d2f46296b496c59993039786eb4", null ],
+    [ "setMinerServoToPress", "class_miner.html#a6fbd323fb3ceceabde90ca2c3ecb5b16", null ],
+    [ "setMinerServoToRetract", "class_miner.html#a9f02a17fa9cd96b2bdd5796b42cbb807", null ],
+    [ "setRampServoToLift", "class_miner.html#a04f9db708e46ce49b08a98155ccaf251", null ],
+    [ "setRampServoToPassive", "class_miner.html#a9aebb2834badb2cc2bc151bcdccabfd0", null ],
+    [ "setServosToStore", "class_miner.html#a0b5a31a12bfa80912aa22cd1e21cde84", null ],
     [ "startMining", "class_miner.html#a2621577e4088181556df1c3141bb6a10", null ],
     [ "startMining", "class_miner.html#a5e1fdc25e73983873eab030d2fdcad7f", null ],
     [ "startMiningIndefinitely", "class_miner.html#ac47b51c789973da766978d6b3700376e", null ],
@@ -34,5 +38,6 @@ var class_miner =
     [ "_number_hits", "class_miner.html#a6676e333f250d6b5f8c1bc176e5b9dc9", null ],
     [ "_onStartTime", "class_miner.html#aa80e5070e9306dd8b531023a6fd51b0b", null ],
     [ "_timedOut", "class_miner.html#a26f1118ef062d6a26d22ed65441a0dfc", null ],
-    [ "servo", "class_miner.html#a41d28edb0079e56a44adf48153fdeb1a", null ]
+    [ "minerServo", "class_miner.html#a67d0461bdf52b384e83f749aa50d6179", null ],
+    [ "rampServo", "class_miner.html#ab99e614e7715906400363eb9828183b4", null ]
 ];

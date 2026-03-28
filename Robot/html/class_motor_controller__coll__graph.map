@@ -1,7 +1,7 @@
 <map id="MotorController" name="MotorController">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,177,116,203"/>
-<area shape="rect" id="Node000002" href="$class_p_i_d_controller.html" title=" " alt="" coords="10,80,111,106"/>
+<area shape="rect" id="Node000001" title="Single&#45;channel closed&#45;loop motor controller." alt="" coords="5,177,116,203"/>
+<area shape="rect" id="Node000002" href="$class_p_i_d_controller.html" title="Full&#45;featured PID controller with anti&#45;windup, output filtering, and optional nonlinear extensions." alt="" coords="10,80,111,106"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,120,63,177,58,176,58,123"/>
-<area shape="rect" id="Node000003" href="$class_p_i_d.html" title=" " alt="" coords="38,5,83,31"/>
+<area shape="rect" id="Node000003" href="$class_p_i_d.html" title="Lightweight PID controller base class." alt="" coords="38,5,83,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="61,44,63,80,58,80,60,49"/>
 </map>

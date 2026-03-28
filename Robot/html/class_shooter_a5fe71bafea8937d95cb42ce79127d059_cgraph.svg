@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Fire one shot by advancing the rack to the next fire position.">
 <polygon fill="#999999" stroke="#666666" points="69.25,-19.25 0,-19.25 0,0 69.25,0 69.25,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="34.62" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Shooter::fire</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_shooter.html#a30a31145ab7b3148a0adb2d0c0152713" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_shooter.html#a30a31145ab7b3148a0adb2d0c0152713" target="_top" xlink:title="Compute the encoder target for the fire (extended) position.">
 <polygon fill="white" stroke="#666666" points="231.5,-19.25 105.25,-19.25 105.25,0 231.5,0 231.5,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="168.38" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Shooter::nextFirePosition</text>
 </a>

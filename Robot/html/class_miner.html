@@ -92,6 +92,9 @@ $(function(){initNavTree('class_miner.html','','class_miner-members'); });
 </div><!--header-->
 <div class="contents">
 
+<p>Servo-driven block-mining and ramp-deployment subsystem.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_miner_8hpp_source.html">Miner.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Miner:</div>
@@ -101,68 +104,113 @@ Inheritance diagram for Miner:</div>
 <div class="dynheader">
 Collaboration diagram for Miner:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner__coll__graph.svg" width="219" height="134"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner__coll__graph.svg" width="226" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a4a403b6f2ef88a9c473b96fcefa8ca83" id="r_a4a403b6f2ef88a9c473b96fcefa8ca83"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a4a403b6f2ef88a9c473b96fcefa8ca83">Mode</a> { <a class="el" href="#a4a403b6f2ef88a9c473b96fcefa8ca83ad4bb7071448b4d986646d3fc8a02d007">MINING</a>
+<tr class="memitem:a4a403b6f2ef88a9c473b96fcefa8ca83" id="r_a4a403b6f2ef88a9c473b96fcefa8ca83"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a4a403b6f2ef88a9c473b96fcefa8ca83">Mode</a> { <a class="el" href="#a4a403b6f2ef88a9c473b96fcefa8ca83a7243623c6e7a62cdac6117712b32f2ab">LIFT</a>
+, <a class="el" href="#a4a403b6f2ef88a9c473b96fcefa8ca83ad4bb7071448b4d986646d3fc8a02d007">MINING</a>
 , <a class="el" href="#a4a403b6f2ef88a9c473b96fcefa8ca83a657dca9bbc9cab0a7c119cba6b4bf530">OFF</a>
 , <a class="el" href="#a4a403b6f2ef88a9c473b96fcefa8ca83a9cd6082eaaeeae9fd0ef8a9587141968">STORE</a>
  }</td></tr>
+<tr class="memdesc:a4a403b6f2ef88a9c473b96fcefa8ca83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operating mode for the miner state machine.  <a href="#a4a403b6f2ef88a9c473b96fcefa8ca83">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a62968234f5b871d62ddfb15bc3b749d7" id="r_a62968234f5b871d62ddfb15bc3b749d7"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a62968234f5b871d62ddfb15bc3b749d7">Miner</a> (const int servoPin)</td></tr>
+<tr class="memitem:a93ddd56ed4d16e2281c930a78176243f" id="r_a93ddd56ed4d16e2281c930a78176243f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a93ddd56ed4d16e2281c930a78176243f">Miner</a> (const int minerServoPin, const int rampServoPin)</td></tr>
 <tr class="memitem:a70e0512803222c5e37d0ebff10cec909" id="r_a70e0512803222c5e37d0ebff10cec909"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a70e0512803222c5e37d0ebff10cec909">init</a> () override</td></tr>
+<tr class="memdesc:a70e0512803222c5e37d0ebff10cec909"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise hardware and reset internal state. Called once in <a class="el" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup() — called once on power-on or reset.">setup()</a>.  <br /></td></tr>
 <tr class="memitem:a8981a5f0de49e527684f44d08d0a8b5b" id="r_a8981a5f0de49e527684f44d08d0a8b5b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8981a5f0de49e527684f44d08d0a8b5b">update</a> () override</td></tr>
+<tr class="memdesc:a8981a5f0de49e527684f44d08d0a8b5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update control outputs. Called every loop iteration.  <br /></td></tr>
 <tr class="memitem:a5e1fdc25e73983873eab030d2fdcad7f" id="r_a5e1fdc25e73983873eab030d2fdcad7f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5e1fdc25e73983873eab030d2fdcad7f">startMining</a> (int32_t hits_to_mine)</td></tr>
+<tr class="memdesc:a5e1fdc25e73983873eab030d2fdcad7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start mining for a fixed number of press cycles.  <br /></td></tr>
 <tr class="memitem:ac47b51c789973da766978d6b3700376e" id="r_ac47b51c789973da766978d6b3700376e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac47b51c789973da766978d6b3700376e">startMiningIndefinitely</a> ()</td></tr>
+<tr class="memdesc:ac47b51c789973da766978d6b3700376e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start mining indefinitely. Use <span class="tt"><a class="el" href="#ac620291b4e81dcc9be682d32cb4ac3af" title="Stop mining and retract miner servo.">stopMining()</a></span> or hit-count exhaustion to stop.  <br /></td></tr>
 <tr class="memitem:ac620291b4e81dcc9be682d32cb4ac3af" id="r_ac620291b4e81dcc9be682d32cb4ac3af"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac620291b4e81dcc9be682d32cb4ac3af">stopMining</a> ()</td></tr>
+<tr class="memdesc:ac620291b4e81dcc9be682d32cb4ac3af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop mining and retract miner servo.  <br /></td></tr>
+<tr class="memitem:ae155dd33f0a1dc4494f70b183566d688" id="r_ae155dd33f0a1dc4494f70b183566d688"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae155dd33f0a1dc4494f70b183566d688">deployRamp</a> ()</td></tr>
+<tr class="memdesc:ae155dd33f0a1dc4494f70b183566d688"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raise the ramp to its passive (deployed) angle.  <br /></td></tr>
 <tr class="memitem:aaecd98dd68895d44127103445eb54199" id="r_aaecd98dd68895d44127103445eb54199"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aaecd98dd68895d44127103445eb54199">stop</a> () override</td></tr>
+<tr class="memdesc:aaecd98dd68895d44127103445eb54199"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place subsystem in a safe, stopped state.  <br /></td></tr>
 <tr class="memitem:a5bf00707124a7651d779094aed88e39a" id="r_a5bf00707124a7651d779094aed88e39a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a5bf00707124a7651d779094aed88e39a">isDoneMining</a> () const</td></tr>
+<tr class="memdesc:a5bf00707124a7651d779094aed88e39a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return <span class="tt">true</span> when the miner has completed all requested hits (or timed out).  <br /></td></tr>
 <tr class="memitem:a794d15f3c05f7c4b5aa9fb0d41f3e120" id="r_a794d15f3c05f7c4b5aa9fb0d41f3e120"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a794d15f3c05f7c4b5aa9fb0d41f3e120">store</a> ()</td></tr>
+<tr class="memdesc:a794d15f3c05f7c4b5aa9fb0d41f3e120"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stow both servos in the transport position and reset the hit counter.  <br /></td></tr>
 <tr class="memitem:a0e4c6da50b029006194f86697cc9e5fe" id="r_a0e4c6da50b029006194f86697cc9e5fe"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0e4c6da50b029006194f86697cc9e5fe">hasTimedOut</a> () const</td></tr>
 <tr class="memitem:a8c9ef5d1c2efefb8a1d3a5570d10dc20" id="r_a8c9ef5d1c2efefb8a1d3a5570d10dc20"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a8c9ef5d1c2efefb8a1d3a5570d10dc20">getHitsDone</a> () const</td></tr>
 <tr class="memitem:ab8a7a3e2979880e41d0c3fb2eecb9404" id="r_ab8a7a3e2979880e41d0c3fb2eecb9404"><td class="memItemLeft">int32_t&#160;</td><td class="memItemRight"><a class="el" href="#ab8a7a3e2979880e41d0c3fb2eecb9404">getHitsTarget</a> () const</td></tr>
 <tr class="memitem:af390d03f8c8b96d77cc8430c8d61464c" id="r_af390d03f8c8b96d77cc8430c8d61464c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af390d03f8c8b96d77cc8430c8d61464c">setMaxContinuousMillis</a> (unsigned long ms)</td></tr>
+<tr class="memdesc:af390d03f8c8b96d77cc8430c8d61464c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the safety timeout for indefinite mining (0 to disable).  <br /></td></tr>
 <tr class="memitem:a5510f7d6fd2949316bd4b7917dc175ea" id="r_a5510f7d6fd2949316bd4b7917dc175ea"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5510f7d6fd2949316bd4b7917dc175ea">clearTimeout</a> ()</td></tr>
+<tr class="memdesc:a5510f7d6fd2949316bd4b7917dc175ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear a previous timeout so mining can be restarted.  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_subsystem"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_subsystem')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_subsystem.html">Subsystem</a></td></tr>
 <tr class="memitem:a97b47fc51947d7bf43aafc0efc4ec926 inherit pub_methods_class_subsystem" id="r_a97b47fc51947d7bf43aafc0efc4ec926"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="class_subsystem.html#a97b47fc51947d7bf43aafc0efc4ec926">~Subsystem</a> ()=default</td></tr>
 <tr class="memitem:a65e3db9a6b9eff35e5cd87a2a33cd5e6 inherit pub_methods_class_subsystem" id="r_a65e3db9a6b9eff35e5cd87a2a33cd5e6"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="class_subsystem.html#a65e3db9a6b9eff35e5cd87a2a33cd5e6">isHealthy</a> () const</td></tr>
+<tr class="memdesc:a65e3db9a6b9eff35e5cd87a2a33cd5e6 inherit pub_methods_class_subsystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report whether the subsystem is operating nominally.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a944d6c21d846c35a9aee6cfade802bb6" id="r_a944d6c21d846c35a9aee6cfade802bb6"><td class="memItemLeft">static constexpr int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a944d6c21d846c35a9aee6cfade802bb6">INDEFINITE</a> = -1</td></tr>
+<tr class="memdesc:a944d6c21d846c35a9aee6cfade802bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sentinel value for <span class="tt"><a class="el" href="#a2621577e4088181556df1c3141bb6a10" title="Internal transition to MINING mode; resets all hit and cycle counters.">startMining()</a></span> meaning "run indefinitely".  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:acfbf4c865a8dc5b3b96e9e5322a51ae2" id="r_acfbf4c865a8dc5b3b96e9e5322a51ae2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#acfbf4c865a8dc5b3b96e9e5322a51ae2">mine</a> ()</td></tr>
-<tr class="memitem:a9e800360111af4b673ba51eab5eace0a" id="r_a9e800360111af4b673ba51eab5eace0a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9e800360111af4b673ba51eab5eace0a">setServoToPress</a> ()</td></tr>
-<tr class="memitem:a437a0fdc0f9be6b0ffc27da25ab928b1" id="r_a437a0fdc0f9be6b0ffc27da25ab928b1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a437a0fdc0f9be6b0ffc27da25ab928b1">setServoToRetract</a> ()</td></tr>
-<tr class="memitem:a1e9e4d2f46296b496c59993039786eb4" id="r_a1e9e4d2f46296b496c59993039786eb4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1e9e4d2f46296b496c59993039786eb4">setServoToStore</a> ()</td></tr>
+<tr class="memdesc:acfbf4c865a8dc5b3b96e9e5322a51ae2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_drive.html">Drive</a> the miner servo to the press-down angle.  <br /></td></tr>
+<tr class="memitem:a6fbd323fb3ceceabde90ca2c3ecb5b16" id="r_a6fbd323fb3ceceabde90ca2c3ecb5b16"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6fbd323fb3ceceabde90ca2c3ecb5b16">setMinerServoToPress</a> ()</td></tr>
+<tr class="memitem:a9f02a17fa9cd96b2bdd5796b42cbb807" id="r_a9f02a17fa9cd96b2bdd5796b42cbb807"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9f02a17fa9cd96b2bdd5796b42cbb807">setMinerServoToRetract</a> ()</td></tr>
+<tr class="memdesc:a9f02a17fa9cd96b2bdd5796b42cbb807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retract the miner servo to clear the dispenser for the next block.  <br /></td></tr>
+<tr class="memitem:a0b5a31a12bfa80912aa22cd1e21cde84" id="r_a0b5a31a12bfa80912aa22cd1e21cde84"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0b5a31a12bfa80912aa22cd1e21cde84">setServosToStore</a> ()</td></tr>
+<tr class="memdesc:a0b5a31a12bfa80912aa22cd1e21cde84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stow both the miner servo and the ramp servo in the transport position.  <br /></td></tr>
+<tr class="memitem:a04f9db708e46ce49b08a98155ccaf251" id="r_a04f9db708e46ce49b08a98155ccaf251"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a04f9db708e46ce49b08a98155ccaf251">setRampServoToLift</a> ()</td></tr>
+<tr class="memdesc:a04f9db708e46ce49b08a98155ccaf251"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raise the ramp to the block-catching (LIFT) angle.  <br /></td></tr>
+<tr class="memitem:a9aebb2834badb2cc2bc151bcdccabfd0" id="r_a9aebb2834badb2cc2bc151bcdccabfd0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9aebb2834badb2cc2bc151bcdccabfd0">setRampServoToPassive</a> ()</td></tr>
+<tr class="memdesc:a9aebb2834badb2cc2bc151bcdccabfd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lower the ramp to the passive (neutral) angle between mining cycles.  <br /></td></tr>
 <tr class="memitem:a2621577e4088181556df1c3141bb6a10" id="r_a2621577e4088181556df1c3141bb6a10"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2621577e4088181556df1c3141bb6a10">startMining</a> ()</td></tr>
+<tr class="memdesc:a2621577e4088181556df1c3141bb6a10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal transition to MINING mode; resets all hit and cycle counters.  <br /></td></tr>
 <tr class="memitem:a26f3ff0ceeae35f37c087bbb17767f17" id="r_a26f3ff0ceeae35f37c087bbb17767f17"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a26f3ff0ceeae35f37c087bbb17767f17">stopMiningInternal</a> ()</td></tr>
+<tr class="memdesc:a26f3ff0ceeae35f37c087bbb17767f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: transition to OFF mode, reset timers, and immediately retract the miner servo.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aec188910ef60be03e4f131091d26269a" id="r_aec188910ef60be03e4f131091d26269a"><td class="memItemLeft"><a class="el" href="#a4a403b6f2ef88a9c473b96fcefa8ca83">Mode</a>&#160;</td><td class="memItemRight"><a class="el" href="#aec188910ef60be03e4f131091d26269a">_mode</a> = <a class="el" href="#a4a403b6f2ef88a9c473b96fcefa8ca83a657dca9bbc9cab0a7c119cba6b4bf530">OFF</a></td></tr>
-<tr class="memitem:a41d28edb0079e56a44adf48153fdeb1a" id="r_a41d28edb0079e56a44adf48153fdeb1a"><td class="memItemLeft"><a class="el" href="class_servo_control.html">ServoControl</a>&#160;</td><td class="memItemRight"><a class="el" href="#a41d28edb0079e56a44adf48153fdeb1a">servo</a></td></tr>
+<tr class="memdesc:aec188910ef60be03e4f131091d26269a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current operating mode.  <br /></td></tr>
+<tr class="memitem:a67d0461bdf52b384e83f749aa50d6179" id="r_a67d0461bdf52b384e83f749aa50d6179"><td class="memItemLeft"><a class="el" href="class_servo_control.html">ServoControl</a>&#160;</td><td class="memItemRight"><a class="el" href="#a67d0461bdf52b384e83f749aa50d6179">minerServo</a></td></tr>
+<tr class="memdesc:a67d0461bdf52b384e83f749aa50d6179"><td class="mdescLeft">&#160;</td><td class="mdescRight">Servo that presses down on the dispenser block.  <br /></td></tr>
+<tr class="memitem:ab99e614e7715906400363eb9828183b4" id="r_ab99e614e7715906400363eb9828183b4"><td class="memItemLeft"><a class="el" href="class_servo_control.html">ServoControl</a>&#160;</td><td class="memItemRight"><a class="el" href="#ab99e614e7715906400363eb9828183b4">rampServo</a></td></tr>
+<tr class="memdesc:ab99e614e7715906400363eb9828183b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Servo that deploys/stows the feed ramp.  <br /></td></tr>
 <tr class="memitem:aa70dcb91066fbd24c9ee9c2d9cff2a5b" id="r_aa70dcb91066fbd24c9ee9c2d9cff2a5b"><td class="memItemLeft">unsigned long&#160;</td><td class="memItemRight"><a class="el" href="#aa70dcb91066fbd24c9ee9c2d9cff2a5b">_now</a> = 0</td></tr>
+<tr class="memdesc:aa70dcb91066fbd24c9ee9c2d9cff2a5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Snapshot of millis() taken at start of <a class="el" href="#a8981a5f0de49e527684f44d08d0a8b5b" title="Update control outputs. Called every loop iteration.">update()</a>.  <br /></td></tr>
 <tr class="memitem:a5d20ab2bb581eb2f71f099003da41f53" id="r_a5d20ab2bb581eb2f71f099003da41f53"><td class="memItemLeft">unsigned long&#160;</td><td class="memItemRight"><a class="el" href="#a5d20ab2bb581eb2f71f099003da41f53">_cycleStartTime</a> = 0</td></tr>
+<tr class="memdesc:a5d20ab2bb581eb2f71f099003da41f53"><td class="mdescLeft">&#160;</td><td class="mdescRight">millis() at the start of the current press cycle  <br /></td></tr>
 <tr class="memitem:aa80e5070e9306dd8b531023a6fd51b0b" id="r_aa80e5070e9306dd8b531023a6fd51b0b"><td class="memItemLeft">unsigned long&#160;</td><td class="memItemRight"><a class="el" href="#aa80e5070e9306dd8b531023a6fd51b0b">_onStartTime</a> = 0</td></tr>
+<tr class="memdesc:aa80e5070e9306dd8b531023a6fd51b0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">millis() when the current press window started  <br /></td></tr>
 <tr class="memitem:a6676e333f250d6b5f8c1bc176e5b9dc9" id="r_a6676e333f250d6b5f8c1bc176e5b9dc9"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a6676e333f250d6b5f8c1bc176e5b9dc9">_number_hits</a> = 0</td></tr>
+<tr class="memdesc:a6676e333f250d6b5f8c1bc176e5b9dc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of press cycles completed.  <br /></td></tr>
 <tr class="memitem:a57ba9ad895fb150dec7541d19bb6ab1c" id="r_a57ba9ad895fb150dec7541d19bb6ab1c"><td class="memItemLeft">int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a57ba9ad895fb150dec7541d19bb6ab1c">_hits_to_mine</a> = 10</td></tr>
+<tr class="memdesc:a57ba9ad895fb150dec7541d19bb6ab1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Target hit count; INDEFINITE (-1) = unlimited.  <br /></td></tr>
 <tr class="memitem:a7372bd628d66da75fff9716d4a9df9fe" id="r_a7372bd628d66da75fff9716d4a9df9fe"><td class="memItemLeft">unsigned long&#160;</td><td class="memItemRight"><a class="el" href="#a7372bd628d66da75fff9716d4a9df9fe">_maxContinuousMillis</a> = 300000UL</td></tr>
+<tr class="memdesc:a7372bd628d66da75fff9716d4a9df9fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safety timeout for indefinite mining (ms, default 5 min).  <br /></td></tr>
 <tr class="memitem:ae9c3ff8206db307750b1acce7f4ada0a" id="r_ae9c3ff8206db307750b1acce7f4ada0a"><td class="memItemLeft">unsigned long&#160;</td><td class="memItemRight"><a class="el" href="#ae9c3ff8206db307750b1acce7f4ada0a">_miningStartTime</a> = 0</td></tr>
+<tr class="memdesc:ae9c3ff8206db307750b1acce7f4ada0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">millis() when MINING mode was first entered  <br /></td></tr>
 <tr class="memitem:a26f1118ef062d6a26d22ed65441a0dfc" id="r_a26f1118ef062d6a26d22ed65441a0dfc"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a26f1118ef062d6a26d22ed65441a0dfc">_timedOut</a> = false</td></tr>
+<tr class="memdesc:a26f1118ef062d6a26d22ed65441a0dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if mining was halted by the safety timeout.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_class_subsystem"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_class_subsystem')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="class_subsystem.html">Subsystem</a></td></tr>
 <tr class="memitem:a4d43587077a29fd21f4766e376b16c6d inherit pro_methods_class_subsystem" id="r_a4d43587077a29fd21f4766e376b16c6d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="class_subsystem.html#a4d43587077a29fd21f4766e376b16c6d">Subsystem</a> ()=default</td></tr>
 </table>
-<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Servo-driven block-mining and ramp-deployment subsystem. </p>
+<p>Operates as a state machine with four modes:</p><ul>
+<li><b>MINING</b> — Cyclic press-retract motion to knock blocks from the dispenser.</li>
+<li><b>OFF</b> — Servo retracted at rest position; no motion.</li>
+<li><b>STORE</b> — Servo and ramp both fully stowed for transport.</li>
+<li><b>LIFT</b> — Ramp elevated to receive incoming blocks. </li>
+</ul>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
 <a id="a4a403b6f2ef88a9c473b96fcefa8ca83" name="a4a403b6f2ef88a9c473b96fcefa8ca83"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4a403b6f2ef88a9c473b96fcefa8ca83">&#9670;&#160;</a></span>Mode</h2>
 
@@ -174,17 +222,24 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Operating mode for the miner state machine. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a4a403b6f2ef88a9c473b96fcefa8ca83ad4bb7071448b4d986646d3fc8a02d007" name="a4a403b6f2ef88a9c473b96fcefa8ca83ad4bb7071448b4d986646d3fc8a02d007"></a>MINING&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a4a403b6f2ef88a9c473b96fcefa8ca83a657dca9bbc9cab0a7c119cba6b4bf530" name="a4a403b6f2ef88a9c473b96fcefa8ca83a657dca9bbc9cab0a7c119cba6b4bf530"></a>OFF&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a4a403b6f2ef88a9c473b96fcefa8ca83a9cd6082eaaeeae9fd0ef8a9587141968" name="a4a403b6f2ef88a9c473b96fcefa8ca83a9cd6082eaaeeae9fd0ef8a9587141968"></a>STORE&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a4a403b6f2ef88a9c473b96fcefa8ca83a7243623c6e7a62cdac6117712b32f2ab" name="a4a403b6f2ef88a9c473b96fcefa8ca83a7243623c6e7a62cdac6117712b32f2ab"></a>LIFT&#160;</td><td class="fielddoc"><p>Ramp raised to funnel blocks; miner servo idle. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4a403b6f2ef88a9c473b96fcefa8ca83ad4bb7071448b4d986646d3fc8a02d007" name="a4a403b6f2ef88a9c473b96fcefa8ca83ad4bb7071448b4d986646d3fc8a02d007"></a>MINING&#160;</td><td class="fielddoc"><p>Active press-retract cycling. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4a403b6f2ef88a9c473b96fcefa8ca83a657dca9bbc9cab0a7c119cba6b4bf530" name="a4a403b6f2ef88a9c473b96fcefa8ca83a657dca9bbc9cab0a7c119cba6b4bf530"></a>OFF&#160;</td><td class="fielddoc"><p><a class="el" href="class_miner.html" title="Servo-driven block-mining and ramp-deployment subsystem.">Miner</a> servo retracted, ramp unset. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a4a403b6f2ef88a9c473b96fcefa8ca83a9cd6082eaaeeae9fd0ef8a9587141968" name="a4a403b6f2ef88a9c473b96fcefa8ca83a9cd6082eaaeeae9fd0ef8a9587141968"></a>STORE&#160;</td><td class="fielddoc"><p>Both servos stowed in transport position. </p>
+</td></tr>
 </table>
 
 </div>
 </div>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a62968234f5b871d62ddfb15bc3b749d7" name="a62968234f5b871d62ddfb15bc3b749d7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62968234f5b871d62ddfb15bc3b749d7">&#9670;&#160;</a></span>Miner()</h2>
+<a id="a93ddd56ed4d16e2281c930a78176243f" name="a93ddd56ed4d16e2281c930a78176243f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93ddd56ed4d16e2281c930a78176243f">&#9670;&#160;</a></span>Miner()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -195,8 +250,12 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">Miner::Miner </td>
           <td>(</td>
-          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>servoPin</em></span></td><td>)</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>minerServoPin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>rampServoPin</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -232,6 +291,40 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Clear a previous timeout so mining can be restarted. </p>
+
+</div>
+</div>
+<a id="ae155dd33f0a1dc4494f70b183566d688" name="ae155dd33f0a1dc4494f70b183566d688"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae155dd33f0a1dc4494f70b183566d688">&#9670;&#160;</a></span>deployRamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Miner::deployRamp </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Raise the ramp to its passive (deployed) angle. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner_ae155dd33f0a1dc4494f70b183566d688_cgraph.svg" width="403" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
 </div>
 </div>
 <a id="a8c9ef5d1c2efefb8a1d3a5570d10dc20" name="a8c9ef5d1c2efefb8a1d3a5570d10dc20"></a>
@@ -256,6 +349,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Number of press cycles completed since <span class="tt"><a class="el" href="#a2621577e4088181556df1c3141bb6a10" title="Internal transition to MINING mode; resets all hit and cycle counters.">startMining()</a></span>. </dd></dl>
 
 </div>
 </div>
@@ -281,6 +375,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Configured hit target (INDEFINITE = -1 for unlimited). </dd></dl>
 
 </div>
 </div>
@@ -306,6 +401,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if mining was stopped because the safety timeout elapsed. </dd></dl>
 
 </div>
 </div>
@@ -332,7 +428,14 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Initialise hardware and reset internal state. Called once in <a class="el" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup() — called once on power-on or reset.">setup()</a>. </p>
+
 <p>Implements <a class="el" href="class_subsystem.html#a77a984e8a06bfebb924a6e7ba4f98363">Subsystem</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner_a70e0512803222c5e37d0ebff10cec909_cgraph.svg" width="303" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -359,6 +462,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Return <span class="tt">true</span> when the miner has completed all requested hits (or timed out). </p>
+
 </div>
 </div>
 <a id="acfbf4c865a8dc5b3b96e9e5322a51ae2" name="acfbf4c865a8dc5b3b96e9e5322a51ae2"></a>
@@ -383,10 +488,12 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p><a class="el" href="class_drive.html">Drive</a> the miner servo to the press-down angle. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner_acfbf4c865a8dc5b3b96e9e5322a51ae2_cgraph.svg" width="534" height="138"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner_acfbf4c865a8dc5b3b96e9e5322a51ae2_cgraph.svg" width="592" height="138"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -414,10 +521,18 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Set the safety timeout for indefinite mining (0 to disable). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ms</td><td>Maximum continuous mining duration in milliseconds. The default is 5 minutes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="a9e800360111af4b673ba51eab5eace0a" name="a9e800360111af4b673ba51eab5eace0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e800360111af4b673ba51eab5eace0a">&#9670;&#160;</a></span>setServoToPress()</h2>
+<a id="a6fbd323fb3ceceabde90ca2c3ecb5b16" name="a6fbd323fb3ceceabde90ca2c3ecb5b16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fbd323fb3ceceabde90ca2c3ecb5b16">&#9670;&#160;</a></span>setMinerServoToPress()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -426,7 +541,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Miner::setServoToPress </td>
+          <td class="memname">void Miner::setMinerServoToPress </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -442,8 +557,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a437a0fdc0f9be6b0ffc27da25ab928b1" name="a437a0fdc0f9be6b0ffc27da25ab928b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a437a0fdc0f9be6b0ffc27da25ab928b1">&#9670;&#160;</a></span>setServoToRetract()</h2>
+<a id="a9f02a17fa9cd96b2bdd5796b42cbb807" name="a9f02a17fa9cd96b2bdd5796b42cbb807"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f02a17fa9cd96b2bdd5796b42cbb807">&#9670;&#160;</a></span>setMinerServoToRetract()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -452,7 +567,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Miner::setServoToRetract </td>
+          <td class="memname">void Miner::setMinerServoToRetract </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -464,12 +579,14 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Retract the miner servo to clear the dispenser for the next block. </p>
 <p>Change the position of the miner to be fully in the robot </p>
 
 </div>
 </div>
-<a id="a1e9e4d2f46296b496c59993039786eb4" name="a1e9e4d2f46296b496c59993039786eb4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e9e4d2f46296b496c59993039786eb4">&#9670;&#160;</a></span>setServoToStore()</h2>
+<a id="a04f9db708e46ce49b08a98155ccaf251" name="a04f9db708e46ce49b08a98155ccaf251"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04f9db708e46ce49b08a98155ccaf251">&#9670;&#160;</a></span>setRampServoToLift()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -478,7 +595,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Miner::setServoToStore </td>
+          <td class="memname">void Miner::setRampServoToLift </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -490,7 +607,62 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Change the posiiton of the miner to store the ramp </p>
+
+<p>Raise the ramp to the block-catching (LIFT) angle. </p>
+
+</div>
+</div>
+<a id="a9aebb2834badb2cc2bc151bcdccabfd0" name="a9aebb2834badb2cc2bc151bcdccabfd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9aebb2834badb2cc2bc151bcdccabfd0">&#9670;&#160;</a></span>setRampServoToPassive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Miner::setRampServoToPassive </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lower the ramp to the passive (neutral) angle between mining cycles. </p>
+
+</div>
+</div>
+<a id="a0b5a31a12bfa80912aa22cd1e21cde84" name="a0b5a31a12bfa80912aa22cd1e21cde84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b5a31a12bfa80912aa22cd1e21cde84">&#9670;&#160;</a></span>setServosToStore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Miner::setServosToStore </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stow both the miner servo and the ramp servo in the transport position. </p>
 
 </div>
 </div>
@@ -516,7 +688,9 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Start the sequency of hitting/retracting </p>
+
+<p>Internal transition to MINING mode; resets all hit and cycle counters. </p>
+<dl class="section note"><dt>Note</dt><dd>The actual mining timestamp is captured on the first call to <a class="el" href="#a8981a5f0de49e527684f44d08d0a8b5b" title="Update control outputs. Called every loop iteration.">update()</a>. </dd></dl>
 
 </div>
 </div>
@@ -542,9 +716,11 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Start mining with a specific number of hits (finite) </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Start mining for a fixed number of press cycles. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">hits_to_mine</td><td>Number of hits before the miner stops mining </td></tr>
+    <tr><td class="paramname">hits_to_mine</td><td>Number of press cycles to complete before stopping. Negative values are treated as INDEFINITE. </td></tr>
   </table>
   </dd>
 </dl>
@@ -578,6 +754,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Start mining indefinitely. Use <span class="tt"><a class="el" href="#ac620291b4e81dcc9be682d32cb4ac3af" title="Stop mining and retract miner servo.">stopMining()</a></span> or hit-count exhaustion to stop. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -609,11 +787,14 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Place subsystem in a safe, stopped state. </p>
+<p>Default implementation is a no-op. Override to cut power, retract mechanisms, or otherwise make the subsystem safe on demand. </p>
+
 <p>Reimplemented from <a class="el" href="class_subsystem.html#a6193d71849f3ed79e30ea867a66609d1">Subsystem</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner_aaecd98dd68895d44127103445eb54199_cgraph.svg" width="531" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner_aaecd98dd68895d44127103445eb54199_cgraph.svg" width="563" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -640,10 +821,12 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Stop mining and retract miner servo. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner_ac620291b4e81dcc9be682d32cb4ac3af_cgraph.svg" width="570" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner_ac620291b4e81dcc9be682d32cb4ac3af_cgraph.svg" width="602" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -670,11 +853,13 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Stop hitting the button </p>
+
+<p>Internal: transition to OFF mode, reset timers, and immediately retract the miner servo. </p>
+<dl class="section note"><dt>Note</dt><dd><span class="tt"><a class="el" href="#a6676e333f250d6b5f8c1bc176e5b9dc9" title="Number of press cycles completed.">_number_hits</a></span> is intentionally preserved after stopping so the caller can inspect progress. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner_a26f3ff0ceeae35f37c087bbb17767f17_cgraph.svg" width="396" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner_a26f3ff0ceeae35f37c087bbb17767f17_cgraph.svg" width="428" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -701,13 +886,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Number of hits must be 0 for the miner to move from the retracted state</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname"><a class="el" href="#a6676e333f250d6b5f8c1bc176e5b9dc9">_number_hits</a></td><td>= 0 </td></tr>
-  </table>
-  </dd>
-</dl>
+
+<p>Stow both servos in the transport position and reset the hit counter. </p>
 
 </div>
 </div>
@@ -734,11 +914,13 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Update control outputs. Called every loop iteration. </p>
+
 <p>Implements <a class="el" href="class_subsystem.html#a09fe9b3aa0f2d95453db41605412ec59">Subsystem</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner_a8981a5f0de49e527684f44d08d0a8b5b_cgraph.svg" width="751" height="239"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_miner_a8981a5f0de49e527684f44d08d0a8b5b_cgraph.svg" width="860" height="338"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -763,7 +945,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Start of current cycle </p>
+
+<p>millis() at the start of the current press cycle </p>
 
 </div>
 </div>
@@ -787,6 +970,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Target hit count; INDEFINITE (-1) = unlimited. </p>
+
 </div>
 </div>
 <a id="a7372bd628d66da75fff9716d4a9df9fe" name="a7372bd628d66da75fff9716d4a9df9fe"></a>
@@ -808,6 +993,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Safety timeout for indefinite mining (ms, default 5 min). </p>
 
 </div>
 </div>
@@ -831,6 +1018,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>millis() when MINING mode was first entered </p>
+
 </div>
 </div>
 <a id="aec188910ef60be03e4f131091d26269a" name="aec188910ef60be03e4f131091d26269a"></a>
@@ -853,6 +1042,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Current operating mode. </p>
+
 </div>
 </div>
 <a id="aa70dcb91066fbd24c9ee9c2d9cff2a5b" name="aa70dcb91066fbd24c9ee9c2d9cff2a5b"></a>
@@ -874,7 +1065,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Current time </p>
+
+<p>Snapshot of millis() taken at start of <a class="el" href="#a8981a5f0de49e527684f44d08d0a8b5b" title="Update control outputs. Called every loop iteration.">update()</a>. </p>
 
 </div>
 </div>
@@ -898,6 +1090,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Number of press cycles completed. </p>
+
 </div>
 </div>
 <a id="aa80e5070e9306dd8b531023a6fd51b0b" name="aa80e5070e9306dd8b531023a6fd51b0b"></a>
@@ -919,7 +1113,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Start of press window </p>
+
+<p>millis() when the current press window started </p>
 
 </div>
 </div>
@@ -943,6 +1138,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>True if mining was halted by the safety timeout. </p>
+
 </div>
 </div>
 <a id="a944d6c21d846c35a9aee6cfade802bb6" name="a944d6c21d846c35a9aee6cfade802bb6"></a>
@@ -965,10 +1162,12 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Sentinel value for <span class="tt"><a class="el" href="#a2621577e4088181556df1c3141bb6a10" title="Internal transition to MINING mode; resets all hit and cycle counters.">startMining()</a></span> meaning "run indefinitely". </p>
+
 </div>
 </div>
-<a id="a41d28edb0079e56a44adf48153fdeb1a" name="a41d28edb0079e56a44adf48153fdeb1a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41d28edb0079e56a44adf48153fdeb1a">&#9670;&#160;</a></span>servo</h2>
+<a id="a67d0461bdf52b384e83f749aa50d6179" name="a67d0461bdf52b384e83f749aa50d6179"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67d0461bdf52b384e83f749aa50d6179">&#9670;&#160;</a></span>minerServo</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -977,7 +1176,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_servo_control.html">ServoControl</a> Miner::servo</td>
+          <td class="memname"><a class="el" href="class_servo_control.html">ServoControl</a> Miner::minerServo</td>
         </tr>
       </table>
   </td>
@@ -986,6 +1185,32 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Servo that presses down on the dispenser block. </p>
+
+</div>
+</div>
+<a id="ab99e614e7715906400363eb9828183b4" name="ab99e614e7715906400363eb9828183b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab99e614e7715906400363eb9828183b4">&#9670;&#160;</a></span>rampServo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_servo_control.html">ServoControl</a> Miner::rampServo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Servo that deploys/stows the feed ramp. </p>
 
 </div>
 </div>

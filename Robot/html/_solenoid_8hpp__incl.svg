@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Simple digital solenoid driver (currently unused in primary code path).">
 <polygon fill="#999999" stroke="#666666" points="127.75,-74.5 0,-74.5 0,-55.25 127.75,-55.25 127.75,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="63.88" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">src/Devices/Solenoid.hpp</text>
 </a>

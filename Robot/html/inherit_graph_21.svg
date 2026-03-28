@@ -11,7 +11,7 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="class_subsystem.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="class_subsystem.html" target="_top" xlink:title="Polymorphic interface for a robot subsystem.">
 <polygon fill="white" stroke="#666666" points="65.5,-74.25 0,-74.25 0,-55 65.5,-55 65.5,-74.25"/>
 <text xml:space="preserve" text-anchor="middle" x="32.75" y="-60.75" font-family="Helvetica,sans-Serif" font-size="10.00">Subsystem</text>
 </a>
@@ -27,9 +27,9 @@
 </g>
 </g>
 <!-- Node0&#45;&gt;Node1 -->
-<g id="edge23_Node000000_Node000001" class="edge">
+<g id="edge25_Node000000_Node000001" class="edge">
 <title>Node0&#45;&gt;Node1</title>
-<g id="a_edge23_Node000000_Node000001"><a xlink:title=" ">
+<g id="a_edge25_Node000000_Node000001"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M61.26,-80.1C73.56,-87.01 88.25,-95.24 101.5,-102.62 106.12,-105.2 111.11,-107.97 115.77,-110.55"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="63.32,-77.24 52.89,-75.39 59.89,-83.34 63.32,-77.24"/>
 </a>
@@ -38,16 +38,16 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_miner.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_miner.html" target="_top" xlink:title="Servo&#45;driven block&#45;mining and ramp&#45;deployment subsystem.">
 <polygon fill="white" stroke="#666666" points="155,-93.25 115,-93.25 115,-74 155,-74 155,-93.25"/>
 <text xml:space="preserve" text-anchor="middle" x="135" y="-79.75" font-family="Helvetica,sans-Serif" font-size="10.00">Miner</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node2 -->
-<g id="edge24_Node000000_Node000002" class="edge">
+<g id="edge26_Node000000_Node000002" class="edge">
 <title>Node0&#45;&gt;Node2</title>
-<g id="a_edge24_Node000000_Node000002"><a xlink:title=" ">
+<g id="a_edge26_Node000000_Node000002"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M77,-72.82C90.1,-75.3 103.83,-77.91 114.54,-79.94"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="77.71,-69.39 67.23,-70.97 76.41,-76.27 77.71,-69.39"/>
 </a>
@@ -56,16 +56,16 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_serial_coms.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="class_serial_coms.html" target="_top" xlink:title="Newline&#45;delimited ASCII command receiver for Arduino&#45;to&#45;Arduino comms.">
 <polygon fill="white" stroke="#666666" points="168.5,-56.25 101.5,-56.25 101.5,-37 168.5,-37 168.5,-56.25"/>
 <text xml:space="preserve" text-anchor="middle" x="135" y="-42.75" font-family="Helvetica,sans-Serif" font-size="10.00">SerialComs</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node3 -->
-<g id="edge25_Node000000_Node000003" class="edge">
+<g id="edge27_Node000000_Node000003" class="edge">
 <title>Node0&#45;&gt;Node3</title>
-<g id="a_edge25_Node000000_Node000003"><a xlink:title=" ">
+<g id="a_edge27_Node000000_Node000003"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M77,-56.86C85.14,-55.4 93.52,-53.89 101.28,-52.5"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="76.46,-53.4 67.24,-58.61 77.7,-60.29 76.46,-53.4"/>
 </a>
@@ -74,16 +74,16 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="class_shooter.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="class_shooter.html" target="_top" xlink:title="Rack&#45;and&#45;pinion block shooter controlled by encoder feedback.">
 <polygon fill="white" stroke="#666666" points="159.88,-19.25 110.12,-19.25 110.12,0 159.88,0 159.88,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="135" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Shooter</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node4 -->
-<g id="edge26_Node000000_Node000004" class="edge">
+<g id="edge28_Node000000_Node000004" class="edge">
 <title>Node0&#45;&gt;Node4</title>
-<g id="a_edge26_Node000000_Node000004"><a xlink:title=" ">
+<g id="a_edge28_Node000000_Node000004"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M62.2,-49.02C79.39,-39.59 100.78,-27.85 115.73,-19.65"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="60.55,-45.93 53.46,-53.81 63.92,-52.07 60.55,-45.93"/>
 </a>

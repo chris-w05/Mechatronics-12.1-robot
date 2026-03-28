@@ -1,5 +1,5 @@
 <map id="Strategy::whereToIndexBlock" name="Strategy::whereToIndexBlock">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,198,38"/>
-<area shape="rect" id="Node000002" href="$class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235" title=" " alt="" coords="246,5,419,46"/>
+<area shape="rect" id="Node000001" title="Decide where to route a newly acquired block." alt="" coords="5,13,198,38"/>
+<area shape="rect" id="Node000002" href="$class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235" title="Return the highest block type that can be mined with the current pickaxe." alt="" coords="246,5,419,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,23,232,25,227,26,198,28"/>
 </map>

@@ -91,6 +91,9 @@ $(function(){initNavTree('_encoder_wrapper_8hpp.html','',''); });
   <div class="headertitle"><div class="title">EncoderWrapper.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Quadrature encoder wrapper providing position, velocity, and acceleration.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;Encoder.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -101,7 +104,7 @@ Include dependency graph for EncoderWrapper.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_encoder_wrapper_8hpp__dep__incl.svg" width="2582" height="598"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_encoder_wrapper_8hpp__dep__incl.svg" width="2776" height="598"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_encoder_wrapper_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -109,8 +112,16 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:EncoderWrapper" id="r_EncoderWrapper"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_encoder_wrapper.html">EncoderWrapper</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quadrature encoder driver with velocity and acceleration estimation.  <a href="class_encoder_wrapper.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Quadrature encoder wrapper providing position, velocity, and acceleration. </p>
+<p>Wraps the PJRC <span class="tt">Encoder</span> library and adds:</p><ul>
+<li>Configurable direction flip.</li>
+<li>IIR-filtered velocity and acceleration estimates computed from tick deltas.</li>
+</ul>
+<p>Units returned are raw encoder ticks and ticks/second; callers apply the appropriate ticks-to-physical-units scale factor (see #DRIVETRAIN_TICKS_TO_IN). </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

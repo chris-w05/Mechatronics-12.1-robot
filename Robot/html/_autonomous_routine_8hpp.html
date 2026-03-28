@@ -91,6 +91,9 @@ $(function(){initNavTree('_autonomous_routine_8hpp.html','',''); });
   <div class="headertitle"><div class="title">AutonomousRoutine.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Sequential container that drives an ordered list of <span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> objects.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_auto_step_8h_source.html">AutoStep.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_config_8hpp_source.html">Config.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -109,8 +112,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:AutonomousRoutine" id="r_AutonomousRoutine"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_autonomous_routine.html">AutonomousRoutine</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drives an ordered sequence of <span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> objects to completion.  <a href="class_autonomous_routine.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Sequential container that drives an ordered list of <span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> objects. </p>
+<p>Steps are added with <span class="tt">add()</span> (ownership is transferred) and are executed one after the other: when the active step reports <span class="tt">isFinished()</span>, the routine calls <span class="tt">end()</span> on it, increments its internal index, and starts the next step via <span class="tt">start()</span>.</p>
+<p>The maximum number of steps is bounded by <span class="tt">MAX_STEPS</span> from <a class="el" href="_config_8hpp.html" title="Central configuration: pin assignments, physical constants, and PID gains.">Config.hpp</a>. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

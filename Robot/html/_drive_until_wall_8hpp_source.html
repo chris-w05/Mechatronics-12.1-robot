@@ -91,90 +91,91 @@ $(function(){initNavTree('_drive_until_wall_8hpp_source.html','',''); });
   <div class="headertitle"><div class="title">DriveUntilWall.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_drive_until_wall_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef DRIVE_UNTIL_WALL_STEP_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="_drive_until_wall_8hpp.html#af0261e8bb57f3ed4b07d44ae919c49e4">    3</a></span><span class="preprocessor">#define DRIVE_UNTIL_WALL_STEP_H</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_auto_step_8h.html">Autonomous/AutoStep.h</a>&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_drive_8hpp.html">subsystems/Drive.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html">    8</a></span><span class="keyword">class </span><a class="code hl_function" href="class_drive_to_wall_step.html#a1193ef30a31017178638298c2d2b8273">DriveToWallStep</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_auto_step.html">AutoStep</a></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a1193ef30a31017178638298c2d2b8273">   11</a></span>    <a class="code hl_function" href="class_drive_to_wall_step.html#a1193ef30a31017178638298c2d2b8273">DriveToWallStep</a>(<a class="code hl_class" href="class_drive.html">Drive</a> &amp;drive,</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>                    <span class="keywordtype">float</span> targetDistance)</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        : <a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>(drive),</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>          <a class="code hl_variable" href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">_target</a>(targetDistance) {}</div>
+<a href="_drive_until_wall_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#ifndef DRIVE_UNTIL_WALL_STEP_H</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="_drive_until_wall_8hpp.html#af0261e8bb57f3ed4b07d44ae919c49e4">   10</a></span><span class="preprocessor">#define DRIVE_UNTIL_WALL_STEP_H</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="_auto_step_8h.html">Autonomous/AutoStep.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="_drive_8hpp.html">subsystems/Drive.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html">   18</a></span><span class="keyword">class </span><a class="code hl_function" href="class_drive_to_wall_step.html#a1193ef30a31017178638298c2d2b8273">DriveToWallStep</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_auto_step.html">AutoStep</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a1193ef30a31017178638298c2d2b8273">   26</a></span>    <a class="code hl_function" href="class_drive_to_wall_step.html#a1193ef30a31017178638298c2d2b8273">DriveToWallStep</a>(<a class="code hl_class" href="class_drive.html">Drive</a> &amp;drive,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                    <span class="keywordtype">float</span> targetDistance)</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        : <a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>(drive),</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>          <a class="code hl_variable" href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">_target</a>(targetDistance) {}</div>
 </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a56d292c5221b5bf3bcd88b88f04e2315">   16</a></span>    <a class="code hl_function" href="class_drive_to_wall_step.html#a56d292c5221b5bf3bcd88b88f04e2315">DriveToWallStep</a>(<a class="code hl_class" href="class_drive.html">Drive</a> &amp;drive)</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        : <a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>(drive) {}</div>
-</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a066dec9d7d8360ec3e60f8b9db0f47ca">   19</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_to_wall_step.html#a066dec9d7d8360ec3e60f8b9db0f47ca">start</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>.approachDistance(<a class="code hl_variable" href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">_target</a>);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    }</div>
-</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#abcc4302add87c08707dd557abd2148d7">   24</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_to_wall_step.html#abcc4302add87c08707dd557abd2148d7">update</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
-</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#ad862ac11563e3543f81bb6ae4921c575">   29</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_drive_to_wall_step.html#ad862ac11563e3543f81bb6ae4921c575">isFinished</a>()<span class="keyword"> const override</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="comment">//Within 1cm of target, and travelling at less than 1 in/s</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordflow">return</span> ( abs(<a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>.getDistanceSensorReading() - <a class="code hl_variable" href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">_target</a>) &lt; 1 ) &amp;&amp; abs( <a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>.getAvgVelocity() ) &lt; 1 ;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a56d292c5221b5bf3bcd88b88f04e2315">   32</a></span>    <a class="code hl_function" href="class_drive_to_wall_step.html#a56d292c5221b5bf3bcd88b88f04e2315">DriveToWallStep</a>(<a class="code hl_class" href="class_drive.html">Drive</a> &amp;drive)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        : <a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>(drive) {}</div>
 </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a82c60e6b70cd67f8630ee3382ebab285">   35</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_to_wall_step.html#a82c60e6b70cd67f8630ee3382ebab285">end</a>()</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>.setSpeed(0);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a066dec9d7d8360ec3e60f8b9db0f47ca">   35</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_to_wall_step.html#a066dec9d7d8360ec3e60f8b9db0f47ca">start</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>.approachDistance(<a class="code hl_variable" href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">_target</a>);</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
 </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a04d3fa508fb383c3dabe420033cb2cc8">   40</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_to_wall_step.html#a04d3fa508fb383c3dabe420033cb2cc8">configure</a>(<span class="keywordtype">float</span> targetDistance, <span class="keywordtype">float</span> targetVelocity)</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <a class="code hl_variable" href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">_target</a> = targetDistance;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <a class="code hl_variable" href="class_drive_to_wall_step.html#afcc23dcfa0762656100464c3139ee96f">_velocity</a> = targetVelocity;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#abcc4302add87c08707dd557abd2148d7">   40</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_to_wall_step.html#abcc4302add87c08707dd557abd2148d7">update</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
 </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">   47</a></span>    <a class="code hl_class" href="class_drive.html">Drive</a> &amp;<a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">   48</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">_target</a> = 5;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#afcc23dcfa0762656100464c3139ee96f">   49</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_drive_to_wall_step.html#afcc23dcfa0762656100464c3139ee96f">_velocity</a> = 0;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a99cc63327de86f76d03bc6ebbef54df6">   50</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_drive_to_wall_step.html#a99cc63327de86f76d03bc6ebbef54df6">_startDistance</a> = 0;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#ad862ac11563e3543f81bb6ae4921c575">   45</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_drive_to_wall_step.html#ad862ac11563e3543f81bb6ae4921c575">isFinished</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="comment">//Within 1cm of target, and travelling at less than 1 in/s</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">return</span> ( abs(<a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>.getDistanceSensorReading() - <a class="code hl_variable" href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">_target</a>) &lt; .5 ) &amp;&amp; abs( <a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>.getAvgVelocity() ) &lt; 1 ;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
 </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="a_auto_step_8h_html"><div class="ttname"><a href="_auto_step_8h.html">AutoStep.h</a></div></div>
-<div class="ttc" id="a_drive_8hpp_html"><div class="ttname"><a href="_drive_8hpp.html">Drive.hpp</a></div></div>
-<div class="ttc" id="aclass_auto_step_html"><div class="ttname"><a href="class_auto_step.html">AutoStep</a></div><div class="ttdef"><b>Definition</b> AutoStep.h:10</div></div>
-<div class="ttc" id="aclass_drive_html"><div class="ttname"><a href="class_drive.html">Drive</a></div><div class="ttdef"><b>Definition</b> Drive.hpp:20</div></div>
-<div class="ttc" id="aclass_drive_to_wall_step_html_a04d3fa508fb383c3dabe420033cb2cc8"><div class="ttname"><a href="class_drive_to_wall_step.html#a04d3fa508fb383c3dabe420033cb2cc8">DriveToWallStep::configure</a></div><div class="ttdeci">void configure(float targetDistance, float targetVelocity)</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:40</div></div>
-<div class="ttc" id="aclass_drive_to_wall_step_html_a066dec9d7d8360ec3e60f8b9db0f47ca"><div class="ttname"><a href="class_drive_to_wall_step.html#a066dec9d7d8360ec3e60f8b9db0f47ca">DriveToWallStep::start</a></div><div class="ttdeci">void start() override</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:19</div></div>
-<div class="ttc" id="aclass_drive_to_wall_step_html_a1193ef30a31017178638298c2d2b8273"><div class="ttname"><a href="class_drive_to_wall_step.html#a1193ef30a31017178638298c2d2b8273">DriveToWallStep::DriveToWallStep</a></div><div class="ttdeci">DriveToWallStep(Drive &amp;drive, float targetDistance)</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:11</div></div>
-<div class="ttc" id="aclass_drive_to_wall_step_html_a3d1b8f96e08e01cfb54fa87147e14f72"><div class="ttname"><a href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">DriveToWallStep::_drive</a></div><div class="ttdeci">Drive &amp; _drive</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:47</div></div>
-<div class="ttc" id="aclass_drive_to_wall_step_html_a56d292c5221b5bf3bcd88b88f04e2315"><div class="ttname"><a href="class_drive_to_wall_step.html#a56d292c5221b5bf3bcd88b88f04e2315">DriveToWallStep::DriveToWallStep</a></div><div class="ttdeci">DriveToWallStep(Drive &amp;drive)</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:16</div></div>
-<div class="ttc" id="aclass_drive_to_wall_step_html_a82c60e6b70cd67f8630ee3382ebab285"><div class="ttname"><a href="class_drive_to_wall_step.html#a82c60e6b70cd67f8630ee3382ebab285">DriveToWallStep::end</a></div><div class="ttdeci">void end()</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:35</div></div>
-<div class="ttc" id="aclass_drive_to_wall_step_html_a99cc63327de86f76d03bc6ebbef54df6"><div class="ttname"><a href="class_drive_to_wall_step.html#a99cc63327de86f76d03bc6ebbef54df6">DriveToWallStep::_startDistance</a></div><div class="ttdeci">float _startDistance</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:50</div></div>
-<div class="ttc" id="aclass_drive_to_wall_step_html_abcc4302add87c08707dd557abd2148d7"><div class="ttname"><a href="class_drive_to_wall_step.html#abcc4302add87c08707dd557abd2148d7">DriveToWallStep::update</a></div><div class="ttdeci">void update() override</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:24</div></div>
-<div class="ttc" id="aclass_drive_to_wall_step_html_ad862ac11563e3543f81bb6ae4921c575"><div class="ttname"><a href="class_drive_to_wall_step.html#ad862ac11563e3543f81bb6ae4921c575">DriveToWallStep::isFinished</a></div><div class="ttdeci">bool isFinished() const override</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:29</div></div>
-<div class="ttc" id="aclass_drive_to_wall_step_html_aece4954cec3867772aef0f4917d6e51c"><div class="ttname"><a href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">DriveToWallStep::_target</a></div><div class="ttdeci">float _target</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:48</div></div>
-<div class="ttc" id="aclass_drive_to_wall_step_html_afcc23dcfa0762656100464c3139ee96f"><div class="ttname"><a href="class_drive_to_wall_step.html#afcc23dcfa0762656100464c3139ee96f">DriveToWallStep::_velocity</a></div><div class="ttdeci">float _velocity</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:49</div></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a82c60e6b70cd67f8630ee3382ebab285">   51</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_to_wall_step.html#a82c60e6b70cd67f8630ee3382ebab285">end</a>()</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>.setSpeed(0);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a04d3fa508fb383c3dabe420033cb2cc8">   61</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_to_wall_step.html#a04d3fa508fb383c3dabe420033cb2cc8">configure</a>(<span class="keywordtype">float</span> targetDistance, <span class="keywordtype">float</span> targetVelocity)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <a class="code hl_variable" href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">_target</a> = targetDistance;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <a class="code hl_variable" href="class_drive_to_wall_step.html#afcc23dcfa0762656100464c3139ee96f">_velocity</a> = targetVelocity;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    }</div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">   68</a></span>    <a class="code hl_class" href="class_drive.html">Drive</a> &amp;<a class="code hl_variable" href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a>;            </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">   69</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">_target</a> = 5;        </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#afcc23dcfa0762656100464c3139ee96f">   70</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_drive_to_wall_step.html#afcc23dcfa0762656100464c3139ee96f">_velocity</a> = 0;      </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="class_drive_to_wall_step.html#a99cc63327de86f76d03bc6ebbef54df6">   71</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_drive_to_wall_step.html#a99cc63327de86f76d03bc6ebbef54df6">_startDistance</a> = 0; </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>};</div>
+</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_auto_step_8h_html"><div class="ttname"><a href="_auto_step_8h.html">AutoStep.h</a></div><div class="ttdoc">Abstract interface that every autonomous step must implement.</div></div>
+<div class="ttc" id="a_drive_8hpp_html"><div class="ttname"><a href="_drive_8hpp.html">Drive.hpp</a></div><div class="ttdoc">Differential-drive subsystem: closed-loop wheel control, line following, wall-distance holding,...</div></div>
+<div class="ttc" id="aclass_auto_step_html"><div class="ttname"><a href="class_auto_step.html">AutoStep</a></div><div class="ttdoc">Pure-virtual base class for all autonomous steps.</div><div class="ttdef"><b>Definition</b> AutoStep.h:26</div></div>
+<div class="ttc" id="aclass_drive_html"><div class="ttname"><a href="class_drive.html">Drive</a></div><div class="ttdef"><b>Definition</b> Drive.hpp:34</div></div>
+<div class="ttc" id="aclass_drive_to_wall_step_html_a04d3fa508fb383c3dabe420033cb2cc8"><div class="ttname"><a href="class_drive_to_wall_step.html#a04d3fa508fb383c3dabe420033cb2cc8">DriveToWallStep::configure</a></div><div class="ttdeci">void configure(float targetDistance, float targetVelocity)</div><div class="ttdoc">Re-configure for reuse.</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:61</div></div>
+<div class="ttc" id="aclass_drive_to_wall_step_html_a066dec9d7d8360ec3e60f8b9db0f47ca"><div class="ttname"><a href="class_drive_to_wall_step.html#a066dec9d7d8360ec3e60f8b9db0f47ca">DriveToWallStep::start</a></div><div class="ttdeci">void start() override</div><div class="ttdoc">Initialise any state needed before the step begins running.</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:35</div></div>
+<div class="ttc" id="aclass_drive_to_wall_step_html_a1193ef30a31017178638298c2d2b8273"><div class="ttname"><a href="class_drive_to_wall_step.html#a1193ef30a31017178638298c2d2b8273">DriveToWallStep::DriveToWallStep</a></div><div class="ttdeci">DriveToWallStep(Drive &amp;drive, float targetDistance)</div><div class="ttdoc">Full constructor.</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:26</div></div>
+<div class="ttc" id="aclass_drive_to_wall_step_html_a3d1b8f96e08e01cfb54fa87147e14f72"><div class="ttname"><a href="class_drive_to_wall_step.html#a3d1b8f96e08e01cfb54fa87147e14f72">DriveToWallStep::_drive</a></div><div class="ttdeci">Drive &amp; _drive</div><div class="ttdoc">Drive subsystem reference.</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:68</div></div>
+<div class="ttc" id="aclass_drive_to_wall_step_html_a56d292c5221b5bf3bcd88b88f04e2315"><div class="ttname"><a href="class_drive_to_wall_step.html#a56d292c5221b5bf3bcd88b88f04e2315">DriveToWallStep::DriveToWallStep</a></div><div class="ttdeci">DriveToWallStep(Drive &amp;drive)</div><div class="ttdoc">Deferred-configure constructor — call configure() before use.</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:32</div></div>
+<div class="ttc" id="aclass_drive_to_wall_step_html_a82c60e6b70cd67f8630ee3382ebab285"><div class="ttname"><a href="class_drive_to_wall_step.html#a82c60e6b70cd67f8630ee3382ebab285">DriveToWallStep::end</a></div><div class="ttdeci">void end()</div><div class="ttdoc">Clean up resources or subsystem state when the step ends.</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:51</div></div>
+<div class="ttc" id="aclass_drive_to_wall_step_html_a99cc63327de86f76d03bc6ebbef54df6"><div class="ttname"><a href="class_drive_to_wall_step.html#a99cc63327de86f76d03bc6ebbef54df6">DriveToWallStep::_startDistance</a></div><div class="ttdeci">float _startDistance</div><div class="ttdoc">Odometry snapshot at step start (unused).</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:71</div></div>
+<div class="ttc" id="aclass_drive_to_wall_step_html_abcc4302add87c08707dd557abd2148d7"><div class="ttname"><a href="class_drive_to_wall_step.html#abcc4302add87c08707dd557abd2148d7">DriveToWallStep::update</a></div><div class="ttdeci">void update() override</div><div class="ttdoc">Advance the step by one control-loop tick.</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:40</div></div>
+<div class="ttc" id="aclass_drive_to_wall_step_html_ad862ac11563e3543f81bb6ae4921c575"><div class="ttname"><a href="class_drive_to_wall_step.html#ad862ac11563e3543f81bb6ae4921c575">DriveToWallStep::isFinished</a></div><div class="ttdeci">bool isFinished() const override</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:45</div></div>
+<div class="ttc" id="aclass_drive_to_wall_step_html_aece4954cec3867772aef0f4917d6e51c"><div class="ttname"><a href="class_drive_to_wall_step.html#aece4954cec3867772aef0f4917d6e51c">DriveToWallStep::_target</a></div><div class="ttdeci">float _target</div><div class="ttdoc">Wall stand-off distance (cm).</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:69</div></div>
+<div class="ttc" id="aclass_drive_to_wall_step_html_afcc23dcfa0762656100464c3139ee96f"><div class="ttname"><a href="class_drive_to_wall_step.html#afcc23dcfa0762656100464c3139ee96f">DriveToWallStep::_velocity</a></div><div class="ttdeci">float _velocity</div><div class="ttdoc">Approach speed parameter (currently unused).</div><div class="ttdef"><b>Definition</b> DriveUntilWall.hpp:70</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

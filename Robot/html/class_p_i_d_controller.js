@@ -1,19 +1,24 @@
 var class_p_i_d_controller =
 [
+    [ "PIDController", "class_p_i_d_controller.html#a67cc314aa5b3b4e9c47ac414b3a4c008", null ],
     [ "PIDController", "class_p_i_d_controller.html#af50f86800ed8b6c79ff3fc10c6f6f645", null ],
     [ "PIDController", "class_p_i_d_controller.html#ae5170c91f2bd0d773d411b96c12148fa", null ],
     [ "PIDController", "class_p_i_d_controller.html#aeac6ca4706cfbab6fe5ad8a683dc7323", null ],
     [ "PIDController", "class_p_i_d_controller.html#a1e9550a41075dc1bb99606e2227fcfed", null ],
     [ "calculate", "class_p_i_d_controller.html#ab1bfabf41170049cb2f179f3ca473dc2", null ],
     [ "removeNonlinears", "class_p_i_d_controller.html#aec09a3950310b88777cffe49af6e76ae", null ],
+    [ "set", "class_p_i_d_controller.html#ac012a90c7f631aeda76bd140bd93bdc4", null ],
+    [ "set", "class_p_i_d_controller.html#a591b83591ed3c5ece84d7ec331e3bd7c", null ],
     [ "setDerivativeFeedforwardFunction", "class_p_i_d_controller.html#a338059a471f8c55121d70da3b9e2a47e", null ],
     [ "setFeedforwardFunction", "class_p_i_d_controller.html#a063a6a6f6abd899677549afa35d01f20", null ],
+    [ "setFilterStrength", "class_p_i_d_controller.html#aad6a9ba211c523c93bed7aecdeccb848", null ],
     [ "setIntegralLimits", "class_p_i_d_controller.html#a834506a782676ba4645ed2e842f51818", null ],
     [ "setKdFunction", "class_p_i_d_controller.html#a1645ad21a19de093424d7dfa9348c2ee", null ],
     [ "setKiFunction", "class_p_i_d_controller.html#a0ebd5be556c13e42b751f4989876258f", null ],
     [ "setKpFunction", "class_p_i_d_controller.html#a142eb4e9140590200e30db3ab375caa2", null ],
     [ "update", "class_p_i_d_controller.html#a13b6487783b1ed67b2a84010613edda1", null ],
     [ "update", "class_p_i_d_controller.html#a63d8cde4ef1b4485c5d39243efbb5e37", null ],
+    [ "_alpha", "class_p_i_d_controller.html#a0f4c08e6fe6485da8e1b532edddd0310", null ],
     [ "_dffFunc", "class_p_i_d_controller.html#a0b26769b888190a8d2aaca3ac98d6e33", null ],
     [ "_ffFunc", "class_p_i_d_controller.html#a27d6d0e4e61d328be9c3d8d47d910a1b", null ],
     [ "_iMax", "class_p_i_d_controller.html#a30f6506fddb1c3d98c6c112ad8777843", null ],
@@ -25,8 +30,5 @@ var class_p_i_d_controller =
     [ "_kpFunc", "class_p_i_d_controller.html#a1d0de7e362c3de22a64f9658264399c2", null ],
     [ "_lastDerivative", "class_p_i_d_controller.html#a9b90c9fdc917acc2654ed4337e8fc5b8", null ],
     [ "_lastMeasurement", "class_p_i_d_controller.html#a9c1448b9bb2093c0a7261ed09bad8575", null ],
-    [ "_lastOutput", "class_p_i_d_controller.html#a8a466282fd064ba8786092578dfde6fd", null ],
-    [ "filterIndex", "class_p_i_d_controller.html#a8e0021c6e5afa2ce3def0fc99f122ec2", null ],
-    [ "filterSum", "class_p_i_d_controller.html#a33a691598e2f3dc78d3aa175f939ea55", null ],
-    [ "values", "class_p_i_d_controller.html#a0af29a9cd99e2385d8d0cd868c4f796c", null ]
+    [ "_lastOutput", "class_p_i_d_controller.html#a8a466282fd064ba8786092578dfde6fd", null ]
 ];

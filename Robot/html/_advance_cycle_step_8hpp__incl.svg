@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Instantaneous AutoStep that advances the Strategy craft cycle by one.">
 <polygon fill="#999999" stroke="#666666" points="757.75,-306.75 636,-306.75 636,-276.25 757.75,-276.25 757.75,-306.75"/>
 <text xml:space="preserve" text-anchor="start" x="644" y="-293.25" font-family="Helvetica,sans-Serif" font-size="10.00">src/Autonomous/Steps</text>
 <text xml:space="preserve" text-anchor="middle" x="696.88" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">/AdvanceCycleStep.hpp</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="_auto_step_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="_auto_step_8h.html" target="_top" xlink:title="Abstract interface that every autonomous step must implement.">
 <polygon fill="white" stroke="#666666" points="690.12,-240.25 567.62,-240.25 567.62,-221 690.12,-221 690.12,-240.25"/>
 <text xml:space="preserve" text-anchor="middle" x="628.88" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">Autonomous/AutoStep.h</text>
 </a>
@@ -39,7 +39,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="_drive_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="_drive_8hpp.html" target="_top" xlink:title="Differential&#45;drive subsystem: closed&#45;loop wheel control, line following, wall&#45;distance holding,...">
 <polygon fill="white" stroke="#666666" points="822,-240.25 707.75,-240.25 707.75,-221 822,-221 822,-240.25"/>
 <text xml:space="preserve" text-anchor="middle" x="764.88" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">subsystems/Drive.hpp</text>
 </a>
@@ -75,7 +75,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="_config_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="_config_8hpp.html" target="_top" xlink:title="Central configuration: pin assignments, physical constants, and PID gains.">
 <polygon fill="white" stroke="#666666" points="434.5,-185 371.25,-185 371.25,-165.75 434.5,-165.75 434.5,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="402.88" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Config.hpp</text>
 </a>
@@ -93,7 +93,7 @@
 <!-- Node11 -->
 <g id="Node000011" class="node">
 <title>Node11</title>
-<g id="a_Node000011"><a xlink:href="_encoder_wrapper_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000011"><a xlink:href="_encoder_wrapper_8hpp.html" target="_top" xlink:title="Quadrature encoder wrapper providing position, velocity, and acceleration.">
 <polygon fill="white" stroke="#666666" points="1080.38,-74.5 935.38,-74.5 935.38,-55.25 1080.38,-55.25 1080.38,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="1007.88" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/EncoderWrapper.hpp</text>
 </a>
@@ -111,7 +111,7 @@
 <!-- Node13 -->
 <g id="Node000013" class="node">
 <title>Node13</title>
-<g id="a_Node000013"><a xlink:href="_line_sensor_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000013"><a xlink:href="_line_sensor_8hpp.html" target="_top" xlink:title="8&#45;channel reflective line sensor driver using the Pololu QTR&#45;MD&#45;08RC.">
 <polygon fill="white" stroke="#666666" points="642.75,-185 521,-185 521,-165.75 642.75,-165.75 642.75,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="581.88" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/LineSensor.hpp</text>
 </a>
@@ -129,7 +129,7 @@
 <!-- Node15 -->
 <g id="Node000015" class="node">
 <title>Node15</title>
-<g id="a_Node000015"><a xlink:href="_distance_sensor_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000015"><a xlink:href="_distance_sensor_8hpp.html" target="_top" xlink:title="Driver for the Sharp GP2Y0A51SK0F short&#45;range IR distance sensor (2–15 cm).">
 <polygon fill="white" stroke="#666666" points="623.25,-74.5 480.5,-74.5 480.5,-55.25 623.25,-55.25 623.25,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="551.88" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/DistanceSensor.hpp</text>
 </a>
@@ -147,7 +147,7 @@
 <!-- Node16 -->
 <g id="Node000016" class="node">
 <title>Node16</title>
-<g id="a_Node000016"><a xlink:href="_odometry_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000016"><a xlink:href="_odometry_8hpp.html" target="_top" xlink:title="Differential&#45;drive pose tracker using wheel&#45;encoder odometry.">
 <polygon fill="white" stroke="#666666" points="1056.38,-129.75 959.38,-129.75 959.38,-110.5 1056.38,-110.5 1056.38,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="1007.88" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">utils/Odometry.hpp</text>
 </a>
@@ -165,7 +165,7 @@
 <!-- Node17 -->
 <g id="Node000017" class="node">
 <title>Node17</title>
-<g id="a_Node000017"><a xlink:href="_ramsete_controller_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000017"><a xlink:href="_ramsete_controller_8hpp.html" target="_top" xlink:title="Ramsete nonlinear trajectory&#45;tracking controller for a differential&#45;drive robot.">
 <polygon fill="white" stroke="#666666" points="1023.25,-185 886.5,-185 886.5,-165.75 1023.25,-165.75 1023.25,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="954.88" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">utils/RamseteController.hpp</text>
 </a>
@@ -183,7 +183,7 @@
 <!-- Node18 -->
 <g id="Node000018" class="node">
 <title>Node18</title>
-<g id="a_Node000018"><a xlink:href="_odometry_plotting_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000018"><a xlink:href="_odometry_plotting_8hpp.html" target="_top" xlink:title="Template helper functions for emitting JSON odometry telemetry over a serial port.">
 <polygon fill="white" stroke="#666666" points="830.62,-185 699.12,-185 699.12,-165.75 830.62,-165.75 830.62,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="764.88" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">utils/OdometryPlotting.hpp</text>
 </a>
@@ -201,7 +201,7 @@
 <!-- Node19 -->
 <g id="Node000019" class="node">
 <title>Node19</title>
-<g id="a_Node000019"><a xlink:href="_subsystem_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000019"><a xlink:href="_subsystem_8h.html" target="_top" xlink:title="Abstract base class for all robot subsystems.">
 <polygon fill="white" stroke="#666666" points="862.75,-129.75 789,-129.75 789,-110.5 862.75,-110.5 862.75,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="825.88" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">Subsystem.h</text>
 </a>
@@ -228,7 +228,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="_dual_motor_controller_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="_dual_motor_controller_8hpp.html" target="_top" xlink:title="Dual closed&#45;loop motor controller wrapping an L298N driver with two independent PID loops.">
 <polygon fill="white" stroke="#666666" points="324.88,-129.75 164.88,-129.75 164.88,-110.5 324.88,-110.5 324.88,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="244.88" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/DualMotorController.hpp</text>
 </a>
@@ -246,7 +246,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title="PID controller classes with optional nonlinear extensions and feedforward support.">
 <polygon fill="white" stroke="#666666" points="424.38,-74.5 351.38,-74.5 351.38,-55.25 424.38,-55.25 424.38,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="387.88" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">utils/PID.hpp</text>
 </a>

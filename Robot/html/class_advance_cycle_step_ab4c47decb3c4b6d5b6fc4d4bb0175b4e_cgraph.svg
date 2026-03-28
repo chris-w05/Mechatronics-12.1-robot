@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Initialise any state needed before the step begins running.">
 <polygon fill="#999999" stroke="#666666" points="125.5,-37.25 0,-37.25 0,-18 125.5,-18 125.5,-37.25"/>
 <text xml:space="preserve" text-anchor="middle" x="62.75" y="-23.75" font-family="Helvetica,sans-Serif" font-size="10.00">AdvanceCycleStep::start</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_strategy.html#aedae1e448cc25d6ab2f6c7b4adef39fb" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_strategy.html#aedae1e448cc25d6ab2f6c7b4adef39fb" target="_top" xlink:title="Advance to the next scoring cycle and upgrade the pickaxe if applicable.">
 <polygon fill="white" stroke="#666666" points="282.5,-56.25 161.5,-56.25 161.5,-37 282.5,-37 282.5,-56.25"/>
 <text xml:space="preserve" text-anchor="middle" x="222" y="-42.75" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::advanceCycle</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="class_strategy.html#a2c7a2f138418db83f7854fe41ef5a608" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="class_strategy.html#a2c7a2f138418db83f7854fe41ef5a608" target="_top" xlink:title="Access the global Strategy singleton.">
 <polygon fill="white" stroke="#666666" points="276.88,-19.25 167.12,-19.25 167.12,0 276.88,0 276.88,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="222" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::getInstance</text>
 </a>
@@ -56,7 +56,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_strategy.html#a5fcf479ff2f81b1a527e2f018f37429e" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="class_strategy.html#a5fcf479ff2f81b1a527e2f018f37429e" target="_top" xlink:title="Clear all possession slots to NONE.">
 <polygon fill="white" stroke="#666666" points="460.5,-56.25 318.5,-56.25 318.5,-37 460.5,-37 460.5,-56.25"/>
 <text xml:space="preserve" text-anchor="middle" x="389.5" y="-42.75" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::clearAllPossession</text>
 </a>

@@ -91,6 +91,9 @@ $(function(){initNavTree('_line_sensor_8hpp.html','',''); });
   <div class="headertitle"><div class="title">LineSensor.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>8-channel reflective line sensor driver using the Pololu QTR-MD-08RC.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;QTRSensors.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -101,7 +104,7 @@ Include dependency graph for LineSensor.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_line_sensor_8hpp__dep__incl.svg" width="2368" height="450"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_line_sensor_8hpp__dep__incl.svg" width="2628" height="450"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_line_sensor_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -109,8 +112,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:LineSensor" id="r_LineSensor"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_line_sensor.html">LineSensor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pololu QTR-MD-08RC 8-channel line sensor driver.  <a href="class_line_sensor.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>8-channel reflective line sensor driver using the Pololu QTR-MD-08RC. </p>
+<p>Reads all eight RC-type sensors simultaneously and computes a weighted average position of the detected line in centimetres, relative to the sensor array's centre. A negative position means the line is to the left; a positive position means the line is to the right. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

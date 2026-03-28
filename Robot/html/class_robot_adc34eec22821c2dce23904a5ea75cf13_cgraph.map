@@ -1,18 +1,21 @@
 <map id="Robot::update" name="Robot::update">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,107,109,132"/>
-<area shape="poly" id="edge8_Node000001_Node000001" title=" " alt="" coords="23,107,17,98,21,88,34,82,57,80,82,83,96,91,91,93,80,88,57,85,36,87,24,92,22,97,28,106"/>
-<area shape="rect" id="Node000002" href="$class_robot.html#aa5c02bb23e784c3d8198aad35b053492" title=" " alt="" coords="157,81,361,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,111,143,108,138,110,110,116"/>
-<area shape="rect" id="Node000007" href="$class_robot.html#aa30787f35cda4828c6548061d6f5bb97" title=" " alt="" coords="179,131,339,156"/>
-<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="109,123,166,131,161,133,109,128"/>
-<area shape="rect" id="Node000003" href="$class_robot.html#a2a309b38abaed08fcd6dc60b09f65ca2" title=" " alt="" coords="420,5,619,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="305,78,408,48,460,35,455,37,410,53,307,83"/>
-<area shape="rect" id="Node000004" href="$class_robot.html#a3defa2b851d1a9267d6dbe251373ba7d" title=" " alt="" coords="677,56,770,82"/>
-<area shape="poly" id="edge7_Node000002_Node000004" title=" " alt="" coords="361,86,664,71,660,73,362,91"/>
-<area shape="rect" id="Node000005" href="$class_robot.html#aa0975008ed9aee31a6ff43d8289bedb5" title=" " alt="" coords="409,107,629,132"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="361,101,396,107,391,108,362,107"/>
-<area shape="rect" id="Node000006" href="$class_robot.html#a422a0be216adcf84334fd65325b20413" title=" " alt="" coords="416,156,622,197"/>
-<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="328,105,362,116,386,129,410,142,427,151,422,151,408,147,384,134,360,121,327,110"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="574,29,665,54,660,54,574,34"/>
-<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="573,103,660,84,665,83,575,109"/>
+<area shape="rect" id="Node000001" title="Tick the robot — call every loop() iteration." alt="" coords="5,157,109,183"/>
+<area shape="poly" id="edge10_Node000001_Node000001" title=" " alt="" coords="23,158,17,149,21,139,34,133,57,131,82,133,96,142,91,143,80,138,57,136,36,138,24,143,22,148,28,156"/>
+<area shape="rect" id="Node000002" href="$class_robot.html#aa5c02bb23e784c3d8198aad35b053492" title="Parse and dispatch a raw command string to the appropriate handler." alt="" coords="157,132,361,158"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,161,143,158,138,161,110,166"/>
+<area shape="rect" id="Node000008" href="$class_robot.html#aa30787f35cda4828c6548061d6f5bb97" title="Non&#45;blocking USB serial reader — appends to _usbBuffer until newline." alt="" coords="179,181,339,207"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="109,174,166,182,161,184,109,179"/>
+<area shape="rect" id="Node000003" href="$class_robot.html#a25277ec017ab37e4920908740e7f1ee9" title="Handle commands that are valid in any operating mode." alt="" coords="412,56,612,82"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="304,129,454,86,449,88,305,134"/>
+<area shape="rect" id="Node000005" href="$class_robot.html#a3defa2b851d1a9267d6dbe251373ba7d" title="Send a message to a serial port (defaults to USB Serial if port is null)." alt="" coords="932,81,1024,107"/>
+<area shape="poly" id="edge9_Node000002_Node000005" title=" " alt="" coords="361,135,916,96,915,101,362,140"/>
+<area shape="rect" id="Node000006" href="$class_robot.html#a701fe8e294bbf124925db433690174dd" title="Handle SERIAL_TEST commands with no numeric parameters." alt="" coords="663,157,884,183"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="361,147,650,163,645,165,361,153"/>
+<area shape="rect" id="Node000007" href="$class_robot.html#acf85577d12d881301a16f303f39efc05" title="Parse a keyword + up to two float parameters from a command string." alt="" coords="409,207,615,248"/>
+<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="324,156,362,166,410,186,443,201,438,201,408,191,360,171,323,161"/>
+<area shape="rect" id="Node000004" href="$class_robot.html#a9e72bb50888e8247a9a55add640542ac" title="Print the serial command reference to port (defaults to USB Serial)." alt="" coords="699,5,848,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="582,53,691,34,686,35,583,58"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="612,72,919,90,914,92,612,77"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="826,29,885,48,940,74,935,74,883,53,826,34"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="826,154,883,136,935,115,940,114,885,141,827,159"/>
 </map>

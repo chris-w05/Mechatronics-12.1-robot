@@ -92,15 +92,20 @@ $(function(){initNavTree('class_sharp_g_p2_y0_a51.html','','class_sharp_g_p2_y0_
 </div><!--header-->
 <div class="contents">
 
+<p>Sharp GP2Y0A51 analog IR distance sensor driver.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_distance_sensor_8hpp_source.html">DistanceSensor.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a17d151c28b61bcd6d4434e66d20d7d9f" id="r_a17d151c28b61bcd6d4434e66d20d7d9f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a17d151c28b61bcd6d4434e66d20d7d9f">SharpGP2Y0A51</a> (uint8_t adcPin, <a class="el" href="_distance_sensor_8hpp.html#a77a46a100d78db532bd6133ce6bb7e85">VtoDfunction</a> voltageToDistanceFunction=nullptr, float vref=5.0f, uint16_t adcMax=1023, float emaAlpha=0.03f)</td></tr>
+<tr class="memitem:a654c0bb877e044f04f77b59e1da7c6b9" id="r_a654c0bb877e044f04f77b59e1da7c6b9"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a654c0bb877e044f04f77b59e1da7c6b9">SharpGP2Y0A51</a> (uint8_t adcPin, <a class="el" href="_distance_sensor_8hpp.html#a77a46a100d78db532bd6133ce6bb7e85">VtoDfunction</a> voltageToDistanceFunction=nullptr, float vref=5.0f, uint16_t adcMax=1023, float emaAlpha=0.1f)</td></tr>
+<tr class="memdesc:a654c0bb877e044f04f77b59e1da7c6b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the sensor driver.  <br /></td></tr>
 <tr class="memitem:a69f915992eb3779d66e8f57f01ce9932" id="r_a69f915992eb3779d66e8f57f01ce9932"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a69f915992eb3779d66e8f57f01ce9932">init</a> ()</td></tr>
 <tr class="memitem:af5722cc253af28308c465b106089901c" id="r_af5722cc253af28308c465b106089901c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af5722cc253af28308c465b106089901c">update</a> ()</td></tr>
 <tr class="memitem:a56bbd3028ef1351d5dffe0b755e79076" id="r_a56bbd3028ef1351d5dffe0b755e79076"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a56bbd3028ef1351d5dffe0b755e79076">getVoltage</a> () const</td></tr>
 <tr class="memitem:a03ef26c571304eff042485cf2f38bcfb" id="r_a03ef26c571304eff042485cf2f38bcfb"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a03ef26c571304eff042485cf2f38bcfb">getDistanceCm</a> () const</td></tr>
+<tr class="memitem:af7d4ea0db42765632e40f60f24b49be2" id="r_af7d4ea0db42765632e40f60f24b49be2"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#af7d4ea0db42765632e40f60f24b49be2">getDistanceIn</a> () const</td></tr>
 <tr class="memitem:a44b5620c069baff126a15fb9d3fdf146" id="r_a44b5620c069baff126a15fb9d3fdf146"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a44b5620c069baff126a15fb9d3fdf146">setEMAalpha</a> (float a)</td></tr>
 <tr class="memitem:abeece379750d2ccd4c0b275f197163ff" id="r_abeece379750d2ccd4c0b275f197163ff"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abeece379750d2ccd4c0b275f197163ff">setRangeCm</a> (float minCm, float maxCm)</td></tr>
 <tr class="memitem:a1e99aff82db362d908c683e3ff8cd76a" id="r_a1e99aff82db362d908c683e3ff8cd76a"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a1e99aff82db362d908c683e3ff8cd76a">readAdcRaw</a> () const</td></tr>
@@ -122,9 +127,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a66ca1b69d976155d5d2f6c2518226d68" id="r_a66ca1b69d976155d5d2f6c2518226d68"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a66ca1b69d976155d5d2f6c2518226d68">_b</a></td></tr>
 <tr class="memitem:aff10fff724ae81993be8b10fd89316cc" id="r_aff10fff724ae81993be8b10fd89316cc"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aff10fff724ae81993be8b10fd89316cc">_isCalibrated</a></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a17d151c28b61bcd6d4434e66d20d7d9f" name="a17d151c28b61bcd6d4434e66d20d7d9f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17d151c28b61bcd6d4434e66d20d7d9f">&#9670;&#160;</a></span>SharpGP2Y0A51()</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Sharp GP2Y0A51 analog IR distance sensor driver. </p>
+<p>Reads the sensor ADC value, converts to voltage, applies EMA smoothing, and runs the result through a user-supplied calibration function to produce a distance in centimetres. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a654c0bb877e044f04f77b59e1da7c6b9" name="a654c0bb877e044f04f77b59e1da7c6b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a654c0bb877e044f04f77b59e1da7c6b9">&#9670;&#160;</a></span>SharpGP2Y0A51()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,7 +163,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>emaAlpha</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.03f</span>&#160;)</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>emaAlpha</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.1f</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -164,6 +172,18 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Construct the sensor driver. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">adcPin</td><td>Arduino analog pin (e.g. A4). </td></tr>
+    <tr><td class="paramname">voltageToDistanceFunction</td><td>Calibration function mapping voltage → cm. </td></tr>
+    <tr><td class="paramname">vref</td><td>ADC reference voltage in volts (default 5.0). </td></tr>
+    <tr><td class="paramname">adcMax</td><td>ADC full-scale count (1023 for 10-bit AVR). </td></tr>
+    <tr><td class="paramname">emaAlpha</td><td>EMA smoothing factor. Closer to 1.0 = less smoothing. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -217,6 +237,32 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Returns the most recent distance measurement from the sensor </p>
+
+</div>
+</div>
+<a id="af7d4ea0db42765632e40f60f24b49be2" name="af7d4ea0db42765632e40f60f24b49be2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7d4ea0db42765632e40f60f24b49be2">&#9670;&#160;</a></span>getDistanceIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SharpGP2Y0A51::getDistanceIn </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the most recent distance measurement from the sensor in inches </p>
 
 </div>
 </div>

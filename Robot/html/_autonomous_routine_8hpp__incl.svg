@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Sequential container that drives an ordered list of AutoStep objects.">
 <polygon fill="#999999" stroke="#666666" points="145.88,-251.5 0.88,-251.5 0.88,-221 145.88,-221 145.88,-251.5"/>
 <text xml:space="preserve" text-anchor="start" x="8.88" y="-238" font-family="Helvetica,sans-Serif" font-size="10.00">src/Autonomous/Autonomous</text>
 <text xml:space="preserve" text-anchor="middle" x="73.38" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">Routine.hpp</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="_auto_step_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="_auto_step_8h.html" target="_top" xlink:title="Abstract interface that every autonomous step must implement.">
 <polygon fill="white" stroke="#666666" points="64.75,-185 0,-185 0,-165.75 64.75,-165.75 64.75,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="32.38" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">AutoStep.h</text>
 </a>
@@ -39,7 +39,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="_config_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="_config_8hpp.html" target="_top" xlink:title="Central configuration: pin assignments, physical constants, and PID gains.">
 <polygon fill="white" stroke="#666666" points="146,-185 82.75,-185 82.75,-165.75 146,-165.75 146,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="114.38" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Config.hpp</text>
 </a>
@@ -75,7 +75,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="_dual_motor_controller_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="_dual_motor_controller_8hpp.html" target="_top" xlink:title="Dual closed&#45;loop motor controller wrapping an L298N driver with two independent PID loops.">
 <polygon fill="white" stroke="#666666" points="248.38,-129.75 88.38,-129.75 88.38,-110.5 248.38,-110.5 248.38,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="168.38" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/DualMotorController.hpp</text>
 </a>
@@ -93,7 +93,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title="PID controller classes with optional nonlinear extensions and feedforward support.">
 <polygon fill="white" stroke="#666666" points="110.88,-74.5 37.88,-74.5 37.88,-55.25 110.88,-55.25 110.88,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="74.38" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">utils/PID.hpp</text>
 </a>

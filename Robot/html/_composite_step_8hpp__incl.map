@@ -1,14 +1,14 @@
 <map id="src/Autonomous/Steps/CompositeStep.hpp" name="src/Autonomous/Steps/CompositeStep.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="83,5,238,46"/>
-<area shape="rect" id="Node000002" href="$_auto_step_8h.html" title=" " alt="" coords="5,94,169,120"/>
+<area shape="rect" id="Node000001" title="AutoStep that runs a heap&#45;owned sequence of child steps in order." alt="" coords="83,5,238,46"/>
+<area shape="rect" id="Node000002" href="$_auto_step_8h.html" title="Abstract interface that every autonomous step must implement." alt="" coords="5,94,169,120"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,49,111,84,106,81,144,44"/>
-<area shape="rect" id="Node000003" href="$_config_8hpp.html" title=" " alt="" coords="193,94,277,120"/>
+<area shape="rect" id="Node000003" href="$_config_8hpp.html" title="Central configuration: pin assignments, physical constants, and PID gains." alt="" coords="193,94,277,120"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,44,216,82,210,83,179,49"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="186,315,262,341"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="217,122,168,170,142,204,123,242,119,255,123,266,144,290,174,309,169,309,141,294,118,268,114,255,118,240,137,201,164,167,220,118"/>
-<area shape="rect" id="Node000005" href="$_dual_motor_controller_8hpp.html" title=" " alt="" coords="200,168,414,193"/>
+<area shape="rect" id="Node000005" href="$_dual_motor_controller_8hpp.html" title="Dual closed&#45;loop motor controller wrapping an L298N driver with two independent PID loops." alt="" coords="200,168,414,193"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="247,117,287,156,281,157,246,123"/>
-<area shape="rect" id="Node000006" href="$_p_i_d_8hpp.html" title=" " alt="" coords="133,241,230,267"/>
+<area shape="rect" id="Node000006" href="$_p_i_d_8hpp.html" title="PID controller classes with optional nonlinear extensions and feedforward support." alt="" coords="133,241,230,267"/>
 <area shape="poly" id="edge11_Node000003_Node000006" title=" " alt="" coords="224,118,206,142,191,169,184,198,182,227,177,225,179,197,186,167,202,139,220,122"/>
 <area shape="rect" id="Node000009" title=" " alt="" coords="438,168,496,193"/>
 <area shape="poly" id="edge12_Node000003_Node000009" title=" " alt="" coords="274,118,426,165,421,167,274,123"/>

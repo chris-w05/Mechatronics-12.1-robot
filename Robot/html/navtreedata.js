@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Mechatronics 12.1 Robot", "index.html", [
+    [ "Topics", "topics.html", "topics" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -55,10 +56,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_accelerate_straight_line_8hpp.html",
-"class_drive.html#a7b778b4d0866693c6ab3cd6b4e9682cc",
-"class_mine_block_step.html#ae64e78e29d908e3ed8d1c0dcfe3518e2",
-"class_serial_coms.html#ab039b2a10e84e79ed3522981790b3107",
-"functions_vars_y.html"
+"class_drive.html#a460f69a86dab328e1fcc711e30f82f66",
+"class_line_sensor.html#aad7a5a63556b026de1203625620b1231",
+"class_robot.html#a417fc1e7ed8bb547d789bd86d868ba3d",
+"functions_p.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

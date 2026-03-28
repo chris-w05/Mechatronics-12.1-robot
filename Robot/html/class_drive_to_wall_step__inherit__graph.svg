@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Approach a wall using the front distance sensor until within 0.5 cm of _target.">
 <polygon fill="#999999" stroke="#666666" points="88.75,-19.25 0,-19.25 0,0 88.75,0 88.75,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="44.38" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">DriveToWallStep</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_auto_step.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_auto_step.html" target="_top" xlink:title="Pure&#45;virtual base class for all autonomous steps.">
 <polygon fill="white" stroke="#666666" points="72.62,-74.5 16.12,-74.5 16.12,-55.25 72.62,-55.25 72.62,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="44.38" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">AutoStep</text>
 </a>

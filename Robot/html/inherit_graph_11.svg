@@ -11,7 +11,7 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="class_p_i_d.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="class_p_i_d.html" target="_top" xlink:title="Lightweight PID controller base class.">
 <polygon fill="white" stroke="#666666" points="33.25,-19.25 0,-19.25 0,0 33.25,0 33.25,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="16.62" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">PID</text>
 </a>
@@ -20,16 +20,16 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:href="class_p_i_d_controller.html" target="_top" xlink:title=" ">
+<g id="a_Node000001"><a xlink:href="class_p_i_d_controller.html" target="_top" xlink:title="Full&#45;featured PID controller with anti&#45;windup, output filtering, and optional nonlinear extensions.">
 <polygon fill="white" stroke="#666666" points="144.5,-19.25 69.25,-19.25 69.25,0 144.5,0 144.5,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="106.88" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">PIDController</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node1 -->
-<g id="edge22_Node000000_Node000001" class="edge">
+<g id="edge24_Node000000_Node000001" class="edge">
 <title>Node0&#45;&gt;Node1</title>
-<g id="a_edge22_Node000000_Node000001"><a xlink:title=" ">
+<g id="a_edge24_Node000000_Node000001"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M44.91,-9.62C52.52,-9.62 60.92,-9.62 68.98,-9.62"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="44.92,-6.13 34.92,-9.63 44.92,-13.13 44.92,-6.13"/>
 </a>

@@ -1,14 +1,14 @@
 <map id="src/Autonomous/AutonomousRoutine.hpp" name="src/Autonomous/AutonomousRoutine.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="6,5,200,46"/>
-<area shape="rect" id="Node000002" href="$_auto_step_8h.html" title=" " alt="" coords="5,94,92,120"/>
+<area shape="rect" id="Node000001" title="Sequential container that drives an ordered list of AutoStep objects." alt="" coords="6,5,200,46"/>
+<area shape="rect" id="Node000002" href="$_auto_step_8h.html" title="Abstract interface that every autonomous step must implement." alt="" coords="5,94,92,120"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,49,68,82,63,80,91,44"/>
-<area shape="rect" id="Node000003" href="$_config_8hpp.html" title=" " alt="" coords="116,94,200,120"/>
+<area shape="rect" id="Node000003" href="$_config_8hpp.html" title="Central configuration: pin assignments, physical constants, and PID gains." alt="" coords="116,94,200,120"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="117,44,143,81,138,81,117,49"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="109,315,185,341"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="140,122,91,170,65,204,46,242,42,255,46,266,67,290,97,309,92,310,64,294,41,268,37,255,41,240,60,201,87,167,143,118"/>
-<area shape="rect" id="Node000005" href="$_dual_motor_controller_8hpp.html" title=" " alt="" coords="123,168,336,193"/>
+<area shape="rect" id="Node000005" href="$_dual_motor_controller_8hpp.html" title="Dual closed&#45;loop motor controller wrapping an L298N driver with two independent PID loops." alt="" coords="123,168,336,193"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="170,117,209,156,204,157,169,123"/>
-<area shape="rect" id="Node000006" href="$_p_i_d_8hpp.html" title=" " alt="" coords="56,241,153,267"/>
+<area shape="rect" id="Node000006" href="$_p_i_d_8hpp.html" title="PID controller classes with optional nonlinear extensions and feedforward support." alt="" coords="56,241,153,267"/>
 <area shape="poly" id="edge11_Node000003_Node000006" title=" " alt="" coords="143,122,129,142,114,169,107,198,105,226,100,225,102,197,109,167,125,139,147,118"/>
 <area shape="rect" id="Node000009" title=" " alt="" coords="361,168,418,193"/>
 <area shape="poly" id="edge12_Node000003_Node000009" title=" " alt="" coords="197,118,349,164,344,167,197,123"/>

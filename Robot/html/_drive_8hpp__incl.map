@@ -1,27 +1,27 @@
 <map id="src/subsystems/Drive.hpp" name="src/subsystems/Drive.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="938,5,1112,31"/>
+<area shape="rect" id="Node000001" title="Differential&#45;drive subsystem: closed&#45;loop wheel control, line following, wall&#45;distance holding,..." alt="" coords="938,5,1112,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="835,300,911,326"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="993,31,957,53,941,65,928,80,907,163,881,287,877,283,901,162,923,78,937,62,954,48,988,33"/>
-<area shape="rect" id="Node000003" href="$_config_8hpp.html" title=" " alt="" coords="500,79,585,105"/>
+<area shape="rect" id="Node000003" href="$_config_8hpp.html" title="Central configuration: pin assignments, physical constants, and PID gains." alt="" coords="500,79,585,105"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="940,33,601,85,599,79,945,31"/>
-<area shape="rect" id="Node000009" href="$_encoder_wrapper_8hpp.html" title=" " alt="" coords="1252,226,1446,252"/>
+<area shape="rect" id="Node000009" href="$_encoder_wrapper_8hpp.html" title="Quadrature encoder wrapper providing position, velocity, and acceleration." alt="" coords="1252,226,1446,252"/>
 <area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="1113,20,1194,26,1280,36,1355,53,1384,64,1406,77,1427,100,1438,124,1439,150,1429,180,1412,203,1389,221,1387,216,1408,199,1424,177,1434,149,1433,125,1422,103,1402,81,1382,69,1354,58,1279,42,1193,31,1113,25"/>
-<area shape="rect" id="Node000011" href="$_line_sensor_8hpp.html" title=" " alt="" coords="700,79,862,105"/>
+<area shape="rect" id="Node000011" href="$_line_sensor_8hpp.html" title="8&#45;channel reflective line sensor driver using the Pololu QTR&#45;MD&#45;08RC." alt="" coords="700,79,862,105"/>
 <area shape="poly" id="edge16_Node000001_Node000011" title=" " alt="" coords="981,32,838,77,836,72,986,31"/>
-<area shape="rect" id="Node000013" href="$_distance_sensor_8hpp.html" title=" " alt="" coords="646,226,836,252"/>
+<area shape="rect" id="Node000013" href="$_distance_sensor_8hpp.html" title="Driver for the Sharp GP2Y0A51SK0F short&#45;range IR distance sensor (2–15 cm)." alt="" coords="646,226,836,252"/>
 <area shape="poly" id="edge19_Node000001_Node000013" title=" " alt="" coords="935,23,866,31,792,41,728,58,705,68,690,81,681,96,678,112,679,130,684,148,702,183,723,215,718,213,697,186,679,150,674,131,672,112,676,94,686,77,702,64,727,53,790,36,865,26,940,22"/>
-<area shape="rect" id="Node000014" href="$_odometry_8hpp.html" title=" " alt="" coords="1284,153,1414,178"/>
+<area shape="rect" id="Node000014" href="$_odometry_8hpp.html" title="Differential&#45;drive pose tracker using wheel&#45;encoder odometry." alt="" coords="1284,153,1414,178"/>
 <area shape="poly" id="edge21_Node000001_Node000014" title=" " alt="" coords="1113,19,1190,24,1270,34,1339,51,1365,63,1383,77,1390,93,1389,110,1371,143,1368,139,1384,109,1385,94,1379,81,1362,68,1337,56,1269,40,1190,29,1113,24"/>
-<area shape="rect" id="Node000015" href="$_ramsete_controller_8hpp.html" title=" " alt="" coords="1187,79,1370,105"/>
+<area shape="rect" id="Node000015" href="$_ramsete_controller_8hpp.html" title="Ramsete nonlinear trajectory&#45;tracking controller for a differential&#45;drive robot." alt="" coords="1187,79,1370,105"/>
 <area shape="poly" id="edge23_Node000001_Node000015" title=" " alt="" coords="1068,29,1224,74,1218,74,1068,34"/>
-<area shape="rect" id="Node000016" href="$_odometry_plotting_8hpp.html" title=" " alt="" coords="938,79,1113,105"/>
+<area shape="rect" id="Node000016" href="$_odometry_plotting_8hpp.html" title="Template helper functions for emitting JSON odometry telemetry over a serial port." alt="" coords="938,79,1113,105"/>
 <area shape="poly" id="edge26_Node000001_Node000016" title=" " alt="" coords="1027,29,1027,65,1023,62,1024,33"/>
-<area shape="rect" id="Node000017" href="$_subsystem_8h.html" title=" " alt="" coords="1057,153,1156,178"/>
+<area shape="rect" id="Node000017" href="$_subsystem_8h.html" title="Abstract base class for all robot subsystems." alt="" coords="1057,153,1156,178"/>
 <area shape="poly" id="edge28_Node000001_Node000017" title=" " alt="" coords="1064,29,1099,48,1115,61,1128,78,1133,93,1133,110,1123,141,1119,137,1127,109,1127,94,1123,80,1111,65,1096,52,1063,34"/>
 <area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="553,103,586,151,600,181,607,206,616,228,636,250,680,276,728,293,776,303,822,311,817,310,776,309,727,298,677,281,633,254,612,231,602,208,595,183,582,154,551,108"/>
-<area shape="rect" id="Node000004" href="$_dual_motor_controller_8hpp.html" title=" " alt="" coords="225,153,438,178"/>
+<area shape="rect" id="Node000004" href="$_dual_motor_controller_8hpp.html" title="Dual closed&#45;loop motor controller wrapping an L298N driver with two independent PID loops." alt="" coords="225,153,438,178"/>
 <area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="504,106,383,150,381,145,509,104"/>
-<area shape="rect" id="Node000005" href="$_p_i_d_8hpp.html" title=" " alt="" coords="474,226,571,252"/>
+<area shape="rect" id="Node000005" href="$_p_i_d_8hpp.html" title="PID controller classes with optional nonlinear extensions and feedforward support." alt="" coords="474,226,571,252"/>
 <area shape="poly" id="edge11_Node000003_Node000005" title=" " alt="" coords="533,104,517,128,504,153,501,168,503,183,511,214,506,211,497,184,496,168,499,152,512,125,529,107"/>
 <area shape="rect" id="Node000008" title=" " alt="" coords="514,153,571,178"/>
 <area shape="poly" id="edge12_Node000003_Node000008" title=" " alt="" coords="544,103,545,138,540,135,541,107"/>

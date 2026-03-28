@@ -7,5 +7,6 @@ var searchData=
   ['test_4',['TEST',['../class_shooter.html#a5291f320a5163784866d707adb81b889a22a5536f72d622c648a82f05d8c079b5',1,'Shooter']]],
   ['toggle_5',['toggle',['../class_solenoid.html#a5f0996b7e443ed726f0d580adfb93871',1,'Solenoid']]],
   ['toggleramsetecorrection_6',['toggleRamseteCorrection',['../class_drive.html#a7f6fee9402e6ff20b8bebe841212d12f',1,'Drive']]],
-  ['toollevel_7',['ToolLevel',['../class_strategy.html#a19816446161238ad27c7c7fdf2174dde',1,'Strategy']]]
+  ['toollevel_7',['ToolLevel',['../class_strategy.html#a19816446161238ad27c7c7fdf2174dde',1,'Strategy']]],
+  ['tuning_8',['Setpoints and Tuning',['../group__setpoints.html',1,'']]]
 ];

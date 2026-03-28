@@ -91,6 +91,9 @@ $(function(){initNavTree('_mine_block_8hpp.html','',''); });
   <div class="headertitle"><div class="title">MineBlock.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> that commands the <a class="el" href="class_miner.html" title="Servo-driven block-mining and ramp-deployment subsystem.">Miner</a> to complete a fixed number of press cycles.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_auto_step_8h_source.html">Autonomous/AutoStep.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_drive_8hpp_source.html">subsystems/Drive.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_miner_8hpp_source.html">subsystems/Miner.hpp</a>&quot;</code><br />
@@ -109,9 +112,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:MineBlockStep" id="r_MineBlockStep"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_mine_block_step.html">MineBlockStep</a></td></tr>
+<tr class="memitem:MineBlock" id="r_MineBlock"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_mine_block.html">MineBlock</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mine a block by executing a set number of servo press cycles.  <a href="class_mine_block.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> that commands the <a class="el" href="class_miner.html" title="Servo-driven block-mining and ramp-deployment subsystem.">Miner</a> to complete a fixed number of press cycles. </p>
+<p>Calls <span class="tt">Miner::startMining(hits)</span> in <span class="tt">start()</span> and waits until <span class="tt"><a class="el" href="class_miner.html#a5bf00707124a7651d779094aed88e39a" title="Return true when the miner has completed all requested hits (or timed out).">Miner::isDoneMining()</a></span> returns <span class="tt">true</span>. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

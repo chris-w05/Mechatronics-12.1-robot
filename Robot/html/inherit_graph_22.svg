@@ -11,7 +11,7 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="struct_t_b9051_pins.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="struct_t_b9051_pins.html" target="_top" xlink:title="Pin bundle for a dual&#45;channel L298N&#45;style motor driver.">
 <polygon fill="white" stroke="#666666" points="69.25,-19.25 0,-19.25 0,0 69.25,0 69.25,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="34.62" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">TB9051Pins</text>
 </a>

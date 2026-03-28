@@ -22,7 +22,7 @@ var class_planner =
     [ "_followLineStep", "class_planner.html#ad3e6f1a477ef97cd1d8ce4bdbc8bb76e", null ],
     [ "_indexStep", "class_planner.html#aaaceb9cf071482125b36badc2715e7ef", null ],
     [ "_miner", "class_planner.html#a46ff663689b5aa348f40aa09424bc278", null ],
-    [ "_mineStep", "class_planner.html#a49476c68abacd9362e65c334e195883e", null ],
+    [ "_mineStep", "class_planner.html#ab44bb590bf943596d5a59755fbfa2fef", null ],
     [ "_phase", "class_planner.html#a2dab5e6015e0cbe43be74afe6cd8fa61", null ],
     [ "_placeStep", "class_planner.html#a004c1a06fef26a36c0c6b69da5ef8da5", null ],
     [ "_shooter", "class_planner.html#ae9f51e3e2be918c9224a7221dc6dc41a", null ],

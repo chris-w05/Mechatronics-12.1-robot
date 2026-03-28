@@ -9,6 +9,7 @@ var class_servo_control =
     [ "isEnabled", "class_servo_control.html#a357ae2fc412ca86e91df83091cb8896a", null ],
     [ "setAngle", "class_servo_control.html#a6eaa909d7fce46fdacd4e60946687c39", null ],
     [ "update", "class_servo_control.html#a449a1765fa330469f07b04ad638ec601", null ],
+    [ "_attached", "class_servo_control.html#acd97eeefc1b8293fb05c913c96be4386", null ],
     [ "_currentAngle", "class_servo_control.html#aaa3e2debe512bac03fad104f735c3ff9", null ],
     [ "_enabled", "class_servo_control.html#ae1c26ea5d90b4ea015d3090ff5c61d92", null ],
     [ "_inverted", "class_servo_control.html#a32e4c5841576417e7cf0e6313df56cc6", null ],

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_subsystem.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_subsystem.html" target="_top" xlink:title="Polymorphic interface for a robot subsystem.">
 <polygon fill="white" stroke="#666666" points="65.5,-74.5 0,-74.5 0,-55.25 65.5,-55.25 65.5,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="32.75" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">Subsystem</text>
 </a>

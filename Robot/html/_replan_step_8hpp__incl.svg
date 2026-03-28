@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="An AutoStep that repeatedly queries a planner for the next child step.">
 <polygon fill="#999999" stroke="#666666" points="160,-74.5 0,-74.5 0,-55.25 160,-55.25 160,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="80" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">src/Autonomous/ReplanStep.hpp</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="_auto_step_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="_auto_step_8h.html" target="_top" xlink:title="Abstract interface that every autonomous step must implement.">
 <polygon fill="white" stroke="#666666" points="112.38,-19.25 47.62,-19.25 47.62,0 112.38,0 112.38,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="80" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">AutoStep.h</text>
 </a>

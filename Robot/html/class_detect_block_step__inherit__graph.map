@@ -1,5 +1,5 @@
 <map id="DetectBlockStep" name="DetectBlockStep">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,126,105"/>
-<area shape="rect" id="Node000002" href="$class_auto_step.html" title=" " alt="" coords="28,5,103,31"/>
+<area shape="rect" id="Node000001" title="Poll the color sensor for a configurable window, then finish." alt="" coords="5,79,126,105"/>
+<area shape="rect" id="Node000002" href="$class_auto_step.html" title="Pure&#45;virtual base class for all autonomous steps." alt="" coords="28,5,103,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,45,68,79,63,78,64,48"/>
 </map>

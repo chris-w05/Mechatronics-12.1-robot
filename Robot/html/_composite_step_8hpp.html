@@ -91,6 +91,9 @@ $(function(){initNavTree('_composite_step_8hpp.html','',''); });
   <div class="headertitle"><div class="title">CompositeStep.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> that runs a heap-owned sequence of child steps in order.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_auto_step_8h_source.html">Autonomous/AutoStep.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_config_8hpp_source.html">Config.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -109,12 +112,16 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:CompositeStep" id="r_CompositeStep"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_composite_step.html">CompositeStep</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sequences heap-allocated child <span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> objects, deleting each upon completion.  <a href="class_composite_step.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:acb9201bc5b13f9f9c58a5f68ae2a8299" id="r_acb9201bc5b13f9f9c58a5f68ae2a8299"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#acb9201bc5b13f9f9c58a5f68ae2a8299">MAX_SUB_STEPS</a> = 10</td></tr>
 </table>
-<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> that runs a heap-owned sequence of child steps in order. </p>
+<p>Children are passed to the constructor (or <span class="tt">add()</span>) as raw pointers; <span class="tt"><a class="el" href="class_composite_step.html" title="Sequences heap-allocated child AutoStep objects, deleting each upon completion.">CompositeStep</a></span> takes ownership and <span class="tt">delete</span>s each one when it finishes. When the last child completes, <span class="tt">isFinished()</span> returns <span class="tt">true</span>. </p>
+</div><a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
 <a id="acb9201bc5b13f9f9c58a5f68ae2a8299" name="acb9201bc5b13f9f9c58a5f68ae2a8299"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acb9201bc5b13f9f9c58a5f68ae2a8299">&#9670;&#160;</a></span>MAX_SUB_STEPS</h2>
 

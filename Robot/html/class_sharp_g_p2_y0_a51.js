@@ -1,8 +1,9 @@
 var class_sharp_g_p2_y0_a51 =
 [
-    [ "SharpGP2Y0A51", "class_sharp_g_p2_y0_a51.html#a17d151c28b61bcd6d4434e66d20d7d9f", null ],
+    [ "SharpGP2Y0A51", "class_sharp_g_p2_y0_a51.html#a654c0bb877e044f04f77b59e1da7c6b9", null ],
     [ "adcToVoltage", "class_sharp_g_p2_y0_a51.html#a4bea79a192282ae5a5890d3f2aab8210", null ],
     [ "getDistanceCm", "class_sharp_g_p2_y0_a51.html#a03ef26c571304eff042485cf2f38bcfb", null ],
+    [ "getDistanceIn", "class_sharp_g_p2_y0_a51.html#af7d4ea0db42765632e40f60f24b49be2", null ],
     [ "getVoltage", "class_sharp_g_p2_y0_a51.html#a56bbd3028ef1351d5dffe0b755e79076", null ],
     [ "init", "class_sharp_g_p2_y0_a51.html#a69f915992eb3779d66e8f57f01ce9932", null ],
     [ "readAdcRaw", "class_sharp_g_p2_y0_a51.html#a1e99aff82db362d908c683e3ff8cd76a", null ],

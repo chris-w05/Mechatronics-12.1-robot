@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Tracks robot pose by integrating encoder wheel displacements.">
 <polygon fill="#999999" stroke="#666666" points="79.38,-19.25 20.62,-19.25 20.62,0 79.38,0 79.38,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="50" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Odometry</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="struct_odometry_1_1_pose2_d.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="struct_odometry_1_1_pose2_d.html" target="_top" xlink:title="2&#45;D robot pose.">
 <polygon fill="white" stroke="#666666" points="100,-91.75 0,-91.75 0,-72.5 100,-72.5 100,-91.75"/>
 <text xml:space="preserve" text-anchor="middle" x="50" y="-78.25" font-family="Helvetica,sans-Serif" font-size="10.00">Odometry::Pose2D</text>
 </a>

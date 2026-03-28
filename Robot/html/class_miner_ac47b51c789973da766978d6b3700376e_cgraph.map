@@ -1,5 +1,5 @@
 <map id="Miner::startMiningIndefinitely" name="Miner::startMiningIndefinitely">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,194,31"/>
-<area shape="rect" id="Node000002" href="$class_miner.html#a2621577e4088181556df1c3141bb6a10" title=" " alt="" coords="242,5,367,31"/>
+<area shape="rect" id="Node000001" title="Start mining indefinitely. Use stopMining() or hit&#45;count exhaustion to stop." alt="" coords="5,5,194,31"/>
+<area shape="rect" id="Node000002" href="$class_miner.html#a2621577e4088181556df1c3141bb6a10" title="Internal transition to MINING mode; resets all hit and cycle counters." alt="" coords="242,5,367,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,16,229,18,224,18,194,21"/>
 </map>

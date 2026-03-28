@@ -1,5 +1,5 @@
 <map id="src/Devices/Solenoid.hpp" name="src/Devices/Solenoid.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,176,31"/>
+<area shape="rect" id="Node000001" title="Simple digital solenoid driver (currently unused in primary code path)." alt="" coords="5,5,176,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="52,79,129,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,29,93,64,88,62,89,33"/>
 </map>

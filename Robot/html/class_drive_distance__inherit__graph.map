@@ -1,5 +1,5 @@
 <map id="DriveDistance" name="DriveDistance">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,110,105"/>
-<area shape="rect" id="Node000002" href="$class_auto_step.html" title=" " alt="" coords="20,5,95,31"/>
+<area shape="rect" id="Node000001" title="Drive in a straight line for targetDistance meters at targetVelocity m/s." alt="" coords="5,79,110,105"/>
+<area shape="rect" id="Node000002" href="$class_auto_step.html" title="Pure&#45;virtual base class for all autonomous steps." alt="" coords="20,5,95,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,45,60,79,55,78,56,48"/>
 </map>

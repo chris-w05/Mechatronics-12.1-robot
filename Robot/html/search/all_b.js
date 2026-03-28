@@ -15,12 +15,13 @@ var searchData=
   ['lasttime_12',['lastTime',['../class_accelerate_straight_line.html#a3ea303542ba0f9e1c1d0e2a30bba460b',1,'AccelerateStraightLine']]],
   ['lastvelocity_13',['lastVelocity',['../class_encoder_wrapper.html#acb4183788ad22e65a30afdca277d44d0',1,'EncoderWrapper']]],
   ['left_14',['LEFT',['../class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43fadf3ce2dc9fd61c1b0f1af25115abe4b9',1,'Strategy']]],
-  ['linefollowing_15',['LINEFOLLOWING',['../class_drive.html#aa63b49a3040de9a78da21e57c86f6ca4a2fb2f497a61678da3953fe04a7cb9436',1,'Drive']]],
-  ['linefollowing_5fhardset_16',['LINEFOLLOWING_HARDSET',['../class_drive.html#aa63b49a3040de9a78da21e57c86f6ca4a3ffc540b261cd3aef82f938409c2b054',1,'Drive']]],
-  ['linefollowtodistance_17',['LINEFOLLOWTODISTANCE',['../class_drive.html#aa63b49a3040de9a78da21e57c86f6ca4ac1c7125c41d4b19072f28a6300502ae9',1,'Drive']]],
-  ['linesensor_18',['LineSensor',['../class_line_sensor.html',1,'LineSensor'],['../class_line_sensor.html#a1e2ac78916e36c24958546aca92fdb54',1,'LineSensor::LineSensor()']]],
-  ['linesensor_2ehpp_19',['LineSensor.hpp',['../_line_sensor_8hpp.html',1,'']]],
-  ['linesensorcalmax_20',['lineSensorCalMax',['../_config_8hpp.html#a8c8701ad5b27308b371a248791e78065',1,'Config.hpp']]],
-  ['linesensorcalmin_21',['lineSensorCalMin',['../_config_8hpp.html#a6c091febe432fceaf1593851200c5bd6',1,'Config.hpp']]],
-  ['loop_22',['loop',['../main_8cpp.html#afe461d27b9c48d5921c00d521181f12f',1,'main.cpp']]]
+  ['lift_15',['LIFT',['../class_miner.html#a4a403b6f2ef88a9c473b96fcefa8ca83a7243623c6e7a62cdac6117712b32f2ab',1,'Miner']]],
+  ['linefollowing_16',['LINEFOLLOWING',['../class_drive.html#aa63b49a3040de9a78da21e57c86f6ca4a2fb2f497a61678da3953fe04a7cb9436',1,'Drive']]],
+  ['linefollowing_5fdistance_17',['LINEFOLLOWING_DISTANCE',['../class_drive.html#aa63b49a3040de9a78da21e57c86f6ca4abf8bdf213e061ad27d7faa7d8ab400ed',1,'Drive']]],
+  ['linefollowing_5fhardset_18',['LINEFOLLOWING_HARDSET',['../class_drive.html#aa63b49a3040de9a78da21e57c86f6ca4a3ffc540b261cd3aef82f938409c2b054',1,'Drive']]],
+  ['linesensor_19',['LineSensor',['../class_line_sensor.html',1,'LineSensor'],['../class_line_sensor.html#a1e2ac78916e36c24958546aca92fdb54',1,'LineSensor::LineSensor()']]],
+  ['linesensor_2ehpp_20',['LineSensor.hpp',['../_line_sensor_8hpp.html',1,'']]],
+  ['linesensorcalmax_21',['LINESENSORCALMAX',['../group__physical.html#gabf427f1a4fef08eff42601eaf40ea59b',1,'Config.hpp']]],
+  ['linesensorcalmin_22',['LINESENSORCALMIN',['../group__physical.html#ga0276b8480dfe12f1651af81e64e5186b',1,'Config.hpp']]],
+  ['loop_23',['loop',['../main_8cpp.html#afe461d27b9c48d5921c00d521181f12f',1,'main.cpp']]]
 ];

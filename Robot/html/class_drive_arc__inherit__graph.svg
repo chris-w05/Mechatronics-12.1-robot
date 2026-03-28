@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Commands the drive to follow a radius&#45;constrained arc until an angle or distance target is met.">
 <polygon fill="#999999" stroke="#666666" points="55.38,-19.25 1.12,-19.25 1.12,0 55.38,0 55.38,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="28.25" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">DriveArc</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_auto_step.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_auto_step.html" target="_top" xlink:title="Pure&#45;virtual base class for all autonomous steps.">
 <polygon fill="white" stroke="#666666" points="56.5,-74.5 0,-74.5 0,-55.25 56.5,-55.25 56.5,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="28.25" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">AutoStep</text>
 </a>

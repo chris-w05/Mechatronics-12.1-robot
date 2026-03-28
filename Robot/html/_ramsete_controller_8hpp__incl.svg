@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Ramsete nonlinear trajectory&#45;tracking controller for a differential&#45;drive robot.">
 <polygon fill="#999999" stroke="#666666" points="153.25,-185 0,-185 0,-165.75 153.25,-165.75 153.25,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="76.62" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/utils/RamseteController.hpp</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="_odometry_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="_odometry_8hpp.html" target="_top" xlink:title="Differential&#45;drive pose tracker using wheel&#45;encoder odometry.">
 <polygon fill="white" stroke="#666666" points="176.12,-129.75 79.12,-129.75 79.12,-110.5 176.12,-110.5 176.12,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="127.62" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">utils/Odometry.hpp</text>
 </a>
@@ -56,7 +56,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="_encoder_wrapper_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="_encoder_wrapper_8hpp.html" target="_top" xlink:title="Quadrature encoder wrapper providing position, velocity, and acceleration.">
 <polygon fill="white" stroke="#666666" points="212.12,-74.5 67.12,-74.5 67.12,-55.25 212.12,-55.25 212.12,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="139.62" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/EncoderWrapper.hpp</text>
 </a>

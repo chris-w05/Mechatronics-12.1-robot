@@ -1,91 +1,100 @@
 <map id="lib/L298NMotorDriverMega/L298NMotorDriverMega.h" name="lib/L298NMotorDriverMega/L298NMotorDriverMega.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="927,5,1104,46"/>
-<area shape="rect" id="Node000002" href="$_l298_n_motor_driver_mega_8cpp.html" title=" " alt="" coords="804,94,992,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="979,54,926,96,923,91,975,57"/>
-<area shape="rect" id="Node000003" href="$_dual_motor_controller_8hpp.html" title=" " alt="" coords="1016,102,1252,127"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1055,53,1120,101,1115,101,1054,58"/>
-<area shape="rect" id="Node000004" href="$_config_8hpp.html" title=" " alt="" coords="1069,183,1199,208"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1136,141,1136,184,1132,181,1132,145"/>
-<area shape="rect" id="Node000005" href="$_autonomous_routine_8hpp.html" title=" " alt="" coords="5,419,199,459"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1051,199,872,206,642,216,420,233,329,245,260,259,178,281,147,298,118,331,107,352,102,376,102,419,97,418,97,375,102,351,113,329,144,294,176,276,259,254,328,240,419,228,642,211,871,200,1056,197"/>
-<area shape="rect" id="Node000006" href="$_robot_8hpp.html" title=" " alt="" coords="1076,507,1179,533"/>
-<area shape="poly" id="edge13_Node000004_Node000006" title=" " alt="" coords="1051,199,950,205,821,214,684,229,552,253,493,268,441,286,397,307,365,330,345,357,339,386,349,420,376,457,389,466,412,474,481,488,574,498,682,505,904,514,1078,519,1073,519,904,519,681,511,574,503,480,493,410,479,387,471,372,461,344,422,334,386,340,354,361,326,395,302,439,281,491,263,551,248,683,224,821,209,949,200,1056,198"/>
-<area shape="rect" id="Node000009" href="$_composite_step_8hpp.html" title=" " alt="" coords="128,330,282,371"/>
-<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="1052,201,629,222,420,238,345,248,302,259,277,274,254,293,220,331,216,328,250,289,273,269,300,254,344,243,419,233,629,216,1056,198"/>
-<area shape="rect" id="Node000012" href="$_drive_8hpp.html" title=" " alt="" coords="1047,256,1221,282"/>
-<area shape="poly" id="edge14_Node000004_Node000012" title=" " alt="" coords="1136,222,1136,257,1132,254,1132,226"/>
-<area shape="rect" id="Node000027" href="$_miner_8hpp.html" title=" " alt="" coords="2203,256,2377,282"/>
-<area shape="poly" id="edge47_Node000004_Node000027" title=" " alt="" coords="1214,199,2205,261,2200,264,1214,204"/>
-<area shape="rect" id="Node000028" href="$_shooter_8hpp.html" title=" " alt="" coords="2556,338,2744,363"/>
-<area shape="poly" id="edge51_Node000004_Node000028" title=" " alt="" coords="1214,194,1468,194,1808,201,1983,209,2145,219,2284,234,2389,254,2416,266,2440,280,2528,311,2608,337,2602,337,2526,316,2438,284,2413,270,2388,259,2284,239,2145,225,1982,214,1808,207,1468,200,1215,199"/>
-<area shape="rect" id="Node000031" href="$_odometry_8cpp.html" title=" " alt="" coords="2452,256,2603,282"/>
-<area shape="poly" id="edge58_Node000004_Node000031" title=" " alt="" coords="1214,196,1728,212,2077,229,2433,254,2454,258,2449,258,2432,259,2077,234,1728,217,1215,201"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="213,454,240,457,484,478,725,495,1078,516,1073,517,724,501,484,484,239,462,214,459"/>
-<area shape="rect" id="Node000007" href="$_strategy_controller_step_8hpp.html" title=" " alt="" coords="955,581,1137,622"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1106,543,1067,583,1065,578,1102,545"/>
-<area shape="rect" id="Node000008" href="$main_8cpp.html" title=" " alt="" coords="1162,588,1258,614"/>
-<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="1152,541,1200,589,1195,587,1150,546"/>
-<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="224,381,258,423,278,442,302,457,347,469,427,479,650,497,1078,517,1073,518,650,502,427,485,346,474,300,462,275,446,254,427,223,386"/>
-<area shape="rect" id="Node000010" href="$_planner_8hpp.html" title=" " alt="" coords="1453,426,1642,452"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="297,355,1453,429,1452,434,297,360"/>
-<area shape="poly" id="edge11_Node000010_Node000006" title=" " alt="" coords="1471,455,1180,512,1179,506,1465,456"/>
-<area shape="rect" id="Node000011" href="$_planner_8cpp.html" title=" " alt="" coords="1453,507,1642,533"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1549,466,1549,509,1545,505,1545,469"/>
-<area shape="poly" id="edge46_Node000012_Node000006" title=" " alt="" coords="1029,271,889,276,725,284,574,302,514,316,470,332,428,358,395,390,386,406,382,423,386,440,397,457,410,466,432,474,499,487,589,497,693,504,908,513,1078,518,1072,519,908,518,692,510,588,502,498,492,430,479,408,471,393,461,381,442,377,423,381,404,391,386,425,354,467,328,513,311,574,297,725,279,889,270,1034,270"/>
-<area shape="poly" id="edge15_Node000012_Node000010" title=" " alt="" coords="1201,284,1257,302,1314,328,1340,348,1365,368,1436,401,1504,426,1499,425,1434,406,1362,373,1336,352,1311,332,1255,307,1200,289"/>
-<area shape="rect" id="Node000013" href="$_accelerate_straight_line_8hpp.html" title=" " alt="" coords="407,419,589,459"/>
-<area shape="poly" id="edge16_Node000012_Node000013" title=" " alt="" coords="1028,273,878,280,707,291,562,308,514,319,488,332,478,351,477,374,483,397,490,419,485,417,477,398,472,374,473,350,484,328,512,314,561,302,707,285,877,275,1034,272"/>
-<area shape="rect" id="Node000014" href="$_advance_cycle_step_8hpp.html" title=" " alt="" coords="1376,330,1538,371"/>
-<area shape="poly" id="edge18_Node000012_Node000014" title=" " alt="" coords="1198,283,1379,329,1373,330,1198,289"/>
-<area shape="rect" id="Node000015" href="$_detect_block_8hpp.html" title=" " alt="" coords="1562,330,1716,371"/>
-<area shape="poly" id="edge20_Node000012_Node000015" title=" " alt="" coords="1236,281,1385,301,1550,327,1565,332,1559,332,1550,333,1384,306,1236,286"/>
-<area shape="rect" id="Node000016" href="$_drive_arc_8hpp.html" title=" " alt="" coords="1741,330,1895,371"/>
-<area shape="poly" id="edge22_Node000012_Node000016" title=" " alt="" coords="1237,275,1463,294,1596,309,1729,327,1743,332,1738,332,1728,333,1596,314,1463,300,1237,280"/>
-<area shape="rect" id="Node000017" href="$_drive_distance_8hpp.html" title=" " alt="" coords="610,330,764,371"/>
-<area shape="poly" id="edge24_Node000012_Node000017" title=" " alt="" coords="1037,286,777,333,765,335,764,330,776,327,1042,284"/>
-<area shape="rect" id="Node000018" href="$_drive_line_until_wall_8hpp.html" title=" " alt="" coords="613,419,770,459"/>
-<area shape="poly" id="edge27_Node000012_Node000018" title=" " alt="" coords="1029,273,882,281,715,291,574,308,526,319,501,332,495,341,493,350,501,369,518,383,545,396,615,420,610,420,543,400,515,387,497,372,488,350,490,339,498,328,524,314,573,303,715,286,881,276,1034,272"/>
-<area shape="rect" id="Node000019" href="$_drive_radius_angle_8hpp.html" title=" " alt="" coords="794,419,949,459"/>
-<area shape="poly" id="edge29_Node000012_Node000019" title=" " alt="" coords="1029,274,892,282,740,293,612,310,569,320,546,332,505,372,475,392,462,395,466,392,498,387,559,386,652,394,782,416,796,421,791,421,782,421,651,399,558,392,498,393,467,397,457,397,472,387,501,368,543,328,567,315,611,304,740,288,892,277,1034,273"/>
-<area shape="rect" id="Node000020" href="$_drive_radius_at_velocity_8hpp.html" title=" " alt="" coords="973,419,1154,459"/>
-<area shape="poly" id="edge31_Node000012_Node000020" title=" " alt="" coords="1028,275,905,284,770,296,657,312,620,321,600,332,569,360,547,375,541,378,553,377,673,381,793,393,961,416,975,421,970,421,960,421,792,398,673,386,553,382,536,379,544,370,566,356,596,328,618,316,656,306,769,290,905,279,1034,274"/>
-<area shape="rect" id="Node000021" href="$_drive_until_wall_8hpp.html" title=" " alt="" coords="968,330,1122,371"/>
-<area shape="poly" id="edge33_Node000012_Node000021" title=" " alt="" coords="1112,291,1068,332,1065,327,1107,294"/>
-<area shape="rect" id="Node000022" href="$_follow_line_step_8hpp.html" title=" " alt="" coords="789,330,943,371"/>
-<area shape="poly" id="edge34_Node000012_Node000022" title=" " alt="" coords="1076,288,934,332,932,327,1081,286"/>
-<area shape="rect" id="Node000023" href="$_index_block_8hpp.html" title=" " alt="" coords="1920,330,2074,371"/>
-<area shape="poly" id="edge37_Node000012_Node000023" title=" " alt="" coords="1237,271,1538,289,1723,305,1908,327,1922,332,1917,332,1907,333,1722,310,1538,294,1237,277"/>
-<area shape="rect" id="Node000024" href="$_mine_block_8hpp.html" title=" " alt="" coords="2328,330,2482,371"/>
-<area shape="poly" id="edge39_Node000012_Node000024" title=" " alt="" coords="1237,270,1684,288,1973,304,2265,327,2330,337,2324,337,2264,333,1972,310,1683,293,1237,276"/>
-<area shape="rect" id="Node000025" href="$_place_on_table_8hpp.html" title=" " alt="" coords="2098,330,2252,371"/>
-<area shape="poly" id="edge42_Node000012_Node000025" title=" " alt="" coords="1237,269,1401,274,1612,284,1849,301,2086,327,2101,332,2095,332,2086,333,1848,306,1612,289,1400,279,1237,275"/>
-<area shape="rect" id="Node000026" href="$_reject_sequence_8hpp.html" title=" " alt="" coords="1146,330,1300,371"/>
-<area shape="poly" id="edge44_Node000012_Node000026" title=" " alt="" coords="1159,290,1204,330,1199,329,1158,295"/>
-<area shape="poly" id="edge17_Node000013_Node000006" title=" " alt="" coords="604,457,873,491,1078,514,1073,514,872,496,604,462"/>
-<area shape="poly" id="edge19_Node000014_Node000010" title=" " alt="" coords="1489,379,1537,427,1532,425,1487,384"/>
-<area shape="poly" id="edge21_Node000015_Node000010" title=" " alt="" coords="1610,380,1561,428,1559,424,1605,382"/>
-<area shape="poly" id="edge23_Node000016_Node000010" title=" " alt="" coords="1745,375,1586,428,1585,423,1740,376"/>
-<area shape="poly" id="edge26_Node000017_Node000006" title=" " alt="" coords="779,368,877,372,992,373,1048,377,1098,384,1139,397,1168,417,1175,428,1177,441,1171,466,1156,490,1140,509,1138,505,1152,487,1166,464,1172,441,1170,430,1164,420,1137,402,1097,389,1047,382,992,378,877,377,780,373"/>
-<area shape="poly" id="edge25_Node000017_Node000010" title=" " alt="" coords="780,368,971,392,1157,410,1455,433,1450,433,1156,416,970,398,780,374"/>
-<area shape="poly" id="edge28_Node000018_Node000006" title=" " alt="" coords="785,457,1078,510,1073,511,785,463"/>
-<area shape="poly" id="edge30_Node000019_Node000006" title=" " alt="" coords="950,462,1090,507,1085,507,949,467"/>
-<area shape="poly" id="edge32_Node000020_Node000006" title=" " alt="" coords="1090,469,1120,508,1115,506,1088,474"/>
-<area shape="poly" id="edge36_Node000022_Node000006" title=" " alt="" coords="958,368,1100,380,1167,393,1194,403,1212,417,1219,428,1220,438,1212,461,1202,476,1188,490,1157,509,1155,504,1184,486,1197,473,1208,458,1215,438,1214,430,1208,420,1191,407,1166,398,1099,386,958,373"/>
-<area shape="poly" id="edge35_Node000022_Node000010" title=" " alt="" coords="958,368,1231,405,1455,430,1450,430,1231,410,958,374"/>
-<area shape="poly" id="edge38_Node000023_Node000010" title=" " alt="" coords="1907,371,1616,428,1615,423,1902,372"/>
-<area shape="poly" id="edge41_Node000024_Node000006" title=" " alt="" coords="2315,367,2294,373,1975,421,1654,462,1180,516,1179,511,1654,457,1974,415,2294,368,2310,368"/>
-<area shape="poly" id="edge40_Node000024_Node000010" title=" " alt="" coords="2315,370,2309,373,2124,396,1940,414,1642,435,1642,430,1940,409,2124,391,2308,368,2309,371"/>
-<area shape="poly" id="edge43_Node000025_Node000010" title=" " alt="" coords="2086,371,1841,408,1642,431,1642,426,1841,403,2081,371"/>
-<area shape="poly" id="edge45_Node000026_Node000010" title=" " alt="" coords="1312,373,1504,426,1499,426,1312,378"/>
-<area shape="poly" id="edge50_Node000027_Node000006" title=" " alt="" coords="2389,283,2441,296,2483,315,2498,327,2506,340,2506,356,2496,372,2469,391,2423,408,2361,424,2285,438,2103,462,1894,482,1474,508,1180,520,1179,515,1473,503,1893,476,2102,457,2285,432,2360,418,2421,403,2466,386,2492,369,2501,354,2501,342,2494,330,2481,319,2439,301,2389,288"/>
-<area shape="poly" id="edge48_Node000027_Node000010" title=" " alt="" coords="2293,296,2288,337,2280,356,2266,373,2240,381,2185,390,2016,407,1642,434,1642,429,2016,401,2184,384,2238,376,2263,368,2275,354,2283,336,2289,300"/>
-<area shape="poly" id="edge49_Node000027_Node000024" title=" " alt="" coords="2320,288,2379,330,2374,329,2319,293"/>
-<area shape="poly" id="edge57_Node000028_Node000006" title=" " alt="" coords="2687,369,2715,388,2739,411,2750,436,2749,449,2741,462,1180,520,1179,514,2738,457,2744,447,2745,437,2734,414,2712,393,2685,374"/>
-<area shape="poly" id="edge52_Node000028_Node000010" title=" " alt="" coords="2544,365,2494,373,2015,412,1642,435,1642,430,2015,407,2494,368,2539,366"/>
-<area shape="rect" id="Node000029" href="$_delay_step_8hpp.html" title=" " alt="" coords="2394,419,2548,459"/>
-<area shape="poly" id="edge53_Node000028_Node000029" title=" " alt="" coords="2614,370,2513,421,2511,416,2609,371"/>
-<area shape="rect" id="Node000030" href="$_fire_step_8hpp.html" title=" " alt="" coords="2573,419,2727,459"/>
-<area shape="poly" id="edge55_Node000028_Node000030" title=" " alt="" coords="2652,377,2652,420,2648,417,2648,381"/>
-<area shape="poly" id="edge54_Node000029_Node000006" title=" " alt="" coords="2381,459,2376,462,2169,476,1815,493,1179,519,1179,514,1815,488,2169,471,2375,457,2376,459"/>
-<area shape="poly" id="edge56_Node000030_Node000006" title=" " alt="" coords="2555,459,1901,492,1179,520,1179,514,1901,487,2560,459"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="1426,5,1602,46"/>
+<area shape="rect" id="Node000002" href="$_l298_n_motor_driver_mega_8cpp.html" title=" " alt="" coords="1302,94,1491,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1478,54,1424,96,1422,91,1473,57"/>
+<area shape="rect" id="Node000003" href="$_dual_motor_controller_8hpp.html" title="Dual closed&#45;loop motor controller wrapping an L298N driver with two independent PID loops." alt="" coords="1515,102,1750,127"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1553,53,1619,101,1613,101,1553,58"/>
+<area shape="rect" id="Node000004" href="$_config_8hpp.html" title="Central configuration: pin assignments, physical constants, and PID gains." alt="" coords="1568,183,1697,208"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1634,141,1635,184,1631,181,1631,145"/>
+<area shape="rect" id="Node000005" href="$_autonomous_routine_8hpp.html" title="Sequential container that drives an ordered list of AutoStep objects." alt="" coords="5,256,199,297"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1550,197,1324,202,994,210,610,228,412,242,218,259,200,261,197,256,218,254,412,236,610,223,994,205,1324,196,1555,196"/>
+<area shape="rect" id="Node000006" href="$_robot_8hpp.html" title="Top&#45;level robot class that owns all subsystems and the autonomous scheduler." alt="" coords="2046,522,2150,548"/>
+<area shape="poly" id="edge13_Node000004_Node000006" title=" " alt="" coords="1550,202,1253,224,872,259,761,263,641,258,523,249,414,244,325,248,291,256,265,269,248,287,242,312,247,344,264,384,290,421,318,443,353,458,397,472,437,480,497,488,667,499,1123,512,1855,520,2049,531,2043,531,1855,525,1123,517,667,504,497,493,436,486,396,477,351,463,315,448,286,425,260,387,242,345,237,311,244,285,262,265,289,251,324,243,414,238,523,244,642,253,761,258,871,254,1252,219,1555,201"/>
+<area shape="rect" id="Node000009" href="$_composite_step_8hpp.html" title="AutoStep that runs a heap&#45;owned sequence of child steps in order." alt="" coords="274,345,428,386"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="1552,210,429,357,428,351,1553,205"/>
+<area shape="rect" id="Node000012" href="$_drive_8hpp.html" title="Differential&#45;drive subsystem: closed&#45;loop wheel control, line following, wall&#45;distance holding,..." alt="" coords="1546,264,1720,290"/>
+<area shape="poly" id="edge14_Node000004_Node000012" title=" " alt="" coords="1634,222,1635,265,1631,262,1631,226"/>
+<area shape="rect" id="Node000029" href="$_miner_8hpp.html" title="Miner subsystem: servo&#45;driven block&#45;pressing mechanism and ramp deployment." alt="" coords="2592,264,2766,290"/>
+<area shape="poly" id="edge51_Node000004_Node000029" title=" " alt="" coords="1713,200,2594,268,2589,269,1713,206"/>
+<area shape="rect" id="Node000030" href="$_shooter_8hpp.html" title="Rack&#45;and&#45;pinion block shooter subsystem." alt="" coords="2932,352,3120,378"/>
+<area shape="poly" id="edge57_Node000004_Node000030" title=" " alt="" coords="1712,195,1968,201,2300,212,2604,229,2714,241,2779,254,2795,263,2806,273,2816,284,2830,295,2905,327,2978,352,2972,352,2903,332,2827,299,2812,288,2802,277,2792,267,2777,259,2713,246,2604,235,2300,217,1968,206,1713,201"/>
+<area shape="rect" id="Node000033" href="$_odometry_8cpp.html" title="Implementation of the differential&#45;drive odometry integrator." alt="" coords="2841,264,2992,290"/>
+<area shape="poly" id="edge65_Node000004_Node000033" title=" " alt="" coords="1712,194,1908,196,2183,205,2500,223,2663,236,2822,254,2866,263,2861,263,2822,259,2663,242,2500,228,2183,210,1908,202,1713,199"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="111,309,127,350,149,395,180,439,198,457,219,472,249,480,307,487,494,498,1032,512,1855,520,2049,531,2043,531,1855,525,1032,517,494,504,307,492,248,485,217,477,195,461,176,442,145,398,123,352,111,314"/>
+<area shape="rect" id="Node000007" href="$_strategy_controller_step_8hpp.html" title="High&#45;level AutoStep that runs the full strategy loop inline." alt="" coords="1924,596,2106,637"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="2077,558,2037,598,2035,593,2072,560"/>
+<area shape="rect" id="Node000008" href="$main_8cpp.html" title="Arduino entry point — instantiates the Robot and drives the main loop." alt="" coords="2131,604,2228,629"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="2122,556,2169,604,2164,602,2120,561"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="372,396,407,438,429,457,454,472,491,483,548,492,710,505,918,513,1149,517,1590,519,1855,520,2049,531,2043,531,1855,525,1590,524,1149,523,918,519,710,511,547,497,490,488,452,477,426,462,403,442,370,401"/>
+<area shape="rect" id="Node000010" href="$_planner_8hpp.html" title="High&#45;level autonomous planner used with ReplanStep." alt="" coords="1654,441,1843,467"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="443,374,542,383,824,400,1043,408,1262,415,1544,431,1657,443,1652,443,1543,436,1262,420,1043,413,823,405,542,388,444,379"/>
+<area shape="poly" id="edge11_Node000010_Node000006" title=" " alt="" coords="1817,468,2048,522,2043,522,1817,473"/>
+<area shape="rect" id="Node000011" href="$_planner_8cpp.html" title="Implementation of the autonomous Planner state machine." alt="" coords="1654,522,1843,548"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1751,481,1751,524,1747,520,1747,484"/>
+<area shape="poly" id="edge50_Node000012_Node000006" title=" " alt="" coords="1735,279,1883,286,2048,299,2187,317,2235,329,2261,343,2268,354,2269,364,2262,387,2233,433,2195,472,2155,503,2121,524,2119,519,2152,499,2191,468,2229,430,2257,385,2264,364,2263,356,2258,347,2233,334,2186,323,2047,304,1883,292,1735,284"/>
+<area shape="poly" id="edge15_Node000012_Node000010" title=" " alt="" coords="1650,300,1743,441,1738,440,1648,305"/>
+<area shape="rect" id="Node000013" href="$_accelerate_straight_line_8hpp.html" title="AutoStep that drives straight while ramping speed up to a target velocity." alt="" coords="1350,434,1531,474"/>
+<area shape="poly" id="edge16_Node000012_Node000013" title=" " alt="" coords="1527,281,1369,290,1187,302,1032,321,979,333,952,347,946,356,944,365,946,374,952,383,996,393,1100,408,1353,442,1347,442,1100,413,995,398,948,388,941,376,938,365,941,354,948,343,978,328,1031,315,1186,297,1368,285,1533,280"/>
+<area shape="rect" id="Node000014" href="$_advance_cycle_step_8hpp.html" title="Instantaneous AutoStep that advances the Strategy craft cycle by one." alt="" coords="1728,345,1890,386"/>
+<area shape="poly" id="edge18_Node000012_Node000014" title=" " alt="" coords="1672,294,1771,345,1766,344,1671,299"/>
+<area shape="rect" id="Node000015" href="$_deploy_ramp_8hpp.html" title="Instantaneous AutoStep that deploys the miner&#39;s block&#45;collection ramp." alt="" coords="2602,345,2756,386"/>
+<area shape="poly" id="edge20_Node000012_Node000015" title=" " alt="" coords="1735,278,2110,297,2346,316,2584,342,2605,348,2599,348,2583,348,2346,321,2110,303,1736,284"/>
+<area shape="rect" id="Node000016" href="$_detect_block_8hpp.html" title="AutoStep that samples the color sensor and updates Strategy with the detected block type." alt="" coords="1914,345,2068,386"/>
+<area shape="poly" id="edge22_Node000012_Node000016" title=" " alt="" coords="1698,291,1916,345,1911,345,1698,296"/>
+<area shape="rect" id="Node000017" href="$_drive_arc_8hpp.html" title="AutoStep that drives the robot along a circular arc." alt="" coords="2093,345,2247,386"/>
+<area shape="poly" id="edge24_Node000012_Node000017" title=" " alt="" coords="1735,289,1898,312,2081,342,2095,347,2090,347,2080,348,1897,318,1735,294"/>
+<area shape="rect" id="Node000018" href="$_drive_distance_8hpp.html" title="AutoStep that drives straight for a specified distance at a fixed velocity." alt="" coords="962,345,1116,386"/>
+<area shape="poly" id="edge26_Node000012_Node000018" title=" " alt="" coords="1527,290,1343,315,1129,348,1117,350,1116,345,1128,342,1342,310,1532,289"/>
+<area shape="rect" id="Node000019" href="$_drive_line_until_wall_8hpp.html" title="AutoStep that follows a line until the distance sensor reads a target wall distance." alt="" coords="2257,434,2414,474"/>
+<area shape="poly" id="edge29_Node000012_Node000019" title=" " alt="" coords="1735,279,1893,288,2070,301,2222,319,2275,330,2305,343,2322,363,2332,387,2338,435,2334,432,2326,389,2317,366,2302,347,2273,335,2221,324,2069,306,1892,293,1735,285"/>
+<area shape="rect" id="Node000020" href="$_drive_radius_angle_8hpp.html" title="AutoStep that drives along an arc for a specified heading change (degrees)." alt="" coords="464,434,620,474"/>
+<area shape="poly" id="edge31_Node000012_Node000020" title=" " alt="" coords="1527,281,1265,291,941,304,661,323,570,335,542,341,529,347,519,366,519,389,525,412,534,434,529,432,520,413,514,389,514,365,525,343,540,336,569,329,660,318,941,299,1265,286,1533,280"/>
+<area shape="rect" id="Node000021" href="$_drive_radius_at_velocity_8hpp.html" title="AutoStep that drives along a constant&#45;radius arc for a specified arc length." alt="" coords="901,434,1082,474"/>
+<area shape="poly" id="edge33_Node000012_Node000021" title=" " alt="" coords="1527,281,1268,291,949,305,673,324,584,335,557,341,544,347,538,356,536,365,538,374,544,384,567,401,602,415,645,427,695,435,802,446,904,452,898,453,801,451,694,441,644,432,600,421,564,406,540,387,533,376,530,365,533,354,540,343,555,336,583,330,673,318,949,299,1268,286,1533,280"/>
+<area shape="rect" id="Node000022" href="$_drive_until_wall_8hpp.html" title="AutoStep that drives straight toward a wall until the distance sensor reaches a setpoint." alt="" coords="554,345,708,386"/>
+<area shape="poly" id="edge35_Node000012_Node000022" title=" " alt="" coords="1527,282,1171,302,947,321,721,348,709,349,708,344,720,342,946,316,1171,297,1533,280"/>
+<area shape="rect" id="Node000023" href="$_follow_line_step_8hpp.html" title="AutoStep that follows a line for a specified distance." alt="" coords="733,345,887,386"/>
+<area shape="poly" id="edge36_Node000012_Node000023" title=" " alt="" coords="1528,285,1248,309,1077,326,906,348,888,351,887,345,906,342,1077,321,1248,303,1533,284"/>
+<area shape="rect" id="Node000024" href="$_index_block_8hpp.html" title="AutoStep that routes a newly acquired block to the correct hopper slot." alt="" coords="1141,345,1295,386"/>
+<area shape="poly" id="edge39_Node000012_Node000024" title=" " alt="" coords="1556,294,1308,348,1296,350,1295,345,1307,342,1561,293"/>
+<area shape="rect" id="Node000025" href="$_mine_block_8hpp.html" title="AutoStep that commands the Miner to complete a fixed number of press cycles." alt="" coords="2373,345,2527,386"/>
+<area shape="poly" id="edge41_Node000012_Node000025" title=" " alt="" coords="1735,282,2015,303,2185,321,2354,342,2375,348,2370,348,2354,348,2184,326,2015,309,1736,287"/>
+<area shape="rect" id="Node000026" href="$_mine_block_autofire_8hpp.html" title="AutoStep that mines and simultaneously autofires the shooter for a time window." alt="" coords="2634,434,2791,474"/>
+<area shape="poly" id="edge44_Node000012_Node000026" title=" " alt="" coords="1735,275,1927,278,2160,288,2276,297,2382,308,2472,323,2540,343,2557,351,2568,361,2592,384,2676,434,2670,433,2588,388,2564,365,2554,356,2538,347,2471,329,2381,313,2276,302,2160,293,1927,284,1735,281"/>
+<area shape="rect" id="Node000027" href="$_place_on_table_8hpp.html" title="AutoStep stub that places a block on the crafting table." alt="" coords="1320,345,1474,386"/>
+<area shape="poly" id="edge46_Node000012_Node000027" title=" " alt="" coords="1588,295,1451,347,1450,342,1583,296"/>
+<area shape="rect" id="Node000028" href="$_reject_sequence_8hpp.html" title="AutoStep stub that executes the block&#45;rejection sequence." alt="" coords="1498,345,1652,386"/>
+<area shape="poly" id="edge48_Node000012_Node000028" title=" " alt="" coords="1619,301,1590,347,1587,343,1614,304"/>
+<area shape="poly" id="edge17_Node000013_Node000006" title=" " alt="" coords="1547,467,1582,472,2049,528,2043,528,1582,477,1547,472"/>
+<area shape="poly" id="edge19_Node000014_Node000010" title=" " alt="" coords="1789,397,1758,443,1755,439,1784,400"/>
+<area shape="poly" id="edge21_Node000015_Node000006" title=" " alt="" coords="2636,393,2553,438,2456,477,2374,499,2290,515,2150,532,2150,527,2289,510,2372,494,2454,472,2551,433,2631,394"/>
+<area shape="poly" id="edge23_Node000016_Node000010" title=" " alt="" coords="1925,391,1784,443,1782,438,1919,392"/>
+<area shape="poly" id="edge25_Node000017_Node000010" title=" " alt="" coords="2080,386,1810,443,1809,438,2075,387"/>
+<area shape="poly" id="edge28_Node000018_Node000006" title=" " alt="" coords="1132,383,1249,396,1341,401,1431,408,1544,431,1573,441,1594,451,1615,462,1643,472,1754,496,1866,513,2049,531,2043,531,1865,518,1753,501,1641,477,1613,467,1591,456,1571,446,1543,436,1431,414,1340,406,1248,402,1132,389"/>
+<area shape="poly" id="edge27_Node000018_Node000010" title=" " alt="" coords="1132,383,1270,401,1377,410,1484,417,1620,431,1673,441,1667,441,1619,436,1484,422,1377,415,1269,406,1132,389"/>
+<area shape="poly" id="edge30_Node000019_Node000006" title=" " alt="" coords="2264,479,2135,524,2134,519,2259,480"/>
+<area shape="poly" id="edge32_Node000020_Node000006" title=" " alt="" coords="635,458,889,472,2047,529,2045,534,889,477,635,463"/>
+<area shape="poly" id="edge34_Node000021_Node000006" title=" " alt="" coords="1097,461,1230,472,2049,530,2044,531,1230,477,1097,467"/>
+<area shape="poly" id="edge38_Node000023_Node000006" title=" " alt="" coords="902,386,1102,430,1220,453,1338,472,1486,487,1688,504,2049,531,2043,531,1688,509,1486,493,1338,477,1219,458,1101,435,902,392"/>
+<area shape="poly" id="edge37_Node000023_Node000010" title=" " alt="" coords="902,377,950,383,1247,409,1544,431,1657,444,1651,444,1543,436,1246,414,950,388,903,383"/>
+<area shape="poly" id="edge40_Node000024_Node000010" title=" " alt="" coords="1311,383,1670,440,1664,441,1310,389"/>
+<area shape="poly" id="edge43_Node000025_Node000006" title=" " alt="" coords="2454,399,2448,440,2440,460,2428,476,2408,490,2379,501,2305,517,2223,528,2150,534,2150,529,2222,523,2304,512,2377,496,2405,485,2424,472,2436,457,2443,439,2450,403"/>
+<area shape="poly" id="edge42_Node000025_Node000010" title=" " alt="" coords="2360,378,1844,444,1843,438,2355,378"/>
+<area shape="poly" id="edge45_Node000026_Node000006" title=" " alt="" coords="2622,467,2150,530,2150,525,2616,467"/>
+<area shape="poly" id="edge47_Node000027_Node000010" title=" " alt="" coords="1489,387,1702,441,1697,441,1489,392"/>
+<area shape="poly" id="edge49_Node000028_Node000010" title=" " alt="" coords="1629,390,1727,441,1722,440,1628,396"/>
+<area shape="poly" id="edge56_Node000029_Node000006" title=" " alt="" coords="2765,292,2805,312,2823,326,2838,344,2844,360,2844,380,2833,422,2816,459,2805,476,2767,491,2702,502,2515,519,2310,530,2150,535,2150,530,2310,525,2515,514,2701,497,2766,485,2802,472,2812,456,2828,421,2838,379,2838,361,2833,346,2819,330,2802,317,2764,297"/>
+<area shape="poly" id="edge52_Node000029_Node000010" title=" " alt="" coords="2716,295,2744,315,2768,337,2780,362,2778,375,2770,388,2735,395,2653,403,2394,421,1844,451,1843,445,2394,416,2652,398,2734,390,2767,383,2773,373,2774,363,2763,341,2741,319,2714,300"/>
+<area shape="poly" id="edge53_Node000029_Node000015" title=" " alt="" coords="2681,303,2681,347,2677,343,2678,307"/>
+<area shape="poly" id="edge54_Node000029_Node000025" title=" " alt="" coords="2635,295,2503,347,2501,342,2630,296"/>
+<area shape="poly" id="edge55_Node000029_Node000026" title=" " alt="" coords="2747,293,2785,313,2802,327,2815,344,2822,365,2815,387,2792,415,2761,436,2760,431,2788,411,2810,384,2817,365,2810,346,2798,330,2782,317,2746,298"/>
+<area shape="poly" id="edge64_Node000030_Node000006" title=" " alt="" coords="3000,387,2880,477,2816,494,2730,507,2522,525,2309,533,2150,536,2150,531,2309,528,2521,519,2730,502,2815,489,2878,472,2995,388"/>
+<area shape="poly" id="edge58_Node000030_Node000010" title=" " alt="" coords="2914,377,2813,388,2264,426,1844,450,1843,445,2263,420,2812,383,2920,377"/>
+<area shape="poly" id="edge63_Node000030_Node000026" title=" " alt="" coords="2970,382,2784,436,2783,431,2964,383"/>
+<area shape="rect" id="Node000031" href="$_delay_step_8hpp.html" title="AutoStep that blocks for a fixed number of milliseconds." alt="" coords="2949,434,3103,474"/>
+<area shape="poly" id="edge59_Node000030_Node000031" title=" " alt="" coords="3028,392,3028,435,3024,432,3024,396"/>
+<area shape="rect" id="Node000032" href="$_fire_step_8hpp.html" title="AutoStep that fires the shooter for a fixed duration, then stops it." alt="" coords="3128,434,3282,474"/>
+<area shape="poly" id="edge61_Node000030_Node000032" title=" " alt="" coords="3065,383,3167,434,3161,433,3064,388"/>
+<area shape="poly" id="edge60_Node000031_Node000006" title=" " alt="" coords="2936,474,2930,477,2703,502,2480,519,2150,535,2150,530,2479,514,2703,497,2930,472,2931,474"/>
+<area shape="poly" id="edge62_Node000032_Node000006" title=" " alt="" coords="3114,474,2824,507,2546,525,2310,533,2150,536,2150,531,2310,528,2546,519,2824,502,3109,475"/>
 </map>

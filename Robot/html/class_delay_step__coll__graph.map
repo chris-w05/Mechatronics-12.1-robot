@@ -1,5 +1,5 @@
 <map id="DelayStep" name="DelayStep">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,88,105"/>
-<area shape="rect" id="Node000002" href="$class_auto_step.html" title=" " alt="" coords="9,5,84,31"/>
+<area shape="rect" id="Node000001" title="Waits for a configurable duration (ms) then completes." alt="" coords="5,79,88,105"/>
+<area shape="rect" id="Node000002" href="$class_auto_step.html" title="Pure&#45;virtual base class for all autonomous steps." alt="" coords="9,5,84,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="49,45,49,79,44,78,44,48"/>
 </map>

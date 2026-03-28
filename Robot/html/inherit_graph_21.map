@@ -1,11 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$class_subsystem.html" title=" " alt="" coords="5,80,93,106"/>
+<area shape="rect" id="Node000000" href="$class_subsystem.html" title="Polymorphic interface for a robot subsystem." alt="" coords="5,80,93,106"/>
 <area shape="rect" id="Node000001" href="$class_drive.html" title=" " alt="" coords="159,5,212,31"/>
-<area shape="poly" id="edge23_Node000000_Node000001" title=" " alt="" coords="85,70,139,40,162,30,158,33,142,44,89,74"/>
-<area shape="rect" id="Node000002" href="$class_miner.html" title=" " alt="" coords="159,55,212,80"/>
-<area shape="poly" id="edge24_Node000000_Node000002" title=" " alt="" coords="107,79,160,71,156,74,109,84"/>
-<area shape="rect" id="Node000003" href="$class_serial_coms.html" title=" " alt="" coords="141,104,230,130"/>
-<area shape="poly" id="edge25_Node000000_Node000003" title=" " alt="" coords="108,101,143,108,138,110,108,106"/>
-<area shape="rect" id="Node000004" href="$class_shooter.html" title=" " alt="" coords="152,153,218,179"/>
-<area shape="poly" id="edge26_Node000000_Node000004" title=" " alt="" coords="89,111,162,152,157,154,88,116"/>
+<area shape="poly" id="edge25_Node000000_Node000001" title=" " alt="" coords="85,70,139,40,162,30,158,33,142,44,89,74"/>
+<area shape="rect" id="Node000002" href="$class_miner.html" title="Servo&#45;driven block&#45;mining and ramp&#45;deployment subsystem." alt="" coords="159,55,212,80"/>
+<area shape="poly" id="edge26_Node000000_Node000002" title=" " alt="" coords="107,79,160,71,156,74,109,84"/>
+<area shape="rect" id="Node000003" href="$class_serial_coms.html" title="Newline&#45;delimited ASCII command receiver for Arduino&#45;to&#45;Arduino comms." alt="" coords="141,104,230,130"/>
+<area shape="poly" id="edge27_Node000000_Node000003" title=" " alt="" coords="108,101,143,108,138,110,108,106"/>
+<area shape="rect" id="Node000004" href="$class_shooter.html" title="Rack&#45;and&#45;pinion block shooter controlled by encoder feedback." alt="" coords="152,153,218,179"/>
+<area shape="poly" id="edge28_Node000000_Node000004" title=" " alt="" coords="89,111,162,152,157,154,88,116"/>
 </map>

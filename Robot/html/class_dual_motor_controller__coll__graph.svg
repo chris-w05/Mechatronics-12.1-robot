@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Dual&#45;channel closed&#45;loop motor controller.">
 <polygon fill="#999999" stroke="#666666" points="158.25,-19.25 55.25,-19.25 55.25,0 158.25,0 158.25,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="106.75" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">DualMotorController</text>
 </a>
@@ -39,7 +39,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_p_i_d_controller.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="class_p_i_d_controller.html" target="_top" xlink:title="Full&#45;featured PID controller with anti&#45;windup, output filtering, and optional nonlinear extensions.">
 <polygon fill="white" stroke="#666666" points="212.38,-107 137.12,-107 137.12,-87.75 212.38,-87.75 212.38,-107"/>
 <text xml:space="preserve" text-anchor="middle" x="174.75" y="-93.5" font-family="Helvetica,sans-Serif" font-size="10.00">PIDController</text>
 </a>
@@ -59,7 +59,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="class_p_i_d.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="class_p_i_d.html" target="_top" xlink:title="Lightweight PID controller base class.">
 <polygon fill="white" stroke="#666666" points="191.38,-163.25 158.12,-163.25 158.12,-144 191.38,-144 191.38,-163.25"/>
 <text xml:space="preserve" text-anchor="middle" x="174.75" y="-149.75" font-family="Helvetica,sans-Serif" font-size="10.00">PID</text>
 </a>

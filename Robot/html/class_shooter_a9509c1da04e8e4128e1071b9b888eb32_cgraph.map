@@ -1,9 +1,9 @@
 <map id="Shooter::update" name="Shooter::update">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,119,56"/>
-<area shape="rect" id="Node000002" href="$class_shooter.html#aba382aed6deb0a552a92f315351ac5e4" title=" " alt="" coords="167,31,328,56"/>
+<area shape="rect" id="Node000001" title="Update the shooter — must be called every control loop tick." alt="" coords="5,31,119,56"/>
+<area shape="rect" id="Node000002" href="$class_shooter.html#aba382aed6deb0a552a92f315351ac5e4" title="Run one tick of the autofire state machine (called inside update())." alt="" coords="167,31,328,56"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,41,153,43,148,44,119,46"/>
-<area shape="rect" id="Node000003" href="$class_shooter.html#a30a31145ab7b3148a0adb2d0c0152713" title=" " alt="" coords="382,5,550,31"/>
+<area shape="rect" id="Node000003" href="$class_shooter.html#a30a31145ab7b3148a0adb2d0c0152713" title="Compute the encoder target for the fire (extended) position." alt="" coords="382,5,550,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="328,31,369,29,364,30,329,37"/>
-<area shape="rect" id="Node000004" href="$class_shooter.html#a1ed9592886f4679cb2805c9857defcf9" title=" " alt="" coords="376,55,556,80"/>
+<area shape="rect" id="Node000004" href="$class_shooter.html#a1ed9592886f4679cb2805c9857defcf9" title="Compute the encoder target for the primed (pulled&#45;back) position." alt="" coords="376,55,556,80"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="329,50,363,56,358,56,328,55"/>
 </map>

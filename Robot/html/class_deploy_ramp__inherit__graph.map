@@ -1,0 +1,5 @@
+<map id="DeployRamp" name="DeployRamp">
+<area shape="rect" id="Node000001" title="Calls Miner::deployRamp() in start() and finishes immediately." alt="" coords="5,79,103,105"/>
+<area shape="rect" id="Node000002" href="$class_auto_step.html" title="Pure&#45;virtual base class for all autonomous steps." alt="" coords="16,5,92,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,45,57,79,51,78,52,48"/>
+</map>

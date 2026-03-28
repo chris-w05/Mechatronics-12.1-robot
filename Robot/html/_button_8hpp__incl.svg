@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Simple digital button (or limit&#45;switch) driver.">
 <polygon fill="#999999" stroke="#666666" points="118.75,-74.5 0,-74.5 0,-55.25 118.75,-55.25 118.75,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="59.38" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">src/Devices/Button.hpp</text>
 </a>

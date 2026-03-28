@@ -92,6 +92,9 @@ $(function(){initNavTree('class_drive_to_wall_step.html','','class_drive_to_wall
 </div><!--header-->
 <div class="contents">
 
+<p>Approach a wall using the front distance sensor until within 0.5 cm of <span class="tt"><a class="el" href="#aece4954cec3867772aef0f4917d6e51c" title="Wall stand-off distance (cm).">_target</a></span>.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_drive_until_wall_8hpp_source.html">DriveUntilWall.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for DriveToWallStep:</div>
@@ -101,29 +104,41 @@ Inheritance diagram for DriveToWallStep:</div>
 <div class="dynheader">
 Collaboration diagram for DriveToWallStep:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_drive_to_wall_step__coll__graph.svg" width="963" height="388"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_drive_to_wall_step__coll__graph.svg" width="963" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1193ef30a31017178638298c2d2b8273" id="r_a1193ef30a31017178638298c2d2b8273"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1193ef30a31017178638298c2d2b8273">DriveToWallStep</a> (<a class="el" href="class_drive.html">Drive</a> &amp;drive, float targetDistance)</td></tr>
+<tr class="memdesc:a1193ef30a31017178638298c2d2b8273"><td class="mdescLeft">&#160;</td><td class="mdescRight">Full constructor.  <br /></td></tr>
 <tr class="memitem:a56d292c5221b5bf3bcd88b88f04e2315" id="r_a56d292c5221b5bf3bcd88b88f04e2315"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a56d292c5221b5bf3bcd88b88f04e2315">DriveToWallStep</a> (<a class="el" href="class_drive.html">Drive</a> &amp;drive)</td></tr>
+<tr class="memdesc:a56d292c5221b5bf3bcd88b88f04e2315"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deferred-configure constructor — call <span class="tt"><a class="el" href="#a04d3fa508fb383c3dabe420033cb2cc8" title="Re-configure for reuse.">configure()</a></span> before use.  <br /></td></tr>
 <tr class="memitem:a066dec9d7d8360ec3e60f8b9db0f47ca" id="r_a066dec9d7d8360ec3e60f8b9db0f47ca"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a066dec9d7d8360ec3e60f8b9db0f47ca">start</a> () override</td></tr>
+<tr class="memdesc:a066dec9d7d8360ec3e60f8b9db0f47ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise any state needed before the step begins running.  <br /></td></tr>
 <tr class="memitem:abcc4302add87c08707dd557abd2148d7" id="r_abcc4302add87c08707dd557abd2148d7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abcc4302add87c08707dd557abd2148d7">update</a> () override</td></tr>
+<tr class="memdesc:abcc4302add87c08707dd557abd2148d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance the step by one control-loop tick.  <br /></td></tr>
 <tr class="memitem:ad862ac11563e3543f81bb6ae4921c575" id="r_ad862ac11563e3543f81bb6ae4921c575"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad862ac11563e3543f81bb6ae4921c575">isFinished</a> () const override</td></tr>
 <tr class="memitem:a82c60e6b70cd67f8630ee3382ebab285" id="r_a82c60e6b70cd67f8630ee3382ebab285"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a82c60e6b70cd67f8630ee3382ebab285">end</a> ()</td></tr>
+<tr class="memdesc:a82c60e6b70cd67f8630ee3382ebab285"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean up resources or subsystem state when the step ends.  <br /></td></tr>
 <tr class="memitem:a04d3fa508fb383c3dabe420033cb2cc8" id="r_a04d3fa508fb383c3dabe420033cb2cc8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a04d3fa508fb383c3dabe420033cb2cc8">configure</a> (float targetDistance, float targetVelocity)</td></tr>
+<tr class="memdesc:a04d3fa508fb383c3dabe420033cb2cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-configure for reuse.  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_auto_step"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_auto_step')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_auto_step.html">AutoStep</a></td></tr>
 <tr class="memitem:a9a518d86ca941b4076002a2a1b0052dc inherit pub_methods_class_auto_step" id="r_a9a518d86ca941b4076002a2a1b0052dc"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="class_auto_step.html#a9a518d86ca941b4076002a2a1b0052dc">~AutoStep</a> ()=default</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a3d1b8f96e08e01cfb54fa87147e14f72" id="r_a3d1b8f96e08e01cfb54fa87147e14f72"><td class="memItemLeft"><a class="el" href="class_drive.html">Drive</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a3d1b8f96e08e01cfb54fa87147e14f72">_drive</a></td></tr>
+<tr class="memdesc:a3d1b8f96e08e01cfb54fa87147e14f72"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_drive.html">Drive</a> subsystem reference.  <br /></td></tr>
 <tr class="memitem:aece4954cec3867772aef0f4917d6e51c" id="r_aece4954cec3867772aef0f4917d6e51c"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#aece4954cec3867772aef0f4917d6e51c">_target</a> = 5</td></tr>
+<tr class="memdesc:aece4954cec3867772aef0f4917d6e51c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wall stand-off distance (cm).  <br /></td></tr>
 <tr class="memitem:afcc23dcfa0762656100464c3139ee96f" id="r_afcc23dcfa0762656100464c3139ee96f"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#afcc23dcfa0762656100464c3139ee96f">_velocity</a> = 0</td></tr>
+<tr class="memdesc:afcc23dcfa0762656100464c3139ee96f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Approach speed parameter (currently unused).  <br /></td></tr>
 <tr class="memitem:a99cc63327de86f76d03bc6ebbef54df6" id="r_a99cc63327de86f76d03bc6ebbef54df6"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a99cc63327de86f76d03bc6ebbef54df6">_startDistance</a> = 0</td></tr>
+<tr class="memdesc:a99cc63327de86f76d03bc6ebbef54df6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_odometry.html" title="Tracks robot pose by integrating encoder wheel displacements.">Odometry</a> snapshot at step start (unused).  <br /></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Approach a wall using the front distance sensor until within 0.5 cm of <span class="tt"><a class="el" href="#aece4954cec3867772aef0f4917d6e51c" title="Wall stand-off distance (cm).">_target</a></span>. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1193ef30a31017178638298c2d2b8273" name="a1193ef30a31017178638298c2d2b8273"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1193ef30a31017178638298c2d2b8273">&#9670;&#160;</a></span>DriveToWallStep() <span class="overload">[1/2]</span></h2>
 
@@ -151,6 +166,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Full constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">drive</td><td><a class="el" href="class_drive.html">Drive</a> subsystem reference. </td></tr>
+    <tr><td class="paramname">targetDistance</td><td>Target wall distance (cm). </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a56d292c5221b5bf3bcd88b88f04e2315" name="a56d292c5221b5bf3bcd88b88f04e2315"></a>
@@ -175,6 +199,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Deferred-configure constructor — call <span class="tt"><a class="el" href="#a04d3fa508fb383c3dabe420033cb2cc8" title="Re-configure for reuse.">configure()</a></span> before use. </p>
 
 </div>
 </div>
@@ -206,6 +232,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Re-configure for reuse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetDistance</td><td>Wall stand-off distance (cm). </td></tr>
+    <tr><td class="paramname">targetVelocity</td><td>Approach speed (unused; handled by <a class="el" href="class_drive.html">Drive</a> internally). </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a82c60e6b70cd67f8630ee3382ebab285" name="a82c60e6b70cd67f8630ee3382ebab285"></a>
@@ -230,6 +265,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Clean up resources or subsystem state when the step ends. </p>
 
 <p>Implements <a class="el" href="class_auto_step.html#a36d96a7aeb7e62c1ba43190cfefc332f">AutoStep</a>.</p>
 
@@ -257,6 +294,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> when the step has completed its objective. </dd></dl>
 
 <p>Implements <a class="el" href="class_auto_step.html#a1467cdd23fa5efe9204461f6ddbfbf13">AutoStep</a>.</p>
 
@@ -285,6 +323,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Initialise any state needed before the step begins running. </p>
+
 <p>Implements <a class="el" href="class_auto_step.html#a0dace1a4298ea06591cd179bb1c53288">AutoStep</a>.</p>
 
 </div>
@@ -312,6 +352,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Advance the step by one control-loop tick. </p>
+
 <p>Implements <a class="el" href="class_auto_step.html#a294cc7e911ef0300e62dd5df10f2eec9">AutoStep</a>.</p>
 
 </div>
@@ -337,6 +379,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p><a class="el" href="class_drive.html">Drive</a> subsystem reference. </p>
+
 </div>
 </div>
 <a id="a99cc63327de86f76d03bc6ebbef54df6" name="a99cc63327de86f76d03bc6ebbef54df6"></a>
@@ -358,6 +402,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p><a class="el" href="class_odometry.html" title="Tracks robot pose by integrating encoder wheel displacements.">Odometry</a> snapshot at step start (unused). </p>
 
 </div>
 </div>
@@ -381,6 +427,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Wall stand-off distance (cm). </p>
+
 </div>
 </div>
 <a id="afcc23dcfa0762656100464c3139ee96f" name="afcc23dcfa0762656100464c3139ee96f"></a>
@@ -402,6 +450,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Approach speed parameter (currently unused). </p>
 
 </div>
 </div>

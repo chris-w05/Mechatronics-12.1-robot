@@ -1,28 +1,28 @@
 <map id="StrategyControllerStep::update" name="StrategyControllerStep::update">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,264,159,305"/>
-<area shape="rect" id="Node000002" href="$class_strategy.html#aedae1e448cc25d6ab2f6c7b4adef39fb" title=" " alt="" coords="222,5,384,31"/>
+<area shape="rect" id="Node000001" title="Advance the step by one control&#45;loop tick." alt="" coords="5,264,159,305"/>
+<area shape="rect" id="Node000002" href="$class_strategy.html#aedae1e448cc25d6ab2f6c7b4adef39fb" title="Advance to the next scoring cycle and upgrade the pickaxe if applicable." alt="" coords="222,5,384,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,263,98,217,122,157,157,95,179,66,205,41,215,37,211,41,208,46,183,70,161,98,126,160,103,219,90,265"/>
-<area shape="rect" id="Node000004" href="$class_strategy_controller_step.html#acbc89aa9212e7ea3b0123922544f7029" title=" " alt="" coords="226,55,380,96"/>
+<area shape="rect" id="Node000004" href="$class_strategy_controller_step.html#acbc89aa9212e7ea3b0123922544f7029" title="Poll the color sensor and populate outBlock." alt="" coords="226,55,380,96"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="90,263,107,229,132,187,165,143,205,105,215,101,211,105,208,110,169,147,137,190,112,231,95,265"/>
-<area shape="rect" id="Node000005" href="$class_strategy.html#a7d2dd7244d23d87e8a92f71d4604f09c" title=" " alt="" coords="228,120,378,146"/>
+<area shape="rect" id="Node000005" href="$class_strategy.html#a7d2dd7244d23d87e8a92f71d4604f09c" title="Return the current scoring cycle target." alt="" coords="228,120,378,146"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="96,263,141,209,171,180,205,156,221,150,217,154,208,160,175,184,144,213,100,265"/>
 <area shape="rect" id="Node000006" href="$class_strategy_controller_step.html#aaa8fbbb9d6aa599a122f28887c4ab40e" title=" " alt="" coords="226,170,380,210"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="121,262,206,221,226,215,222,218,208,226,124,266"/>
 <area shape="rect" id="Node000007" href="$class_strategy_controller_step.html#a9f755ff051baa54d73831f29aec1fb31" title=" " alt="" coords="226,235,380,276"/>
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="158,272,213,266,209,269,160,277"/>
-<area shape="rect" id="Node000008" href="$class_strategy.html#a092d38e843967a4aadeb79f42550acd9" title=" " alt="" coords="224,300,382,326"/>
+<area shape="rect" id="Node000008" href="$class_strategy.html#a092d38e843967a4aadeb79f42550acd9" title="Return whether the robot has collected the full set of blocks needed to score." alt="" coords="224,300,382,326"/>
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="158,292,211,300,206,302,160,297"/>
 <area shape="rect" id="Node000010" href="$class_strategy_controller_step.html#ab4ecfbd0508c02276cc5cd957f05e004" title=" " alt="" coords="226,350,380,390"/>
 <area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="129,303,208,336,225,343,220,345,206,341,129,308"/>
 <area shape="rect" id="Node000011" href="$class_strategy_controller_step.html#a299fb3a5f394917b1e00b6b6ccd84f69" title=" " alt="" coords="226,415,380,456"/>
 <area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="100,303,147,352,176,377,208,400,220,408,215,408,205,404,173,382,143,355,100,308"/>
-<area shape="rect" id="Node000012" href="$class_strategy.html#ad5e402d5ea2e01f82f79d1f6fb44898d" title=" " alt="" coords="221,480,385,506"/>
+<area shape="rect" id="Node000012" href="$class_strategy.html#ad5e402d5ea2e01f82f79d1f6fb44898d" title="Set the block type held in a specific slot." alt="" coords="221,480,385,506"/>
 <area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="92,303,110,340,135,383,168,428,208,465,218,473,213,473,205,470,164,431,130,386,105,342,91,308"/>
-<area shape="rect" id="Node000013" href="$class_strategy.html#ad42bcf18bf9f720b21d53201e03c9ba0" title=" " alt="" coords="207,529,399,555"/>
+<area shape="rect" id="Node000013" href="$class_strategy.html#ad42bcf18bf9f720b21d53201e03c9ba0" title="Decide where to route a newly acquired block." alt="" coords="207,529,399,555"/>
 <area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="89,303,104,349,127,407,162,466,183,493,208,516,214,522,209,521,205,520,179,497,157,469,123,409,99,351,88,308"/>
-<area shape="rect" id="Node000003" href="$class_strategy.html#a5fcf479ff2f81b1a527e2f018f37429e" title=" " alt="" coords="447,5,636,31"/>
+<area shape="rect" id="Node000003" href="$class_strategy.html#a5fcf479ff2f81b1a527e2f018f37429e" title="Clear all possession slots to NONE." alt="" coords="447,5,636,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="383,16,434,17,429,19,385,21"/>
-<area shape="rect" id="Node000009" href="$class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235" title=" " alt="" coords="455,407,628,448"/>
+<area shape="rect" id="Node000009" href="$class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235" title="Return the highest block type that can be mined with the current pickaxe." alt="" coords="455,407,628,448"/>
 <area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="365,324,400,336,455,365,504,398,498,398,452,369,398,341,365,329"/>
 <area shape="poly" id="edge13_Node000013_Node000009" title=" " alt="" coords="368,526,398,516,452,487,499,458,504,456,455,491,400,521,369,531"/>
 </map>

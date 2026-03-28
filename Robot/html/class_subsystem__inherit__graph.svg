@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Polymorphic interface for a robot subsystem.">
 <polygon fill="#999999" stroke="#666666" points="146.38,-74.5 80.88,-74.5 80.88,-55.25 146.38,-55.25 146.38,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="113.62" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">Subsystem</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_miner.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="class_miner.html" target="_top" xlink:title="Servo&#45;driven block&#45;mining and ramp&#45;deployment subsystem.">
 <polygon fill="white" stroke="#666666" points="97.62,-19.25 57.62,-19.25 57.62,0 97.62,0 97.62,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="77.62" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Miner</text>
 </a>
@@ -56,7 +56,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="class_serial_coms.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="class_serial_coms.html" target="_top" xlink:title="Newline&#45;delimited ASCII command receiver for Arduino&#45;to&#45;Arduino comms.">
 <polygon fill="white" stroke="#666666" points="183.12,-19.25 116.12,-19.25 116.12,0 183.12,0 183.12,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="149.62" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">SerialComs</text>
 </a>
@@ -74,7 +74,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="class_shooter.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="class_shooter.html" target="_top" xlink:title="Rack&#45;and&#45;pinion block shooter controlled by encoder feedback.">
 <polygon fill="white" stroke="#666666" points="250.5,-19.25 200.75,-19.25 200.75,0 250.5,0 250.5,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="225.62" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Shooter</text>
 </a>

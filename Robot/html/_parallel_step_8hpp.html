@@ -91,6 +91,9 @@ $(function(){initNavTree('_parallel_step_8hpp.html','',''); });
   <div class="headertitle"><div class="title">ParallelStep.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> that runs multiple child steps concurrently.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_auto_step_8h_source.html">Autonomous/AutoStep.h</a>&quot;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -104,14 +107,23 @@ Include dependency graph for ParallelStep.hpp:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:ParallelStep" id="r_ParallelStep"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_parallel_step.html">ParallelStep</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs a collection of <span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> children in parallel each tick.  <a href="class_parallel_step.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a0f54c65c1da76cd02b66f73ca6c6c2d8" id="r_a0f54c65c1da76cd02b66f73ca6c6c2d8"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#a0f54c65c1da76cd02b66f73ca6c6c2d8">ParallelFinishMode</a> { <a class="el" href="#a0f54c65c1da76cd02b66f73ca6c6c2d8a5fb1f955b45e38e31789286a1790398d">ALL</a>
 , <a class="el" href="#a0f54c65c1da76cd02b66f73ca6c6c2d8a8e1bde3c3d303163521522cf1d62f21f">ANY</a>
  }</td></tr>
+<tr class="memdesc:a0f54c65c1da76cd02b66f73ca6c6c2d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines when a <span class="tt"><a class="el" href="class_parallel_step.html" title="Runs a collection of AutoStep children in parallel each tick.">ParallelStep</a></span> considers itself complete.  <a href="#a0f54c65c1da76cd02b66f73ca6c6c2d8">More...</a><br /></td></tr>
 </table>
-<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> that runs multiple child steps concurrently. </p>
+<p>Two completion policies are supported via <span class="tt"><a class="el" href="#a0f54c65c1da76cd02b66f73ca6c6c2d8" title="Determines when a ParallelStep considers itself complete.">ParallelFinishMode</a></span>:</p><ul>
+<li><span class="tt">ALL</span> — waits for every child to finish.</li>
+<li><span class="tt">ANY</span> — finishes as soon as the first child completes.</li>
+</ul>
+<p><span class="tt"><a class="el" href="class_parallel_step.html" title="Runs a collection of AutoStep children in parallel each tick.">ParallelStep</a></span> takes ownership of all child pointers and deletes them in the destructor. </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
 <a id="a0f54c65c1da76cd02b66f73ca6c6c2d8" name="a0f54c65c1da76cd02b66f73ca6c6c2d8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0f54c65c1da76cd02b66f73ca6c6c2d8">&#9670;&#160;</a></span>ParallelFinishMode</h2>
 
@@ -131,9 +143,13 @@ Enumerations</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Determines when a <span class="tt"><a class="el" href="class_parallel_step.html" title="Runs a collection of AutoStep children in parallel each tick.">ParallelStep</a></span> considers itself complete. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0f54c65c1da76cd02b66f73ca6c6c2d8a5fb1f955b45e38e31789286a1790398d" name="a0f54c65c1da76cd02b66f73ca6c6c2d8a5fb1f955b45e38e31789286a1790398d"></a>ALL&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a0f54c65c1da76cd02b66f73ca6c6c2d8a8e1bde3c3d303163521522cf1d62f21f" name="a0f54c65c1da76cd02b66f73ca6c6c2d8a8e1bde3c3d303163521522cf1d62f21f"></a>ANY&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0f54c65c1da76cd02b66f73ca6c6c2d8a5fb1f955b45e38e31789286a1790398d" name="a0f54c65c1da76cd02b66f73ca6c6c2d8a5fb1f955b45e38e31789286a1790398d"></a>ALL&#160;</td><td class="fielddoc"><p>Complete when ALL child steps have finished. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0f54c65c1da76cd02b66f73ca6c6c2d8a8e1bde3c3d303163521522cf1d62f21f" name="a0f54c65c1da76cd02b66f73ca6c6c2d8a8e1bde3c3d303163521522cf1d62f21f"></a>ANY&#160;</td><td class="fielddoc"><p>Complete when ANY child step finishes first. </p>
+</td></tr>
 </table>
 
 </div>

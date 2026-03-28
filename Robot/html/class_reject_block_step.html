@@ -92,6 +92,9 @@ $(function(){initNavTree('class_reject_block_step.html','','class_reject_block_s
 </div><!--header-->
 <div class="contents">
 
+<p>Placeholder step that discards an unwanted block (completes immediately).  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_reject_sequence_8hpp_source.html">RejectSequence.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for RejectBlockStep:</div>
@@ -108,13 +111,18 @@ Collaboration diagram for RejectBlockStep:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adc26fb4323f94cb7469f8bb1ec5214bc" id="r_adc26fb4323f94cb7469f8bb1ec5214bc"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#adc26fb4323f94cb7469f8bb1ec5214bc">RejectBlockStep</a> ()</td></tr>
 <tr class="memitem:a671f78f941b9c26448d385dc58435ac4" id="r_a671f78f941b9c26448d385dc58435ac4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a671f78f941b9c26448d385dc58435ac4">start</a> () override</td></tr>
+<tr class="memdesc:a671f78f941b9c26448d385dc58435ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise any state needed before the step begins running.  <br /></td></tr>
 <tr class="memitem:a25de521fbdc3555c88415bed7f6ea9aa" id="r_a25de521fbdc3555c88415bed7f6ea9aa"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a25de521fbdc3555c88415bed7f6ea9aa">update</a> () override</td></tr>
+<tr class="memdesc:a25de521fbdc3555c88415bed7f6ea9aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance the step by one control-loop tick.  <br /></td></tr>
 <tr class="memitem:a6162cdeff979604b066dcf48f01b956b" id="r_a6162cdeff979604b066dcf48f01b956b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a6162cdeff979604b066dcf48f01b956b">isFinished</a> () const override</td></tr>
 <tr class="memitem:a9b841993e84943f83cf110600f3a1030" id="r_a9b841993e84943f83cf110600f3a1030"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9b841993e84943f83cf110600f3a1030">end</a> () override</td></tr>
+<tr class="memdesc:a9b841993e84943f83cf110600f3a1030"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean up resources or subsystem state when the step ends.  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_auto_step"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_auto_step')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_auto_step.html">AutoStep</a></td></tr>
 <tr class="memitem:a9a518d86ca941b4076002a2a1b0052dc inherit pub_methods_class_auto_step" id="r_a9a518d86ca941b4076002a2a1b0052dc"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="class_auto_step.html#a9a518d86ca941b4076002a2a1b0052dc">~AutoStep</a> ()=default</td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Placeholder step that discards an unwanted block (completes immediately). </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="adc26fb4323f94cb7469f8bb1ec5214bc" name="adc26fb4323f94cb7469f8bb1ec5214bc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adc26fb4323f94cb7469f8bb1ec5214bc">&#9670;&#160;</a></span>RejectBlockStep()</h2>
 
@@ -164,6 +172,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Clean up resources or subsystem state when the step ends. </p>
+
 <p>Implements <a class="el" href="class_auto_step.html#a36d96a7aeb7e62c1ba43190cfefc332f">AutoStep</a>.</p>
 
 </div>
@@ -190,6 +200,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> when the step has completed its objective. </dd></dl>
 
 <p>Implements <a class="el" href="class_auto_step.html#a1467cdd23fa5efe9204461f6ddbfbf13">AutoStep</a>.</p>
 
@@ -218,6 +229,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Initialise any state needed before the step begins running. </p>
+
 <p>Implements <a class="el" href="class_auto_step.html#a0dace1a4298ea06591cd179bb1c53288">AutoStep</a>.</p>
 
 </div>
@@ -244,6 +257,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Advance the step by one control-loop tick. </p>
 
 <p>Implements <a class="el" href="class_auto_step.html#a294cc7e911ef0300e62dd5df10f2eec9">AutoStep</a>.</p>
 

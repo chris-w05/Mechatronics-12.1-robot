@@ -1,5 +1,5 @@
 <map id="Shooter::fire" name="Shooter::fire">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,98,31"/>
-<area shape="rect" id="Node000002" href="$class_shooter.html#a30a31145ab7b3148a0adb2d0c0152713" title=" " alt="" coords="146,5,314,31"/>
+<area shape="rect" id="Node000001" title="Fire one shot by advancing the rack to the next fire position." alt="" coords="5,5,98,31"/>
+<area shape="rect" id="Node000002" href="$class_shooter.html#a30a31145ab7b3148a0adb2d0c0152713" title="Compute the encoder target for the fire (extended) position." alt="" coords="146,5,314,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,16,133,18,127,18,98,21"/>
 </map>

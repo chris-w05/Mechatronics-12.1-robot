@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Advance the routine by one tick — call every loop iteration.">
 <polygon fill="#999999" stroke="#666666" points="110.5,-61.88 0,-61.88 0,-31.38 110.5,-31.38 110.5,-61.88"/>
 <text xml:space="preserve" text-anchor="start" x="8" y="-48.38" font-family="Helvetica,sans-Serif" font-size="10.00">AutonomousRoutine::</text>
 <text xml:space="preserve" text-anchor="middle" x="55.25" y="-37.12" font-family="Helvetica,sans-Serif" font-size="10.00">update</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_auto_step.html#a36d96a7aeb7e62c1ba43190cfefc332f" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_auto_step.html#a36d96a7aeb7e62c1ba43190cfefc332f" target="_top" xlink:title="Clean up resources or subsystem state when the step ends.">
 <polygon fill="white" stroke="#666666" points="239,-93.25 160.75,-93.25 160.75,-74 239,-74 239,-93.25"/>
 <text xml:space="preserve" text-anchor="middle" x="199.88" y="-79.75" font-family="Helvetica,sans-Serif" font-size="10.00">AutoStep::end</text>
 </a>
@@ -57,7 +57,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="class_auto_step.html#a294cc7e911ef0300e62dd5df10f2eec9" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="class_auto_step.html#a294cc7e911ef0300e62dd5df10f2eec9" target="_top" xlink:title="Advance the step by one control&#45;loop tick.">
 <polygon fill="white" stroke="#666666" points="245.75,-19.25 154,-19.25 154,0 245.75,0 245.75,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="199.88" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">AutoStep::update</text>
 </a>

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Implementation of the autonomous Planner state machine.">
 <polygon fill="#999999" stroke="#666666" points="1017.04,-406 875.79,-406 875.79,-386.75 1017.04,-386.75 1017.04,-406"/>
 <text xml:space="preserve" text-anchor="middle" x="946.41" y="-392.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/Autonomous/Planner.cpp</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="_planner_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="_planner_8hpp.html" target="_top" xlink:title="High&#45;level autonomous planner used with ReplanStep.">
 <polygon fill="white" stroke="#666666" points="979.91,-350.75 912.91,-350.75 912.91,-331.5 979.91,-331.5 979.91,-350.75"/>
 <text xml:space="preserve" text-anchor="middle" x="946.41" y="-337.25" font-family="Helvetica,sans-Serif" font-size="10.00">Planner.hpp</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="_auto_step_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="_auto_step_8h.html" target="_top" xlink:title="Abstract interface that every autonomous step must implement.">
 <polygon fill="white" stroke="#666666" points="830.79,-240.25 766.04,-240.25 766.04,-221 830.79,-221 830.79,-240.25"/>
 <text xml:space="preserve" text-anchor="middle" x="798.41" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">AutoStep.h</text>
 </a>
@@ -74,7 +74,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="_drive_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="_drive_8hpp.html" target="_top" xlink:title="Differential&#45;drive subsystem: closed&#45;loop wheel control, line following, wall&#45;distance holding,...">
 <polygon fill="white" stroke="#666666" points="719.54,-240.25 605.29,-240.25 605.29,-221 719.54,-221 719.54,-240.25"/>
 <text xml:space="preserve" text-anchor="middle" x="662.41" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">subsystems/Drive.hpp</text>
 </a>
@@ -92,7 +92,7 @@
 <!-- Node22 -->
 <g id="Node000022" class="node">
 <title>Node22</title>
-<g id="a_Node000022"><a xlink:href="_miner_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000022"><a xlink:href="_miner_8hpp.html" target="_top" xlink:title="Miner subsystem: servo&#45;driven block&#45;pressing mechanism and ramp deployment.">
 <polygon fill="white" stroke="#666666" points="1282.54,-240.25 1168.29,-240.25 1168.29,-221 1282.54,-221 1282.54,-240.25"/>
 <text xml:space="preserve" text-anchor="middle" x="1225.41" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">subsystems/Miner.hpp</text>
 </a>
@@ -110,7 +110,7 @@
 <!-- Node26 -->
 <g id="Node000026" class="node">
 <title>Node26</title>
-<g id="a_Node000026"><a xlink:href="_shooter_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000026"><a xlink:href="_shooter_8hpp.html" target="_top" xlink:title="Rack&#45;and&#45;pinion block shooter subsystem.">
 <polygon fill="white" stroke="#666666" points="1645.41,-240.25 1521.41,-240.25 1521.41,-221 1645.41,-221 1645.41,-240.25"/>
 <text xml:space="preserve" text-anchor="middle" x="1583.41" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">subsystems/Shooter.hpp</text>
 </a>
@@ -128,7 +128,7 @@
 <!-- Node29 -->
 <g id="Node000029" class="node">
 <title>Node29</title>
-<g id="a_Node000029"><a xlink:href="_strategy_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000029"><a xlink:href="_strategy_8hpp.html" target="_top" xlink:title="Game&#45;state singleton that tracks tool levels, block possession, and scoring logic.">
 <polygon fill="white" stroke="#666666" points="1391.91,-240.25 1300.91,-240.25 1300.91,-221 1391.91,-221 1391.91,-240.25"/>
 <text xml:space="preserve" text-anchor="middle" x="1346.41" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">utils/Strategy.hpp</text>
 </a>
@@ -146,7 +146,7 @@
 <!-- Node30 -->
 <g id="Node000030" class="node">
 <title>Node30</title>
-<g id="a_Node000030"><a xlink:href="_drive_distance_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000030"><a xlink:href="_drive_distance_8hpp.html" target="_top" xlink:title="AutoStep that drives straight for a specified distance at a fixed velocity.">
 <polygon fill="white" stroke="#666666" points="725.16,-295.5 599.66,-295.5 599.66,-276.25 725.16,-276.25 725.16,-295.5"/>
 <text xml:space="preserve" text-anchor="middle" x="662.41" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">Steps/DriveDistance.hpp</text>
 </a>
@@ -164,7 +164,7 @@
 <!-- Node31 -->
 <g id="Node000031" class="node">
 <title>Node31</title>
-<g id="a_Node000031"><a xlink:href="_drive_arc_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000031"><a xlink:href="_drive_arc_8hpp.html" target="_top" xlink:title="AutoStep that drives the robot along a circular arc.">
 <polygon fill="white" stroke="#666666" points="115.16,-295.5 13.66,-295.5 13.66,-276.25 115.16,-276.25 115.16,-295.5"/>
 <text xml:space="preserve" text-anchor="middle" x="64.41" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">Steps/DriveArc.hpp</text>
 </a>
@@ -182,7 +182,7 @@
 <!-- Node32 -->
 <g id="Node000032" class="node">
 <title>Node32</title>
-<g id="a_Node000032"><a xlink:href="_composite_step_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000032"><a xlink:href="_composite_step_8hpp.html" target="_top" xlink:title="AutoStep that runs a heap&#45;owned sequence of child steps in order.">
 <polygon fill="white" stroke="#666666" points="1556.79,-295.5 1426.04,-295.5 1426.04,-276.25 1556.79,-276.25 1556.79,-295.5"/>
 <text xml:space="preserve" text-anchor="middle" x="1491.41" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">Steps/CompositeStep.hpp</text>
 </a>
@@ -200,7 +200,7 @@
 <!-- Node33 -->
 <g id="Node000033" class="node">
 <title>Node33</title>
-<g id="a_Node000033"><a xlink:href="_detect_block_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000033"><a xlink:href="_detect_block_8hpp.html" target="_top" xlink:title="AutoStep that samples the color sensor and updates Strategy with the detected block type.">
 <polygon fill="white" stroke="#666666" points="1136.04,-295.5 1018.79,-295.5 1018.79,-276.25 1136.04,-276.25 1136.04,-295.5"/>
 <text xml:space="preserve" text-anchor="middle" x="1077.41" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">Steps/DetectBlock.hpp</text>
 </a>
@@ -218,7 +218,7 @@
 <!-- Node34 -->
 <g id="Node000034" class="node">
 <title>Node34</title>
-<g id="a_Node000034"><a xlink:href="_mine_block_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000034"><a xlink:href="_mine_block_8hpp.html" target="_top" xlink:title="AutoStep that commands the Miner to complete a fixed number of press cycles.">
 <polygon fill="white" stroke="#666666" points="1000.91,-295.5 891.91,-295.5 891.91,-276.25 1000.91,-276.25 1000.91,-295.5"/>
 <text xml:space="preserve" text-anchor="middle" x="946.41" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">Steps/MineBlock.hpp</text>
 </a>
@@ -236,7 +236,7 @@
 <!-- Node35 -->
 <g id="Node000035" class="node">
 <title>Node35</title>
-<g id="a_Node000035"><a xlink:href="_index_block_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000035"><a xlink:href="_index_block_8hpp.html" target="_top" xlink:title="AutoStep that routes a newly acquired block to the correct hopper slot.">
 <polygon fill="white" stroke="#666666" points="1266.41,-295.5 1154.41,-295.5 1154.41,-276.25 1266.41,-276.25 1266.41,-295.5"/>
 <text xml:space="preserve" text-anchor="middle" x="1210.41" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">Steps/IndexBlock.hpp</text>
 </a>
@@ -254,7 +254,7 @@
 <!-- Node36 -->
 <g id="Node000036" class="node">
 <title>Node36</title>
-<g id="a_Node000036"><a xlink:href="_reject_sequence_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000036"><a xlink:href="_reject_sequence_8hpp.html" target="_top" xlink:title="AutoStep stub that executes the block&#45;rejection sequence.">
 <polygon fill="white" stroke="#666666" points="268.04,-295.5 132.79,-295.5 132.79,-276.25 268.04,-276.25 268.04,-295.5"/>
 <text xml:space="preserve" text-anchor="middle" x="200.41" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">Steps/RejectSequence.hpp</text>
 </a>
@@ -272,7 +272,7 @@
 <!-- Node37 -->
 <g id="Node000037" class="node">
 <title>Node37</title>
-<g id="a_Node000037"><a xlink:href="_advance_cycle_step_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000037"><a xlink:href="_advance_cycle_step_8hpp.html" target="_top" xlink:title="Instantaneous AutoStep that advances the Strategy craft cycle by one.">
 <polygon fill="white" stroke="#666666" points="433.04,-295.5 285.79,-295.5 285.79,-276.25 433.04,-276.25 433.04,-295.5"/>
 <text xml:space="preserve" text-anchor="middle" x="359.41" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">Steps/AdvanceCycleStep.hpp</text>
 </a>
@@ -290,7 +290,7 @@
 <!-- Node38 -->
 <g id="Node000038" class="node">
 <title>Node38</title>
-<g id="a_Node000038"><a xlink:href="_deferred_step_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000038"><a xlink:href="_deferred_step_8hpp.html" target="_top" xlink:title="An AutoStep wrapper whose child step is chosen at runtime via a factory.">
 <polygon fill="white" stroke="#666666" points="873.66,-295.5 781.16,-295.5 781.16,-276.25 873.66,-276.25 873.66,-295.5"/>
 <text xml:space="preserve" text-anchor="middle" x="827.41" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">DeferredStep.hpp</text>
 </a>
@@ -308,7 +308,7 @@
 <!-- Node39 -->
 <g id="Node000039" class="node">
 <title>Node39</title>
-<g id="a_Node000039"><a xlink:href="_place_on_table_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000039"><a xlink:href="_place_on_table_8hpp.html" target="_top" xlink:title="AutoStep stub that places a block on the crafting table.">
 <polygon fill="white" stroke="#666666" points="1408.41,-295.5 1284.41,-295.5 1284.41,-276.25 1408.41,-276.25 1408.41,-295.5"/>
 <text xml:space="preserve" text-anchor="middle" x="1346.41" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">Steps/PlaceOnTable.hpp</text>
 </a>
@@ -326,7 +326,7 @@
 <!-- Node40 -->
 <g id="Node000040" class="node">
 <title>Node40</title>
-<g id="a_Node000040"><a xlink:href="_follow_line_step_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000040"><a xlink:href="_follow_line_step_8hpp.html" target="_top" xlink:title="AutoStep that follows a line for a specified distance.">
 <polygon fill="white" stroke="#666666" points="581.41,-295.5 451.41,-295.5 451.41,-276.25 581.41,-276.25 581.41,-295.5"/>
 <text xml:space="preserve" text-anchor="middle" x="516.41" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">Steps/FollowLineStep.hpp</text>
 </a>
@@ -362,7 +362,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="_config_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="_config_8hpp.html" target="_top" xlink:title="Central configuration: pin assignments, physical constants, and PID gains.">
 <polygon fill="white" stroke="#666666" points="1267.04,-185 1203.79,-185 1203.79,-165.75 1267.04,-165.75 1267.04,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="1235.41" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Config.hpp</text>
 </a>
@@ -380,7 +380,7 @@
 <!-- Node13 -->
 <g id="Node000013" class="node">
 <title>Node13</title>
-<g id="a_Node000013"><a xlink:href="_encoder_wrapper_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000013"><a xlink:href="_encoder_wrapper_8hpp.html" target="_top" xlink:title="Quadrature encoder wrapper providing position, velocity, and acceleration.">
 <polygon fill="white" stroke="#666666" points="503.91,-74.5 358.91,-74.5 358.91,-55.25 503.91,-55.25 503.91,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="431.41" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/EncoderWrapper.hpp</text>
 </a>
@@ -398,7 +398,7 @@
 <!-- Node15 -->
 <g id="Node000015" class="node">
 <title>Node15</title>
-<g id="a_Node000015"><a xlink:href="_line_sensor_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000015"><a xlink:href="_line_sensor_8hpp.html" target="_top" xlink:title="8&#45;channel reflective line sensor driver using the Pololu QTR&#45;MD&#45;08RC.">
 <polygon fill="white" stroke="#666666" points="933.29,-185 811.54,-185 811.54,-165.75 933.29,-165.75 933.29,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="872.41" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/LineSensor.hpp</text>
 </a>
@@ -416,7 +416,7 @@
 <!-- Node17 -->
 <g id="Node000017" class="node">
 <title>Node17</title>
-<g id="a_Node000017"><a xlink:href="_distance_sensor_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000017"><a xlink:href="_distance_sensor_8hpp.html" target="_top" xlink:title="Driver for the Sharp GP2Y0A51SK0F short&#45;range IR distance sensor (2–15 cm).">
 <polygon fill="white" stroke="#666666" points="971.79,-74.5 829.04,-74.5 829.04,-55.25 971.79,-55.25 971.79,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="900.41" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/DistanceSensor.hpp</text>
 </a>
@@ -434,7 +434,7 @@
 <!-- Node18 -->
 <g id="Node000018" class="node">
 <title>Node18</title>
-<g id="a_Node000018"><a xlink:href="_odometry_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000018"><a xlink:href="_odometry_8hpp.html" target="_top" xlink:title="Differential&#45;drive pose tracker using wheel&#45;encoder odometry.">
 <polygon fill="white" stroke="#666666" points="491.91,-129.75 394.91,-129.75 394.91,-110.5 491.91,-110.5 491.91,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="443.41" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">utils/Odometry.hpp</text>
 </a>
@@ -452,7 +452,7 @@
 <!-- Node19 -->
 <g id="Node000019" class="node">
 <title>Node19</title>
-<g id="a_Node000019"><a xlink:href="_ramsete_controller_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000019"><a xlink:href="_ramsete_controller_8hpp.html" target="_top" xlink:title="Ramsete nonlinear trajectory&#45;tracking controller for a differential&#45;drive robot.">
 <polygon fill="white" stroke="#666666" points="607.79,-185 471.04,-185 471.04,-165.75 607.79,-165.75 607.79,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="539.41" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">utils/RamseteController.hpp</text>
 </a>
@@ -470,7 +470,7 @@
 <!-- Node20 -->
 <g id="Node000020" class="node">
 <title>Node20</title>
-<g id="a_Node000020"><a xlink:href="_odometry_plotting_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000020"><a xlink:href="_odometry_plotting_8hpp.html" target="_top" xlink:title="Template helper functions for emitting JSON odometry telemetry over a serial port.">
 <polygon fill="white" stroke="#666666" points="680.16,-129.75 548.66,-129.75 548.66,-110.5 680.16,-110.5 680.16,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="614.41" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">utils/OdometryPlotting.hpp</text>
 </a>
@@ -488,7 +488,7 @@
 <!-- Node21 -->
 <g id="Node000021" class="node">
 <title>Node21</title>
-<g id="a_Node000021"><a xlink:href="_subsystem_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000021"><a xlink:href="_subsystem_8h.html" target="_top" xlink:title="Abstract base class for all robot subsystems.">
 <polygon fill="white" stroke="#666666" points="1148.29,-185 1074.54,-185 1074.54,-165.75 1148.29,-165.75 1148.29,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="1111.41" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Subsystem.h</text>
 </a>
@@ -515,7 +515,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="_dual_motor_controller_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="_dual_motor_controller_8hpp.html" target="_top" xlink:title="Dual closed&#45;loop motor controller wrapping an L298N driver with two independent PID loops.">
 <polygon fill="white" stroke="#666666" points="1325.41,-129.75 1165.41,-129.75 1165.41,-110.5 1325.41,-110.5 1325.41,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="1245.41" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/DualMotorController.hpp</text>
 </a>
@@ -533,7 +533,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000009"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title="PID controller classes with optional nonlinear extensions and feedforward support.">
 <polygon fill="white" stroke="#666666" points="1527.91,-74.5 1454.91,-74.5 1454.91,-55.25 1527.91,-55.25 1527.91,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="1491.41" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">utils/PID.hpp</text>
 </a>
@@ -794,7 +794,7 @@
 <!-- Node23 -->
 <g id="Node000023" class="node">
 <title>Node23</title>
-<g id="a_Node000023"><a xlink:href="_servo_control_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000023"><a xlink:href="_servo_control_8hpp.html" target="_top" xlink:title="Buffered servo wrapper that defers writes until update() is called.">
 <polygon fill="white" stroke="#666666" points="1499.79,-185 1369.04,-185 1369.04,-165.75 1499.79,-165.75 1499.79,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="1434.41" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/ServoControl.hpp</text>
 </a>
@@ -812,7 +812,7 @@
 <!-- Node25 -->
 <g id="Node000025" class="node">
 <title>Node25</title>
-<g id="a_Node000025"><a xlink:href="_solenoid_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000025"><a xlink:href="_solenoid_8hpp.html" target="_top" xlink:title="Simple digital solenoid driver (currently unused in primary code path).">
 <polygon fill="white" stroke="#666666" points="1629.04,-185 1517.79,-185 1517.79,-165.75 1629.04,-165.75 1629.04,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="1573.41" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/Solenoid.hpp</text>
 </a>
@@ -929,7 +929,7 @@
 <!-- Node27 -->
 <g id="Node000027" class="node">
 <title>Node27</title>
-<g id="a_Node000027"><a xlink:href="_motor_controller_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000027"><a xlink:href="_motor_controller_8hpp.html" target="_top" xlink:title="Unified single&#45;channel motor controller supporting TB9051FTG and L298N drivers.">
 <polygon fill="white" stroke="#666666" points="1765.29,-129.75 1625.54,-129.75 1625.54,-110.5 1765.29,-110.5 1765.29,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="1695.41" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/MotorController.hpp</text>
 </a>
@@ -947,7 +947,7 @@
 <!-- Node28 -->
 <g id="Node000028" class="node">
 <title>Node28</title>
-<g id="a_Node000028"><a xlink:href="_button_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000028"><a xlink:href="_button_8hpp.html" target="_top" xlink:title="Simple digital button (or limit&#45;switch) driver.">
 <polygon fill="white" stroke="#666666" points="1923.54,-74.5 1821.29,-74.5 1821.29,-55.25 1923.54,-55.25 1923.54,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="1872.41" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/Button.hpp</text>
 </a>

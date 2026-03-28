@@ -1,8 +1,8 @@
 var searchData=
 [
   ['handleautofire_0',['handleAutoFire',['../class_shooter.html#aba382aed6deb0a552a92f315351ac5e4',1,'Shooter']]],
-  ['handleglobalcommand_1',['handleGlobalCommand',['../class_robot.html#a2a309b38abaed08fcd6dc60b09f65ca2',1,'Robot']]],
-  ['handleserialtestcommand_2',['handleSerialTestCommand',['../class_robot.html#aa0975008ed9aee31a6ff43d8289bedb5',1,'Robot::handleSerialTestCommand(char cmd, Stream *replyPort)'],['../class_robot.html#aa84a55f83aa3d36ebf9caa08caacbd26',1,'Robot::handleSerialTestCommand(char cmd, float param, bool paramValid, Stream *replyPort)'],['../class_robot.html#a450fd0f1ab562eff9ba8519372575674',1,'Robot::handleSerialTestCommand(char cmd, float p1, float p2, Stream *replyPort)']]],
+  ['handleglobalcommand_1',['handleGlobalCommand',['../class_robot.html#a25277ec017ab37e4920908740e7f1ee9',1,'Robot']]],
+  ['handleserialtestcommand_2',['handleSerialTestCommand',['../class_robot.html#a701fe8e294bbf124925db433690174dd',1,'Robot::handleSerialTestCommand(const char *cmd, Stream *replyPort)'],['../class_robot.html#a0e868d5d39f873e6d45da2de8e5c1594',1,'Robot::handleSerialTestCommand(const char *cmd, float param, bool paramValid, Stream *replyPort)'],['../class_robot.html#ab2f9fb01477b41d72c03bdc52682c34c',1,'Robot::handleSerialTestCommand(const char *cmd, float p1, float p2, Stream *replyPort)']]],
   ['hardsetspeed_3',['hardSetSpeed',['../class_drive.html#afd8230bbc8ebbb0374b6db6d39fd1044',1,'Drive::hardSetSpeed(int16_t speed)'],['../class_drive.html#a57ccfe8d01bb1cbc71cfc2b87588f18d',1,'Drive::hardSetSpeed(int16_t left, int16_t right)']]],
   ['hascommand_4',['hasCommand',['../class_serial_coms.html#a7cdb167ced4de6f85c8fa8c83cacb3a8',1,'SerialComs']]],
   ['hasfault_5',['hasFault',['../class_motor_controller.html#a0459ba5cfeaf049e91a97333a52c7bf3',1,'MotorController']]],

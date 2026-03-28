@@ -92,6 +92,9 @@ $(function(){initNavTree('class_deferred_step.html','','class_deferred_step-memb
 </div><!--header-->
 <div class="contents">
 
+<p>Wraps a lazily-constructed child step that is created by a factory at <span class="tt"><a class="el" href="#a0910012be5dd063e26b73ae135d19db2" title="Invoke the factory and start the child step.">start()</a></span> time.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_deferred_step_8hpp_source.html">DeferredStep.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for DeferredStep:</div>
@@ -107,25 +110,36 @@ Collaboration diagram for DeferredStep:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a39fd08126d6498b85f13938490800db1" id="r_a39fd08126d6498b85f13938490800db1"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a39fd08126d6498b85f13938490800db1">FactoryFn</a> = <a class="el" href="class_auto_step.html">AutoStep</a> *(*)(void *ctx)</td></tr>
+<tr class="memdesc:a39fd08126d6498b85f13938490800db1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signature of the factory function: <span class="tt">AutoStep* factory(void* context)</span>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7f7a741a6084a01db439c9a195f53c4a" id="r_a7f7a741a6084a01db439c9a195f53c4a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7f7a741a6084a01db439c9a195f53c4a">DeferredStep</a> (void *ctx, <a class="el" href="#a39fd08126d6498b85f13938490800db1">FactoryFn</a> fn)</td></tr>
+<tr class="memdesc:a7f7a741a6084a01db439c9a195f53c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the deferred step.  <br /></td></tr>
 <tr class="memitem:a0910012be5dd063e26b73ae135d19db2" id="r_a0910012be5dd063e26b73ae135d19db2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0910012be5dd063e26b73ae135d19db2">start</a> () override</td></tr>
+<tr class="memdesc:a0910012be5dd063e26b73ae135d19db2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke the factory and start the child step.  <br /></td></tr>
 <tr class="memitem:a66662698af5056cfb53028c38692f200" id="r_a66662698af5056cfb53028c38692f200"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a66662698af5056cfb53028c38692f200">update</a> () override</td></tr>
+<tr class="memdesc:a66662698af5056cfb53028c38692f200"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward one tick to the child step (no-op if already finished).  <br /></td></tr>
 <tr class="memitem:a0f1f503e3468352228385d9854b9fac1" id="r_a0f1f503e3468352228385d9854b9fac1"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0f1f503e3468352228385d9854b9fac1">isFinished</a> () const override</td></tr>
 <tr class="memitem:a61345a6587aad7b0773cd94263d45fc0" id="r_a61345a6587aad7b0773cd94263d45fc0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a61345a6587aad7b0773cd94263d45fc0">end</a> () override</td></tr>
+<tr class="memdesc:a61345a6587aad7b0773cd94263d45fc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward <span class="tt"><a class="el" href="#a61345a6587aad7b0773cd94263d45fc0" title="Forward end() to the child step.">end()</a></span> to the child step.  <br /></td></tr>
 <tr class="memitem:a7e8033d70829d4c0442705a471cc63f5" id="r_a7e8033d70829d4c0442705a471cc63f5"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7e8033d70829d4c0442705a471cc63f5">~DeferredStep</a> () override</td></tr>
+<tr class="memdesc:a7e8033d70829d4c0442705a471cc63f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the owned child step, if one was created.  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_auto_step"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_auto_step')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_auto_step.html">AutoStep</a></td></tr>
 <tr class="memitem:a9a518d86ca941b4076002a2a1b0052dc inherit pub_methods_class_auto_step" id="r_a9a518d86ca941b4076002a2a1b0052dc"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="class_auto_step.html#a9a518d86ca941b4076002a2a1b0052dc">~AutoStep</a> ()=default</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a5dca147ccf7676f4c30e1040de7e5df9" id="r_a5dca147ccf7676f4c30e1040de7e5df9"><td class="memItemLeft">void *&#160;</td><td class="memItemRight"><a class="el" href="#a5dca147ccf7676f4c30e1040de7e5df9">_ctx</a> = nullptr</td></tr>
+<tr class="memdesc:a5dca147ccf7676f4c30e1040de7e5df9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opaque context pointer passed to the factory.  <br /></td></tr>
 <tr class="memitem:a50f5f019b47990b0675fab102676a637" id="r_a50f5f019b47990b0675fab102676a637"><td class="memItemLeft"><a class="el" href="#a39fd08126d6498b85f13938490800db1">FactoryFn</a>&#160;</td><td class="memItemRight"><a class="el" href="#a50f5f019b47990b0675fab102676a637">_fn</a> = nullptr</td></tr>
+<tr class="memdesc:a50f5f019b47990b0675fab102676a637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory function that creates the child step.  <br /></td></tr>
 <tr class="memitem:a8592809c840a2d84c7e717262f98f64b" id="r_a8592809c840a2d84c7e717262f98f64b"><td class="memItemLeft"><a class="el" href="class_auto_step.html">AutoStep</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a8592809c840a2d84c7e717262f98f64b">_child</a> = nullptr</td></tr>
+<tr class="memdesc:a8592809c840a2d84c7e717262f98f64b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heap-allocated child step (owned by this object).  <br /></td></tr>
 </table>
-<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Wraps a lazily-constructed child step that is created by a factory at <span class="tt"><a class="el" href="#a0910012be5dd063e26b73ae135d19db2" title="Invoke the factory and start the child step.">start()</a></span> time. </p>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a39fd08126d6498b85f13938490800db1" name="a39fd08126d6498b85f13938490800db1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a39fd08126d6498b85f13938490800db1">&#9670;&#160;</a></span>FactoryFn</h2>
 
@@ -137,6 +151,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Signature of the factory function: <span class="tt">AutoStep* factory(void* context)</span>. </p>
 
 </div>
 </div>
@@ -168,6 +184,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Construct the deferred step. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>Opaque context pointer forwarded to the factory. </td></tr>
+    <tr><td class="paramname">fn</td><td>Factory function that creates the child step. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a7e8033d70829d4c0442705a471cc63f5" name="a7e8033d70829d4c0442705a471cc63f5"></a>
@@ -192,6 +217,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Destroy the owned child step, if one was created. </p>
 
 </div>
 </div>
@@ -219,6 +246,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Forward <span class="tt"><a class="el" href="#a61345a6587aad7b0773cd94263d45fc0" title="Forward end() to the child step.">end()</a></span> to the child step. </p>
+
 <p>Implements <a class="el" href="class_auto_step.html#a36d96a7aeb7e62c1ba43190cfefc332f">AutoStep</a>.</p>
 
 </div>
@@ -245,6 +274,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the child is done, or if no child was created. </dd></dl>
 
 <p>Implements <a class="el" href="class_auto_step.html#a1467cdd23fa5efe9204461f6ddbfbf13">AutoStep</a>.</p>
 
@@ -273,6 +303,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Invoke the factory and start the child step. </p>
+
 <p>Implements <a class="el" href="class_auto_step.html#a0dace1a4298ea06591cd179bb1c53288">AutoStep</a>.</p>
 
 </div>
@@ -300,6 +332,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Forward one tick to the child step (no-op if already finished). </p>
+
 <p>Implements <a class="el" href="class_auto_step.html#a294cc7e911ef0300e62dd5df10f2eec9">AutoStep</a>.</p>
 
 </div>
@@ -325,6 +359,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Heap-allocated child step (owned by this object). </p>
+
 </div>
 </div>
 <a id="a5dca147ccf7676f4c30e1040de7e5df9" name="a5dca147ccf7676f4c30e1040de7e5df9"></a>
@@ -347,6 +383,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Opaque context pointer passed to the factory. </p>
+
 </div>
 </div>
 <a id="a50f5f019b47990b0675fab102676a637" name="a50f5f019b47990b0675fab102676a637"></a>
@@ -368,6 +406,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Factory function that creates the child step. </p>
 
 </div>
 </div>

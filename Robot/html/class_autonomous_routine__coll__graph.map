@@ -1,5 +1,5 @@
 <map id="AutonomousRoutine" name="AutonomousRoutine">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,102,145,128"/>
-<area shape="rect" id="Node000002" href="$class_auto_step.html" title=" " alt="" coords="37,5,113,31"/>
+<area shape="rect" id="Node000001" title="Drives an ordered sequence of AutoStep objects to completion." alt="" coords="5,102,145,128"/>
+<area shape="rect" id="Node000002" href="$class_auto_step.html" title="Pure&#45;virtual base class for all autonomous steps." alt="" coords="37,5,113,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,45,78,102,72,101,73,48"/>
 </map>

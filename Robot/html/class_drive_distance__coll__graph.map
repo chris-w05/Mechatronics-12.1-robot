@@ -1,29 +1,30 @@
 <map id="DriveDistance" name="DriveDistance">
-<area shape="rect" id="Node000001" title=" " alt="" coords="839,151,943,176"/>
-<area shape="rect" id="Node000002" href="$class_auto_step.html" title=" " alt="" coords="673,127,748,152"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="764,144,841,156,836,157,764,149"/>
-<area shape="rect" id="Node000003" href="$class_drive.html" title=" " alt="" coords="684,176,736,202"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="751,185,815,179,841,176,836,177,815,184,752,190"/>
-<area shape="rect" id="Node000004" href="$class_subsystem.html" title=" " alt="" coords="398,5,486,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="500,5,538,3,578,6,617,17,650,39,663,54,668,69,667,100,664,131,667,147,675,163,686,177,681,175,670,166,662,148,659,131,662,99,663,70,658,56,647,43,614,22,577,12,538,8,502,10"/>
-<area shape="rect" id="Node000005" href="$class_encoder_wrapper.html" title=" " alt="" coords="383,69,501,95"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="516,84,594,95,627,103,650,113,661,125,665,138,667,150,675,163,687,176,682,175,671,167,662,152,659,139,656,128,647,118,625,108,593,100,517,90"/>
-<area shape="rect" id="Node000006" href="$class_line_sensor.html" title=" " alt="" coords="399,123,485,148"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="500,137,572,146,649,162,686,177,681,177,648,167,571,152,501,143"/>
-<area shape="rect" id="Node000007" href="$class_dual_motor_controller.html" title=" " alt="" coords="373,176,511,202"/>
-<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="526,186,686,188,681,189,527,191"/>
-<area shape="rect" id="Node000008" href="$class_l298_n_motor_driver_mega.html" title=" " alt="" coords="99,139,258,164"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="273,162,375,178,371,180,274,168"/>
-<area shape="rect" id="Node000009" href="$class_p_i_d_controller.html" title=" " alt="" coords="128,213,229,239"/>
-<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="244,228,296,228,349,222,412,201,407,203,350,227,296,233,245,233"/>
-<area shape="rect" id="Node000010" href="$class_p_i_d.html" title=" " alt="" coords="5,213,50,239"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="64,224,130,224,126,228,66,229"/>
-<area shape="rect" id="Node000011" href="$class_sharp_g_p2_y0_a51.html" title=" " alt="" coords="382,229,502,255"/>
-<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="517,236,582,229,648,215,682,203,688,201,649,220,583,234,518,241"/>
-<area shape="rect" id="Node000012" href="$class_odometry.html" title=" " alt="" coords="403,304,481,330"/>
-<area shape="poly" id="edge11_Node000003_Node000012" title=" " alt="" coords="496,318,532,317,572,312,611,301,647,283,667,265,683,243,703,204,707,200,688,246,671,269,650,288,613,306,573,317,533,322,496,323"/>
-<area shape="rect" id="Node000013" href="$struct_odometry_1_1_pose2_d.html" title=" " alt="" coords="112,304,245,330"/>
-<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="261,314,405,316,400,318,261,319"/>
-<area shape="rect" id="Node000014" href="$class_ramsete_controller.html" title=" " alt="" coords="377,357,507,383"/>
-<area shape="poly" id="edge13_Node000003_Node000014" title=" " alt="" coords="522,377,555,377,587,372,619,362,647,346,663,331,675,313,693,272,702,233,707,204,710,200,707,233,698,274,680,315,667,334,650,350,621,367,589,377,555,382,523,383"/>
+<area shape="rect" id="Node000001" title="Drive in a straight line for targetDistance meters at targetVelocity m/s." alt="" coords="839,188,943,214"/>
+<area shape="rect" id="Node000002" href="$class_auto_step.html" title="Pure&#45;virtual base class for all autonomous steps." alt="" coords="673,164,748,190"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="764,182,841,194,836,195,764,187"/>
+<area shape="rect" id="Node000003" href="$class_drive.html" title=" " alt="" coords="684,214,736,239"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="751,222,815,216,841,214,836,215,815,222,752,228"/>
+<area shape="rect" id="Node000004" href="$class_subsystem.html" title="Polymorphic interface for a robot subsystem." alt="" coords="398,7,486,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="500,6,538,3,578,5,617,16,650,38,666,58,672,77,672,97,668,117,662,158,665,179,675,201,686,215,681,213,670,204,660,181,657,158,663,117,667,97,667,78,661,60,647,42,615,21,577,11,538,8,502,11"/>
+<area shape="rect" id="Node000005" href="$class_encoder_wrapper.html" title="Quadrature encoder driver with velocity and acceleration estimation." alt="" coords="383,71,501,97"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="515,84,595,93,628,101,650,112,660,123,664,134,666,156,666,178,675,201,686,214,681,213,670,204,661,179,660,156,659,136,655,126,647,117,626,106,594,98,516,89"/>
+<area shape="rect" id="Node000006" href="$class_line_sensor.html" title="Pololu QTR&#45;MD&#45;08RC 8&#45;channel line sensor driver." alt="" coords="399,120,485,146"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="500,136,586,148,623,156,650,167,659,175,664,183,675,201,689,214,683,213,671,204,659,186,655,178,647,171,622,161,585,153,501,141"/>
+<area shape="rect" id="Node000007" href="$class_dual_motor_controller.html" title="Dual&#45;channel closed&#45;loop motor controller." alt="" coords="373,170,511,195"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="526,194,686,222,681,223,526,199"/>
+<area shape="rect" id="Node000008" href="$class_l298_n_motor_driver_mega.html" title=" " alt="" coords="99,131,258,157"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="273,155,375,171,371,174,274,160"/>
+<area shape="rect" id="Node000009" href="$class_p_i_d_controller.html" title="Full&#45;featured PID controller with anti&#45;windup, output filtering, and optional nonlinear extensions." alt="" coords="128,227,229,253"/>
+<area shape="poly" id="edge14_Node000003_Node000009" title=" " alt="" coords="244,242,373,249,442,251,510,249,606,239,687,230,681,231,607,244,511,254,442,256,373,254,245,247"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="244,233,296,226,349,215,414,195,409,197,350,220,297,231,245,238"/>
+<area shape="rect" id="Node000010" href="$class_p_i_d.html" title="Lightweight PID controller base class." alt="" coords="5,227,50,253"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="64,237,130,238,126,242,66,242"/>
+<area shape="rect" id="Node000011" href="$class_sharp_g_p2_y0_a51.html" title="Sharp GP2Y0A51 analog IR distance sensor driver." alt="" coords="382,311,502,337"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="518,328,583,323,616,315,647,302,665,289,680,272,701,241,705,238,685,275,669,292,650,307,618,320,584,328,518,333"/>
+<area shape="rect" id="Node000012" href="$class_odometry.html" title="Tracks robot pose by integrating encoder wheel displacements." alt="" coords="403,367,481,393"/>
+<area shape="poly" id="edge11_Node000003_Node000012" title=" " alt="" coords="497,392,533,398,572,399,612,393,647,377,663,363,675,347,693,308,702,269,707,242,710,238,708,270,698,310,680,349,667,367,650,381,613,398,573,405,533,403,496,398"/>
+<area shape="rect" id="Node000013" href="$struct_odometry_1_1_pose2_d.html" title="2&#45;D robot pose." alt="" coords="112,367,245,393"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="261,377,405,379,400,381,261,383"/>
+<area shape="rect" id="Node000014" href="$class_ramsete_controller.html" title=" " alt="" coords="377,420,507,446"/>
+<area shape="poly" id="edge13_Node000003_Node000014" title=" " alt="" coords="503,447,538,452,577,453,614,446,647,429,667,409,682,385,693,359,700,332,707,279,708,242,712,238,712,279,706,333,698,361,687,388,671,413,650,433,616,451,577,458,538,458,502,453"/>
 </map>

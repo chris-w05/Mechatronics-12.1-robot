@@ -91,6 +91,9 @@ $(function(){initNavTree('_p_i_d_8hpp.html','',''); });
   <div class="headertitle"><div class="title">PID.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller classes with optional nonlinear extensions and feedforward support.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for PID.hpp:</div>
@@ -100,7 +103,7 @@ Include dependency graph for PID.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_p_i_d_8hpp__dep__incl.svg" width="2958" height="598"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_p_i_d_8hpp__dep__incl.svg" width="3119" height="598"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_p_i_d_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -108,19 +111,35 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:PIDConstants" id="r_PIDConstants"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_p_i_d_constants.html">PIDConstants</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file contains everything necessary to build a <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller. It also has the added capability of being able to create a nonlinear controller using functions for kp ki and kd if wanted.  <a href="struct_p_i_d_constants.html#details">More...</a><br /></td></tr>
 <tr class="memitem:NonlinearPID" id="r_NonlinearPID"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_nonlinear_p_i_d.html">NonlinearPID</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bundle of optional nonlinear gain functions for <a class="el" href="class_p_i_d_controller.html" title="Full-featured PID controller with anti-windup, output filtering, and optional nonlinear extensions.">PIDController</a>.  <a href="struct_nonlinear_p_i_d.html#details">More...</a><br /></td></tr>
 <tr class="memitem:PID" id="r_PID"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_p_i_d.html">PID</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lightweight <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller base class.  <a href="class_p_i_d.html#details">More...</a><br /></td></tr>
 <tr class="memitem:PIDController" id="r_PIDController"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_p_i_d_controller.html">PIDController</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Full-featured <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller with anti-windup, output filtering, and optional nonlinear extensions.  <a href="class_p_i_d_controller.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a3bf9dfb4d525ffd07017dc4348a10ad0" id="r_a3bf9dfb4d525ffd07017dc4348a10ad0"><td class="memItemLeft">typedef float(*&#160;</td><td class="memItemRight"><a class="el" href="#a3bf9dfb4d525ffd07017dc4348a10ad0">FeedforwardFn</a>) (float setpoint)</td></tr>
+<tr class="memdesc:a3bf9dfb4d525ffd07017dc4348a10ad0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Feedforward function pointer type.  <br /></td></tr>
 <tr class="memitem:a7107eb4fdadb9833cd6da74f58d54e43" id="r_a7107eb4fdadb9833cd6da74f58d54e43"><td class="memItemLeft">typedef float(*&#160;</td><td class="memItemRight"><a class="el" href="#a7107eb4fdadb9833cd6da74f58d54e43">DerivativeFeedforwardFn</a>) (float dsetpoint)</td></tr>
+<tr class="memdesc:a7107eb4fdadb9833cd6da74f58d54e43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative feedforward function pointer type.  <br /></td></tr>
 <tr class="memitem:ad8b6199351264fb5e7f2fe773395f2bf" id="r_ad8b6199351264fb5e7f2fe773395f2bf"><td class="memItemLeft">typedef float(*&#160;</td><td class="memItemRight"><a class="el" href="#ad8b6199351264fb5e7f2fe773395f2bf">KpFn</a>) (float measurement, float target)</td></tr>
+<tr class="memdesc:ad8b6199351264fb5e7f2fe773395f2bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nonlinear proportional gain function pointer type.  <br /></td></tr>
 <tr class="memitem:ad1d7b8772e9a29248ca584972196b3f5" id="r_ad1d7b8772e9a29248ca584972196b3f5"><td class="memItemLeft">typedef float(*&#160;</td><td class="memItemRight"><a class="el" href="#ad1d7b8772e9a29248ca584972196b3f5">KiFn</a>) (float measurement)</td></tr>
+<tr class="memdesc:ad1d7b8772e9a29248ca584972196b3f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nonlinear integral gain function pointer type.  <br /></td></tr>
 <tr class="memitem:ac51bb4d2d4bbcdc464fc7f362c08078e" id="r_ac51bb4d2d4bbcdc464fc7f362c08078e"><td class="memItemLeft">typedef float(*&#160;</td><td class="memItemRight"><a class="el" href="#ac51bb4d2d4bbcdc464fc7f362c08078e">KdFn</a>) (float measurement)</td></tr>
+<tr class="memdesc:ac51bb4d2d4bbcdc464fc7f362c08078e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nonlinear derivative gain function pointer type.  <br /></td></tr>
 </table>
-<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller classes with optional nonlinear extensions and feedforward support. </p>
+<p>Two classes are provided:</p><ul>
+<li><span class="tt"><a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a></span> — A lightweight base controller with proportional, integral, and derivative terms. Derivative is supplied externally (from an encoder velocity signal, for example).</li>
+<li><span class="tt"><a class="el" href="class_p_i_d_controller.html" title="Full-featured PID controller with anti-windup, output filtering, and optional nonlinear extensions.">PIDController</a></span> — Extends <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> with anti-windup, an IIR output filter, and optional nonlinear gain functions / feedforward callables for advanced control schemes.</li>
+</ul>
+<p>Function-pointer typedefs (<a class="el" href="#a3bf9dfb4d525ffd07017dc4348a10ad0" title="Feedforward function pointer type.">FeedforwardFn</a>, <a class="el" href="#a7107eb4fdadb9833cd6da74f58d54e43" title="Derivative feedforward function pointer type.">DerivativeFeedforwardFn</a>, <a class="el" href="#ad8b6199351264fb5e7f2fe773395f2bf" title="Nonlinear proportional gain function pointer type.">KpFn</a>, etc.) allow the caller to inject arbitrary nonlinear behaviours without subclassing. </p>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
 <a id="a7107eb4fdadb9833cd6da74f58d54e43" name="a7107eb4fdadb9833cd6da74f58d54e43"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7107eb4fdadb9833cd6da74f58d54e43">&#9670;&#160;</a></span>DerivativeFeedforwardFn</h2>
 
@@ -132,7 +151,15 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>DerivativeFeedforward Fn relates a changing target to a predicted signal. </p>
+
+<p>Derivative feedforward function pointer type. </p>
+<p>Maps the rate of change of the setpoint to an additional feed-forward signal, compensating for the lag introduced by a moving reference trajectory. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dsetpoint</td><td>Time derivative of the setpoint. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Additional feedforward signal. </dd></dl>
 
 </div>
 </div>
@@ -147,7 +174,15 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Feedforward Fn relates a target value to a predicted signal. This is useful for linearizing control schemes where the environment is highly predictable. </p>
+
+<p>Feedforward function pointer type. </p>
+<p>Maps a setpoint value to a predicted steady-state motor signal. Useful for linearising control where the plant response is predictable. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">setpoint</td><td>The target value for the controlled variable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Estimated motor signal needed to achieve the setpoint. </dd></dl>
 
 </div>
 </div>
@@ -162,7 +197,15 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Kp function - creates a nonlinear kd term </p>
+
+<p>Nonlinear derivative gain function pointer type. </p>
+<p>Replaces the constant kd term with a function of the current measurement derivative, enabling derivative gain scheduling. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">measurement</td><td>Current measurement (or its derivative). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Effective derivative control output. </dd></dl>
 
 </div>
 </div>
@@ -177,7 +220,15 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Kp function - creates a nonlinear ki term </p>
+
+<p>Nonlinear integral gain function pointer type. </p>
+<p>Replaces the constant ki term with a function of the accumulated integral, enabling conditional integration or anti-windup schemes. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">measurement</td><td>Current measured value (or accumulated integral). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Effective integral control output. </dd></dl>
 
 </div>
 </div>
@@ -192,7 +243,16 @@ Typedefs</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Kp function - creates a nonlinear kp term </p>
+
+<p>Nonlinear proportional gain function pointer type. </p>
+<p>Replaces the constant kp term with a function of current measurement and target, enabling gain-scheduling or error-dependent proportional control. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">measurement</td><td>Current measured value. </td></tr>
+    <tr><td class="paramname">target</td><td>Desired setpoint. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Effective proportional control output. </dd></dl>
 
 </div>
 </div>

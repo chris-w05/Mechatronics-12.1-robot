@@ -1,0 +1,5 @@
+<map id="Robot::printSerialHelp" name="Robot::printSerialHelp">
+<area shape="rect" id="Node000001" title="Print the serial command reference to port (defaults to USB Serial)." alt="" coords="5,5,155,31"/>
+<area shape="rect" id="Node000002" href="$class_robot.html#a3defa2b851d1a9267d6dbe251373ba7d" title="Send a message to a serial port (defaults to USB Serial if port is null)." alt="" coords="203,5,295,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,16,190,18,184,18,155,21"/>
+</map>

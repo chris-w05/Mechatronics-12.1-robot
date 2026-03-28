@@ -91,6 +91,9 @@ $(function(){initNavTree('_subsystem_8h.html','',''); });
   <div class="headertitle"><div class="title">Subsystem.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Abstract base class for all robot subsystems.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Subsystem.h:</div>
@@ -100,7 +103,7 @@ Include dependency graph for Subsystem.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_subsystem_8h__dep__incl.svg" width="2415" height="450"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_subsystem_8h__dep__incl.svg" width="2670" height="450"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_subsystem_8h_source.html">Go to the source code of this file.</a></p>
@@ -108,8 +111,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Subsystem" id="r_Subsystem"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_subsystem.html">Subsystem</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Polymorphic interface for a robot subsystem.  <a href="class_subsystem.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract base class for all robot subsystems. </p>
+<p>Every hardware subsystem (<a class="el" href="class_drive.html">Drive</a>, <a class="el" href="class_miner.html" title="Servo-driven block-mining and ramp-deployment subsystem.">Miner</a>, <a class="el" href="class_shooter.html" title="Rack-and-pinion block shooter controlled by encoder feedback.">Shooter</a>, etc.) inherits from <a class="el" href="class_subsystem.html" title="Polymorphic interface for a robot subsystem.">Subsystem</a> so the <a class="el" href="class_robot.html" title="Aggregates all robot subsystems and drives the main control loop.">Robot</a> class can manage them through a common interface. Concrete subclasses must implement init() and update(); all other hooks have safe default implementations. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

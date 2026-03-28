@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Advance the step by one control&#45;loop tick.">
 <polygon fill="#999999" stroke="#666666" points="115,-217.88 0,-217.88 0,-187.38 115,-187.38 115,-217.88"/>
 <text xml:space="preserve" text-anchor="start" x="8" y="-204.38" font-family="Helvetica,sans-Serif" font-size="10.00">StrategyControllerStep</text>
 <text xml:space="preserve" text-anchor="middle" x="57.5" y="-193.12" font-family="Helvetica,sans-Serif" font-size="10.00">::update</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_strategy.html#aedae1e448cc25d6ab2f6c7b4adef39fb" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_strategy.html#aedae1e448cc25d6ab2f6c7b4adef39fb" target="_top" xlink:title="Advance to the next scoring cycle and upgrade the pickaxe if applicable.">
 <polygon fill="white" stroke="#666666" points="283.62,-412.25 162.62,-412.25 162.62,-393 283.62,-393 283.62,-412.25"/>
 <text xml:space="preserve" text-anchor="middle" x="223.12" y="-398.75" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::advanceCycle</text>
 </a>
@@ -39,7 +39,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="class_strategy_controller_step.html#acbc89aa9212e7ea3b0123922544f7029" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="class_strategy_controller_step.html#acbc89aa9212e7ea3b0123922544f7029" target="_top" xlink:title="Poll the color sensor and populate outBlock.">
 <polygon fill="white" stroke="#666666" points="280.62,-374.88 165.62,-374.88 165.62,-344.38 280.62,-344.38 280.62,-374.88"/>
 <text xml:space="preserve" text-anchor="start" x="173.62" y="-361.38" font-family="Helvetica,sans-Serif" font-size="10.00">StrategyControllerStep</text>
 <text xml:space="preserve" text-anchor="middle" x="223.12" y="-350.12" font-family="Helvetica,sans-Serif" font-size="10.00">::detectBlock</text>
@@ -58,7 +58,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="class_strategy.html#a7d2dd7244d23d87e8a92f71d4604f09c" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="class_strategy.html#a7d2dd7244d23d87e8a92f71d4604f09c" target="_top" xlink:title="Return the current scoring cycle target.">
 <polygon fill="white" stroke="#666666" points="279.5,-326.25 166.75,-326.25 166.75,-307 279.5,-307 279.5,-326.25"/>
 <text xml:space="preserve" text-anchor="middle" x="223.12" y="-312.75" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::getNextItem</text>
 </a>
@@ -114,7 +114,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="class_strategy.html#a092d38e843967a4aadeb79f42550acd9" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="class_strategy.html#a092d38e843967a4aadeb79f42550acd9" target="_top" xlink:title="Return whether the robot has collected the full set of blocks needed to score.">
 <polygon fill="white" stroke="#666666" points="282.5,-191.25 163.75,-191.25 163.75,-172 282.5,-172 282.5,-191.25"/>
 <text xml:space="preserve" text-anchor="middle" x="223.12" y="-177.75" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::readyToScore</text>
 </a>
@@ -170,7 +170,7 @@
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="class_strategy.html#ad5e402d5ea2e01f82f79d1f6fb44898d" target="_top" xlink:title=" ">
+<g id="a_Node000012"><a xlink:href="class_strategy.html#ad5e402d5ea2e01f82f79d1f6fb44898d" target="_top" xlink:title="Set the block type held in a specific slot.">
 <polygon fill="white" stroke="#666666" points="284.75,-56.25 161.5,-56.25 161.5,-37 284.75,-37 284.75,-56.25"/>
 <text xml:space="preserve" text-anchor="middle" x="223.12" y="-42.75" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::setPossession</text>
 </a>
@@ -188,7 +188,7 @@
 <!-- Node13 -->
 <g id="Node000013" class="node">
 <title>Node13</title>
-<g id="a_Node000013"><a xlink:href="class_strategy.html#ad42bcf18bf9f720b21d53201e03c9ba0" target="_top" xlink:title=" ">
+<g id="a_Node000013"><a xlink:href="class_strategy.html#ad42bcf18bf9f720b21d53201e03c9ba0" target="_top" xlink:title="Decide where to route a newly acquired block.">
 <polygon fill="white" stroke="#666666" points="295.25,-19.25 151,-19.25 151,0 295.25,0 295.25,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="223.12" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::whereToIndexBlock</text>
 </a>
@@ -206,7 +206,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_strategy.html#a5fcf479ff2f81b1a527e2f018f37429e" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="class_strategy.html#a5fcf479ff2f81b1a527e2f018f37429e" target="_top" xlink:title="Clear all possession slots to NONE.">
 <polygon fill="white" stroke="#666666" points="473.25,-412.25 331.25,-412.25 331.25,-393 473.25,-393 473.25,-412.25"/>
 <text xml:space="preserve" text-anchor="middle" x="402.25" y="-398.75" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::clearAllPossession</text>
 </a>
@@ -224,7 +224,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235" target="_top" xlink:title=" ">
+<g id="a_Node000009"><a xlink:href="class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235" target="_top" xlink:title="Return the highest block type that can be mined with the current pickaxe.">
 <polygon fill="white" stroke="#666666" points="467.25,-110.88 337.25,-110.88 337.25,-80.38 467.25,-80.38 467.25,-110.88"/>
 <text xml:space="preserve" text-anchor="start" x="345.25" y="-97.38" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::getMaxMineable</text>
 <text xml:space="preserve" text-anchor="middle" x="402.25" y="-86.12" font-family="Helvetica,sans-Serif" font-size="10.00">Block</text>

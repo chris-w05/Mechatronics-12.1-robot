@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Thunk adaptor for use as a ReplanStep::PlanFn.">
 <polygon fill="#999999" stroke="#666666" points="100,-79.88 0,-79.88 0,-60.62 100,-60.62 100,-79.88"/>
 <text xml:space="preserve" text-anchor="middle" x="50" y="-66.38" font-family="Helvetica,sans-Serif" font-size="10.00">Planner::planThunk</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_planner.html#a43c10b9425c5af3f0f08943bbcf939a0" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_planner.html#a43c10b9425c5af3f0f08943bbcf939a0" target="_top" xlink:title="Construct the planner and bind it to the robot&#39;s subsystems.">
 <polygon fill="white" stroke="#666666" points="227,-98.88 139,-98.88 139,-79.62 227,-79.62 227,-98.88"/>
 <text xml:space="preserve" text-anchor="middle" x="183" y="-85.38" font-family="Helvetica,sans-Serif" font-size="10.00">Planner::Planner</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_planner.html#a50d07a4dcbaebf75dbc237d9bf8e4cab" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="class_planner.html#a50d07a4dcbaebf75dbc237d9bf8e4cab" target="_top" xlink:title="Return the next step to execute, or nullptr when the routine is done.">
 <polygon fill="white" stroke="#666666" points="230,-61.88 136,-61.88 136,-42.62 230,-42.62 230,-61.88"/>
 <text xml:space="preserve" text-anchor="middle" x="183" y="-48.38" font-family="Helvetica,sans-Serif" font-size="10.00">Planner::planNext</text>
 </a>
@@ -56,7 +56,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="class_strategy.html#a2c7a2f138418db83f7854fe41ef5a608" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="class_strategy.html#a2c7a2f138418db83f7854fe41ef5a608" target="_top" xlink:title="Access the global Strategy singleton.">
 <polygon fill="white" stroke="#666666" points="380.25,-98.88 270.5,-98.88 270.5,-79.62 380.25,-79.62 380.25,-98.88"/>
 <text xml:space="preserve" text-anchor="middle" x="325.38" y="-85.38" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::getInstance</text>
 </a>
@@ -74,7 +74,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="class_strategy.html#a7d2dd7244d23d87e8a92f71d4604f09c" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="class_strategy.html#a7d2dd7244d23d87e8a92f71d4604f09c" target="_top" xlink:title="Return the current scoring cycle target.">
 <polygon fill="white" stroke="#666666" points="381.75,-61.88 269,-61.88 269,-42.62 381.75,-42.62 381.75,-61.88"/>
 <text xml:space="preserve" text-anchor="middle" x="325.38" y="-48.38" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::getNextItem</text>
 </a>
@@ -92,7 +92,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="class_strategy.html#a092d38e843967a4aadeb79f42550acd9" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="class_strategy.html#a092d38e843967a4aadeb79f42550acd9" target="_top" xlink:title="Return whether the robot has collected the full set of blocks needed to score.">
 <polygon fill="white" stroke="#666666" points="384.75,-24.88 266,-24.88 266,-5.63 384.75,-5.63 384.75,-24.88"/>
 <text xml:space="preserve" text-anchor="middle" x="325.38" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::readyToScore</text>
 </a>
@@ -110,7 +110,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235" target="_top" xlink:title="Return the highest block type that can be mined with the current pickaxe.">
 <polygon fill="white" stroke="#666666" points="550.75,-30.5 420.75,-30.5 420.75,0 550.75,0 550.75,-30.5"/>
 <text xml:space="preserve" text-anchor="start" x="428.75" y="-17" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::getMaxMineable</text>
 <text xml:space="preserve" text-anchor="middle" x="485.75" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Block</text>

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Newline&#45;delimited ASCII command receiver for Arduino&#45;to&#45;Arduino comms.">
 <polygon fill="#999999" stroke="#666666" points="67,-19.25 0,-19.25 0,0 67,0 67,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="33.5" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">SerialComs</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_subsystem.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_subsystem.html" target="_top" xlink:title="Polymorphic interface for a robot subsystem.">
 <polygon fill="white" stroke="#666666" points="66.25,-74.5 0.75,-74.5 0.75,-55.25 66.25,-55.25 66.25,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="33.5" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">Subsystem</text>
 </a>

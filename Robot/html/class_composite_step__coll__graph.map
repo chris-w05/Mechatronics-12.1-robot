@@ -1,6 +1,6 @@
 <map id="CompositeStep" name="CompositeStep">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,102,117,128"/>
-<area shape="rect" id="Node000002" href="$class_auto_step.html" title=" " alt="" coords="23,5,99,31"/>
+<area shape="rect" id="Node000001" title="Sequences heap&#45;allocated child AutoStep objects, deleting each upon completion." alt="" coords="5,102,117,128"/>
+<area shape="rect" id="Node000002" href="$class_auto_step.html" title="Pure&#45;virtual base class for all autonomous steps." alt="" coords="23,5,99,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="60,44,61,55,61,78,62,102,57,101,56,78,56,55,58,49"/>
 <area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="63,45,64,102,58,101,59,48"/>
 </map>

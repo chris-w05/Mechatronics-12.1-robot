@@ -1,5 +1,5 @@
 <map id="src/Devices/DistanceSensor.hpp" name="src/Devices/DistanceSensor.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,218,31"/>
+<area shape="rect" id="Node000001" title="Driver for the Sharp GP2Y0A51SK0F short&#45;range IR distance sensor (2–15 cm)." alt="" coords="5,5,218,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="73,79,150,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,29,114,64,109,62,110,33"/>
 </map>

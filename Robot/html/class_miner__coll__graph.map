@@ -1,7 +1,7 @@
 <map id="Miner" name="Miner">
-<area shape="rect" id="Node000001" title=" " alt="" coords="80,102,133,128"/>
-<area shape="rect" id="Node000002" href="$class_subsystem.html" title=" " alt="" coords="5,5,93,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,42,102,101,96,102,62,46"/>
-<area shape="rect" id="Node000003" href="$class_servo_control.html" title=" " alt="" coords="116,5,214,31"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="152,43,116,103,112,100,147,45"/>
+<area shape="rect" id="Node000001" title="Servo&#45;driven block&#45;mining and ramp&#45;deployment subsystem." alt="" coords="80,122,133,148"/>
+<area shape="rect" id="Node000002" href="$class_subsystem.html" title="Polymorphic interface for a robot subsystem." alt="" coords="5,5,93,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,43,103,121,98,122,60,47"/>
+<area shape="rect" id="Node000003" href="$class_servo_control.html" title="Servo driver with angle clamping, inversion, and deferred writes." alt="" coords="116,5,214,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,44,115,124,110,120,149,45"/>
 </map>
