@@ -1,5 +1,5 @@
 <map id="ServoControl::setAngle" name="ServoControl::setAngle">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,162,31"/>
-<area shape="rect" id="Node000002" href="$class_servo_control.html#a2fe66c804257b2312e21c15ce92d3f59" title=" " alt="" coords="210,5,350,31"/>
+<area shape="rect" id="Node000001" title="Set the desired servo angle." alt="" coords="5,5,162,31"/>
+<area shape="rect" id="Node000002" href="$class_servo_control.html#a2fe66c804257b2312e21c15ce92d3f59" title="Clamp angle to [_minAngle, _maxAngle]." alt="" coords="210,5,350,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,16,197,18,191,18,162,21"/>
 </map>

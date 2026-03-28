@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Sequences heap&#45;allocated child AutoStep objects, deleting each upon completion.">
 <polygon fill="#999999" stroke="#666666" points="83.5,-19.25 0,-19.25 0,0 83.5,0 83.5,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="41.75" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">CompositeStep</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_auto_step.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_auto_step.html" target="_top" xlink:title="Pure&#45;virtual base class for all autonomous steps.">
 <polygon fill="white" stroke="#666666" points="70,-91.75 13.5,-91.75 13.5,-72.5 70,-72.5 70,-91.75"/>
 <text xml:space="preserve" text-anchor="middle" x="41.75" y="-78.25" font-family="Helvetica,sans-Serif" font-size="10.00">AutoStep</text>
 </a>

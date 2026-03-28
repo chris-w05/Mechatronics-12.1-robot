@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Run one tick of the autofire state machine (called inside update()).">
 <polygon fill="#999999" stroke="#666666" points="121,-37.25 0,-37.25 0,-18 121,-18 121,-37.25"/>
 <text xml:space="preserve" text-anchor="middle" x="60.5" y="-23.75" font-family="Helvetica,sans-Serif" font-size="10.00">Shooter::handleAutoFire</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_shooter.html#a30a31145ab7b3148a0adb2d0c0152713" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_shooter.html#a30a31145ab7b3148a0adb2d0c0152713" target="_top" xlink:title="Compute the encoder target for the fire (extended) position.">
 <polygon fill="white" stroke="#666666" points="287.75,-56.25 161.5,-56.25 161.5,-37 287.75,-37 287.75,-56.25"/>
 <text xml:space="preserve" text-anchor="middle" x="224.62" y="-42.75" font-family="Helvetica,sans-Serif" font-size="10.00">Shooter::nextFirePosition</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_shooter.html#a1ed9592886f4679cb2805c9857defcf9" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="class_shooter.html#a1ed9592886f4679cb2805c9857defcf9" target="_top" xlink:title="Compute the encoder target for the primed (pulled&#45;back) position.">
 <polygon fill="white" stroke="#666666" points="292.25,-19.25 157,-19.25 157,0 292.25,0 292.25,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="224.62" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Shooter::nextPrimePosition</text>
 </a>

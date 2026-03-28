@@ -92,6 +92,9 @@ $(function(){initNavTree('class_p_i_d.html','','class_p_i_d-members'); });
 </div><!--header-->
 <div class="contents">
 
+<p>Lightweight <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller base class.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_p_i_d_8hpp_source.html">PID.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for PID:</div>
@@ -121,7 +124,11 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ad7c20b62edd6ba05251349cb8412f17f" id="r_ad7c20b62edd6ba05251349cb8412f17f"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ad7c20b62edd6ba05251349cb8412f17f">_lastOutput</a> {0.f}</td></tr>
 <tr class="memitem:aa62c7bb7ecbeeb9e86146ea54a18dc7a" id="r_aa62c7bb7ecbeeb9e86146ea54a18dc7a"><td class="memItemLeft">unsigned long&#160;</td><td class="memItemRight"><a class="el" href="#aa62c7bb7ecbeeb9e86146ea54a18dc7a">_lastTime</a> {0}</td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Lightweight <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller base class. </p>
+<p>The derivative term is supplied by the caller (e.g. from an encoder velocity reading) rather than differentiating the measurement internally. This avoids noise amplification on slow-MCU platforms like the Arduino Mega.</p>
+<p>Use <span class="tt"><a class="el" href="class_p_i_d_controller.html" title="Full-featured PID controller with anti-windup, output filtering, and optional nonlinear extensions.">PIDController</a></span> (the derived class) when you need anti-windup, output filtering, or feedforward support. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0311b6f7de348499ce24e53ba353514a" name="a0311b6f7de348499ce24e53ba353514a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0311b6f7de348499ce24e53ba353514a">&#9670;&#160;</a></span>PID() <span class="overload">[1/3]</span></h2>
 
@@ -264,7 +271,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the parameters of the <a class="el" href="class_p_i_d.html">PID</a> controller </p>
+<p>Set the parameters of the <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller </p>
 
 </div>
 </div>
@@ -294,7 +301,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the parameters of the <a class="el" href="class_p_i_d.html">PID</a> controller using the value of the parameter and which one to set (0, 1, 2) for kp ki kd </p>
+<p>Set the parameters of the <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller using the value of the parameter and which one to set (0, 1, 2) for kp ki kd </p>
 
 </div>
 </div>
@@ -320,7 +327,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the parameters of the <a class="el" href="class_p_i_d.html">PID</a> controller using a <a class="el" href="struct_p_i_d_constants.html">PIDConstants</a> struct </p>
+<p>Set the parameters of the <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller using a <a class="el" href="struct_p_i_d_constants.html" title="This file contains everything necessary to build a PID controller. It also has the added capability o...">PIDConstants</a> struct </p>
 
 </div>
 </div>
@@ -359,7 +366,7 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">measurement</td><td>The current parameter being controller (can be position, velocity, etc) </td></tr>
-    <tr><td class="paramname">dmeasurement</td><td>The rate of change of the parameter of interest. If the <a class="el" href="class_p_i_d.html">PID</a> is being used on position, this would be the velocity </td></tr>
+    <tr><td class="paramname">dmeasurement</td><td>The rate of change of the parameter of interest. If the <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> is being used on position, this would be the velocity </td></tr>
     <tr><td class="paramname">setpoint</td><td>The target value for the parameter of interest </td></tr>
   </table>
   </dd>

@@ -1,0 +1,83 @@
+<map id="src/Autonomous/Steps/MineBlockAutofire.hpp" name="src/Autonomous/Steps/MineBlockAutofire.hpp">
+<area shape="rect" id="Node000001" title="AutoStep that mines and simultaneously autofires the shooter for a time window." alt="" coords="825,5,982,46"/>
+<area shape="rect" id="Node000002" href="$_auto_step_8h.html" title="Abstract interface that every autonomous step must implement." alt="" coords="455,94,618,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="822,45,609,93,607,88,827,43"/>
+<area shape="rect" id="Node000003" href="$_drive_8hpp.html" title="Differential&#45;drive subsystem: closed&#45;loop wheel control, line following, wall&#45;distance holding,..." alt="" coords="642,94,794,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="855,48,761,90,759,85,859,46"/>
+<area shape="rect" id="Node000020" href="$_miner_8hpp.html" title="Miner subsystem: servo&#45;driven block&#45;pressing mechanism and ramp deployment." alt="" coords="974,94,1126,120"/>
+<area shape="poly" id="edge32_Node000001_Node000020" title=" " alt="" coords="940,44,1017,87,1012,86,940,49"/>
+<area shape="rect" id="Node000024" href="$_shooter_8hpp.html" title="Rack&#45;and&#45;pinion block shooter subsystem." alt="" coords="1303,94,1469,120"/>
+<area shape="poly" id="edge43_Node000001_Node000024" title=" " alt="" coords="982,37,1299,90,1294,92,982,42"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="954,389,1031,414"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="662,121,585,144,494,172,413,206,384,224,366,243,361,254,366,266,381,282,403,297,462,324,538,346,624,363,800,385,942,398,936,398,799,390,623,368,537,351,460,329,400,302,377,286,361,268,356,254,361,240,381,220,411,201,492,167,583,138,667,119"/>
+<area shape="rect" id="Node000005" href="$_config_8hpp.html" title="Central configuration: pin assignments, physical constants, and PID gains." alt="" coords="1048,168,1132,193"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="782,118,1035,168,1030,169,781,123"/>
+<area shape="rect" id="Node000011" href="$_encoder_wrapper_8hpp.html" title="Quadrature encoder wrapper providing position, velocity, and acceleration." alt="" coords="5,315,199,341"/>
+<area shape="poly" id="edge15_Node000003_Node000011" title=" " alt="" coords="639,119,630,122,506,126,346,125,265,128,190,136,127,149,101,158,79,170,55,190,40,212,36,237,43,266,56,286,74,304,69,306,52,290,38,268,31,237,35,210,51,186,77,165,99,153,125,144,190,130,265,123,346,120,506,120,630,117,644,118"/>
+<area shape="rect" id="Node000013" href="$_line_sensor_8hpp.html" title="8&#45;channel reflective line sensor driver using the Pololu QTR&#45;MD&#45;08RC." alt="" coords="637,168,799,193"/>
+<area shape="poly" id="edge18_Node000003_Node000013" title=" " alt="" coords="720,118,720,153,716,150,716,122"/>
+<area shape="rect" id="Node000015" href="$_distance_sensor_8hpp.html" title="Driver for the Sharp GP2Y0A51SK0F short&#45;range IR distance sensor (2–15 cm)." alt="" coords="375,241,565,267"/>
+<area shape="poly" id="edge21_Node000003_Node000015" title=" " alt="" coords="682,121,635,143,582,170,535,202,496,234,493,229,532,197,579,165,633,138,687,119"/>
+<area shape="rect" id="Node000016" href="$_odometry_8hpp.html" title="Differential&#45;drive pose tracker using wheel&#45;encoder odometry." alt="" coords="53,241,183,267"/>
+<area shape="poly" id="edge23_Node000003_Node000016" title=" " alt="" coords="639,119,630,122,354,132,185,145,124,156,105,162,93,169,87,182,88,197,102,228,96,229,82,198,82,181,89,166,102,157,123,151,184,140,353,127,630,117,644,118"/>
+<area shape="rect" id="Node000017" href="$_ramsete_controller_8hpp.html" title="Ramsete nonlinear trajectory&#45;tracking controller for a differential&#45;drive robot." alt="" coords="103,168,285,193"/>
+<area shape="poly" id="edge25_Node000003_Node000017" title=" " alt="" coords="640,121,300,168,298,162,643,116"/>
+<area shape="rect" id="Node000018" href="$_odometry_plotting_8hpp.html" title="Template helper functions for emitting JSON odometry telemetry over a serial port." alt="" coords="678,315,854,341"/>
+<area shape="poly" id="edge28_Node000003_Node000018" title=" " alt="" coords="753,118,787,137,802,150,814,167,818,184,819,208,815,237,807,268,787,305,784,300,802,266,810,236,814,208,813,184,809,169,798,154,784,141,752,123"/>
+<area shape="rect" id="Node000019" href="$_subsystem_8h.html" title="Abstract base class for all robot subsystems." alt="" coords="874,168,972,193"/>
+<area shape="poly" id="edge30_Node000003_Node000019" title=" " alt="" coords="753,118,877,162,872,162,753,123"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="1072,193,1044,216,1022,243,1008,276,999,311,994,375,990,371,994,310,1002,274,1017,240,1041,212,1067,195"/>
+<area shape="rect" id="Node000006" href="$_dual_motor_controller_8hpp.html" title="Dual closed&#45;loop motor controller wrapping an L298N driver with two independent PID loops." alt="" coords="1113,241,1326,267"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="1112,191,1187,234,1181,233,1111,196"/>
+<area shape="rect" id="Node000007" href="$_p_i_d_8hpp.html" title="PID controller classes with optional nonlinear extensions and feedforward support." alt="" coords="1499,315,1596,341"/>
+<area shape="poly" id="edge13_Node000005_Node000007" title=" " alt="" coords="1133,188,1244,214,1339,239,1396,265,1504,309,1499,309,1394,269,1337,244,1243,219,1132,194"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="1031,241,1088,267"/>
+<area shape="poly" id="edge14_Node000005_Node000010" title=" " alt="" coords="1087,192,1072,229,1069,225,1083,195"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="1176,267,1122,289,1070,317,1037,346,1011,378,1008,373,1033,343,1067,313,1120,284,1170,268"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="1276,265,1486,313,1481,313,1275,270"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1276,315,1475,341"/>
+<area shape="poly" id="edge10_Node000006_Node000008" title=" " alt="" coords="1246,265,1338,308,1332,308,1245,270"/>
+<area shape="rect" id="Node000009" href="$_l298_n_motor_driver_mega_8h.html" title=" " alt="" coords="1081,315,1251,341"/>
+<area shape="poly" id="edge11_Node000006_Node000009" title=" " alt="" coords="1213,266,1186,305,1183,300,1208,268"/>
+<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="1501,339,1488,343,1241,376,1046,398,1046,392,1240,371,1487,338,1496,339"/>
+<area shape="poly" id="edge12_Node000009_Node000004" title=" " alt="" coords="1139,341,1037,385,1036,380,1134,342"/>
+<area shape="poly" id="edge16_Node000011_Node000004" title=" " alt="" coords="199,336,218,338,633,372,942,396,936,397,632,377,218,343,199,342"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="62,389,142,414"/>
+<area shape="poly" id="edge17_Node000011_Node000012" title=" " alt="" coords="104,339,104,374,100,372,100,343"/>
+<area shape="poly" id="edge19_Node000013_Node000004" title=" " alt="" coords="733,191,748,207,761,226,768,247,763,268,752,281,740,288,714,294,689,299,678,305,668,316,664,328,668,339,685,352,712,364,785,381,866,391,942,398,937,398,866,396,784,386,711,369,683,357,664,342,658,328,664,314,674,301,687,294,713,288,738,283,749,277,758,266,762,247,756,228,744,210,731,196"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="640,241,748,267"/>
+<area shape="poly" id="edge20_Node000013_Node000014" title=" " alt="" coords="716,192,705,229,701,225,712,195"/>
+<area shape="poly" id="edge22_Node000015_Node000004" title=" " alt="" coords="487,265,546,302,584,322,623,338,708,362,794,379,942,398,936,397,793,384,706,367,621,343,581,327,544,307,486,270"/>
+<area shape="poly" id="edge24_Node000016_Node000011" title=" " alt="" coords="117,265,111,301,106,299,114,270"/>
+<area shape="poly" id="edge26_Node000017_Node000004" title=" " alt="" coords="197,191,204,224,217,264,239,306,253,324,270,338,307,351,375,363,565,380,775,391,942,399,936,399,775,396,565,385,374,368,306,356,267,343,249,327,234,308,212,266,199,225,195,196"/>
+<area shape="poly" id="edge27_Node000017_Node000016" title=" " alt="" coords="179,196,144,233,140,229,183,192"/>
+<area shape="poly" id="edge29_Node000018_Node000004" title=" " alt="" coords="805,339,942,384,937,383,804,344"/>
+<area shape="poly" id="edge31_Node000019_Node000004" title=" " alt="" coords="922,192,917,222,913,259,915,300,926,340,940,361,960,380,955,379,936,364,921,342,909,301,908,258,912,221,918,196"/>
+<area shape="poly" id="edge33_Node000020_Node000004" title=" " alt="" coords="1047,118,1016,201,1000,257,990,315,991,375,987,372,985,315,995,256,1011,199,1043,122"/>
+<area shape="poly" id="edge40_Node000020_Node000005" title=" " alt="" coords="1058,117,1078,155,1073,153,1056,122"/>
+<area shape="poly" id="edge39_Node000020_Node000007" title=" " alt="" coords="1069,118,1136,158,1196,191,1248,208,1291,215,1334,223,1387,239,1445,267,1516,308,1510,307,1443,272,1385,244,1333,228,1290,221,1247,213,1194,196,1134,163,1068,123"/>
+<area shape="poly" id="edge38_Node000020_Node000011" title=" " alt="" coords="971,114,793,134,687,150,581,170,456,203,333,242,147,311,144,306,332,237,454,198,580,165,686,145,793,129,976,113"/>
+<area shape="poly" id="edge34_Node000020_Node000019" title=" " alt="" coords="1031,119,959,162,957,157,1026,121"/>
+<area shape="rect" id="Node000021" href="$_servo_control_8hpp.html" title="Buffered servo wrapper that defers writes until update() is called." alt="" coords="1207,168,1381,193"/>
+<area shape="poly" id="edge35_Node000020_Node000021" title=" " alt="" coords="1092,118,1241,163,1235,163,1091,123"/>
+<area shape="rect" id="Node000023" href="$_solenoid_8hpp.html" title="Simple digital solenoid driver (currently unused in primary code path)." alt="" coords="1405,168,1554,193"/>
+<area shape="poly" id="edge41_Node000020_Node000023" title=" " alt="" coords="1123,118,1394,164,1388,165,1123,123"/>
+<area shape="poly" id="edge36_Node000021_Node000004" title=" " alt="" coords="1382,191,1487,211,1532,224,1563,239,1593,262,1615,286,1621,300,1623,314,1620,328,1610,343,1580,357,1525,369,1367,387,1189,397,1046,402,1046,396,1189,392,1367,381,1525,364,1579,352,1607,339,1615,326,1618,314,1616,302,1610,289,1589,266,1561,244,1530,229,1485,217,1382,197"/>
+<area shape="rect" id="Node000022" title=" " alt="" coords="1451,241,1550,267"/>
+<area shape="poly" id="edge37_Node000021_Node000022" title=" " alt="" coords="1329,191,1454,236,1449,236,1329,197"/>
+<area shape="poly" id="edge42_Node000023_Node000004" title=" " alt="" coords="1517,191,1559,211,1598,239,1623,264,1642,289,1648,302,1649,315,1645,329,1636,343,1624,351,1604,358,1547,370,1381,388,1195,398,1046,402,1046,397,1195,392,1380,382,1546,365,1603,353,1621,346,1632,339,1640,327,1644,315,1642,303,1637,292,1619,268,1595,243,1556,215,1517,197"/>
+<area shape="poly" id="edge44_Node000024_Node000004" title=" " alt="" coords="1469,106,1547,110,1639,120,1736,138,1831,165,1900,196,1931,216,1958,238,1977,262,1986,288,1983,315,1965,343,1951,349,1923,355,1835,366,1568,383,1046,402,1046,396,1567,378,1834,361,1923,350,1949,344,1962,339,1978,313,1981,289,1972,265,1954,242,1928,221,1897,201,1829,170,1735,143,1638,126,1547,116,1469,111"/>
+<area shape="poly" id="edge49_Node000024_Node000005" title=" " alt="" coords="1338,120,1148,168,1147,163,1333,121"/>
+<area shape="poly" id="edge48_Node000024_Node000007" title=" " alt="" coords="1469,112,1497,119,1524,130,1548,145,1568,166,1577,182,1582,200,1582,237,1574,272,1562,303,1559,299,1569,270,1577,236,1577,201,1572,184,1564,169,1545,149,1521,135,1495,124,1469,117"/>
+<area shape="poly" id="edge47_Node000024_Node000011" title=" " alt="" coords="1300,113,902,139,716,155,654,163,626,170,615,180,608,192,603,218,598,244,591,257,578,269,551,283,514,295,420,312,314,322,214,327,214,322,314,317,420,307,513,290,549,278,575,265,586,254,593,242,598,216,603,190,611,177,623,165,653,158,715,150,902,134,1305,112"/>
+<area shape="poly" id="edge45_Node000024_Node000019" title=" " alt="" coords="1304,121,988,172,987,167,1310,120"/>
+<area shape="poly" id="edge46_Node000024_Node000021" title=" " alt="" coords="1373,119,1322,161,1320,156,1368,121"/>
+<area shape="poly" id="edge50_Node000024_Node000023" title=" " alt="" coords="1402,118,1454,159,1449,158,1401,123"/>
+<area shape="rect" id="Node000025" href="$_motor_controller_8hpp.html" title="Unified single&#45;channel motor controller supporting TB9051FTG and L298N drivers." alt="" coords="1726,241,1912,267"/>
+<area shape="poly" id="edge51_Node000024_Node000025" title=" " alt="" coords="1439,118,1521,138,1611,165,1702,199,1782,235,1776,234,1700,204,1609,170,1519,143,1439,123"/>
+<area shape="rect" id="Node000026" href="$_button_8hpp.html" title="Simple digital button (or limit&#45;switch) driver." alt="" coords="1815,315,1952,341"/>
+<area shape="poly" id="edge54_Node000024_Node000026" title=" " alt="" coords="1469,113,1591,129,1728,155,1793,171,1851,191,1896,214,1927,240,1933,257,1930,274,1909,306,1906,302,1925,272,1928,257,1922,243,1894,218,1849,196,1792,177,1727,160,1590,135,1469,119"/>
+<area shape="poly" id="edge52_Node000025_Node000004" title=" " alt="" coords="1811,266,1768,307,1740,327,1708,343,1651,359,1574,372,1386,389,1194,399,1047,402,1046,397,1194,393,1386,384,1573,366,1650,354,1706,338,1737,323,1765,303,1806,268"/>
+<area shape="poly" id="edge53_Node000025_Node000007" title=" " alt="" coords="1776,267,1609,313,1608,308,1771,268"/>
+<area shape="poly" id="edge55_Node000026_Node000004" title=" " alt="" coords="1817,336,1772,343,1354,377,1046,399,1046,394,1354,372,1771,338,1812,337"/>
+</map>

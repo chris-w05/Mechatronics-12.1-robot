@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="AutoStep that fires the shooter for a fixed duration, then stops it.">
 <polygon fill="#999999" stroke="#666666" points="647.25,-306.75 531.5,-306.75 531.5,-276.25 647.25,-276.25 647.25,-306.75"/>
 <text xml:space="preserve" text-anchor="start" x="539.5" y="-293.25" font-family="Helvetica,sans-Serif" font-size="10.00">src/Autonomous/Steps</text>
 <text xml:space="preserve" text-anchor="middle" x="589.38" y="-282" font-family="Helvetica,sans-Serif" font-size="10.00">/FireStep.hpp</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="_auto_step_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="_auto_step_8h.html" target="_top" xlink:title="Abstract interface that every autonomous step must implement.">
 <polygon fill="white" stroke="#666666" points="580.62,-240.25 458.12,-240.25 458.12,-221 580.62,-221 580.62,-240.25"/>
 <text xml:space="preserve" text-anchor="middle" x="519.38" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">Autonomous/AutoStep.h</text>
 </a>
@@ -39,7 +39,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="_shooter_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="_shooter_8hpp.html" target="_top" xlink:title="Rack&#45;and&#45;pinion block shooter subsystem.">
 <polygon fill="white" stroke="#666666" points="722.38,-240.25 598.38,-240.25 598.38,-221 722.38,-221 722.38,-240.25"/>
 <text xml:space="preserve" text-anchor="middle" x="660.38" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">subsystems/Shooter.hpp</text>
 </a>
@@ -75,7 +75,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="_subsystem_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="_subsystem_8h.html" target="_top" xlink:title="Abstract base class for all robot subsystems.">
 <polygon fill="white" stroke="#666666" points="1009.25,-74.5 935.5,-74.5 935.5,-55.25 1009.25,-55.25 1009.25,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="972.38" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">Subsystem.h</text>
 </a>
@@ -93,7 +93,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="_servo_control_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="_servo_control_8hpp.html" target="_top" xlink:title="Buffered servo wrapper that defers writes until update() is called.">
 <polygon fill="white" stroke="#666666" points="130.75,-185 0,-185 0,-165.75 130.75,-165.75 130.75,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="65.38" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/ServoControl.hpp</text>
 </a>
@@ -111,7 +111,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="_encoder_wrapper_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="_encoder_wrapper_8hpp.html" target="_top" xlink:title="Quadrature encoder wrapper providing position, velocity, and acceleration.">
 <polygon fill="white" stroke="#666666" points="293.88,-185 148.88,-185 148.88,-165.75 293.88,-165.75 293.88,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="221.38" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/EncoderWrapper.hpp</text>
 </a>
@@ -129,7 +129,7 @@
 <!-- Node10 -->
 <g id="Node000010" class="node">
 <title>Node10</title>
-<g id="a_Node000010"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000010"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title="PID controller classes with optional nonlinear extensions and feedforward support.">
 <polygon fill="white" stroke="#666666" points="682.88,-74.5 609.88,-74.5 609.88,-55.25 682.88,-55.25 682.88,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="646.38" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">utils/PID.hpp</text>
 </a>
@@ -147,7 +147,7 @@
 <!-- Node11 -->
 <g id="Node000011" class="node">
 <title>Node11</title>
-<g id="a_Node000011"><a xlink:href="_config_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000011"><a xlink:href="_config_8hpp.html" target="_top" xlink:title="Central configuration: pin assignments, physical constants, and PID gains.">
 <polygon fill="white" stroke="#666666" points="522,-185 458.75,-185 458.75,-165.75 522,-165.75 522,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="490.38" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Config.hpp</text>
 </a>
@@ -165,7 +165,7 @@
 <!-- Node16 -->
 <g id="Node000016" class="node">
 <title>Node16</title>
-<g id="a_Node000016"><a xlink:href="_solenoid_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000016"><a xlink:href="_solenoid_8hpp.html" target="_top" xlink:title="Simple digital solenoid driver (currently unused in primary code path).">
 <polygon fill="white" stroke="#666666" points="800,-185 688.75,-185 688.75,-165.75 800,-165.75 800,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="744.38" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/Solenoid.hpp</text>
 </a>
@@ -183,7 +183,7 @@
 <!-- Node17 -->
 <g id="Node000017" class="node">
 <title>Node17</title>
-<g id="a_Node000017"><a xlink:href="_motor_controller_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000017"><a xlink:href="_motor_controller_8hpp.html" target="_top" xlink:title="Unified single&#45;channel motor controller supporting TB9051FTG and L298N drivers.">
 <polygon fill="white" stroke="#666666" points="746.25,-129.75 606.5,-129.75 606.5,-110.5 746.25,-110.5 746.25,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="676.38" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/MotorController.hpp</text>
 </a>
@@ -201,7 +201,7 @@
 <!-- Node18 -->
 <g id="Node000018" class="node">
 <title>Node18</title>
-<g id="a_Node000018"><a xlink:href="_button_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000018"><a xlink:href="_button_8hpp.html" target="_top" xlink:title="Simple digital button (or limit&#45;switch) driver.">
 <polygon fill="white" stroke="#666666" points="879.5,-74.5 777.25,-74.5 777.25,-55.25 879.5,-55.25 879.5,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="828.38" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/Button.hpp</text>
 </a>
@@ -309,7 +309,7 @@
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="_dual_motor_controller_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000012"><a xlink:href="_dual_motor_controller_8hpp.html" target="_top" xlink:title="Dual closed&#45;loop motor controller wrapping an L298N driver with two independent PID loops.">
 <polygon fill="white" stroke="#666666" points="450.38,-129.75 290.38,-129.75 290.38,-110.5 450.38,-110.5 450.38,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="370.38" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/DualMotorController.hpp</text>
 </a>

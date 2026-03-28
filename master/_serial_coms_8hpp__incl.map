@@ -1,5 +1,5 @@
 <map id="src/subsystems/SerialComs.hpp" name="src/subsystems/SerialComs.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,217,31"/>
+<area shape="rect" id="Node000001" title="Newline&#45;delimited ASCII serial command receiver subsystem." alt="" coords="5,5,217,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="73,79,149,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,29,113,64,109,62,109,33"/>
 </map>

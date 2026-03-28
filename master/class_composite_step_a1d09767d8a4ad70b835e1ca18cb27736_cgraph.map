@@ -1,5 +1,5 @@
 <map id="CompositeStep::Sequence" name="CompositeStep::Sequence">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,5,183,31"/>
-<area shape="rect" id="Node000002" href="$class_composite_step.html#ac5080cd1d836958420a57dce4d3e6c45" title=" " alt="" coords="231,5,440,31"/>
+<area shape="rect" id="Node000002" href="$class_composite_step.html#ac5080cd1d836958420a57dce4d3e6c45" title="Construct from an array of step pointers (ownership transferred)." alt="" coords="231,5,440,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,16,218,18,212,18,183,21"/>
 </map>

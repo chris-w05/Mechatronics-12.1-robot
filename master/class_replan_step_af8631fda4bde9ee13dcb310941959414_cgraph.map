@@ -1,5 +1,5 @@
 <map id="ReplanStep::start" name="ReplanStep::start">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,129,31"/>
-<area shape="rect" id="Node000002" href="$class_replan_step.html#a36942a7cd54b9f430a6b1f564e5ff02b" title=" " alt="" coords="177,5,358,31"/>
+<area shape="rect" id="Node000001" title="Begin the loop, requesting the first child from the planner." alt="" coords="5,5,129,31"/>
+<area shape="rect" id="Node000002" href="$class_replan_step.html#a36942a7cd54b9f430a6b1f564e5ff02b" title="Ask the planner for the next step and call start() on it." alt="" coords="177,5,358,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,16,164,18,158,18,129,21"/>
 </map>

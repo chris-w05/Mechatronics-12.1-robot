@@ -91,88 +91,89 @@ $(function(){initNavTree('_fire_step_8hpp_source.html','',''); });
   <div class="headertitle"><div class="title">FireStep.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_fire_step_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef FIRE_STEP_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="_fire_step_8hpp.html#ad2a7beb4c27017188872102404ddbdd9">    3</a></span><span class="preprocessor">#define FIRE_STEP_H</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_auto_step_8h.html">Autonomous/AutoStep.h</a>&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_shooter_8hpp.html">subsystems/Shooter.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_fire_step.html">    8</a></span><span class="keyword">class </span><a class="code hl_function" href="class_fire_step.html#af12596f47f468ceba52329dd2c7b2cfa">FireStep</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_auto_step.html">AutoStep</a></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_fire_step.html#af12596f47f468ceba52329dd2c7b2cfa">   11</a></span>    <a class="code hl_function" href="class_fire_step.html#af12596f47f468ceba52329dd2c7b2cfa">FireStep</a>( <a class="code hl_class" href="class_shooter.html">Shooter</a>&amp; shooter, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> time, <span class="keywordtype">bool</span> reversed)</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        : </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <a class="code hl_variable" href="class_fire_step.html#a95102753d95e8f8bcd02332bbd46de44">_shooter</a>(shooter),</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <a class="code hl_variable" href="class_fire_step.html#a484eda51073321871a24143c1a3fc44c">_time</a>(time),</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <a class="code hl_variable" href="class_fire_step.html#ae81cdfa5a213629e74b183b9f41f12b7">_reversed</a>(reversed) {}</div>
-</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_fire_step.html#a4dc9fdcf822ccf628d6bc95ef8ff5c90">   18</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_fire_step.html#a4dc9fdcf822ccf628d6bc95ef8ff5c90">start</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <a class="code hl_variable" href="class_fire_step.html#ae06f0e40ee027e07f1c187ffa2be9c1c">_startTime</a> = millis();</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <a class="code hl_variable" href="class_fire_step.html#a95102753d95e8f8bcd02332bbd46de44">_shooter</a>.fire();</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    }</div>
-</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<a href="_fire_step_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef FIRE_STEP_H</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="_fire_step_8hpp.html#ad2a7beb4c27017188872102404ddbdd9">    7</a></span><span class="preprocessor">#define FIRE_STEP_H</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_auto_step_8h.html">Autonomous/AutoStep.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="_shooter_8hpp.html">subsystems/Shooter.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span></div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_fire_step.html">   15</a></span><span class="keyword">class </span><a class="code hl_function" href="class_fire_step.html#af12596f47f468ceba52329dd2c7b2cfa">FireStep</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_auto_step.html">AutoStep</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_fire_step.html#a7034a71fd1897bc0e47ad68e65222e91">   24</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_fire_step.html#a7034a71fd1897bc0e47ad68e65222e91">update</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    }</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_fire_step.html#af12596f47f468ceba52329dd2c7b2cfa">   24</a></span>    <a class="code hl_function" href="class_fire_step.html#af12596f47f468ceba52329dd2c7b2cfa">FireStep</a>( <a class="code hl_class" href="class_shooter.html">Shooter</a>&amp; shooter, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> time, <span class="keywordtype">bool</span> reversed)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        : </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <a class="code hl_variable" href="class_fire_step.html#a95102753d95e8f8bcd02332bbd46de44">_shooter</a>(shooter),</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <a class="code hl_variable" href="class_fire_step.html#a484eda51073321871a24143c1a3fc44c">_time</a>(time),</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <a class="code hl_variable" href="class_fire_step.html#ae81cdfa5a213629e74b183b9f41f12b7">_reversed</a>(reversed) {}</div>
 </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_fire_step.html#a8aade64f2f13932ca7a17155366e80f4">   28</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_fire_step.html#a8aade64f2f13932ca7a17155366e80f4">isFinished</a>()<span class="keyword"> const override</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="comment">// Serial.print(&quot;Time until finished: &quot;);</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="comment">// Serial.println(_time + _startTime - millis());</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordflow">return</span> (millis() - <a class="code hl_variable" href="class_fire_step.html#ae06f0e40ee027e07f1c187ffa2be9c1c">_startTime</a>) &gt; <a class="code hl_variable" href="class_fire_step.html#a484eda51073321871a24143c1a3fc44c">_time</a>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    }</div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_fire_step.html#a4dc9fdcf822ccf628d6bc95ef8ff5c90">   31</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_fire_step.html#a4dc9fdcf822ccf628d6bc95ef8ff5c90">start</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <a class="code hl_variable" href="class_fire_step.html#ae06f0e40ee027e07f1c187ffa2be9c1c">_startTime</a> = millis();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <a class="code hl_variable" href="class_fire_step.html#a95102753d95e8f8bcd02332bbd46de44">_shooter</a>.fire();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    }</div>
 </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_fire_step.html#a7b5fd185bfe84f2b1480978c460c1642">   36</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_fire_step.html#a7b5fd185bfe84f2b1480978c460c1642">end</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <a class="code hl_variable" href="class_fire_step.html#a95102753d95e8f8bcd02332bbd46de44">_shooter</a>.stop();</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_fire_step.html#a7034a71fd1897bc0e47ad68e65222e91">   37</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_fire_step.html#a7034a71fd1897bc0e47ad68e65222e91">update</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
 </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="class_fire_step.html#a8b4f51fb3c01bff9deeb88782370d926">   41</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_fire_step.html#a8b4f51fb3c01bff9deeb88782370d926">configure</a>( <span class="keywordtype">long</span> time, <span class="keywordtype">bool</span> reversed)</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <a class="code hl_variable" href="class_fire_step.html#a484eda51073321871a24143c1a3fc44c">_time</a> = time;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <a class="code hl_variable" href="class_fire_step.html#ae81cdfa5a213629e74b183b9f41f12b7">_reversed</a> = reversed;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="class_fire_step.html#a8aade64f2f13932ca7a17155366e80f4">   41</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_fire_step.html#a8aade64f2f13932ca7a17155366e80f4">isFinished</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="comment">// Serial.print(&quot;Time until finished: &quot;);</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="comment">// Serial.println(_time + _startTime - millis());</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">return</span> (millis() - <a class="code hl_variable" href="class_fire_step.html#ae06f0e40ee027e07f1c187ffa2be9c1c">_startTime</a>) &gt; <a class="code hl_variable" href="class_fire_step.html#a484eda51073321871a24143c1a3fc44c">_time</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
 </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="class_fire_step.html#a95102753d95e8f8bcd02332bbd46de44">   48</a></span>    <a class="code hl_class" href="class_shooter.html">Shooter</a>&amp; <a class="code hl_variable" href="class_fire_step.html#a95102753d95e8f8bcd02332bbd46de44">_shooter</a>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_fire_step.html#a484eda51073321871a24143c1a3fc44c">   49</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="class_fire_step.html#a484eda51073321871a24143c1a3fc44c">_time</a> = 0;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_fire_step.html#ae81cdfa5a213629e74b183b9f41f12b7">   50</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_fire_step.html#ae81cdfa5a213629e74b183b9f41f12b7">_reversed</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="class_fire_step.html#ae06f0e40ee027e07f1c187ffa2be9c1c">   51</a></span>    <span class="keywordtype">long</span> <a class="code hl_variable" href="class_fire_step.html#ae06f0e40ee027e07f1c187ffa2be9c1c">_startTime</a> = 0;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_fire_step.html#a7b5fd185bfe84f2b1480978c460c1642">   49</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_fire_step.html#a7b5fd185bfe84f2b1480978c460c1642">end</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <a class="code hl_variable" href="class_fire_step.html#a95102753d95e8f8bcd02332bbd46de44">_shooter</a>.stop();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
 </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="a_auto_step_8h_html"><div class="ttname"><a href="_auto_step_8h.html">AutoStep.h</a></div></div>
-<div class="ttc" id="a_shooter_8hpp_html"><div class="ttname"><a href="_shooter_8hpp.html">Shooter.hpp</a></div></div>
-<div class="ttc" id="aclass_auto_step_html"><div class="ttname"><a href="class_auto_step.html">AutoStep</a></div><div class="ttdef"><b>Definition</b> AutoStep.h:10</div></div>
-<div class="ttc" id="aclass_fire_step_html_a484eda51073321871a24143c1a3fc44c"><div class="ttname"><a href="class_fire_step.html#a484eda51073321871a24143c1a3fc44c">FireStep::_time</a></div><div class="ttdeci">unsigned long _time</div><div class="ttdef"><b>Definition</b> FireStep.hpp:49</div></div>
-<div class="ttc" id="aclass_fire_step_html_a4dc9fdcf822ccf628d6bc95ef8ff5c90"><div class="ttname"><a href="class_fire_step.html#a4dc9fdcf822ccf628d6bc95ef8ff5c90">FireStep::start</a></div><div class="ttdeci">void start() override</div><div class="ttdef"><b>Definition</b> FireStep.hpp:18</div></div>
-<div class="ttc" id="aclass_fire_step_html_a7034a71fd1897bc0e47ad68e65222e91"><div class="ttname"><a href="class_fire_step.html#a7034a71fd1897bc0e47ad68e65222e91">FireStep::update</a></div><div class="ttdeci">void update() override</div><div class="ttdef"><b>Definition</b> FireStep.hpp:24</div></div>
-<div class="ttc" id="aclass_fire_step_html_a7b5fd185bfe84f2b1480978c460c1642"><div class="ttname"><a href="class_fire_step.html#a7b5fd185bfe84f2b1480978c460c1642">FireStep::end</a></div><div class="ttdeci">void end() override</div><div class="ttdef"><b>Definition</b> FireStep.hpp:36</div></div>
-<div class="ttc" id="aclass_fire_step_html_a8aade64f2f13932ca7a17155366e80f4"><div class="ttname"><a href="class_fire_step.html#a8aade64f2f13932ca7a17155366e80f4">FireStep::isFinished</a></div><div class="ttdeci">bool isFinished() const override</div><div class="ttdef"><b>Definition</b> FireStep.hpp:28</div></div>
-<div class="ttc" id="aclass_fire_step_html_a8b4f51fb3c01bff9deeb88782370d926"><div class="ttname"><a href="class_fire_step.html#a8b4f51fb3c01bff9deeb88782370d926">FireStep::configure</a></div><div class="ttdeci">void configure(long time, bool reversed)</div><div class="ttdef"><b>Definition</b> FireStep.hpp:41</div></div>
-<div class="ttc" id="aclass_fire_step_html_a95102753d95e8f8bcd02332bbd46de44"><div class="ttname"><a href="class_fire_step.html#a95102753d95e8f8bcd02332bbd46de44">FireStep::_shooter</a></div><div class="ttdeci">Shooter &amp; _shooter</div><div class="ttdef"><b>Definition</b> FireStep.hpp:48</div></div>
-<div class="ttc" id="aclass_fire_step_html_ae06f0e40ee027e07f1c187ffa2be9c1c"><div class="ttname"><a href="class_fire_step.html#ae06f0e40ee027e07f1c187ffa2be9c1c">FireStep::_startTime</a></div><div class="ttdeci">long _startTime</div><div class="ttdef"><b>Definition</b> FireStep.hpp:51</div></div>
-<div class="ttc" id="aclass_fire_step_html_ae81cdfa5a213629e74b183b9f41f12b7"><div class="ttname"><a href="class_fire_step.html#ae81cdfa5a213629e74b183b9f41f12b7">FireStep::_reversed</a></div><div class="ttdeci">bool _reversed</div><div class="ttdef"><b>Definition</b> FireStep.hpp:50</div></div>
-<div class="ttc" id="aclass_fire_step_html_af12596f47f468ceba52329dd2c7b2cfa"><div class="ttname"><a href="class_fire_step.html#af12596f47f468ceba52329dd2c7b2cfa">FireStep::FireStep</a></div><div class="ttdeci">FireStep(Shooter &amp;shooter, unsigned long time, bool reversed)</div><div class="ttdef"><b>Definition</b> FireStep.hpp:11</div></div>
-<div class="ttc" id="aclass_shooter_html"><div class="ttname"><a href="class_shooter.html">Shooter</a></div><div class="ttdef"><b>Definition</b> Shooter.hpp:14</div></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="class_fire_step.html#a8b4f51fb3c01bff9deeb88782370d926">   59</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_fire_step.html#a8b4f51fb3c01bff9deeb88782370d926">configure</a>( <span class="keywordtype">long</span> time, <span class="keywordtype">bool</span> reversed)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <a class="code hl_variable" href="class_fire_step.html#a484eda51073321871a24143c1a3fc44c">_time</a> = time;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <a class="code hl_variable" href="class_fire_step.html#ae81cdfa5a213629e74b183b9f41f12b7">_reversed</a> = reversed;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="class_fire_step.html#a95102753d95e8f8bcd02332bbd46de44">   66</a></span>    <a class="code hl_class" href="class_shooter.html">Shooter</a>&amp; <a class="code hl_variable" href="class_fire_step.html#a95102753d95e8f8bcd02332bbd46de44">_shooter</a>;         </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_fire_step.html#a484eda51073321871a24143c1a3fc44c">   67</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="class_fire_step.html#a484eda51073321871a24143c1a3fc44c">_time</a> = 0;   </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="class_fire_step.html#ae81cdfa5a213629e74b183b9f41f12b7">   68</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_fire_step.html#ae81cdfa5a213629e74b183b9f41f12b7">_reversed</a> = <span class="keyword">false</span>;    </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="class_fire_step.html#ae06f0e40ee027e07f1c187ffa2be9c1c">   69</a></span>    <span class="keywordtype">long</span> <a class="code hl_variable" href="class_fire_step.html#ae06f0e40ee027e07f1c187ffa2be9c1c">_startTime</a> = 0;       </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
+</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_auto_step_8h_html"><div class="ttname"><a href="_auto_step_8h.html">AutoStep.h</a></div><div class="ttdoc">Abstract interface that every autonomous step must implement.</div></div>
+<div class="ttc" id="a_shooter_8hpp_html"><div class="ttname"><a href="_shooter_8hpp.html">Shooter.hpp</a></div><div class="ttdoc">Rack-and-pinion block shooter subsystem.</div></div>
+<div class="ttc" id="aclass_auto_step_html"><div class="ttname"><a href="class_auto_step.html">AutoStep</a></div><div class="ttdoc">Pure-virtual base class for all autonomous steps.</div><div class="ttdef"><b>Definition</b> AutoStep.h:26</div></div>
+<div class="ttc" id="aclass_fire_step_html_a484eda51073321871a24143c1a3fc44c"><div class="ttname"><a href="class_fire_step.html#a484eda51073321871a24143c1a3fc44c">FireStep::_time</a></div><div class="ttdeci">unsigned long _time</div><div class="ttdoc">Fire duration (ms).</div><div class="ttdef"><b>Definition</b> FireStep.hpp:67</div></div>
+<div class="ttc" id="aclass_fire_step_html_a4dc9fdcf822ccf628d6bc95ef8ff5c90"><div class="ttname"><a href="class_fire_step.html#a4dc9fdcf822ccf628d6bc95ef8ff5c90">FireStep::start</a></div><div class="ttdeci">void start() override</div><div class="ttdoc">Initialise any state needed before the step begins running.</div><div class="ttdef"><b>Definition</b> FireStep.hpp:31</div></div>
+<div class="ttc" id="aclass_fire_step_html_a7034a71fd1897bc0e47ad68e65222e91"><div class="ttname"><a href="class_fire_step.html#a7034a71fd1897bc0e47ad68e65222e91">FireStep::update</a></div><div class="ttdeci">void update() override</div><div class="ttdoc">Advance the step by one control-loop tick.</div><div class="ttdef"><b>Definition</b> FireStep.hpp:37</div></div>
+<div class="ttc" id="aclass_fire_step_html_a7b5fd185bfe84f2b1480978c460c1642"><div class="ttname"><a href="class_fire_step.html#a7b5fd185bfe84f2b1480978c460c1642">FireStep::end</a></div><div class="ttdeci">void end() override</div><div class="ttdoc">Clean up resources or subsystem state when the step ends.</div><div class="ttdef"><b>Definition</b> FireStep.hpp:49</div></div>
+<div class="ttc" id="aclass_fire_step_html_a8aade64f2f13932ca7a17155366e80f4"><div class="ttname"><a href="class_fire_step.html#a8aade64f2f13932ca7a17155366e80f4">FireStep::isFinished</a></div><div class="ttdeci">bool isFinished() const override</div><div class="ttdef"><b>Definition</b> FireStep.hpp:41</div></div>
+<div class="ttc" id="aclass_fire_step_html_a8b4f51fb3c01bff9deeb88782370d926"><div class="ttname"><a href="class_fire_step.html#a8b4f51fb3c01bff9deeb88782370d926">FireStep::configure</a></div><div class="ttdeci">void configure(long time, bool reversed)</div><div class="ttdoc">Re-configure the step for reuse.</div><div class="ttdef"><b>Definition</b> FireStep.hpp:59</div></div>
+<div class="ttc" id="aclass_fire_step_html_a95102753d95e8f8bcd02332bbd46de44"><div class="ttname"><a href="class_fire_step.html#a95102753d95e8f8bcd02332bbd46de44">FireStep::_shooter</a></div><div class="ttdeci">Shooter &amp; _shooter</div><div class="ttdoc">Shooter subsystem reference.</div><div class="ttdef"><b>Definition</b> FireStep.hpp:66</div></div>
+<div class="ttc" id="aclass_fire_step_html_ae06f0e40ee027e07f1c187ffa2be9c1c"><div class="ttname"><a href="class_fire_step.html#ae06f0e40ee027e07f1c187ffa2be9c1c">FireStep::_startTime</a></div><div class="ttdeci">long _startTime</div><div class="ttdoc">millis() at step start</div><div class="ttdef"><b>Definition</b> FireStep.hpp:69</div></div>
+<div class="ttc" id="aclass_fire_step_html_ae81cdfa5a213629e74b183b9f41f12b7"><div class="ttname"><a href="class_fire_step.html#ae81cdfa5a213629e74b183b9f41f12b7">FireStep::_reversed</a></div><div class="ttdeci">bool _reversed</div><div class="ttdoc">Reverse-fire flag (reserved, unused).</div><div class="ttdef"><b>Definition</b> FireStep.hpp:68</div></div>
+<div class="ttc" id="aclass_fire_step_html_af12596f47f468ceba52329dd2c7b2cfa"><div class="ttname"><a href="class_fire_step.html#af12596f47f468ceba52329dd2c7b2cfa">FireStep::FireStep</a></div><div class="ttdeci">FireStep(Shooter &amp;shooter, unsigned long time, bool reversed)</div><div class="ttdoc">Construct the fire step.</div><div class="ttdef"><b>Definition</b> FireStep.hpp:24</div></div>
+<div class="ttc" id="aclass_shooter_html"><div class="ttname"><a href="class_shooter.html">Shooter</a></div><div class="ttdoc">Rack-and-pinion block shooter controlled by encoder feedback.</div><div class="ttdef"><b>Definition</b> Shooter.hpp:34</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

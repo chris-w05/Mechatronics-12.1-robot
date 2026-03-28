@@ -1,0 +1,5 @@
+<map id="Shooter::init" name="Shooter::init">
+<area shape="rect" id="Node000001" title="Initialise the shooter subsystem." alt="" coords="5,5,97,31"/>
+<area shape="rect" id="Node000002" href="$group__pid__constants.html#ga9c109a40745570b32ae051c909ab5a7c" title="Nonlinear feedforward for the shooter position controller." alt="" coords="145,5,225,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,16,132,18,126,18,97,21"/>
+</map>

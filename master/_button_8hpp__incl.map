@@ -1,5 +1,5 @@
 <map id="src/Devices/Button.hpp" name="src/Devices/Button.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,164,31"/>
+<area shape="rect" id="Node000001" title="Simple digital button (or limit&#45;switch) driver." alt="" coords="5,5,164,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="46,79,123,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,29,87,64,82,62,83,33"/>
 </map>

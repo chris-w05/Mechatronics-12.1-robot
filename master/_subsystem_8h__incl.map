@@ -1,5 +1,5 @@
 <map id="src/subsystems/Subsystem.h" name="src/subsystems/Subsystem.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,201,31"/>
+<area shape="rect" id="Node000001" title="Abstract base class for all robot subsystems." alt="" coords="5,5,201,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="65,79,141,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,29,105,64,101,62,101,33"/>
 </map>

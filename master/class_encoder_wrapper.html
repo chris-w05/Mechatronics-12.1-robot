@@ -92,6 +92,9 @@ $(function(){initNavTree('class_encoder_wrapper.html','','class_encoder_wrapper-
 </div><!--header-->
 <div class="contents">
 
+<p>Quadrature encoder driver with velocity and acceleration estimation.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_encoder_wrapper_8hpp_source.html">EncoderWrapper.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -111,20 +114,36 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ac784b16940880256885462e4084e2088" id="r_ac784b16940880256885462e4084e2088"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac784b16940880256885462e4084e2088">isReversed</a></td></tr>
+<tr class="memdesc:ac784b16940880256885462e4084e2088"><td class="mdescLeft">&#160;</td><td class="mdescRight">When true, all count/velocity/acceleration values are negated.  <br /></td></tr>
 <tr class="memitem:a06a3700e5c336b19e0bbfa2de38db5c2" id="r_a06a3700e5c336b19e0bbfa2de38db5c2"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a06a3700e5c336b19e0bbfa2de38db5c2">_pinA</a></td></tr>
+<tr class="memdesc:a06a3700e5c336b19e0bbfa2de38db5c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encoder channel A pin.  <br /></td></tr>
 <tr class="memitem:acd0723e2b376af6e4b8b54800062bf3f" id="r_acd0723e2b376af6e4b8b54800062bf3f"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#acd0723e2b376af6e4b8b54800062bf3f">_pinB</a></td></tr>
+<tr class="memdesc:acd0723e2b376af6e4b8b54800062bf3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encoder channel B pin.  <br /></td></tr>
 <tr class="memitem:aaa078a1fd51a10c1fd4a7c7aea2436d1" id="r_aaa078a1fd51a10c1fd4a7c7aea2436d1"><td class="memItemLeft">Encoder&#160;</td><td class="memItemRight"><a class="el" href="#aaa078a1fd51a10c1fd4a7c7aea2436d1">encoder</a></td></tr>
+<tr class="memdesc:aaa078a1fd51a10c1fd4a7c7aea2436d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Underlying PJRC Encoder object.  <br /></td></tr>
 <tr class="memitem:a0a8bc6f81f773476a79765ef516070bf" id="r_a0a8bc6f81f773476a79765ef516070bf"><td class="memItemLeft">int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a0a8bc6f81f773476a79765ef516070bf">count</a> = 0</td></tr>
+<tr class="memdesc:a0a8bc6f81f773476a79765ef516070bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Latest absolute tick count.  <br /></td></tr>
 <tr class="memitem:a30894c50a418a02332c807fa635852ab" id="r_a30894c50a418a02332c807fa635852ab"><td class="memItemLeft">int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a30894c50a418a02332c807fa635852ab">lastCount</a> = 0</td></tr>
+<tr class="memdesc:a30894c50a418a02332c807fa635852ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tick count on previous <a class="el" href="#a4b2d991c6024efb7ec9d95799b9fe84f">update()</a> call.  <br /></td></tr>
 <tr class="memitem:a2847ec76348d750e9b2a7e253ece5ae1" id="r_a2847ec76348d750e9b2a7e253ece5ae1"><td class="memItemLeft">unsigned long&#160;</td><td class="memItemRight"><a class="el" href="#a2847ec76348d750e9b2a7e253ece5ae1">lastMicros</a> = 0</td></tr>
+<tr class="memdesc:a2847ec76348d750e9b2a7e253ece5ae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestamp of previous <a class="el" href="#a4b2d991c6024efb7ec9d95799b9fe84f">update()</a> call (µs).  <br /></td></tr>
 <tr class="memitem:a4621e79a9044ea830ac091411536f417" id="r_a4621e79a9044ea830ac091411536f417"><td class="memItemLeft">unsigned long&#160;</td><td class="memItemRight"><a class="el" href="#a4621e79a9044ea830ac091411536f417">INTERVAL</a> = 100</td></tr>
+<tr class="memdesc:a4621e79a9044ea830ac091411536f417"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum update interval (µs) — currently unused.  <br /></td></tr>
 <tr class="memitem:a54c6cf6494514b6113d0f8f376eb73bb" id="r_a54c6cf6494514b6113d0f8f376eb73bb"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a54c6cf6494514b6113d0f8f376eb73bb">velocity</a> = 0</td></tr>
+<tr class="memdesc:a54c6cf6494514b6113d0f8f376eb73bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filtered velocity (ticks/s).  <br /></td></tr>
 <tr class="memitem:acb4183788ad22e65a30afdca277d44d0" id="r_acb4183788ad22e65a30afdca277d44d0"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#acb4183788ad22e65a30afdca277d44d0">lastVelocity</a> = 0</td></tr>
+<tr class="memdesc:acb4183788ad22e65a30afdca277d44d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Previous velocity estimate (for IIR filter).  <br /></td></tr>
 <tr class="memitem:af589225e6fb9e7ca3962d2a2d6bf7a95" id="r_af589225e6fb9e7ca3962d2a2d6bf7a95"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#af589225e6fb9e7ca3962d2a2d6bf7a95">lastAcceleration</a> = 0</td></tr>
+<tr class="memdesc:af589225e6fb9e7ca3962d2a2d6bf7a95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Previous acceleration estimate (for IIR filter).  <br /></td></tr>
 <tr class="memitem:a59d88e9ed381fac350523cb6de3007fa" id="r_a59d88e9ed381fac350523cb6de3007fa"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a59d88e9ed381fac350523cb6de3007fa">acceleration</a> = 0</td></tr>
-<tr class="memitem:a78b7ac3318d8b9b03a44a2668d7e9897" id="r_a78b7ac3318d8b9b03a44a2668d7e9897"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a78b7ac3318d8b9b03a44a2668d7e9897">alpha</a> = .5</td></tr>
+<tr class="memdesc:a59d88e9ed381fac350523cb6de3007fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filtered acceleration (ticks/s²).  <br /></td></tr>
+<tr class="memitem:a78b7ac3318d8b9b03a44a2668d7e9897" id="r_a78b7ac3318d8b9b03a44a2668d7e9897"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a78b7ac3318d8b9b03a44a2668d7e9897">alpha</a> = 0.5f</td></tr>
+<tr class="memdesc:a78b7ac3318d8b9b03a44a2668d7e9897"><td class="mdescLeft">&#160;</td><td class="mdescRight">IIR filter coefficient for velocity/acceleration (0 = strongest, 1 = off).  <br /></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Quadrature encoder driver with velocity and acceleration estimation. </p>
+<p>Call <span class="tt"><a class="el" href="#a0e76f8e547cd83b1a896463211aac320">init()</a></span> once in setup and <span class="tt"><a class="el" href="#a4b2d991c6024efb7ec9d95799b9fe84f">update()</a></span> every control cycle. All motion quantities are filtered through a configurable IIR filter to reduce quantisation noise. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0d9f904eb6b2b4d33aa4558546866dbf" name="a0d9f904eb6b2b4d33aa4558546866dbf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0d9f904eb6b2b4d33aa4558546866dbf">&#9670;&#160;</a></span>EncoderWrapper()</h2>
 
@@ -368,6 +387,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Encoder channel A pin. </p>
+
 </div>
 </div>
 <a id="acd0723e2b376af6e4b8b54800062bf3f" name="acd0723e2b376af6e4b8b54800062bf3f"></a>
@@ -389,6 +410,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Encoder channel B pin. </p>
 
 </div>
 </div>
@@ -412,6 +435,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Filtered acceleration (ticks/s²). </p>
+
 </div>
 </div>
 <a id="a78b7ac3318d8b9b03a44a2668d7e9897" name="a78b7ac3318d8b9b03a44a2668d7e9897"></a>
@@ -424,7 +449,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float EncoderWrapper::alpha = .5</td>
+          <td class="memname">float EncoderWrapper::alpha = 0.5f</td>
         </tr>
       </table>
   </td>
@@ -433,7 +458,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>IIR Filter constant for velocity and acceleration </p>
+
+<p>IIR filter coefficient for velocity/acceleration (0 = strongest, 1 = off). </p>
 
 </div>
 </div>
@@ -457,6 +483,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Latest absolute tick count. </p>
+
 </div>
 </div>
 <a id="aaa078a1fd51a10c1fd4a7c7aea2436d1" name="aaa078a1fd51a10c1fd4a7c7aea2436d1"></a>
@@ -478,6 +506,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Underlying PJRC Encoder object. </p>
 
 </div>
 </div>
@@ -501,6 +531,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Minimum update interval (µs) — currently unused. </p>
+
 </div>
 </div>
 <a id="ac784b16940880256885462e4084e2088" name="ac784b16940880256885462e4084e2088"></a>
@@ -522,6 +554,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>When true, all count/velocity/acceleration values are negated. </p>
 
 </div>
 </div>
@@ -545,6 +579,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Previous acceleration estimate (for IIR filter). </p>
+
 </div>
 </div>
 <a id="a30894c50a418a02332c807fa635852ab" name="a30894c50a418a02332c807fa635852ab"></a>
@@ -566,6 +602,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Tick count on previous <a class="el" href="#a4b2d991c6024efb7ec9d95799b9fe84f">update()</a> call. </p>
 
 </div>
 </div>
@@ -589,6 +627,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Timestamp of previous <a class="el" href="#a4b2d991c6024efb7ec9d95799b9fe84f">update()</a> call (µs). </p>
+
 </div>
 </div>
 <a id="acb4183788ad22e65a30afdca277d44d0" name="acb4183788ad22e65a30afdca277d44d0"></a>
@@ -611,6 +651,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Previous velocity estimate (for IIR filter). </p>
+
 </div>
 </div>
 <a id="a54c6cf6494514b6113d0f8f376eb73bb" name="a54c6cf6494514b6113d0f8f376eb73bb"></a>
@@ -632,6 +674,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Filtered velocity (ticks/s). </p>
 
 </div>
 </div>

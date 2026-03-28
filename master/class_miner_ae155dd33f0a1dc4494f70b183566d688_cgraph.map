@@ -1,0 +1,5 @@
+<map id="Miner::deployRamp" name="Miner::deployRamp">
+<area shape="rect" id="Node000001" title="Raise the ramp to its passive (deployed) angle." alt="" coords="5,5,140,31"/>
+<area shape="rect" id="Node000002" href="$class_miner.html#a9aebb2834badb2cc2bc151bcdccabfd0" title="Lower the ramp to the passive (neutral) angle between mining cycles." alt="" coords="188,5,397,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,16,174,18,169,18,140,21"/>
+</map>

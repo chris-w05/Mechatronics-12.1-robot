@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Implementation of the differential&#45;drive odometry integrator.">
 <polygon fill="#999999" stroke="#666666" points="199.25,-240.25 85.75,-240.25 85.75,-221 199.25,-221 199.25,-240.25"/>
 <text xml:space="preserve" text-anchor="middle" x="142.5" y="-226.75" font-family="Helvetica,sans-Serif" font-size="10.00">src/utils/Odometry.cpp</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="_odometry_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="_odometry_8hpp.html" target="_top" xlink:title="Differential&#45;drive pose tracker using wheel&#45;encoder odometry.">
 <polygon fill="white" stroke="#666666" points="136.5,-185 60.5,-185 60.5,-165.75 136.5,-165.75 136.5,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="98.5" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Odometry.hpp</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="_config_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="_config_8hpp.html" target="_top" xlink:title="Central configuration: pin assignments, physical constants, and PID gains.">
 <polygon fill="white" stroke="#666666" points="243.12,-185 179.88,-185 179.88,-165.75 243.12,-165.75 243.12,-185"/>
 <text xml:space="preserve" text-anchor="middle" x="211.5" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">Config.hpp</text>
 </a>
@@ -56,7 +56,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="_encoder_wrapper_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="_encoder_wrapper_8hpp.html" target="_top" xlink:title="Quadrature encoder wrapper providing position, velocity, and acceleration.">
 <polygon fill="white" stroke="#666666" points="145,-129.75 0,-129.75 0,-110.5 145,-110.5 145,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="72.5" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/EncoderWrapper.hpp</text>
 </a>
@@ -119,7 +119,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="_dual_motor_controller_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="_dual_motor_controller_8hpp.html" target="_top" xlink:title="Dual closed&#45;loop motor controller wrapping an L298N driver with two independent PID loops.">
 <polygon fill="white" stroke="#666666" points="399.5,-129.75 239.5,-129.75 239.5,-110.5 399.5,-110.5 399.5,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="319.5" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">Devices/DualMotorController.hpp</text>
 </a>
@@ -137,7 +137,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title="PID controller classes with optional nonlinear extensions and feedforward support.">
 <polygon fill="white" stroke="#666666" points="275,-74.5 202,-74.5 202,-55.25 275,-55.25 275,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="238.5" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">utils/PID.hpp</text>
 </a>

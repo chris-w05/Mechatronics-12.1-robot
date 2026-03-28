@@ -91,6 +91,9 @@ $(function(){initNavTree('_reject_sequence_8hpp.html','',''); });
   <div class="headertitle"><div class="title">RejectSequence.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> stub that executes the block-rejection sequence.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_auto_step_8h_source.html">Autonomous/AutoStep.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_drive_8hpp_source.html">subsystems/Drive.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -109,8 +112,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:RejectBlockStep" id="r_RejectBlockStep"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_reject_block_step.html">RejectBlockStep</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Placeholder step that discards an unwanted block (completes immediately).  <a href="class_reject_block_step.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> stub that executes the block-rejection sequence. </p>
+<p>Called when <span class="tt"><a class="el" href="class_strategy.html#ad42bcf18bf9f720b21d53201e03c9ba0" title="Decide where to route a newly acquired block.">Strategy::whereToIndexBlock()</a></span> returns <span class="tt">REJECT</span>. Currently completes immediately; rejection servo logic to be implemented. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

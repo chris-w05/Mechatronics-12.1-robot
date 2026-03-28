@@ -92,6 +92,9 @@ $(function(){initNavTree('class_replan_step.html','','class_replan_step-members'
 </div><!--header-->
 <div class="contents">
 
+<p>Drives a looping planning function that supplies child steps on demand.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_replan_step_8hpp_source.html">ReplanStep.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ReplanStep:</div>
@@ -107,29 +110,42 @@ Collaboration diagram for ReplanStep:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a080db919de6fe49a855d4ffebe355591" id="r_a080db919de6fe49a855d4ffebe355591"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a080db919de6fe49a855d4ffebe355591">PlanFn</a> = <a class="el" href="class_auto_step.html">AutoStep</a> *(*)(void *ctx)</td></tr>
+<tr class="memdesc:a080db919de6fe49a855d4ffebe355591"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signature of the planning function: <span class="tt">AutoStep* plan(void* context)</span>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:afdf87984f3968f77c0408bcea6b4d8d2" id="r_afdf87984f3968f77c0408bcea6b4d8d2"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#afdf87984f3968f77c0408bcea6b4d8d2">ReplanStep</a> (void *ctx, <a class="el" href="#a080db919de6fe49a855d4ffebe355591">PlanFn</a> fn)</td></tr>
+<tr class="memdesc:afdf87984f3968f77c0408bcea6b4d8d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the <a class="el" href="class_replan_step.html" title="Drives a looping planning function that supplies child steps on demand.">ReplanStep</a>.  <br /></td></tr>
 <tr class="memitem:af8631fda4bde9ee13dcb310941959414" id="r_af8631fda4bde9ee13dcb310941959414"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af8631fda4bde9ee13dcb310941959414">start</a> () override</td></tr>
+<tr class="memdesc:af8631fda4bde9ee13dcb310941959414"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin the loop, requesting the first child from the planner.  <br /></td></tr>
 <tr class="memitem:a67f7d1e5350a956dc73094517de32f8f" id="r_a67f7d1e5350a956dc73094517de32f8f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a67f7d1e5350a956dc73094517de32f8f">update</a> () override</td></tr>
+<tr class="memdesc:a67f7d1e5350a956dc73094517de32f8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tick the active child; when it finishes, request the next one.  <br /></td></tr>
 <tr class="memitem:ac19a5fbd7819e4ea8100d1e7c1c38fa3" id="r_ac19a5fbd7819e4ea8100d1e7c1c38fa3"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac19a5fbd7819e4ea8100d1e7c1c38fa3">isFinished</a> () const override</td></tr>
 <tr class="memitem:a3fb9e8668be16a0a44e5f5ab1dc7d343" id="r_a3fb9e8668be16a0a44e5f5ab1dc7d343"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3fb9e8668be16a0a44e5f5ab1dc7d343">end</a> () override</td></tr>
+<tr class="memdesc:a3fb9e8668be16a0a44e5f5ab1dc7d343"><td class="mdescLeft">&#160;</td><td class="mdescRight">End the currently active child (if any) and mark this step done.  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_auto_step"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_auto_step')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_auto_step.html">AutoStep</a></td></tr>
 <tr class="memitem:a9a518d86ca941b4076002a2a1b0052dc inherit pub_methods_class_auto_step" id="r_a9a518d86ca941b4076002a2a1b0052dc"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="class_auto_step.html#a9a518d86ca941b4076002a2a1b0052dc">~AutoStep</a> ()=default</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a36942a7cd54b9f430a6b1f564e5ff02b" id="r_a36942a7cd54b9f430a6b1f564e5ff02b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a36942a7cd54b9f430a6b1f564e5ff02b">startNextChild</a> ()</td></tr>
+<tr class="memdesc:a36942a7cd54b9f430a6b1f564e5ff02b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ask the planner for the next step and call <span class="tt"><a class="el" href="#af8631fda4bde9ee13dcb310941959414" title="Begin the loop, requesting the first child from the planner.">start()</a></span> on it.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a63fb406777780f866be124e0d9a3914a" id="r_a63fb406777780f866be124e0d9a3914a"><td class="memItemLeft">void *&#160;</td><td class="memItemRight"><a class="el" href="#a63fb406777780f866be124e0d9a3914a">_ctx</a> = nullptr</td></tr>
+<tr class="memdesc:a63fb406777780f866be124e0d9a3914a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opaque context forwarded to planner.  <br /></td></tr>
 <tr class="memitem:a7fce028977a7884d5f691bf998bd951a" id="r_a7fce028977a7884d5f691bf998bd951a"><td class="memItemLeft"><a class="el" href="#a080db919de6fe49a855d4ffebe355591">PlanFn</a>&#160;</td><td class="memItemRight"><a class="el" href="#a7fce028977a7884d5f691bf998bd951a">_plan</a> = nullptr</td></tr>
+<tr class="memdesc:a7fce028977a7884d5f691bf998bd951a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Planning function called at each step transition.  <br /></td></tr>
 <tr class="memitem:a53fd26a439e40539e72b5bffaf824f1c" id="r_a53fd26a439e40539e72b5bffaf824f1c"><td class="memItemLeft"><a class="el" href="class_auto_step.html">AutoStep</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a53fd26a439e40539e72b5bffaf824f1c">_child</a> = nullptr</td></tr>
+<tr class="memdesc:a53fd26a439e40539e72b5bffaf824f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently active child step (NON-OWNING).  <br /></td></tr>
 <tr class="memitem:a047a7aa3cace497214cc7c7af541f6d9" id="r_a047a7aa3cace497214cc7c7af541f6d9"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a047a7aa3cace497214cc7c7af541f6d9">_done</a> = false</td></tr>
+<tr class="memdesc:a047a7aa3cace497214cc7c7af541f6d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when the planning loop has completed.  <br /></td></tr>
 </table>
-<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Drives a looping planning function that supplies child steps on demand. </p>
+<p>The planner function (<span class="tt"><a class="el" href="#a080db919de6fe49a855d4ffebe355591" title="Signature of the planning function: AutoStep* plan(void* context).">PlanFn</a></span>) is called after each child step finishes; returning <span class="tt">nullptr</span> signals that the sequence is complete. </p>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a080db919de6fe49a855d4ffebe355591" name="a080db919de6fe49a855d4ffebe355591"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a080db919de6fe49a855d4ffebe355591">&#9670;&#160;</a></span>PlanFn</h2>
 
@@ -141,6 +157,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Signature of the planning function: <span class="tt">AutoStep* plan(void* context)</span>. </p>
 
 </div>
 </div>
@@ -172,6 +190,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Construct the <a class="el" href="class_replan_step.html" title="Drives a looping planning function that supplies child steps on demand.">ReplanStep</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>Opaque context pointer forwarded to the planner. </td></tr>
+    <tr><td class="paramname">fn</td><td>Planning function called at each transition. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -197,6 +224,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>End the currently active child (if any) and mark this step done. </p>
 
 <p>Implements <a class="el" href="class_auto_step.html#a36d96a7aeb7e62c1ba43190cfefc332f">AutoStep</a>.</p>
 
@@ -224,6 +253,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> after the planner returns <span class="tt">nullptr</span> or <span class="tt"><a class="el" href="#a3fb9e8668be16a0a44e5f5ab1dc7d343" title="End the currently active child (if any) and mark this step done.">end()</a></span> is called. </dd></dl>
 
 <p>Implements <a class="el" href="class_auto_step.html#a1467cdd23fa5efe9204461f6ddbfbf13">AutoStep</a>.</p>
 
@@ -251,6 +281,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Begin the loop, requesting the first child from the planner. </p>
 
 <p>Implements <a class="el" href="class_auto_step.html#a0dace1a4298ea06591cd179bb1c53288">AutoStep</a>.</p>
 <div class="dynheader">
@@ -284,6 +316,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Ask the planner for the next step and call <span class="tt"><a class="el" href="#af8631fda4bde9ee13dcb310941959414" title="Begin the loop, requesting the first child from the planner.">start()</a></span> on it. </p>
+
 </div>
 </div>
 <a id="a67f7d1e5350a956dc73094517de32f8f" name="a67f7d1e5350a956dc73094517de32f8f"></a>
@@ -308,6 +342,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Tick the active child; when it finishes, request the next one. </p>
 
 <p>Implements <a class="el" href="class_auto_step.html#a294cc7e911ef0300e62dd5df10f2eec9">AutoStep</a>.</p>
 <div class="dynheader">
@@ -339,6 +375,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Currently active child step (NON-OWNING). </p>
+
 </div>
 </div>
 <a id="a63fb406777780f866be124e0d9a3914a" name="a63fb406777780f866be124e0d9a3914a"></a>
@@ -360,6 +398,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Opaque context forwarded to planner. </p>
 
 </div>
 </div>
@@ -383,6 +423,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>True when the planning loop has completed. </p>
+
 </div>
 </div>
 <a id="a7fce028977a7884d5f691bf998bd951a" name="a7fce028977a7884d5f691bf998bd951a"></a>
@@ -404,6 +446,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Planning function called at each step transition. </p>
 
 </div>
 </div>

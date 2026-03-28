@@ -91,6 +91,9 @@ $(function(){initNavTree('_shooter_8hpp.html','',''); });
   <div class="headertitle"><div class="title">Shooter.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Rack-and-pinion block shooter subsystem.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_subsystem_8h_source.html">Subsystem.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_servo_control_8hpp_source.html">Devices/ServoControl.hpp</a>&quot;</code><br />
@@ -108,7 +111,7 @@ Include dependency graph for Shooter.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_shooter_8hpp__dep__incl.svg" width="608" height="288"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_shooter_8hpp__dep__incl.svg" width="788" height="288"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_shooter_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -116,8 +119,18 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Shooter" id="r_Shooter"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_shooter.html">Shooter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rack-and-pinion block shooter controlled by encoder feedback.  <a href="class_shooter.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Rack-and-pinion block shooter subsystem. </p>
+<p>The <a class="el" href="class_shooter.html" title="Rack-and-pinion block shooter controlled by encoder feedback.">Shooter</a> drives a DC motor through a rack-and-pinion mechanism to fire foam blocks from the robot. It supports four operating modes:</p><ul>
+<li><b>POSITION</b> — closed-loop encoder position control (used for priming and firing).</li>
+<li><b>VELOCITY</b> — closed-loop encoder velocity control.</li>
+<li><b>AUTO</b> — autofire state machine: waits for a block on <span class="tt">block_switch</span>, settles, fires, then re-primes automatically.</li>
+<li><b>OFF/TEST</b> — open-loop (coast or fixed power).</li>
+</ul>
+<p>The motor is tuned with a nonlinear feedforward via <span class="tt"><a class="el" href="group__pid__constants.html#ga9c109a40745570b32ae051c909ab5a7c" title="Nonlinear feedforward for the shooter position controller.">shooterFF()</a></span> from <a class="el" href="_config_8hpp.html" title="Central configuration: pin assignments, physical constants, and PID gains.">Config.hpp</a>. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

@@ -91,13 +91,16 @@ $(function(){initNavTree('_strategy_controller_step_8hpp.html','',''); });
   <div class="headertitle"><div class="title">StrategyControllerStep.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>High-level <span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> that runs the full strategy loop inline.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_auto_step_8h_source.html">Autonomous/AutoStep.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_strategy_8hpp_source.html">utils/Strategy.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_robot_8hpp_source.html">Robot.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for StrategyControllerStep.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_strategy_controller_step_8hpp__incl.svg" width="4614" height="656"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_strategy_controller_step_8hpp__incl.svg" width="5058" height="656"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_strategy_controller_step_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -105,8 +108,13 @@ Include dependency graph for StrategyControllerStep.hpp:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:StrategyControllerStep" id="r_StrategyControllerStep"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_strategy_controller_step.html">StrategyControllerStep</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inline strategy state machine that decides, scans, mines, stores, and crafts.  <a href="class_strategy_controller_step.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>High-level <span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> that runs the full strategy loop inline. </p>
+<p>Rather than delegating to sub-steps, this step embeds the entire DECIDE → GOTO_SCAN → SCAN → MINE → STORE → CRAFT state machine inside a single <span class="tt">update()</span>. It never finishes (<span class="tt">isFinished()</span> always returns <span class="tt">false</span>) so it must be stopped externally.</p>
+<dl class="section note"><dt>Note</dt><dd>Stub implementations of <span class="tt">detectBlock()</span>, <span class="tt">mineBlock()</span>, <span class="tt">indexBlock()</span>, <span class="tt">rejectBlock()</span>, and <span class="tt">runCraftSequence()</span> must be replaced with real sensor/subsystem calls before competition use. </dd></dl>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

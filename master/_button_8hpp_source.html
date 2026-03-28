@@ -91,66 +91,64 @@ $(function(){initNavTree('_button_8hpp_source.html','',''); });
   <div class="headertitle"><div class="title">Button.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_button_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="foldopen" id="foldopen00004" data-start="{" data-end="};">
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="class_button.html">    4</a></span><span class="keyword">class </span><a class="code hl_function" href="class_button.html#a62bf06885bb7e8e8e10320394469142e">Button</a></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>{</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="comment">// adcPin: analog pin (e.g., A0)</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="comment">// vref: ADC reference voltage in volts (default 5.0)</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="comment">// adcMax: ADC max reading (1023 for 10-bit AVR; 4095 for 12-bit)</span></div>
-<div class="foldopen" id="foldopen00010" data-start="{" data-end="}">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_button.html#a62bf06885bb7e8e8e10320394469142e">   10</a></span>    <a class="code hl_function" href="class_button.html#a62bf06885bb7e8e8e10320394469142e">Button</a>(uint8_t pin)</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        : <a class="code hl_variable" href="class_button.html#a31439d27a60b3b8b6de132859affcff3">_pin</a>(pin)</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    }</div>
-</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_button.html#a3bcee333474dfe20a2f30cc0b4f9dbba">   18</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_button.html#a3bcee333474dfe20a2f30cc0b4f9dbba">init</a>()</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        pinMode(<a class="code hl_variable" href="class_button.html#a31439d27a60b3b8b6de132859affcff3">_pin</a>, INPUT_PULLUP);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    }</div>
-</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
-<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_button.html#ad8e030c1c8846d43f3126047d4a3667f">   26</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_button.html#ad8e030c1c8846d43f3126047d4a3667f">update</a>()</div>
+<a href="_button_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span></div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_button.html">   18</a></span><span class="keyword">class </span><a class="code hl_function" href="class_button.html#a62bf06885bb7e8e8e10320394469142e">Button</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="}">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_button.html#a62bf06885bb7e8e8e10320394469142e">   25</a></span>    <a class="code hl_function" href="class_button.html#a62bf06885bb7e8e8e10320394469142e">Button</a>(uint8_t pin)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        : <a class="code hl_variable" href="class_button.html#a31439d27a60b3b8b6de132859affcff3">_pin</a>(pin)</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="comment">//XOR operator for reversed case</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <a class="code hl_variable" href="class_button.html#a5106c52aa7936bcdb336eb3d8900ba64">_isOn</a> = digitalRead(<a class="code hl_variable" href="class_button.html#a31439d27a60b3b8b6de132859affcff3">_pin</a>) ^ <a class="code hl_variable" href="class_button.html#acb7e84fac937419a742317130b4ca81d">reversed</a>;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
 </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
-<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="class_button.html#ad7e68018d5e3e2a7f003f85088c2dca7">   35</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_button.html#ad7e68018d5e3e2a7f003f85088c2dca7">getReading</a>(){</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="class_button.html#a5106c52aa7936bcdb336eb3d8900ba64">_isOn</a>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_button.html#a3bcee333474dfe20a2f30cc0b4f9dbba">   33</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_button.html#a3bcee333474dfe20a2f30cc0b4f9dbba">init</a>()</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        pinMode(<a class="code hl_variable" href="class_button.html#a31439d27a60b3b8b6de132859affcff3">_pin</a>, INPUT_PULLUP);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
 </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_button.html#a1dd09fcb787a13a17df86634e667e88a">   39</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_button.html#a1dd09fcb787a13a17df86634e667e88a">reverse</a>(){</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <a class="code hl_variable" href="class_button.html#acb7e84fac937419a742317130b4ca81d">reversed</a> = !<a class="code hl_variable" href="class_button.html#acb7e84fac937419a742317130b4ca81d">reversed</a>;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="class_button.html#ad8e030c1c8846d43f3126047d4a3667f">   41</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_button.html#ad8e030c1c8846d43f3126047d4a3667f">update</a>()</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="comment">//XOR operator for reversed case</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <a class="code hl_variable" href="class_button.html#a5106c52aa7936bcdb336eb3d8900ba64">_isOn</a> = digitalRead(<a class="code hl_variable" href="class_button.html#a31439d27a60b3b8b6de132859affcff3">_pin</a>) ^ <a class="code hl_variable" href="class_button.html#acb7e84fac937419a742317130b4ca81d">reversed</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
 </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="class_button.html#a31439d27a60b3b8b6de132859affcff3">   46</a></span>    uint8_t <a class="code hl_variable" href="class_button.html#a31439d27a60b3b8b6de132859affcff3">_pin</a>;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_button.html#a5106c52aa7936bcdb336eb3d8900ba64">   47</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_button.html#a5106c52aa7936bcdb336eb3d8900ba64">_isOn</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="class_button.html#acb7e84fac937419a742317130b4ca81d">   48</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_button.html#acb7e84fac937419a742317130b4ca81d">reversed</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_button.html#ad7e68018d5e3e2a7f003f85088c2dca7">   50</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_button.html#ad7e68018d5e3e2a7f003f85088c2dca7">getReading</a>(){</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="class_button.html#a5106c52aa7936bcdb336eb3d8900ba64">_isOn</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
 </div>
-<div class="ttc" id="aclass_button_html_a1dd09fcb787a13a17df86634e667e88a"><div class="ttname"><a href="class_button.html#a1dd09fcb787a13a17df86634e667e88a">Button::reverse</a></div><div class="ttdeci">void reverse()</div><div class="ttdef"><b>Definition</b> Button.hpp:39</div></div>
-<div class="ttc" id="aclass_button_html_a31439d27a60b3b8b6de132859affcff3"><div class="ttname"><a href="class_button.html#a31439d27a60b3b8b6de132859affcff3">Button::_pin</a></div><div class="ttdeci">uint8_t _pin</div><div class="ttdef"><b>Definition</b> Button.hpp:46</div></div>
-<div class="ttc" id="aclass_button_html_a3bcee333474dfe20a2f30cc0b4f9dbba"><div class="ttname"><a href="class_button.html#a3bcee333474dfe20a2f30cc0b4f9dbba">Button::init</a></div><div class="ttdeci">void init()</div><div class="ttdef"><b>Definition</b> Button.hpp:18</div></div>
-<div class="ttc" id="aclass_button_html_a5106c52aa7936bcdb336eb3d8900ba64"><div class="ttname"><a href="class_button.html#a5106c52aa7936bcdb336eb3d8900ba64">Button::_isOn</a></div><div class="ttdeci">bool _isOn</div><div class="ttdef"><b>Definition</b> Button.hpp:47</div></div>
-<div class="ttc" id="aclass_button_html_a62bf06885bb7e8e8e10320394469142e"><div class="ttname"><a href="class_button.html#a62bf06885bb7e8e8e10320394469142e">Button::Button</a></div><div class="ttdeci">Button(uint8_t pin)</div><div class="ttdef"><b>Definition</b> Button.hpp:10</div></div>
-<div class="ttc" id="aclass_button_html_acb7e84fac937419a742317130b4ca81d"><div class="ttname"><a href="class_button.html#acb7e84fac937419a742317130b4ca81d">Button::reversed</a></div><div class="ttdeci">bool reversed</div><div class="ttdef"><b>Definition</b> Button.hpp:48</div></div>
-<div class="ttc" id="aclass_button_html_ad7e68018d5e3e2a7f003f85088c2dca7"><div class="ttname"><a href="class_button.html#ad7e68018d5e3e2a7f003f85088c2dca7">Button::getReading</a></div><div class="ttdeci">bool getReading()</div><div class="ttdef"><b>Definition</b> Button.hpp:35</div></div>
-<div class="ttc" id="aclass_button_html_ad8e030c1c8846d43f3126047d4a3667f"><div class="ttname"><a href="class_button.html#ad8e030c1c8846d43f3126047d4a3667f">Button::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition</b> Button.hpp:26</div></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="class_button.html#a1dd09fcb787a13a17df86634e667e88a">   54</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_button.html#a1dd09fcb787a13a17df86634e667e88a">reverse</a>(){</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <a class="code hl_variable" href="class_button.html#acb7e84fac937419a742317130b4ca81d">reversed</a> = !<a class="code hl_variable" href="class_button.html#acb7e84fac937419a742317130b4ca81d">reversed</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
+</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="class_button.html#a31439d27a60b3b8b6de132859affcff3">   61</a></span>    uint8_t <a class="code hl_variable" href="class_button.html#a31439d27a60b3b8b6de132859affcff3">_pin</a>;         </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="class_button.html#a5106c52aa7936bcdb336eb3d8900ba64">   62</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_button.html#a5106c52aa7936bcdb336eb3d8900ba64">_isOn</a>    = <span class="keyword">false</span>; </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="class_button.html#acb7e84fac937419a742317130b4ca81d">   63</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_button.html#acb7e84fac937419a742317130b4ca81d">reversed</a> = <span class="keyword">false</span>; </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>};</div>
+</div>
+<div class="ttc" id="aclass_button_html_a1dd09fcb787a13a17df86634e667e88a"><div class="ttname"><a href="class_button.html#a1dd09fcb787a13a17df86634e667e88a">Button::reverse</a></div><div class="ttdeci">void reverse()</div><div class="ttdef"><b>Definition</b> Button.hpp:54</div></div>
+<div class="ttc" id="aclass_button_html_a31439d27a60b3b8b6de132859affcff3"><div class="ttname"><a href="class_button.html#a31439d27a60b3b8b6de132859affcff3">Button::_pin</a></div><div class="ttdeci">uint8_t _pin</div><div class="ttdoc">Arduino pin number.</div><div class="ttdef"><b>Definition</b> Button.hpp:61</div></div>
+<div class="ttc" id="aclass_button_html_a3bcee333474dfe20a2f30cc0b4f9dbba"><div class="ttname"><a href="class_button.html#a3bcee333474dfe20a2f30cc0b4f9dbba">Button::init</a></div><div class="ttdeci">void init()</div><div class="ttdef"><b>Definition</b> Button.hpp:33</div></div>
+<div class="ttc" id="aclass_button_html_a5106c52aa7936bcdb336eb3d8900ba64"><div class="ttname"><a href="class_button.html#a5106c52aa7936bcdb336eb3d8900ba64">Button::_isOn</a></div><div class="ttdeci">bool _isOn</div><div class="ttdoc">Debounced (instantaneous) reading, after polarity inversion.</div><div class="ttdef"><b>Definition</b> Button.hpp:62</div></div>
+<div class="ttc" id="aclass_button_html_a62bf06885bb7e8e8e10320394469142e"><div class="ttname"><a href="class_button.html#a62bf06885bb7e8e8e10320394469142e">Button::Button</a></div><div class="ttdeci">Button(uint8_t pin)</div><div class="ttdoc">Construct a button on a given pin.</div><div class="ttdef"><b>Definition</b> Button.hpp:25</div></div>
+<div class="ttc" id="aclass_button_html_acb7e84fac937419a742317130b4ca81d"><div class="ttname"><a href="class_button.html#acb7e84fac937419a742317130b4ca81d">Button::reversed</a></div><div class="ttdeci">bool reversed</div><div class="ttdoc">When true, reading is XOR&#39;d to invert active polarity.</div><div class="ttdef"><b>Definition</b> Button.hpp:63</div></div>
+<div class="ttc" id="aclass_button_html_ad7e68018d5e3e2a7f003f85088c2dca7"><div class="ttname"><a href="class_button.html#ad7e68018d5e3e2a7f003f85088c2dca7">Button::getReading</a></div><div class="ttdeci">bool getReading()</div><div class="ttdef"><b>Definition</b> Button.hpp:50</div></div>
+<div class="ttc" id="aclass_button_html_ad8e030c1c8846d43f3126047d4a3667f"><div class="ttname"><a href="class_button.html#ad8e030c1c8846d43f3126047d4a3667f">Button::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition</b> Button.hpp:41</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

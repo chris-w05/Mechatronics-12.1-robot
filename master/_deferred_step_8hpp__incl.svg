@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="An AutoStep wrapper whose child step is chosen at runtime via a factory.">
 <polygon fill="#999999" stroke="#666666" points="166.75,-74.5 0,-74.5 0,-55.25 166.75,-55.25 166.75,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="83.38" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">src/Autonomous/DeferredStep.hpp</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="_auto_step_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="_auto_step_8h.html" target="_top" xlink:title="Abstract interface that every autonomous step must implement.">
 <polygon fill="white" stroke="#666666" points="115.75,-19.25 51,-19.25 51,0 115.75,0 115.75,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="83.38" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">AutoStep.h</text>
 </a>

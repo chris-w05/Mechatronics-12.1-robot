@@ -1,21 +1,21 @@
 <map id="src/utils/Strategy.hpp" name="src/utils/Strategy.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="214,5,357,31"/>
-<area shape="rect" id="Node000002" href="$_planner_8hpp.html" title=" " alt="" coords="182,168,370,193"/>
+<area shape="rect" id="Node000001" title="Game&#45;state singleton that tracks tool levels, block possession, and scoring logic." alt="" coords="214,5,357,31"/>
+<area shape="rect" id="Node000002" href="$_planner_8hpp.html" title="High&#45;level autonomous planner used with ReplanStep." alt="" coords="182,168,370,193"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,29,91,48,47,63,30,71,20,81,9,101,12,117,25,132,47,144,111,161,184,172,180,175,109,166,45,149,22,136,7,120,4,100,15,77,27,67,45,58,90,43,200,25"/>
-<area shape="rect" id="Node000005" href="$_strategy_controller_step_8hpp.html" title=" " alt="" coords="488,315,670,356"/>
+<area shape="rect" id="Node000005" href="$_strategy_controller_step_8hpp.html" title="High&#45;level AutoStep that runs the full strategy loop inline." alt="" coords="488,315,670,356"/>
 <area shape="poly" id="edge12_Node000001_Node000005" title=" " alt="" coords="373,25,481,44,526,59,555,77,575,105,588,137,595,170,598,204,595,268,586,316,582,313,589,267,592,204,590,171,583,138,570,108,552,81,524,63,480,49,373,31"/>
-<area shape="rect" id="Node000007" href="$_detect_block_8hpp.html" title=" " alt="" coords="30,79,184,120"/>
+<area shape="rect" id="Node000007" href="$_detect_block_8hpp.html" title="AutoStep that samples the color sensor and updates Strategy with the detected block type." alt="" coords="30,79,184,120"/>
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="242,40,153,81,150,76,246,36"/>
-<area shape="rect" id="Node000008" href="$_index_block_8hpp.html" title=" " alt="" coords="208,79,363,120"/>
+<area shape="rect" id="Node000008" href="$_index_block_8hpp.html" title="AutoStep that routes a newly acquired block to the correct hopper slot." alt="" coords="208,79,363,120"/>
 <area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="287,44,288,80,283,78,284,49"/>
-<area shape="rect" id="Node000009" href="$_place_on_table_8hpp.html" title=" " alt="" coords="387,79,541,120"/>
+<area shape="rect" id="Node000009" href="$_place_on_table_8hpp.html" title="AutoStep stub that places a block on the crafting table." alt="" coords="387,79,541,120"/>
 <area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="327,35,422,78,417,79,327,40"/>
-<area shape="rect" id="Node000003" href="$_planner_8cpp.html" title=" " alt="" coords="162,241,350,267"/>
+<area shape="rect" id="Node000003" href="$_planner_8cpp.html" title="Implementation of the autonomous Planner state machine." alt="" coords="162,241,350,267"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="271,206,262,242,257,239,267,210"/>
-<area shape="rect" id="Node000004" href="$_robot_8hpp.html" title=" " alt="" coords="374,241,477,267"/>
+<area shape="rect" id="Node000004" href="$_robot_8hpp.html" title="Top&#45;level robot class that owns all subsystems and the autonomous scheduler." alt="" coords="374,241,477,267"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="316,198,403,240,397,241,315,203"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="463,272,544,315,538,314,462,277"/>
-<area shape="rect" id="Node000006" href="$main_8cpp.html" title=" " alt="" coords="367,322,463,348"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html" title="Arduino entry point — instantiates the Robot and drives the main loop." alt="" coords="367,322,463,348"/>
 <area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="424,281,419,324,415,320,420,284"/>
 <area shape="poly" id="edge7_Node000007_Node000002" title=" " alt="" coords="163,124,253,166,248,168,163,129"/>
 <area shape="poly" id="edge9_Node000008_Node000002" title=" " alt="" coords="283,133,280,168,275,166,280,137"/>

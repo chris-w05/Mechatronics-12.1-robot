@@ -1,0 +1,11 @@
+<map id="DeployRamp" name="DeployRamp">
+<area shape="rect" id="Node000001" title="Calls Miner::deployRamp() in start() and finishes immediately." alt="" coords="26,219,124,245"/>
+<area shape="rect" id="Node000002" href="$class_auto_step.html" title="Pure&#45;virtual base class for all autonomous steps." alt="" coords="5,122,81,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="54,161,74,218,68,219,50,165"/>
+<area shape="rect" id="Node000003" href="$class_miner.html" title="Servo&#45;driven block&#45;mining and ramp&#45;deployment subsystem." alt="" coords="104,122,158,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="119,161,84,220,80,217,114,162"/>
+<area shape="rect" id="Node000004" href="$class_subsystem.html" title="Polymorphic interface for a robot subsystem." alt="" coords="29,5,116,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="86,42,128,121,122,122,84,47"/>
+<area shape="rect" id="Node000005" href="$class_servo_control.html" title="Servo driver with angle clamping, inversion, and deferred writes." alt="" coords="140,5,237,31"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="177,43,139,123,135,121,174,47"/>
+</map>

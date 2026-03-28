@@ -92,6 +92,9 @@ $(function(){initNavTree('class_detect_block_step.html','','class_detect_block_s
 </div><!--header-->
 <div class="contents">
 
+<p>Poll the color sensor for a configurable window, then finish.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_detect_block_8hpp_source.html">DetectBlock.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for DetectBlockStep:</div>
@@ -108,20 +111,29 @@ Collaboration diagram for DetectBlockStep:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af548ef859070a908ce7756ce28ac38a0" id="r_af548ef859070a908ce7756ce28ac38a0"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af548ef859070a908ce7756ce28ac38a0">DetectBlockStep</a> ()</td></tr>
 <tr class="memitem:a832ad59ac2de188a4d4f1d1e139832b5" id="r_a832ad59ac2de188a4d4f1d1e139832b5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a832ad59ac2de188a4d4f1d1e139832b5">start</a> () override</td></tr>
+<tr class="memdesc:a832ad59ac2de188a4d4f1d1e139832b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise any state needed before the step begins running.  <br /></td></tr>
 <tr class="memitem:a99be73eb0fd664d1f30e077972edf43f" id="r_a99be73eb0fd664d1f30e077972edf43f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a99be73eb0fd664d1f30e077972edf43f">update</a> () override</td></tr>
+<tr class="memdesc:a99be73eb0fd664d1f30e077972edf43f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance the step by one control-loop tick.  <br /></td></tr>
 <tr class="memitem:a201c41ed17661cb911433f10690a38a1" id="r_a201c41ed17661cb911433f10690a38a1"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a201c41ed17661cb911433f10690a38a1">isFinished</a> () const override</td></tr>
 <tr class="memitem:a1a771f53b346e1c89569bef42cabc81b" id="r_a1a771f53b346e1c89569bef42cabc81b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1a771f53b346e1c89569bef42cabc81b">end</a> () override</td></tr>
+<tr class="memdesc:a1a771f53b346e1c89569bef42cabc81b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean up resources or subsystem state when the step ends.  <br /></td></tr>
 <tr class="memitem:a96d8308b8ee9cbd33ee5417981449bb8" id="r_a96d8308b8ee9cbd33ee5417981449bb8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a96d8308b8ee9cbd33ee5417981449bb8">configure</a> (unsigned int time)</td></tr>
+<tr class="memdesc:a96d8308b8ee9cbd33ee5417981449bb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the sampling window duration.  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_auto_step"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_auto_step')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_auto_step.html">AutoStep</a></td></tr>
 <tr class="memitem:a9a518d86ca941b4076002a2a1b0052dc inherit pub_methods_class_auto_step" id="r_a9a518d86ca941b4076002a2a1b0052dc"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="class_auto_step.html#a9a518d86ca941b4076002a2a1b0052dc">~AutoStep</a> ()=default</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a79f63fa3ffd40bbec67ebff7c2bf82eb" id="r_a79f63fa3ffd40bbec67ebff7c2bf82eb"><td class="memItemLeft">unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#a79f63fa3ffd40bbec67ebff7c2bf82eb">_checkTimeMs</a> = 100</td></tr>
+<tr class="memdesc:a79f63fa3ffd40bbec67ebff7c2bf82eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color-sensor sampling window (ms).  <br /></td></tr>
 <tr class="memitem:a58ac5dcddfdcd8bd66938eda8fe683e2" id="r_a58ac5dcddfdcd8bd66938eda8fe683e2"><td class="memItemLeft">unsigned long&#160;</td><td class="memItemRight"><a class="el" href="#a58ac5dcddfdcd8bd66938eda8fe683e2">_startTime</a> = 0</td></tr>
+<tr class="memdesc:a58ac5dcddfdcd8bd66938eda8fe683e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">millis() at step start  <br /></td></tr>
 <tr class="memitem:a37758c806642bb0cac150a05e8de4ce6" id="r_a37758c806642bb0cac150a05e8de4ce6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a37758c806642bb0cac150a05e8de4ce6">_isFinished</a> = false</td></tr>
+<tr class="memdesc:a37758c806642bb0cac150a05e8de4ce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">True after the sampling window expires.  <br /></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Poll the color sensor for a configurable window, then finish. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af548ef859070a908ce7756ce28ac38a0" name="af548ef859070a908ce7756ce28ac38a0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af548ef859070a908ce7756ce28ac38a0">&#9670;&#160;</a></span>DetectBlockStep()</h2>
 
@@ -171,6 +183,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Set the sampling window duration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>Duration to poll the sensor (ms). </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a1a771f53b346e1c89569bef42cabc81b" name="a1a771f53b346e1c89569bef42cabc81b"></a>
@@ -195,6 +215,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Clean up resources or subsystem state when the step ends. </p>
 
 <p>Implements <a class="el" href="class_auto_step.html#a36d96a7aeb7e62c1ba43190cfefc332f">AutoStep</a>.</p>
 
@@ -222,6 +244,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> when the step has completed its objective. </dd></dl>
 
 <p>Implements <a class="el" href="class_auto_step.html#a1467cdd23fa5efe9204461f6ddbfbf13">AutoStep</a>.</p>
 
@@ -250,6 +273,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Initialise any state needed before the step begins running. </p>
+
 <p>Implements <a class="el" href="class_auto_step.html#a0dace1a4298ea06591cd179bb1c53288">AutoStep</a>.</p>
 
 </div>
@@ -277,6 +302,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Advance the step by one control-loop tick. </p>
+
 <p>Implements <a class="el" href="class_auto_step.html#a294cc7e911ef0300e62dd5df10f2eec9">AutoStep</a>.</p>
 
 </div>
@@ -302,6 +329,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Color-sensor sampling window (ms). </p>
+
 </div>
 </div>
 <a id="a37758c806642bb0cac150a05e8de4ce6" name="a37758c806642bb0cac150a05e8de4ce6"></a>
@@ -324,6 +353,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>True after the sampling window expires. </p>
+
 </div>
 </div>
 <a id="a58ac5dcddfdcd8bd66938eda8fe683e2" name="a58ac5dcddfdcd8bd66938eda8fe683e2"></a>
@@ -345,6 +376,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>millis() at step start </p>
 
 </div>
 </div>

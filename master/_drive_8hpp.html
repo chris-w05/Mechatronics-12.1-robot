@@ -91,6 +91,9 @@ $(function(){initNavTree('_drive_8hpp.html','',''); });
   <div class="headertitle"><div class="title">Drive.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Differential-drive subsystem: closed-loop wheel control, line following, wall-distance holding, and odometry integration.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_config_8hpp_source.html">Config.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_encoder_wrapper_8hpp_source.html">Devices/EncoderWrapper.hpp</a>&quot;</code><br />
@@ -108,7 +111,7 @@ Include dependency graph for Drive.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_drive_8hpp__dep__incl.svg" width="2368" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_drive_8hpp__dep__incl.svg" width="2628" height="376"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_drive_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -117,7 +120,11 @@ This graph shows which files directly or indirectly include this file:</div>
 Classes</h2></td></tr>
 <tr class="memitem:Drive" id="r_Drive"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_drive.html">Drive</a></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Differential-drive subsystem: closed-loop wheel control, line following, wall-distance holding, and odometry integration. </p>
+<p>The <a class="el" href="class_drive.html">Drive</a> subsystem manages all motion of the robot as a differential drive. It supports several operating modes (see <a class="el" href="class_drive.html#aa63b49a3040de9a78da21e57c86f6ca4">Drive::MODE</a>) selected by calling a set-point method, then calling <span class="tt">update()</span> every loop iteration to execute closed-loop control and advance the odometry estimate.</p>
+<p>Both an encoder-derived (true) pose and a feedforward-derived (desired) pose are maintained so that trajectory-tracking error can be computed. The <a class="el" href="class_ramsete_controller.html">RamseteController</a> optionally corrects heading drift in STRAIGHT and ARC modes. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

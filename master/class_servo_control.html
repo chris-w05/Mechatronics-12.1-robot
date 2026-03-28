@@ -92,14 +92,21 @@ $(function(){initNavTree('class_servo_control.html','','class_servo_control-memb
 </div><!--header-->
 <div class="contents">
 
+<p>Servo driver with angle clamping, inversion, and deferred writes.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_servo_control_8hpp_source.html">ServoControl.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0479151cd623f48f6e54b75b719cb354" id="r_a0479151cd623f48f6e54b75b719cb354"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a0479151cd623f48f6e54b75b719cb354">ServoControl</a> (uint8_t pin, int minAngle=0, int maxAngle=180, bool inverted=false)</td></tr>
+<tr class="memdesc:a0479151cd623f48f6e54b75b719cb354"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the servo wrapper.  <br /></td></tr>
 <tr class="memitem:a7cfdd5bf92748dba7c7051bed0d40d5a" id="r_a7cfdd5bf92748dba7c7051bed0d40d5a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7cfdd5bf92748dba7c7051bed0d40d5a">init</a> ()</td></tr>
+<tr class="memdesc:a7cfdd5bf92748dba7c7051bed0d40d5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attach the servo to its pin and write the initial position.  <br /></td></tr>
 <tr class="memitem:a449a1765fa330469f07b04ad638ec601" id="r_a449a1765fa330469f07b04ad638ec601"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a449a1765fa330469f07b04ad638ec601">update</a> ()</td></tr>
+<tr class="memdesc:a449a1765fa330469f07b04ad638ec601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the target angle to the servo if it has changed. Must be called every loop.  <br /></td></tr>
 <tr class="memitem:a6eaa909d7fce46fdacd4e60946687c39" id="r_a6eaa909d7fce46fdacd4e60946687c39"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6eaa909d7fce46fdacd4e60946687c39">setAngle</a> (int angle)</td></tr>
+<tr class="memdesc:a6eaa909d7fce46fdacd4e60946687c39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the desired servo angle.  <br /></td></tr>
 <tr class="memitem:a2defd773a68ac4a9e6a92b0fc7edcdd1" id="r_a2defd773a68ac4a9e6a92b0fc7edcdd1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a2defd773a68ac4a9e6a92b0fc7edcdd1">getAngle</a> () const</td></tr>
 <tr class="memitem:a62098075007f0354f621824be2d2d993" id="r_a62098075007f0354f621824be2d2d993"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a62098075007f0354f621824be2d2d993">enable</a> ()</td></tr>
 <tr class="memitem:a753bde5a6d0339e8d5c9499f57ca2895" id="r_a753bde5a6d0339e8d5c9499f57ca2895"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a753bde5a6d0339e8d5c9499f57ca2895">disable</a> ()</td></tr>
@@ -108,19 +115,33 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a2fe66c804257b2312e21c15ce92d3f59" id="r_a2fe66c804257b2312e21c15ce92d3f59"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a2fe66c804257b2312e21c15ce92d3f59">clamp</a> (int angle) const</td></tr>
+<tr class="memdesc:a2fe66c804257b2312e21c15ce92d3f59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clamp angle to [_minAngle, _maxAngle].  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:afea954100c639928120a7caa968fa998" id="r_afea954100c639928120a7caa968fa998"><td class="memItemLeft">PWMServo&#160;</td><td class="memItemRight"><a class="el" href="#afea954100c639928120a7caa968fa998">_servo</a></td></tr>
+<tr class="memdesc:afea954100c639928120a7caa968fa998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Underlying PWMServo library object.  <br /></td></tr>
 <tr class="memitem:a3269c01312bed3051379f01455ec2e5c" id="r_a3269c01312bed3051379f01455ec2e5c"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a3269c01312bed3051379f01455ec2e5c">_pin</a></td></tr>
+<tr class="memdesc:a3269c01312bed3051379f01455ec2e5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arduino pin number for servo signal.  <br /></td></tr>
 <tr class="memitem:a8045faa7231e6aefcc3d54d122840ebb" id="r_a8045faa7231e6aefcc3d54d122840ebb"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a8045faa7231e6aefcc3d54d122840ebb">_minAngle</a></td></tr>
+<tr class="memdesc:a8045faa7231e6aefcc3d54d122840ebb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lower bound for angle clamping.  <br /></td></tr>
 <tr class="memitem:a7393eadb8a19a906af47419809773bd7" id="r_a7393eadb8a19a906af47419809773bd7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a7393eadb8a19a906af47419809773bd7">_maxAngle</a></td></tr>
+<tr class="memdesc:a7393eadb8a19a906af47419809773bd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upper bound for angle clamping.  <br /></td></tr>
 <tr class="memitem:a379a08bed28e2e038cde8ba0e632f084" id="r_a379a08bed28e2e038cde8ba0e632f084"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a379a08bed28e2e038cde8ba0e632f084">_targetAngle</a></td></tr>
+<tr class="memdesc:a379a08bed28e2e038cde8ba0e632f084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Angle requested by <a class="el" href="#a6eaa909d7fce46fdacd4e60946687c39" title="Set the desired servo angle.">setAngle()</a>, pending <a class="el" href="#a449a1765fa330469f07b04ad638ec601" title="Write the target angle to the servo if it has changed. Must be called every loop.">update()</a>.  <br /></td></tr>
 <tr class="memitem:aaa3e2debe512bac03fad104f735c3ff9" id="r_aaa3e2debe512bac03fad104f735c3ff9"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aaa3e2debe512bac03fad104f735c3ff9">_currentAngle</a></td></tr>
+<tr class="memdesc:aaa3e2debe512bac03fad104f735c3ff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Angle last written to the servo.  <br /></td></tr>
 <tr class="memitem:ae1c26ea5d90b4ea015d3090ff5c61d92" id="r_ae1c26ea5d90b4ea015d3090ff5c61d92"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae1c26ea5d90b4ea015d3090ff5c61d92">_enabled</a> = true</td></tr>
+<tr class="memdesc:ae1c26ea5d90b4ea015d3090ff5c61d92"><td class="mdescLeft">&#160;</td><td class="mdescRight">When false, <a class="el" href="#a449a1765fa330469f07b04ad638ec601" title="Write the target angle to the servo if it has changed. Must be called every loop.">update()</a> is skipped.  <br /></td></tr>
+<tr class="memitem:acd97eeefc1b8293fb05c913c96be4386" id="r_acd97eeefc1b8293fb05c913c96be4386"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#acd97eeefc1b8293fb05c913c96be4386">_attached</a> = false</td></tr>
+<tr class="memdesc:acd97eeefc1b8293fb05c913c96be4386"><td class="mdescLeft">&#160;</td><td class="mdescRight">True after a successful servo.attach().  <br /></td></tr>
 <tr class="memitem:a32e4c5841576417e7cf0e6313df56cc6" id="r_a32e4c5841576417e7cf0e6313df56cc6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a32e4c5841576417e7cf0e6313df56cc6">_inverted</a></td></tr>
+<tr class="memdesc:a32e4c5841576417e7cf0e6313df56cc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mirror angle around the midpoint when true.  <br /></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Servo driver with angle clamping, inversion, and deferred writes. </p>
+<p>Set a target angle with <span class="tt"><a class="el" href="#a6eaa909d7fce46fdacd4e60946687c39" title="Set the desired servo angle.">setAngle()</a></span>, then call <span class="tt"><a class="el" href="#a449a1765fa330469f07b04ad638ec601" title="Write the target angle to the servo if it has changed. Must be called every loop.">update()</a></span> to send it to the servo hardware. Separating set from send lets multiple setAngle calls within one loop iteration reduce to a single PWM update. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0479151cd623f48f6e54b75b719cb354" name="a0479151cd623f48f6e54b75b719cb354"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0479151cd623f48f6e54b75b719cb354">&#9670;&#160;</a></span>ServoControl()</h2>
 
@@ -158,6 +179,17 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Construct the servo wrapper. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pin</td><td>Arduino PWM pin for the servo signal. </td></tr>
+    <tr><td class="paramname">minAngle</td><td>Minimum allowed servo angle (degrees, default 0). </td></tr>
+    <tr><td class="paramname">maxAngle</td><td>Maximum allowed servo angle (degrees, default 180). </td></tr>
+    <tr><td class="paramname">inverted</td><td>If true, commands are mirrored around the midpoint. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -183,6 +215,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Clamp angle to [_minAngle, _maxAngle]. </p>
 
 </div>
 </div>
@@ -258,6 +292,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>The most recently written servo angle (degrees). </dd></dl>
 
 </div>
 </div>
@@ -283,6 +318,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Attach the servo to its pin and write the initial position. </p>
 
 </div>
 </div>
@@ -333,6 +370,14 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Set the desired servo angle. </p>
+<p>The angle is clamped to [minAngle, maxAngle] before storage. If <span class="tt">inverted</span> was set at construction, the angle is mirrored. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>Target angle in degrees. </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -364,9 +409,35 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Write the target angle to the servo if it has changed. Must be called every loop. </p>
+
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="acd97eeefc1b8293fb05c913c96be4386" name="acd97eeefc1b8293fb05c913c96be4386"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd97eeefc1b8293fb05c913c96be4386">&#9670;&#160;</a></span>_attached</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ServoControl::_attached = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True after a successful servo.attach(). </p>
+
+</div>
+</div>
 <a id="aaa3e2debe512bac03fad104f735c3ff9" name="aaa3e2debe512bac03fad104f735c3ff9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaa3e2debe512bac03fad104f735c3ff9">&#9670;&#160;</a></span>_currentAngle</h2>
 
@@ -386,6 +457,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Angle last written to the servo. </p>
 
 </div>
 </div>
@@ -409,6 +482,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>When false, <a class="el" href="#a449a1765fa330469f07b04ad638ec601" title="Write the target angle to the servo if it has changed. Must be called every loop.">update()</a> is skipped. </p>
+
 </div>
 </div>
 <a id="a32e4c5841576417e7cf0e6313df56cc6" name="a32e4c5841576417e7cf0e6313df56cc6"></a>
@@ -430,6 +505,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Mirror angle around the midpoint when true. </p>
 
 </div>
 </div>
@@ -453,6 +530,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Upper bound for angle clamping. </p>
+
 </div>
 </div>
 <a id="a8045faa7231e6aefcc3d54d122840ebb" name="a8045faa7231e6aefcc3d54d122840ebb"></a>
@@ -474,6 +553,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Lower bound for angle clamping. </p>
 
 </div>
 </div>
@@ -497,6 +578,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Arduino pin number for servo signal. </p>
+
 </div>
 </div>
 <a id="afea954100c639928120a7caa968fa998" name="afea954100c639928120a7caa968fa998"></a>
@@ -519,6 +602,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Underlying PWMServo library object. </p>
+
 </div>
 </div>
 <a id="a379a08bed28e2e038cde8ba0e632f084" name="a379a08bed28e2e038cde8ba0e632f084"></a>
@@ -540,6 +625,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Angle requested by <a class="el" href="#a6eaa909d7fce46fdacd4e60946687c39" title="Set the desired servo angle.">setAngle()</a>, pending <a class="el" href="#a449a1765fa330469f07b04ad638ec601" title="Write the target angle to the servo if it has changed. Must be called every loop.">update()</a>. </p>
 
 </div>
 </div>

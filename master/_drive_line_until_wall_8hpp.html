@@ -91,6 +91,9 @@ $(function(){initNavTree('_drive_line_until_wall_8hpp.html','',''); });
   <div class="headertitle"><div class="title">DriveLineUntilWall.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> that follows a line until the distance sensor reads a target wall distance.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_auto_step_8h_source.html">Autonomous/AutoStep.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_drive_8hpp_source.html">subsystems/Drive.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -109,12 +112,16 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:DriveLineToWallStep" id="r_DriveLineToWallStep"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_drive_line_to_wall_step.html">DriveLineToWallStep</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Follow a line autonomously until the distance sensor indicates a wall at <span class="tt"><a class="el" href="class_drive_line_to_wall_step.html#ac969053552b31ae2144a64a9199c8d8e" title="Wall distance to approach (cm).">_target</a></span> cm.  <a href="class_drive_line_to_wall_step.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:acc6777fe91075b27c52b61f6d15f39f0" id="r_acc6777fe91075b27c52b61f6d15f39f0"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#acc6777fe91075b27c52b61f6d15f39f0">DRIVE_LINE_UNTIL_WALL_STEP_H</a></td></tr>
 </table>
-<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> that follows a line until the distance sensor reads a target wall distance. </p>
+<p>Uses <span class="tt"><a class="el" href="class_drive.html#ac2c3f93a4023f08d901b797b0e90bb04" title="Follow the line sensor while simultaneously holding a fixed wall distance.">Drive::approachAlongLine()</a></span> to combine line-following with distance-sensor feedback. Finishes when the front distance sensor is within 0.5 cm of <span class="tt">targetDistance</span>. </p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
 <a id="acc6777fe91075b27c52b61f6d15f39f0" name="acc6777fe91075b27c52b61f6d15f39f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acc6777fe91075b27c52b61f6d15f39f0">&#9670;&#160;</a></span>DRIVE_LINE_UNTIL_WALL_STEP_H</h2>
 

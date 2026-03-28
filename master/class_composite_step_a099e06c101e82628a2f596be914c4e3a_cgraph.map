@@ -1,11 +1,11 @@
 <map id="CompositeStep::update" name="CompositeStep::update">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,164,106"/>
-<area shape="rect" id="Node000002" href="$class_auto_step.html#a36d96a7aeb7e62c1ba43190cfefc332f" title=" " alt="" coords="232,5,336,31"/>
+<area shape="rect" id="Node000001" title="Advance the step by one control&#45;loop tick." alt="" coords="5,80,164,106"/>
+<area shape="rect" id="Node000002" href="$class_auto_step.html#a36d96a7aeb7e62c1ba43190cfefc332f" title="Clean up resources or subsystem state when the step ends." alt="" coords="232,5,336,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,77,211,40,230,35,225,38,213,45,119,82"/>
 <area shape="rect" id="Node000003" href="$class_auto_step.html#a1467cdd23fa5efe9204461f6ddbfbf13" title=" " alt="" coords="213,55,356,80"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="164,80,200,77,196,79,165,85"/>
-<area shape="rect" id="Node000004" href="$class_composite_step.html#a334a8511affc59f59e0015295bbf216b" title=" " alt="" coords="212,104,357,130"/>
+<area shape="rect" id="Node000004" href="$class_composite_step.html#a334a8511affc59f59e0015295bbf216b" title="Initialise any state needed before the step begins running." alt="" coords="212,104,357,130"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="164,100,199,106,193,107,165,105"/>
-<area shape="rect" id="Node000005" href="$class_auto_step.html#a294cc7e911ef0300e62dd5df10f2eec9" title=" " alt="" coords="223,153,346,179"/>
+<area shape="rect" id="Node000005" href="$class_auto_step.html#a294cc7e911ef0300e62dd5df10f2eec9" title="Advance the step by one control&#45;loop tick." alt="" coords="223,153,346,179"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="119,104,213,140,230,148,225,148,211,145,118,109"/>
 </map>

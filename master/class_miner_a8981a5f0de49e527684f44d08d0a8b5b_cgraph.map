@@ -1,16 +1,20 @@
 <map id="Miner::update" name="Miner::update">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,132,106,158"/>
-<area shape="rect" id="Node000002" href="$class_miner.html#acfbf4c865a8dc5b3b96e9e5322a51ae2" title=" " alt="" coords="188,56,278,82"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,129,153,98,186,87,182,90,155,103,87,134"/>
-<area shape="rect" id="Node000004" href="$class_miner.html#a437a0fdc0f9be6b0ffc27da25ab928b1" title=" " alt="" coords="575,107,746,132"/>
-<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="106,145,292,151,409,149,527,142,589,136,584,136,528,147,409,155,291,156,106,151"/>
-<area shape="rect" id="Node000005" href="$class_miner.html#a26f3ff0ceeae35f37c087bbb17767f17" title=" " alt="" coords="360,107,527,132"/>
-<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="106,139,345,123,344,129,106,144"/>
-<area shape="rect" id="Node000006" href="$class_miner.html#a1e9e4d2f46296b496c59993039786eb4" title=" " alt="" coords="154,208,312,234"/>
-<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="86,156,155,186,187,201,181,202,153,191,85,161"/>
-<area shape="rect" id="Node000003" href="$class_miner.html#a9e800360111af4b673ba51eab5eace0a" title=" " alt="" coords="363,5,524,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="277,56,375,34,370,36,279,61"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="278,69,391,77,528,92,584,103,579,103,527,97,391,82,278,74"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="278,77,375,102,370,103,278,82"/>
-<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="528,117,562,119,557,120,528,122"/>
+<area shape="rect" id="Node000001" title="Update control outputs. Called every loop iteration." alt="" coords="5,183,106,208"/>
+<area shape="rect" id="Node000002" href="$class_miner.html#acfbf4c865a8dc5b3b96e9e5322a51ae2" title="Drive the miner servo to the press&#45;down angle." alt="" coords="214,56,303,82"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,181,101,140,125,118,152,99,201,80,197,83,155,103,128,122,104,144,69,184"/>
+<area shape="rect" id="Node000004" href="$class_miner.html#a9f02a17fa9cd96b2bdd5796b42cbb807" title="Retract the miner servo to clear the dispenser for the next block." alt="" coords="652,107,855,132"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="106,190,322,172,604,142,668,135,663,136,605,147,323,178,107,195"/>
+<area shape="rect" id="Node000005" href="$class_miner.html#a26f3ff0ceeae35f37c087bbb17767f17" title="Internal: transition to OFF mode, reset timers, and immediately retract the miner servo." alt="" coords="424,107,591,132"/>
+<area shape="poly" id="edge10_Node000001_Node000005" title=" " alt="" coords="79,180,113,163,153,149,218,135,285,125,410,118,406,121,286,131,219,140,154,154,115,168,82,184"/>
+<area shape="rect" id="Node000006" href="$class_miner.html#a04f9db708e46ce49b08a98155ccaf251" title="Raise the ramp to the block&#45;catching (LIFT) angle." alt="" coords="168,208,348,234"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="106,199,155,206,150,209,107,204"/>
+<area shape="rect" id="Node000007" href="$class_miner.html#a9aebb2834badb2cc2bc151bcdccabfd0" title="Lower the ramp to the passive (neutral) angle between mining cycles." alt="" coords="154,257,363,283"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="78,206,114,226,155,244,176,252,171,253,153,249,112,230,78,211"/>
+<area shape="rect" id="Node000008" href="$class_miner.html#a0b5a31a12bfa80912aa22cd1e21cde84" title="Stow both the miner servo and the ramp servo in the transport position." alt="" coords="176,307,341,332"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="67,206,103,250,127,274,155,293,167,301,161,300,152,298,124,278,99,254,65,211"/>
+<area shape="rect" id="Node000003" href="$class_miner.html#a6fbd323fb3ceceabde90ca2c3ecb5b16" title=" " alt="" coords="411,5,604,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="302,57,429,33,424,36,304,62"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="303,68,438,76,605,92,670,103,665,104,604,97,438,81,304,73"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="303,75,429,102,424,104,303,80"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="591,117,639,119,634,120,592,122"/>
 </map>

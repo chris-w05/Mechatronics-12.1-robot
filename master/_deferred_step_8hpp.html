@@ -91,6 +91,9 @@ $(function(){initNavTree('_deferred_step_8hpp.html','',''); });
   <div class="headertitle"><div class="title">DeferredStep.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>An <span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> wrapper whose child step is chosen at runtime via a factory.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_auto_step_8h_source.html">AutoStep.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for DeferredStep.hpp:</div>
@@ -108,8 +111,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:DeferredStep" id="r_DeferredStep"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_deferred_step.html">DeferredStep</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a lazily-constructed child step that is created by a factory at <span class="tt"><a class="el" href="class_deferred_step.html#a0910012be5dd063e26b73ae135d19db2" title="Invoke the factory and start the child step.">start()</a></span> time.  <a href="class_deferred_step.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>An <span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> wrapper whose child step is chosen at runtime via a factory. </p>
+<p>Useful when the correct action can only be decided at the moment the step begins — for example, switching from a normal mining sequence to a silverfish-kill sequence based on the color sensor reading seen just before <span class="tt">start()</span> is called.</p>
+<p>The factory function receives a user-supplied context pointer and returns a heap-allocated <span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span>. <span class="tt"><a class="el" href="class_deferred_step.html" title="Wraps a lazily-constructed child step that is created by a factory at start() time.">DeferredStep</a></span> owns the returned child and deletes it on destruction. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

@@ -92,6 +92,9 @@ $(function(){initNavTree('class_fire_step.html','','class_fire_step-members'); }
 </div><!--header-->
 <div class="contents">
 
+<p>Triggers <span class="tt"><a class="el" href="class_shooter.html#a5fe71bafea8937d95cb42ce79127d059" title="Fire one shot by advancing the rack to the next fire position.">Shooter::fire()</a></span> and holds for <span class="tt"><a class="el" href="#a484eda51073321871a24143c1a3fc44c" title="Fire duration (ms).">_time</a></span> ms before calling <span class="tt"><a class="el" href="class_shooter.html#ad6965b56c1412488767a25f5069c2979" title="Stop the shooter (Subsystem interface — identical to stopFiring()).">Shooter::stop()</a></span>.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_fire_step_8hpp_source.html">FireStep.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for FireStep:</div>
@@ -107,22 +110,33 @@ Collaboration diagram for FireStep:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af12596f47f468ceba52329dd2c7b2cfa" id="r_af12596f47f468ceba52329dd2c7b2cfa"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af12596f47f468ceba52329dd2c7b2cfa">FireStep</a> (<a class="el" href="class_shooter.html">Shooter</a> &amp;shooter, unsigned long time, bool reversed)</td></tr>
+<tr class="memdesc:af12596f47f468ceba52329dd2c7b2cfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the fire step.  <br /></td></tr>
 <tr class="memitem:a4dc9fdcf822ccf628d6bc95ef8ff5c90" id="r_a4dc9fdcf822ccf628d6bc95ef8ff5c90"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4dc9fdcf822ccf628d6bc95ef8ff5c90">start</a> () override</td></tr>
+<tr class="memdesc:a4dc9fdcf822ccf628d6bc95ef8ff5c90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise any state needed before the step begins running.  <br /></td></tr>
 <tr class="memitem:a7034a71fd1897bc0e47ad68e65222e91" id="r_a7034a71fd1897bc0e47ad68e65222e91"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7034a71fd1897bc0e47ad68e65222e91">update</a> () override</td></tr>
+<tr class="memdesc:a7034a71fd1897bc0e47ad68e65222e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance the step by one control-loop tick.  <br /></td></tr>
 <tr class="memitem:a8aade64f2f13932ca7a17155366e80f4" id="r_a8aade64f2f13932ca7a17155366e80f4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a8aade64f2f13932ca7a17155366e80f4">isFinished</a> () const override</td></tr>
 <tr class="memitem:a7b5fd185bfe84f2b1480978c460c1642" id="r_a7b5fd185bfe84f2b1480978c460c1642"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7b5fd185bfe84f2b1480978c460c1642">end</a> () override</td></tr>
+<tr class="memdesc:a7b5fd185bfe84f2b1480978c460c1642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean up resources or subsystem state when the step ends.  <br /></td></tr>
 <tr class="memitem:a8b4f51fb3c01bff9deeb88782370d926" id="r_a8b4f51fb3c01bff9deeb88782370d926"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8b4f51fb3c01bff9deeb88782370d926">configure</a> (long time, bool reversed)</td></tr>
+<tr class="memdesc:a8b4f51fb3c01bff9deeb88782370d926"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-configure the step for reuse.  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_auto_step"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_auto_step')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_auto_step.html">AutoStep</a></td></tr>
 <tr class="memitem:a9a518d86ca941b4076002a2a1b0052dc inherit pub_methods_class_auto_step" id="r_a9a518d86ca941b4076002a2a1b0052dc"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="class_auto_step.html#a9a518d86ca941b4076002a2a1b0052dc">~AutoStep</a> ()=default</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a95102753d95e8f8bcd02332bbd46de44" id="r_a95102753d95e8f8bcd02332bbd46de44"><td class="memItemLeft"><a class="el" href="class_shooter.html">Shooter</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a95102753d95e8f8bcd02332bbd46de44">_shooter</a></td></tr>
+<tr class="memdesc:a95102753d95e8f8bcd02332bbd46de44"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_shooter.html" title="Rack-and-pinion block shooter controlled by encoder feedback.">Shooter</a> subsystem reference.  <br /></td></tr>
 <tr class="memitem:a484eda51073321871a24143c1a3fc44c" id="r_a484eda51073321871a24143c1a3fc44c"><td class="memItemLeft">unsigned long&#160;</td><td class="memItemRight"><a class="el" href="#a484eda51073321871a24143c1a3fc44c">_time</a> = 0</td></tr>
+<tr class="memdesc:a484eda51073321871a24143c1a3fc44c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fire duration (ms).  <br /></td></tr>
 <tr class="memitem:ae81cdfa5a213629e74b183b9f41f12b7" id="r_ae81cdfa5a213629e74b183b9f41f12b7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae81cdfa5a213629e74b183b9f41f12b7">_reversed</a> = false</td></tr>
+<tr class="memdesc:ae81cdfa5a213629e74b183b9f41f12b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverse-fire flag (reserved, unused).  <br /></td></tr>
 <tr class="memitem:ae06f0e40ee027e07f1c187ffa2be9c1c" id="r_ae06f0e40ee027e07f1c187ffa2be9c1c"><td class="memItemLeft">long&#160;</td><td class="memItemRight"><a class="el" href="#ae06f0e40ee027e07f1c187ffa2be9c1c">_startTime</a> = 0</td></tr>
+<tr class="memdesc:ae06f0e40ee027e07f1c187ffa2be9c1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">millis() at step start  <br /></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Triggers <span class="tt"><a class="el" href="class_shooter.html#a5fe71bafea8937d95cb42ce79127d059" title="Fire one shot by advancing the rack to the next fire position.">Shooter::fire()</a></span> and holds for <span class="tt"><a class="el" href="#a484eda51073321871a24143c1a3fc44c" title="Fire duration (ms).">_time</a></span> ms before calling <span class="tt"><a class="el" href="class_shooter.html#ad6965b56c1412488767a25f5069c2979" title="Stop the shooter (Subsystem interface — identical to stopFiring()).">Shooter::stop()</a></span>. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af12596f47f468ceba52329dd2c7b2cfa" name="af12596f47f468ceba52329dd2c7b2cfa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af12596f47f468ceba52329dd2c7b2cfa">&#9670;&#160;</a></span>FireStep()</h2>
 
@@ -155,6 +169,16 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Construct the fire step. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">shooter</td><td><a class="el" href="class_shooter.html" title="Rack-and-pinion block shooter controlled by encoder feedback.">Shooter</a> subsystem reference. </td></tr>
+    <tr><td class="paramname">time</td><td>Duration to hold the fire command (ms). </td></tr>
+    <tr><td class="paramname">reversed</td><td>Reserved for future reverse-fire support (unused). </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -185,6 +209,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Re-configure the step for reuse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>New fire duration (ms). </td></tr>
+    <tr><td class="paramname">reversed</td><td>Reverse-fire flag (unused). </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a7b5fd185bfe84f2b1480978c460c1642" name="a7b5fd185bfe84f2b1480978c460c1642"></a>
@@ -209,6 +242,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Clean up resources or subsystem state when the step ends. </p>
 
 <p>Implements <a class="el" href="class_auto_step.html#a36d96a7aeb7e62c1ba43190cfefc332f">AutoStep</a>.</p>
 
@@ -236,6 +271,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> when the step has completed its objective. </dd></dl>
 
 <p>Implements <a class="el" href="class_auto_step.html#a1467cdd23fa5efe9204461f6ddbfbf13">AutoStep</a>.</p>
 
@@ -264,6 +300,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Initialise any state needed before the step begins running. </p>
+
 <p>Implements <a class="el" href="class_auto_step.html#a0dace1a4298ea06591cd179bb1c53288">AutoStep</a>.</p>
 
 </div>
@@ -291,6 +329,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Advance the step by one control-loop tick. </p>
+
 <p>Implements <a class="el" href="class_auto_step.html#a294cc7e911ef0300e62dd5df10f2eec9">AutoStep</a>.</p>
 
 </div>
@@ -316,6 +356,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Reverse-fire flag (reserved, unused). </p>
+
 </div>
 </div>
 <a id="a95102753d95e8f8bcd02332bbd46de44" name="a95102753d95e8f8bcd02332bbd46de44"></a>
@@ -337,6 +379,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p><a class="el" href="class_shooter.html" title="Rack-and-pinion block shooter controlled by encoder feedback.">Shooter</a> subsystem reference. </p>
 
 </div>
 </div>
@@ -360,6 +404,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>millis() at step start </p>
+
 </div>
 </div>
 <a id="a484eda51073321871a24143c1a3fc44c" name="a484eda51073321871a24143c1a3fc44c"></a>
@@ -381,6 +427,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Fire duration (ms). </p>
 
 </div>
 </div>

@@ -92,6 +92,9 @@ $(function(){initNavTree('class_dual_motor_controller.html','','class_dual_motor
 </div><!--header-->
 <div class="contents">
 
+<p>Dual-channel closed-loop motor controller.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_dual_motor_controller_8hpp_source.html">DualMotorController.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for DualMotorController:</div>
@@ -148,7 +151,10 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a767a6016c0b002dc93a7834833007b56" id="r_a767a6016c0b002dc93a7834833007b56"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a767a6016c0b002dc93a7834833007b56">_target2</a> = 0.0</td></tr>
 <tr class="memitem:ad0d04f9846019ff711034f38064a32de" id="r_ad0d04f9846019ff711034f38064a32de"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad0d04f9846019ff711034f38064a32de">slewRateLimiter</a> = 800</td></tr>
 </table>
-<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Dual-channel closed-loop motor controller. </p>
+<p>Wraps two independent <a class="el" href="class_p_i_d_controller.html" title="Full-featured PID controller with anti-windup, output filtering, and optional nonlinear extensions.">PIDController</a> instances driving an L298N motor shield. Supports position and velocity control modes, optional motor direction reversal, a configurable slew-rate limiter, and a suite of feedforward / nonlinear gain injection helpers. </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
 <a id="a0fb641701baf557c494a3ee083e0b396" name="a0fb641701baf557c494a3ee083e0b396"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0fb641701baf557c494a3ee083e0b396">&#9670;&#160;</a></span>ControlMode</h2>
 
@@ -326,7 +332,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the constants of the <a class="el" href="class_p_i_d.html">PID</a> controller for one motor to a stuct of constants</p>
+<p>Set the constants of the <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller for one motor to a stuct of constants</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">consts</td><td>The values to set kp, ki, and kd to </td></tr>
@@ -363,7 +369,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set the constants of both <a class="el" href="class_p_i_d.html">PID</a> controllers</p>
+<p>Set the constants of both <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controllers</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">consts</td><td>The values to set kp, ki, and kd for M1 </td></tr>
@@ -400,7 +406,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Sets a <a class="el" href="class_p_i_d.html">PID</a> constant (index) to a specificed value (value) </p>
+<p>Sets a <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> constant (index) to a specificed value (value) </p>
 
 </div>
 </div>
@@ -846,7 +852,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set a target value for the motor controller's <a class="el" href="class_p_i_d.html">PID</a> loop. This is unitless as units are handled by the implementation of the <a class="el" href="class_p_i_d.html">PID</a> controller</p>
+<p>Set a target value for the motor controller's <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> loop. This is unitless as units are handled by the implementation of the <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">targetM1</td><td>Desired value for M1 </td></tr>
@@ -914,12 +920,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Update the <a class="el" href="class_p_i_d.html">PID</a> control loop for motor controller</p>
+<p>Update the <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> control loop for motor controller</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">current_value</td><td>The current state of motor 1 (position/velocity/etc.) </td></tr>
     <tr><td class="paramname">current_value</td><td>The current time derivative of motor 1 (position/velocity/etc.) </td></tr>
-    <tr><td class="paramname">motor</td><td>Which motor to update the <a class="el" href="class_p_i_d.html">PID</a> control for. 0 for M1, 1 for M2 </td></tr>
+    <tr><td class="paramname">motor</td><td>Which motor to update the <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> control for. 0 for M1, 1 for M2 </td></tr>
   </table>
   </dd>
 </dl>
@@ -978,7 +984,7 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Update the <a class="el" href="class_p_i_d.html">PID</a> control loop for motor controller</p>
+<p>Update the <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> control loop for motor controller</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">current_value1</td><td>The current state of motor 1 (position/velocity/etc.) </td></tr>

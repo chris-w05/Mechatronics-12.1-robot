@@ -1,11 +1,11 @@
 <map id="Planner::planNext" name="Planner::planNext">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,131,80"/>
-<area shape="rect" id="Node000002" href="$class_strategy.html#a2c7a2f138418db83f7854fe41ef5a608" title=" " alt="" coords="185,5,331,31"/>
+<area shape="rect" id="Node000001" title="Return the next step to execute, or nullptr when the routine is done." alt="" coords="5,55,131,80"/>
+<area shape="rect" id="Node000002" href="$class_strategy.html#a2c7a2f138418db83f7854fe41ef5a608" title="Access the global Strategy singleton." alt="" coords="185,5,331,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,52,193,34,189,37,121,57"/>
-<area shape="rect" id="Node000003" href="$class_strategy.html#a7d2dd7244d23d87e8a92f71d4604f09c" title=" " alt="" coords="183,55,333,80"/>
+<area shape="rect" id="Node000003" href="$class_strategy.html#a7d2dd7244d23d87e8a92f71d4604f09c" title="Return the current scoring cycle target." alt="" coords="183,55,333,80"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="131,65,170,67,165,68,132,70"/>
-<area shape="rect" id="Node000004" href="$class_strategy.html#a092d38e843967a4aadeb79f42550acd9" title=" " alt="" coords="179,104,337,130"/>
+<area shape="rect" id="Node000004" href="$class_strategy.html#a092d38e843967a4aadeb79f42550acd9" title="Return whether the robot has collected the full set of blocks needed to score." alt="" coords="179,104,337,130"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="121,78,193,98,188,100,120,84"/>
-<area shape="rect" id="Node000005" href="$class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235" title=" " alt="" coords="385,96,558,137"/>
+<area shape="rect" id="Node000005" href="$class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235" title="Return the highest block type that can be mined with the current pickaxe." alt="" coords="385,96,558,137"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="337,114,372,117,367,117,337,119"/>
 </map>

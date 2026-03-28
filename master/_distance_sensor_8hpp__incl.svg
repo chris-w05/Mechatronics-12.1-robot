@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Driver for the Sharp GP2Y0A51SK0F short&#45;range IR distance sensor (2–15 cm).">
 <polygon fill="#999999" stroke="#666666" points="159.25,-74.5 0,-74.5 0,-55.25 159.25,-55.25 159.25,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="79.62" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">src/Devices/DistanceSensor.hpp</text>
 </a>

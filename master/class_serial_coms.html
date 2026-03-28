@@ -92,6 +92,9 @@ $(function(){initNavTree('class_serial_coms.html','','class_serial_coms-members'
 </div><!--header-->
 <div class="contents">
 
+<p>Newline-delimited ASCII command receiver for Arduino-to-Arduino comms.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_serial_coms_8hpp_source.html">SerialComs.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for SerialComs:</div>
@@ -107,29 +110,44 @@ Collaboration diagram for SerialComs:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a05012ea9d2040c9fa6fe46109ea4e141" id="r_a05012ea9d2040c9fa6fe46109ea4e141"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a05012ea9d2040c9fa6fe46109ea4e141">SerialComs</a> (HardwareSerial &amp;serialPort)</td></tr>
+<tr class="memdesc:a05012ea9d2040c9fa6fe46109ea4e141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the <a class="el" href="class_serial_coms.html" title="Newline-delimited ASCII command receiver for Arduino-to-Arduino comms.">SerialComs</a> subsystem.  <br /></td></tr>
 <tr class="memitem:a020c40d0470b985397e66a325b5f6c7b" id="r_a020c40d0470b985397e66a325b5f6c7b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a020c40d0470b985397e66a325b5f6c7b">init</a> () override</td></tr>
+<tr class="memdesc:a020c40d0470b985397e66a325b5f6c7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise the subsystem (call once in <span class="tt"><a class="el" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup() — called once on power-on or reset.">setup()</a></span>).  <br /></td></tr>
 <tr class="memitem:a879cc06e5d975d938f41f7968fd79e76" id="r_a879cc06e5d975d938f41f7968fd79e76"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a879cc06e5d975d938f41f7968fd79e76">update</a> () override</td></tr>
+<tr class="memdesc:a879cc06e5d975d938f41f7968fd79e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-blocking read — call every loop tick.  <br /></td></tr>
 <tr class="memitem:a7cdb167ced4de6f85c8fa8c83cacb3a8" id="r_a7cdb167ced4de6f85c8fa8c83cacb3a8"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7cdb167ced4de6f85c8fa8c83cacb3a8">hasCommand</a> () const</td></tr>
 <tr class="memitem:ac009583f7300708180e895ae121cb22f" id="r_ac009583f7300708180e895ae121cb22f"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="#ac009583f7300708180e895ae121cb22f">getCommand</a> ()</td></tr>
+<tr class="memdesc:ac009583f7300708180e895ae121cb22f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the latest command string and clear the pending flag.  <br /></td></tr>
 <tr class="memitem:ab039b2a10e84e79ed3522981790b3107" id="r_ab039b2a10e84e79ed3522981790b3107"><td class="memItemLeft">char&#160;</td><td class="memItemRight"><a class="el" href="#ab039b2a10e84e79ed3522981790b3107">getCommandChar</a> ()</td></tr>
+<tr class="memdesc:ab039b2a10e84e79ed3522981790b3107"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the first character of the latest command and clear the flag.  <br /></td></tr>
 <tr class="memitem:a6d95cf164e1d6fb0da427d87ab535659" id="r_a6d95cf164e1d6fb0da427d87ab535659"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6d95cf164e1d6fb0da427d87ab535659">send</a> (const char *msg)</td></tr>
+<tr class="memdesc:a6d95cf164e1d6fb0da427d87ab535659"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit a message over the serial port (appends a newline).  <br /></td></tr>
 <tr class="memitem:a8f112a45b92f8e37834b61ca600011c2" id="r_a8f112a45b92f8e37834b61ca600011c2"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a8f112a45b92f8e37834b61ca600011c2">stop</a> () override</td></tr>
+<tr class="memdesc:a8f112a45b92f8e37834b61ca600011c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the subsystem (no-op for <a class="el" href="class_serial_coms.html" title="Newline-delimited ASCII command receiver for Arduino-to-Arduino comms.">SerialComs</a>).  <br /></td></tr>
 <tr class="memitem:a58a9efc79345c06bb1fd6520ca584889" id="r_a58a9efc79345c06bb1fd6520ca584889"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a58a9efc79345c06bb1fd6520ca584889">parseCmdWithOptionalFloat</a> (const char *cmdStr, char &amp;outCmd, float &amp;outParam, bool &amp;outParamIsValid)</td></tr>
+<tr class="memdesc:a58a9efc79345c06bb1fd6520ca584889"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a command letter followed by an optional float parameter.  <br /></td></tr>
 <tr class="memitem:a3a39fe60f923af65e7cba58c799da4f2" id="r_a3a39fe60f923af65e7cba58c799da4f2"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a3a39fe60f923af65e7cba58c799da4f2">parseCmdWithUpToTwoFloats</a> (const char *cmdStr, char &amp;outCmd, float &amp;outP1, bool &amp;outP1Valid, float &amp;outP2, bool &amp;outP2Valid)</td></tr>
+<tr class="memdesc:a3a39fe60f923af65e7cba58c799da4f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a command letter followed by up to two optional float parameters.  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_subsystem"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_subsystem')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_subsystem.html">Subsystem</a></td></tr>
 <tr class="memitem:a97b47fc51947d7bf43aafc0efc4ec926 inherit pub_methods_class_subsystem" id="r_a97b47fc51947d7bf43aafc0efc4ec926"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="class_subsystem.html#a97b47fc51947d7bf43aafc0efc4ec926">~Subsystem</a> ()=default</td></tr>
 <tr class="memitem:a65e3db9a6b9eff35e5cd87a2a33cd5e6 inherit pub_methods_class_subsystem" id="r_a65e3db9a6b9eff35e5cd87a2a33cd5e6"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="class_subsystem.html#a65e3db9a6b9eff35e5cd87a2a33cd5e6">isHealthy</a> () const</td></tr>
+<tr class="memdesc:a65e3db9a6b9eff35e5cd87a2a33cd5e6 inherit pub_methods_class_subsystem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report whether the subsystem is operating nominally.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:add9e76347118e34a87bc26f248b19ea9" id="r_add9e76347118e34a87bc26f248b19ea9"><td class="memItemLeft">static const uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#add9e76347118e34a87bc26f248b19ea9">MAX_CMD_LEN</a> = 32</td></tr>
+<tr class="memdesc:add9e76347118e34a87bc26f248b19ea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum bytes in a single command (including NUL).  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a3c315c83f61c7131eb58268e9c31a196" id="r_a3c315c83f61c7131eb58268e9c31a196"><td class="memItemLeft">HardwareSerial &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a3c315c83f61c7131eb58268e9c31a196">_serial</a></td></tr>
+<tr class="memdesc:a3c315c83f61c7131eb58268e9c31a196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hardware serial port used for TX and RX.  <br /></td></tr>
 <tr class="memitem:a8e73b08b5f136de18d29d9b8eee9b7aa" id="r_a8e73b08b5f136de18d29d9b8eee9b7aa"><td class="memItemLeft">char&#160;</td><td class="memItemRight"><a class="el" href="#a8e73b08b5f136de18d29d9b8eee9b7aa">_buffer</a> [<a class="el" href="#add9e76347118e34a87bc26f248b19ea9">MAX_CMD_LEN</a>]</td></tr>
+<tr class="memdesc:a8e73b08b5f136de18d29d9b8eee9b7aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accumulation buffer for the in-progress command.  <br /></td></tr>
 <tr class="memitem:a3187f8a865d0075075fa8d627d2c58f0" id="r_a3187f8a865d0075075fa8d627d2c58f0"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a3187f8a865d0075075fa8d627d2c58f0">_bufLen</a></td></tr>
+<tr class="memdesc:a3187f8a865d0075075fa8d627d2c58f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of bytes currently in <span class="tt"><a class="el" href="#a8e73b08b5f136de18d29d9b8eee9b7aa" title="Accumulation buffer for the in-progress command.">_buffer</a></span>.  <br /></td></tr>
 <tr class="memitem:a674b96c58c1f5a0a8578e836c4a99b06" id="r_a674b96c58c1f5a0a8578e836c4a99b06"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a674b96c58c1f5a0a8578e836c4a99b06">_hasCommand</a></td></tr>
+<tr class="memdesc:a674b96c58c1f5a0a8578e836c4a99b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when a complete command is ready to be read.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -137,10 +155,15 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a4d43587077a29fd21f4766e376b16c6d inherit pro_methods_class_subsystem" id="r_a4d43587077a29fd21f4766e376b16c6d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="class_subsystem.html#a4d43587077a29fd21f4766e376b16c6d">Subsystem</a> ()=default</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_serial_coms.html">SerialComs</a></p>
-<p>Simple command receiver for Arduino-to-Arduino communication. Commands are newline-terminated ASCII strings.</p>
-<p>Usage: <a class="el" href="class_serial_coms.html">SerialComs</a> serialComs(Serial1); serialComs.init(); // in loop: serialComs.update(); if (serialComs.hasCommand()) { const char *cmd = serialComs.getCommand(); // or char c = serialComs.getCommandChar(); } </p>
-</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<div class="textblock"><p>Newline-delimited ASCII command receiver for Arduino-to-Arduino comms. </p>
+<p>Commands are ASCII strings terminated by <span class="tt">\n</span> (or <span class="tt">\r</span>, normalised to <span class="tt">\n</span>). Buffer overflow silently discards the malformed frame and resets for the next one.</p>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a05012ea9d2040c9fa6fe46109ea4e141">SerialComs</a> com(Serial1);</div>
+<div class="line">com.init();</div>
+<div class="line"><span class="comment">// in loop:</span></div>
+<div class="line">com.update();</div>
+<div class="line"><span class="keywordflow">if</span> (com.hasCommand()) Serial.println(com.getCommand());</div>
+<div class="ttc" id="aclass_serial_coms_html_a05012ea9d2040c9fa6fe46109ea4e141"><div class="ttname"><a href="#a05012ea9d2040c9fa6fe46109ea4e141">SerialComs::SerialComs</a></div><div class="ttdeci">SerialComs(HardwareSerial &amp;serialPort)</div><div class="ttdoc">Construct the SerialComs subsystem.</div><div class="ttdef"><b>Definition</b> SerialComs.hpp:43</div></div>
+</div><!-- fragment --> </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a05012ea9d2040c9fa6fe46109ea4e141" name="a05012ea9d2040c9fa6fe46109ea4e141"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a05012ea9d2040c9fa6fe46109ea4e141">&#9670;&#160;</a></span>SerialComs()</h2>
 
@@ -163,9 +186,11 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Construct the <a class="el" href="class_serial_coms.html" title="Newline-delimited ASCII command receiver for Arduino-to-Arduino comms.">SerialComs</a> subsystem. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">serial</td><td>Reference to a HardwareSerial (Serial, Serial1, etc) </td></tr>
+    <tr><td class="paramname">serialPort</td><td>Reference to the <span class="tt">HardwareSerial</span> port to listen on. The caller is responsible for calling <span class="tt">begin()</span> on it. </td></tr>
   </table>
   </dd>
 </dl>
@@ -195,7 +220,10 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the latest command string (pointer). Calling this clears the command flag. </p>
+
+<p>Return the latest command string and clear the pending flag. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the internal null-terminated command buffer. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The pointer is valid until the next call to <span class="tt"><a class="el" href="#a879cc06e5d975d938f41f7968fd79e76" title="Non-blocking read — call every loop tick.">update()</a></span>. </dd></dl>
 
 </div>
 </div>
@@ -221,7 +249,9 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Convenience: return the first char of the latest command (or 0 if none). Clears the command flag. </p>
+
+<p>Return the first character of the latest command and clear the flag. </p>
+<dl class="section return"><dt>Returns</dt><dd>First character of the command, or <span class="tt">0</span> if no command was pending. </dd></dl>
 
 </div>
 </div>
@@ -247,7 +277,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>true if a new command is available </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if a complete command is waiting to be read. </dd></dl>
 
 </div>
 </div>
@@ -273,7 +303,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Call once in <a class="el" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup()</a> </p>
+
+<p>Initialise the subsystem (call once in <span class="tt"><a class="el" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup() — called once on power-on or reset.">setup()</a></span>). </p>
 
 <p>Implements <a class="el" href="class_subsystem.html#a77a984e8a06bfebb924a6e7ba4f98363">Subsystem</a>.</p>
 
@@ -315,8 +346,19 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Parse a single-char command optionally followed by a numeric parameter. Accepts formats like: D 10 D:10 D,10 D10</p>
-<p>Returns true if a command was parsed. If a numeric parameter exists, outParamIsValid is true and outParam contains it. </p>
+
+<p>Parse a command letter followed by an optional float parameter. </p>
+<p>Accepts separators: space, comma, colon, or no separator. Examples: <span class="tt">"D 10"</span>, <span class="tt">"D:10"</span>, <span class="tt">"D,10"</span>, <span class="tt">"D10"</span>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmdStr</td><td>Null-terminated command string to parse. </td></tr>
+    <tr><td class="paramname">outCmd</td><td>Output: the leading command character. </td></tr>
+    <tr><td class="paramname">outParam</td><td>Output: the parsed float parameter (0 if absent). </td></tr>
+    <tr><td class="paramname">outParamIsValid</td><td>Output: <span class="tt">true</span> if a numeric parameter was found. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if at least a command character was successfully parsed. </dd></dl>
 
 </div>
 </div>
@@ -366,11 +408,21 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Parse a single-char command optionally followed by up to TWO numeric parameters. Accepts formats like: D 10 20 D:10,20 D,10,20 D10 20 D10,20</p>
-<p>Returns true if a command was parsed.</p><ul>
-<li>If param1 exists: outP1Valid=true and outP1 set.</li>
-<li>If param2 exists: outP2Valid=true and outP2 set. </li>
-</ul>
+
+<p>Parse a command letter followed by up to two optional float parameters. </p>
+<p>Accepts separators: space, comma, colon, or tab. Examples: <span class="tt">"D 10 20"</span>, <span class="tt">"D:10,20"</span>, <span class="tt">"D10,20"</span>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmdStr</td><td>Null-terminated command string to parse. </td></tr>
+    <tr><td class="paramname">outCmd</td><td>Output: the leading command character. </td></tr>
+    <tr><td class="paramname">outP1</td><td>Output: first numeric parameter (0 if absent). </td></tr>
+    <tr><td class="paramname">outP1Valid</td><td>Output: <span class="tt">true</span> if the first parameter was parsed. </td></tr>
+    <tr><td class="paramname">outP2</td><td>Output: second numeric parameter (0 if absent). </td></tr>
+    <tr><td class="paramname">outP2Valid</td><td>Output: <span class="tt">true</span> if the second parameter was parsed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if at least a command character was successfully parsed. </dd></dl>
 
 </div>
 </div>
@@ -396,7 +448,14 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Send a message back (adds newline). </p>
+
+<p>Transmit a message over the serial port (appends a newline). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>Null-terminated string to send. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -422,6 +481,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Stop the subsystem (no-op for <a class="el" href="class_serial_coms.html" title="Newline-delimited ASCII command receiver for Arduino-to-Arduino comms.">SerialComs</a>). </p>
 
 <p>Reimplemented from <a class="el" href="class_subsystem.html#a6193d71849f3ed79e30ea867a66609d1">Subsystem</a>.</p>
 
@@ -449,8 +510,9 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Call periodically in <a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop()</a> Non-blocking. Buffers up to MAX_CMD_LEN-1 chars and sets a flag when newline ('<br  />
-') is seen. Processes at most one complete command per call (returns after setting _hasCommand). </p>
+
+<p>Non-blocking read — call every loop tick. </p>
+<p>Accumulates incoming characters. Sets <span class="tt"><a class="el" href="#a674b96c58c1f5a0a8578e836c4a99b06" title="True when a complete command is ready to be read.">_hasCommand</a></span> and returns after receiving one complete newline-terminated frame. </p>
 
 <p>Implements <a class="el" href="class_subsystem.html#a09fe9b3aa0f2d95453db41605412ec59">Subsystem</a>.</p>
 
@@ -477,6 +539,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Accumulation buffer for the in-progress command. </p>
+
 </div>
 </div>
 <a id="a3187f8a865d0075075fa8d627d2c58f0" name="a3187f8a865d0075075fa8d627d2c58f0"></a>
@@ -498,6 +562,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Number of bytes currently in <span class="tt"><a class="el" href="#a8e73b08b5f136de18d29d9b8eee9b7aa" title="Accumulation buffer for the in-progress command.">_buffer</a></span>. </p>
 
 </div>
 </div>
@@ -521,6 +587,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>True when a complete command is ready to be read. </p>
+
 </div>
 </div>
 <a id="a3c315c83f61c7131eb58268e9c31a196" name="a3c315c83f61c7131eb58268e9c31a196"></a>
@@ -543,6 +611,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Hardware serial port used for TX and RX. </p>
+
 </div>
 </div>
 <a id="add9e76347118e34a87bc26f248b19ea9" name="add9e76347118e34a87bc26f248b19ea9"></a>
@@ -564,6 +634,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Maximum bytes in a single command (including NUL). </p>
 
 </div>
 </div>

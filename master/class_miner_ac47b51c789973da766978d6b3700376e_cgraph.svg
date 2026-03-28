@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Start mining indefinitely. Use stopMining() or hit&#45;count exhaustion to stop.">
 <polygon fill="#999999" stroke="#666666" points="141.25,-19.25 0,-19.25 0,0 141.25,0 141.25,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="70.62" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Miner::startMiningIndefinitely</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_miner.html#a2621577e4088181556df1c3141bb6a10" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_miner.html#a2621577e4088181556df1c3141bb6a10" target="_top" xlink:title="Internal transition to MINING mode; resets all hit and cycle counters.">
 <polygon fill="white" stroke="#666666" points="271.25,-19.25 177.25,-19.25 177.25,0 271.25,0 271.25,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="224.25" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Miner::startMining</text>
 </a>

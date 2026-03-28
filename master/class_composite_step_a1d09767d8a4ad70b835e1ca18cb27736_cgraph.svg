@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_composite_step.html#ac5080cd1d836958420a57dce4d3e6c45" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_composite_step.html#ac5080cd1d836958420a57dce4d3e6c45" target="_top" xlink:title="Construct from an array of step pointers (ownership transferred).">
 <polygon fill="white" stroke="#666666" points="326,-19.25 169,-19.25 169,0 326,0 326,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="247.5" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">CompositeStep::CompositeStep</text>
 </a>

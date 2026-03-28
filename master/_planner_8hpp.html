@@ -91,6 +91,9 @@ $(function(){initNavTree('_planner_8hpp.html','',''); });
   <div class="headertitle"><div class="title">Planner.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>High-level autonomous planner used with <span class="tt"><a class="el" href="class_replan_step.html" title="Drives a looping planning function that supplies child steps on demand.">ReplanStep</a></span>.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_auto_step_8h_source.html">AutoStep.h</a>&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_drive_8hpp_source.html">subsystems/Drive.hpp</a>&quot;</code><br />
@@ -124,8 +127,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Planner" id="r_Planner"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_planner.html">Planner</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Phase-based autonomous planner compatible with <span class="tt"><a class="el" href="class_replan_step.html" title="Drives a looping planning function that supplies child steps on demand.">ReplanStep</a></span>.  <a href="class_planner.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>High-level autonomous planner used with <span class="tt"><a class="el" href="class_replan_step.html" title="Drives a looping planning function that supplies child steps on demand.">ReplanStep</a></span>. </p>
+<p><span class="tt"><a class="el" href="class_planner.html" title="Phase-based autonomous planner compatible with ReplanStep.">Planner</a></span> implements a simple phase-based state machine that coordinates driving, detecting blocks, mining, indexing, and scoring. It pre-allocates all step objects as members (no heap allocation during the match) and exposes a <span class="tt">planNext()</span> function compatible with <span class="tt"><a class="el" href="class_replan_step.html#a080db919de6fe49a855d4ffebe355591" title="Signature of the planning function: AutoStep* plan(void* context).">ReplanStep::PlanFn</a></span>.</p>
+<p>Phases progress in order: DRIVE_TO_SCAN → DETECT → DECIDE_AND_ACT → INDEX → DRIVE_TO_TABLE → PLACE → ADVANCE → DONE </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

@@ -1,5 +1,5 @@
 <map id="src/Autonomous/ReplanStep.hpp" name="src/Autonomous/ReplanStep.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,219,31"/>
-<area shape="rect" id="Node000002" href="$_auto_step_8h.html" title=" " alt="" coords="69,79,155,105"/>
+<area shape="rect" id="Node000001" title="An AutoStep that repeatedly queries a planner for the next child step." alt="" coords="5,5,219,31"/>
+<area shape="rect" id="Node000002" href="$_auto_step_8h.html" title="Abstract interface that every autonomous step must implement." alt="" coords="69,79,155,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,29,114,64,110,62,110,33"/>
 </map>

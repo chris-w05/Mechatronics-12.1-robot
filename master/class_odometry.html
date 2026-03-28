@@ -92,6 +92,9 @@ $(function(){initNavTree('class_odometry.html','','class_odometry-members'); });
 </div><!--header-->
 <div class="contents">
 
+<p>Tracks robot pose by integrating encoder wheel displacements.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_odometry_8hpp_source.html">Odometry.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Odometry:</div>
@@ -102,25 +105,45 @@ Collaboration diagram for Odometry:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Pose2D" id="r_Pose2D"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_odometry_1_1_pose2_d.html">Pose2D</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">2-D robot pose.  <a href="struct_odometry_1_1_pose2_d.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac8aca552eafc03237d49dab351927414" id="r_ac8aca552eafc03237d49dab351927414"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac8aca552eafc03237d49dab351927414">init</a> (const <a class="el" href="struct_odometry_1_1_pose2_d.html">Pose2D</a> &amp;pose)</td></tr>
+<tr class="memdesc:ac8aca552eafc03237d49dab351927414"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise odometry with a known starting pose.  <br /></td></tr>
 <tr class="memitem:a51d87cd00227cc922d9514ec92088cc0" id="r_a51d87cd00227cc922d9514ec92088cc0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a51d87cd00227cc922d9514ec92088cc0">update</a> (<a class="el" href="class_encoder_wrapper.html">EncoderWrapper</a> &amp;left, <a class="el" href="class_encoder_wrapper.html">EncoderWrapper</a> &amp;right)</td></tr>
+<tr class="memdesc:a51d87cd00227cc922d9514ec92088cc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update pose from live encoder objects.  <br /></td></tr>
 <tr class="memitem:a8638403536a5950982511f3adf603d13" id="r_a8638403536a5950982511f3adf603d13"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8638403536a5950982511f3adf603d13">update</a> (float dLeftPosition, float dRightPosition)</td></tr>
+<tr class="memdesc:a8638403536a5950982511f3adf603d13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update pose from incremental wheel displacements.  <br /></td></tr>
 <tr class="memitem:abf45ffc8dd1ebbebb7ca1c9d303589ed" id="r_abf45ffc8dd1ebbebb7ca1c9d303589ed"><td class="memItemLeft"><a class="el" href="struct_odometry_1_1_pose2_d.html">Pose2D</a>&#160;</td><td class="memItemRight"><a class="el" href="#abf45ffc8dd1ebbebb7ca1c9d303589ed">getPose</a> () const</td></tr>
+<tr class="memdesc:abf45ffc8dd1ebbebb7ca1c9d303589ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current estimated pose.  <br /></td></tr>
 <tr class="memitem:a67b44e464ab3e6d237e216739fc11b76" id="r_a67b44e464ab3e6d237e216739fc11b76"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a67b44e464ab3e6d237e216739fc11b76">distanceTravelled</a> ()</td></tr>
+<tr class="memdesc:a67b44e464ab3e6d237e216739fc11b76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the total arc-length travelled since <span class="tt"><a class="el" href="#ac8aca552eafc03237d49dab351927414" title="Initialise odometry with a known starting pose.">init()</a></span> (path-dependent).  <br /></td></tr>
 <tr class="memitem:a87432aac6e39c5db7d99515c7cd14f8f" id="r_a87432aac6e39c5db7d99515c7cd14f8f"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a87432aac6e39c5db7d99515c7cd14f8f">getAccumulatedHeading</a> () const</td></tr>
+<tr class="memdesc:a87432aac6e39c5db7d99515c7cd14f8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the robot's total heading change since <span class="tt"><a class="el" href="#ac8aca552eafc03237d49dab351927414" title="Initialise odometry with a known starting pose.">init()</a></span> (path-independent).  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:af012c0300e40ec0ee7fd83ec108aba03" id="r_af012c0300e40ec0ee7fd83ec108aba03"><td class="memItemLeft"><a class="el" href="struct_odometry_1_1_pose2_d.html">Pose2D</a>&#160;</td><td class="memItemRight"><a class="el" href="#af012c0300e40ec0ee7fd83ec108aba03">_pose</a> {0.0f, 0.0f, 0.0f}</td></tr>
+<tr class="memdesc:af012c0300e40ec0ee7fd83ec108aba03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current estimated pose.  <br /></td></tr>
 <tr class="memitem:a913203ead0a0628b6b096a189b10df4e" id="r_a913203ead0a0628b6b096a189b10df4e"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a913203ead0a0628b6b096a189b10df4e">_accumulated_heading</a> = 0</td></tr>
+<tr class="memdesc:a913203ead0a0628b6b096a189b10df4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total heading change since init (radians, unwrapped).  <br /></td></tr>
 <tr class="memitem:a7a58f921272d6974b2a33b71f2eb54ad" id="r_a7a58f921272d6974b2a33b71f2eb54ad"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a7a58f921272d6974b2a33b71f2eb54ad">_prevLeftDistance</a> = 0</td></tr>
+<tr class="memdesc:a7a58f921272d6974b2a33b71f2eb54ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last recorded left-wheel absolute position (inches).  <br /></td></tr>
 <tr class="memitem:ae8264ce04773bcb459872622b3e8ddba" id="r_ae8264ce04773bcb459872622b3e8ddba"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ae8264ce04773bcb459872622b3e8ddba">_prevRightDistance</a> = 0</td></tr>
+<tr class="memdesc:ae8264ce04773bcb459872622b3e8ddba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last recorded right-wheel absolute position (inches).  <br /></td></tr>
 <tr class="memitem:a0f7f51408b6f72412436f81a48ff47fa" id="r_a0f7f51408b6f72412436f81a48ff47fa"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a0f7f51408b6f72412436f81a48ff47fa">_distanceTravelled</a> = 0</td></tr>
+<tr class="memdesc:a0f7f51408b6f72412436f81a48ff47fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cumulative path length since init (inches).  <br /></td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Tracks robot pose by integrating encoder wheel displacements. </p>
+<p>Call <span class="tt"><a class="el" href="#ac8aca552eafc03237d49dab351927414" title="Initialise odometry with a known starting pose.">init()</a></span> once with the robot's starting pose, then call one of the <span class="tt"><a class="el" href="#a51d87cd00227cc922d9514ec92088cc0" title="Update pose from live encoder objects.">update()</a></span> overloads every control cycle to integrate wheel travel into a 2-D pose (x, y, heading in radians).</p>
+<p>Coordinate convention:</p><ul>
+<li>+x points in the direction the robot faces at heading = 0.</li>
+<li>+y points 90° counter-clockwise from +x.</li>
+<li>Heading increases counter-clockwise (standard math convention). </li>
+</ul>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a67b44e464ab3e6d237e216739fc11b76" name="a67b44e464ab3e6d237e216739fc11b76"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a67b44e464ab3e6d237e216739fc11b76">&#9670;&#160;</a></span>distanceTravelled()</h2>
 
@@ -143,7 +166,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the total distance travelled by the robot, relative to the starting position. This is path dependent </p>
+
+<p>Return the total arc-length travelled since <span class="tt"><a class="el" href="#ac8aca552eafc03237d49dab351927414" title="Initialise odometry with a known starting pose.">init()</a></span> (path-dependent). </p>
+<dl class="section return"><dt>Returns</dt><dd>Cumulative distance (inches). </dd></dl>
 
 </div>
 </div>
@@ -169,7 +194,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the total number of rotation of the robot, relative to starting. This is path independent </p>
+
+<p>Return the robot's total heading change since <span class="tt"><a class="el" href="#ac8aca552eafc03237d49dab351927414" title="Initialise odometry with a known starting pose.">init()</a></span> (path-independent). </p>
+<p>Unlike <span class="tt"><a class="el" href="#abf45ffc8dd1ebbebb7ca1c9d303589ed" title="Return the current estimated pose.">getPose()</a>.heading</span> this value is NOT wrapped to [-π, π]; it continuously accumulates across multiple full rotations and is useful for tracking the angle swept during arc manoeuvres. </p><dl class="section return"><dt>Returns</dt><dd>Accumulated heading (radians). </dd></dl>
 
 </div>
 </div>
@@ -195,7 +222,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Get the x, y, theta of the robot </p>
+
+<p>Return the current estimated pose. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_odometry_1_1_pose2_d.html" title="2-D robot pose.">Pose2D</a> containing x (in), y (in), and heading (rad). </dd></dl>
 
 </div>
 </div>
@@ -213,6 +242,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initialise odometry with a known starting pose. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pose</td><td>Initial x, y, and heading (inches, radians). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -234,7 +271,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Update the odometry. This will integrate the robot's velocity and heading to track its position in relative coordinates </p>
+
+<p>Update pose from live encoder objects. </p>
+<p>Reads absolute tick counts from both encoders, computes the change since the last call, and integrates into the pose estimate. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td>Left-wheel encoder wrapper. </td></tr>
+    <tr><td class="paramname">right</td><td>Right-wheel encoder wrapper. </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -261,7 +306,15 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Update the odometry using speeds for the left and right wheels </p>
+
+<p>Update pose from incremental wheel displacements. </p>
+<p>Use this overload when the caller has already computed Δdistance for each wheel (e.g. from a desired-velocity integration for the reference trajectory). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dLeftPosition</td><td>Change in left-wheel position since last call (inches). </td></tr>
+    <tr><td class="paramname">dRightPosition</td><td>Change in right-wheel position since last call (inches). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -286,6 +339,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Total heading change since init (radians, unwrapped). </p>
+
 </div>
 </div>
 <a id="a0f7f51408b6f72412436f81a48ff47fa" name="a0f7f51408b6f72412436f81a48ff47fa"></a>
@@ -307,6 +362,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Cumulative path length since init (inches). </p>
 
 </div>
 </div>
@@ -330,6 +387,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Current estimated pose. </p>
+
 </div>
 </div>
 <a id="a7a58f921272d6974b2a33b71f2eb54ad" name="a7a58f921272d6974b2a33b71f2eb54ad"></a>
@@ -352,6 +411,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Last recorded left-wheel absolute position (inches). </p>
+
 </div>
 </div>
 <a id="ae8264ce04773bcb459872622b3e8ddba" name="ae8264ce04773bcb459872622b3e8ddba"></a>
@@ -373,6 +434,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Last recorded right-wheel absolute position (inches). </p>
 
 </div>
 </div>

@@ -91,6 +91,9 @@ $(function(){initNavTree('_robot___commands_8hpp.html','',''); });
   <div class="headertitle"><div class="title">Robot_Commands.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Serial command protocol implementation for the <span class="tt"><a class="el" href="class_robot.html" title="Aggregates all robot subsystems and drives the main control loop.">Robot</a></span> class.  
+<a href="#details">More...</a></p>
 <div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
@@ -98,7 +101,64 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 </div>
 <p><a href="_robot___commands_8hpp_source.html">Go to the source code of this file.</a></p>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Serial command protocol implementation for the <span class="tt"><a class="el" href="class_robot.html" title="Aggregates all robot subsystems and drives the main control loop.">Robot</a></span> class. </p>
+<p>This file is <span class="tt">#include</span>d at the bottom of <a class="el" href="_robot_8hpp.html" title="Top-level robot class that owns all subsystems and the autonomous scheduler.">Robot.hpp</a> — it is <b>not</b> a standalone header. It provides <span class="tt">inline</span> implementations of all the private serial-command methods declared in <span class="tt"><a class="el" href="class_robot.html" title="Aggregates all robot subsystems and drives the main control loop.">Robot</a></span>.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
+Command Protocol Summary</h3>
+<p>Commands are newline-terminated ASCII strings. Two ports are monitored:</p><ul>
+<li><b>USB Serial</b> (<span class="tt">Serial</span>) — direct PC connection.</li>
+<li><b>Serial2</b> — Arduino-to-Arduino via <span class="tt"><a class="el" href="class_serial_coms.html" title="Newline-delimited ASCII command receiver for Arduino-to-Arduino comms.">SerialComs</a></span>.</li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Command  </th><th class="markdownTableHeadNone">Mode  </th><th class="markdownTableHeadNone">Action  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">A</span>  </td><td class="markdownTableBodyNone">Any  </td><td class="markdownTableBodyNone">Start autonomous routine  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">a</span>  </td><td class="markdownTableBodyNone">Any  </td><td class="markdownTableBodyNone">Reset &amp; restart autonomous  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">S</span>  </td><td class="markdownTableBodyNone">Any  </td><td class="markdownTableBodyNone">Enter SERIAL_TEST mode  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">stop</span>  </td><td class="markdownTableBodyNone">Any  </td><td class="markdownTableBodyNone">Stop all subsystems  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Help</span>  </td><td class="markdownTableBodyNone">Any  </td><td class="markdownTableBodyNone">Print this command reference  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">E</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Exit to AWAIT mode  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Mine</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Start miner indefinitely  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">m</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Stop miner (store)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="class_drive.html">Drive</a> &lt;sp&gt;</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Closed-loop drive at sp in/s  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Linefollow [pwm]</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Start line-following  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Distance &lt;d&gt;</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Approach wall at d inches  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Approach &lt;d&gt;</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Approach along line to d inches  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Line &lt;d&gt; &lt;sp&gt;</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Queue <a class="el" href="class_drive_distance.html" title="Drive in a straight line for targetDistance meters at targetVelocity m/s.">DriveDistance</a> step  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Turn &lt;ang&gt; &lt;sp&gt;</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Queue in-place arc turn  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Arc &lt;r&gt; &lt;deg&gt;</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Queue radius-arc step  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">SetPID &lt;v&gt; &lt;i&gt;</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Set drive <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> constant  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Fire</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Start shooter autofire  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">F</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Fire one shot  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">f</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Stop firing, prime shooter  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">p</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Hold shooter position  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">ReadDistance</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Print distance sensor reading  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">ramsete</span>  </td><td class="markdownTableBodyNone">SERIAL_TEST  </td><td class="markdownTableBodyNone">Toggle Ramsete heading correction  </td></tr>
+</table>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

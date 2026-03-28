@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Dual closed&#45;loop motor controller wrapping an L298N driver with two independent PID loops.">
 <polygon fill="#999999" stroke="#666666" points="202.13,-129.75 25.63,-129.75 25.63,-110.5 202.13,-110.5 202.13,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="113.88" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">src/Devices/DualMotorController.hpp</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title="PID controller classes with optional nonlinear extensions and feedforward support.">
 <polygon fill="white" stroke="#666666" points="86.38,-74.5 13.38,-74.5 13.38,-55.25 86.38,-55.25 86.38,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="49.88" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">utils/PID.hpp</text>
 </a>

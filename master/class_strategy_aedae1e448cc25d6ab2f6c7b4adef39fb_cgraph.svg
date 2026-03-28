@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Advance to the next scoring cycle and upgrade the pickaxe if applicable.">
 <polygon fill="#999999" stroke="#666666" points="121,-19.25 0,-19.25 0,0 121,0 121,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="60.5" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::advanceCycle</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_strategy.html#a5fcf479ff2f81b1a527e2f018f37429e" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_strategy.html#a5fcf479ff2f81b1a527e2f018f37429e" target="_top" xlink:title="Clear all possession slots to NONE.">
 <polygon fill="white" stroke="#666666" points="299,-19.25 157,-19.25 157,0 299,0 299,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="228" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::clearAllPossession</text>
 </a>

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Pull the rack back to the primed (loaded) position using POSITION control.">
 <polygon fill="#999999" stroke="#666666" points="79.75,-19.25 0,-19.25 0,0 79.75,0 79.75,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="39.88" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Shooter::prime</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_shooter.html#a1ed9592886f4679cb2805c9857defcf9" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_shooter.html#a1ed9592886f4679cb2805c9857defcf9" target="_top" xlink:title="Compute the encoder target for the primed (pulled&#45;back) position.">
 <polygon fill="white" stroke="#666666" points="251,-19.25 115.75,-19.25 115.75,0 251,0 251,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="183.38" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Shooter::nextPrimePosition</text>
 </a>

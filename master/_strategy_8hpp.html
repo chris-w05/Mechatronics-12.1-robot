@@ -91,6 +91,9 @@ $(function(){initNavTree('_strategy_8hpp.html','',''); });
   <div class="headertitle"><div class="title">Strategy.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Game-state singleton that tracks tool levels, block possession, and scoring logic.  
+<a href="#details">More...</a></p>
 <div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
@@ -102,8 +105,27 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Strategy" id="r_Strategy"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_strategy.html">Strategy</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Game-state manager and strategy decision engine.  <a href="class_strategy.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Game-state singleton that tracks tool levels, block possession, and scoring logic. </p>
+<p><span class="tt"><a class="el" href="class_strategy.html" title="Game-state manager and strategy decision engine.">Strategy</a></span> is a singleton (access via <span class="tt"><a class="el" href="class_strategy.html#a2c7a2f138418db83f7854fe41ef5a608" title="Access the global Strategy singleton.">Strategy::getInstance()</a></span>) that encodes the current game progression:</p><ul>
+<li>Which pickaxe/sword/shield level has been achieved.</li>
+<li>Which blocks are currently carried (Left, Hold, Right slots).</li>
+<li>Which scoring cycle (<span class="tt">CycleType</span>) the robot is working toward.</li>
+<li>Lookup tables for mining hit-counts and maximal minable block per tool level.</li>
+</ul>
+<p>Board index layout (for reference): </p><div class="fragment"><div class="line">          0   1   2</div>
+<div class="line">chest -&gt;  3   4   5  &lt;- start</div>
+<div class="line">          6   7   8</div>
+<div class="line">             mine</div>
+</div><!-- fragment --><p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_function" href="class_strategy.html#a2c7a2f138418db83f7854fe41ef5a608">Strategy::getInstance</a>().<a class="code hl_function" href="class_strategy.html#ad57ad2586324e9a5868efd291c0f9743">setPickaxeLevel</a>(<a class="code hl_enumvalue" href="class_strategy.html#a19816446161238ad27c7c7fdf2174ddeab64add42cefce093b00f333026f59a84">Strategy::STONE_TOOL</a>);</div>
+<div class="line"><span class="keyword">auto</span> maxBlock = <a class="code hl_function" href="class_strategy.html#a2c7a2f138418db83f7854fe41ef5a608">Strategy::getInstance</a>().<a class="code hl_function" href="class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235">getMaxMineableBlock</a>();</div>
+<div class="ttc" id="aclass_strategy_html_a1943002dce146e4c4ab5aeebae9f9235"><div class="ttname"><a href="class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235">Strategy::getMaxMineableBlock</a></div><div class="ttdeci">Block getMaxMineableBlock()</div><div class="ttdoc">Return the highest block type that can be mined with the current pickaxe.</div><div class="ttdef"><b>Definition</b> Strategy.hpp:132</div></div>
+<div class="ttc" id="aclass_strategy_html_a19816446161238ad27c7c7fdf2174ddeab64add42cefce093b00f333026f59a84"><div class="ttname"><a href="class_strategy.html#a19816446161238ad27c7c7fdf2174ddeab64add42cefce093b00f333026f59a84">Strategy::STONE_TOOL</a></div><div class="ttdeci">@ STONE_TOOL</div><div class="ttdoc">Stone pickaxe.</div><div class="ttdef"><b>Definition</b> Strategy.hpp:93</div></div>
+<div class="ttc" id="aclass_strategy_html_a2c7a2f138418db83f7854fe41ef5a608"><div class="ttname"><a href="class_strategy.html#a2c7a2f138418db83f7854fe41ef5a608">Strategy::getInstance</a></div><div class="ttdeci">static Strategy &amp; getInstance()</div><div class="ttdoc">Access the global Strategy singleton.</div><div class="ttdef"><b>Definition</b> Strategy.hpp:122</div></div>
+<div class="ttc" id="aclass_strategy_html_ad57ad2586324e9a5868efd291c0f9743"><div class="ttname"><a href="class_strategy.html#ad57ad2586324e9a5868efd291c0f9743">Strategy::setPickaxeLevel</a></div><div class="ttdeci">void setPickaxeLevel(ToolLevel level)</div><div class="ttdoc">Set the current pickaxe tool level.</div><div class="ttdef"><b>Definition</b> Strategy.hpp:154</div></div>
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

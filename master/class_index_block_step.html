@@ -92,6 +92,9 @@ $(function(){initNavTree('class_index_block_step.html','','class_index_block_ste
 </div><!--header-->
 <div class="contents">
 
+<p>Push the block into the left or right slot of the hopper based on <span class="tt"><a class="el" href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f" title="Routing decision for a newly acquired block.">Strategy::IndexDirection</a></span>.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_index_block_8hpp_source.html">IndexBlock.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for IndexBlockStep:</div>
@@ -107,20 +110,28 @@ Collaboration diagram for IndexBlockStep:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a34f6a9f102fd236b01fef7584a2cc05b" id="r_a34f6a9f102fd236b01fef7584a2cc05b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a34f6a9f102fd236b01fef7584a2cc05b">IndexBlockStep</a> (<a class="el" href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f">Strategy::IndexDirection</a> dir)</td></tr>
+<tr class="memdesc:a34f6a9f102fd236b01fef7584a2cc05b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct with a known index direction.  <br /></td></tr>
 <tr class="memitem:aa453d51337a11b6d5718e82b240b7ae6" id="r_aa453d51337a11b6d5718e82b240b7ae6"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa453d51337a11b6d5718e82b240b7ae6">IndexBlockStep</a> ()</td></tr>
 <tr class="memitem:a929f4e0524c7bb5746ec54adda7a12e0" id="r_a929f4e0524c7bb5746ec54adda7a12e0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a929f4e0524c7bb5746ec54adda7a12e0">start</a> () override</td></tr>
+<tr class="memdesc:a929f4e0524c7bb5746ec54adda7a12e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise any state needed before the step begins running.  <br /></td></tr>
 <tr class="memitem:ae64a6a734c126985adbc7b46d6c503ee" id="r_ae64a6a734c126985adbc7b46d6c503ee"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae64a6a734c126985adbc7b46d6c503ee">update</a> () override</td></tr>
+<tr class="memdesc:ae64a6a734c126985adbc7b46d6c503ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance the step by one control-loop tick.  <br /></td></tr>
 <tr class="memitem:ad7aa9b314da08d79189bcb5b02297138" id="r_ad7aa9b314da08d79189bcb5b02297138"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad7aa9b314da08d79189bcb5b02297138">isFinished</a> () const override</td></tr>
 <tr class="memitem:afb7a3a962ee933cbb0a5e5c6ace0c2d3" id="r_afb7a3a962ee933cbb0a5e5c6ace0c2d3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afb7a3a962ee933cbb0a5e5c6ace0c2d3">end</a> () override</td></tr>
+<tr class="memdesc:afb7a3a962ee933cbb0a5e5c6ace0c2d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean up resources or subsystem state when the step ends.  <br /></td></tr>
 <tr class="memitem:aa80223d74ba9841a367f68ca3c241b5e" id="r_aa80223d74ba9841a367f68ca3c241b5e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa80223d74ba9841a367f68ca3c241b5e">configure</a> (<a class="el" href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f">Strategy::IndexDirection</a> dir)</td></tr>
+<tr class="memdesc:aa80223d74ba9841a367f68ca3c241b5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-configure the index direction for reuse.  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_auto_step"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_auto_step')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_auto_step.html">AutoStep</a></td></tr>
 <tr class="memitem:a9a518d86ca941b4076002a2a1b0052dc inherit pub_methods_class_auto_step" id="r_a9a518d86ca941b4076002a2a1b0052dc"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="class_auto_step.html#a9a518d86ca941b4076002a2a1b0052dc">~AutoStep</a> ()=default</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a9b6d2b2fe722d403fc0043cf3485c233" id="r_a9b6d2b2fe722d403fc0043cf3485c233"><td class="memItemLeft"><a class="el" href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f">Strategy::IndexDirection</a>&#160;</td><td class="memItemRight"><a class="el" href="#a9b6d2b2fe722d403fc0043cf3485c233">_dir</a></td></tr>
+<tr class="memdesc:a9b6d2b2fe722d403fc0043cf3485c233"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index direction resolved by <a class="el" href="class_strategy.html" title="Game-state manager and strategy decision engine.">Strategy</a>.  <br /></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Push the block into the left or right slot of the hopper based on <span class="tt"><a class="el" href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f" title="Routing decision for a newly acquired block.">Strategy::IndexDirection</a></span>. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a34f6a9f102fd236b01fef7584a2cc05b" name="a34f6a9f102fd236b01fef7584a2cc05b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a34f6a9f102fd236b01fef7584a2cc05b">&#9670;&#160;</a></span>IndexBlockStep() <span class="overload">[1/2]</span></h2>
 
@@ -143,6 +154,14 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Construct with a known index direction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dir</td><td>Slot direction: LEFT, RIGHT, or REJECT. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -195,6 +214,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Re-configure the index direction for reuse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dir</td><td>New slot direction. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="afb7a3a962ee933cbb0a5e5c6ace0c2d3" name="afb7a3a962ee933cbb0a5e5c6ace0c2d3"></a>
@@ -219,6 +246,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Clean up resources or subsystem state when the step ends. </p>
 
 <p>Implements <a class="el" href="class_auto_step.html#a36d96a7aeb7e62c1ba43190cfefc332f">AutoStep</a>.</p>
 
@@ -246,6 +275,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> when the step has completed its objective. </dd></dl>
 
 <p>Implements <a class="el" href="class_auto_step.html#a1467cdd23fa5efe9204461f6ddbfbf13">AutoStep</a>.</p>
 
@@ -274,6 +304,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Initialise any state needed before the step begins running. </p>
+
 <p>Implements <a class="el" href="class_auto_step.html#a0dace1a4298ea06591cd179bb1c53288">AutoStep</a>.</p>
 
 </div>
@@ -301,6 +333,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Advance the step by one control-loop tick. </p>
+
 <p>Implements <a class="el" href="class_auto_step.html#a294cc7e911ef0300e62dd5df10f2eec9">AutoStep</a>.</p>
 
 </div>
@@ -325,6 +359,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Index direction resolved by <a class="el" href="class_strategy.html" title="Game-state manager and strategy decision engine.">Strategy</a>. </p>
 
 </div>
 </div>

@@ -92,21 +92,27 @@ $(function(){initNavTree('class_planner.html','','class_planner-members'); });
 </div><!--header-->
 <div class="contents">
 
+<p>Phase-based autonomous planner compatible with <span class="tt"><a class="el" href="class_replan_step.html" title="Drives a looping planning function that supplies child steps on demand.">ReplanStep</a></span>.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_planner_8hpp_source.html">Planner.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Planner:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_planner__coll__graph.svg" width="1191" height="856"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_planner__coll__graph.svg" width="1191" height="718"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a43c10b9425c5af3f0f08943bbcf939a0" id="r_a43c10b9425c5af3f0f08943bbcf939a0"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a43c10b9425c5af3f0f08943bbcf939a0">Planner</a> (<a class="el" href="class_drive.html">Drive</a> &amp;drive, <a class="el" href="class_miner.html">Miner</a> &amp;miner, <a class="el" href="class_shooter.html">Shooter</a> &amp;shooter)</td></tr>
+<tr class="memdesc:a43c10b9425c5af3f0f08943bbcf939a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the planner and bind it to the robot's subsystems.  <br /></td></tr>
 <tr class="memitem:a50d07a4dcbaebf75dbc237d9bf8e4cab" id="r_a50d07a4dcbaebf75dbc237d9bf8e4cab"><td class="memItemLeft"><a class="el" href="class_auto_step.html">AutoStep</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a50d07a4dcbaebf75dbc237d9bf8e4cab">planNext</a> ()</td></tr>
+<tr class="memdesc:a50d07a4dcbaebf75dbc237d9bf8e4cab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the next step to execute, or <span class="tt">nullptr</span> when the routine is done.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ad5f1b4c5013bd25a98368ab8af0f678b" id="r_ad5f1b4c5013bd25a98368ab8af0f678b"><td class="memItemLeft">static <a class="el" href="class_auto_step.html">AutoStep</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ad5f1b4c5013bd25a98368ab8af0f678b">planThunk</a> (void *ctx)</td></tr>
+<tr class="memdesc:ad5f1b4c5013bd25a98368ab8af0f678b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thunk adaptor for use as a <span class="tt"><a class="el" href="class_replan_step.html#a080db919de6fe49a855d4ffebe355591" title="Signature of the planning function: AutoStep* plan(void* context).">ReplanStep::PlanFn</a></span>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
 Private Types</h2></td></tr>
@@ -124,25 +130,43 @@ Private Types</h2></td></tr>
 &#160;&#160;<a class="el" href="#a60a10ee8987af8365cad37d2e88a4974a892da8e726037c751b3969d937e756db">DONE</a>
 <br />
  }</td></tr>
+<tr class="memdesc:a60a10ee8987af8365cad37d2e88a4974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Autonomous execution phase.  <a href="#a60a10ee8987af8365cad37d2e88a4974">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a022a5ecf95df2cde3ed8cda641fc1ad0" id="r_a022a5ecf95df2cde3ed8cda641fc1ad0"><td class="memItemLeft"><a class="el" href="class_drive.html">Drive</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a022a5ecf95df2cde3ed8cda641fc1ad0">_drive</a></td></tr>
+<tr class="memdesc:a022a5ecf95df2cde3ed8cda641fc1ad0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the drive subsystem.  <br /></td></tr>
 <tr class="memitem:a46ff663689b5aa348f40aa09424bc278" id="r_a46ff663689b5aa348f40aa09424bc278"><td class="memItemLeft"><a class="el" href="class_miner.html">Miner</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a46ff663689b5aa348f40aa09424bc278">_miner</a></td></tr>
+<tr class="memdesc:a46ff663689b5aa348f40aa09424bc278"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the miner subsystem.  <br /></td></tr>
 <tr class="memitem:ae9f51e3e2be918c9224a7221dc6dc41a" id="r_ae9f51e3e2be918c9224a7221dc6dc41a"><td class="memItemLeft"><a class="el" href="class_shooter.html">Shooter</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ae9f51e3e2be918c9224a7221dc6dc41a">_shooter</a></td></tr>
+<tr class="memdesc:ae9f51e3e2be918c9224a7221dc6dc41a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the shooter subsystem.  <br /></td></tr>
 <tr class="memitem:a2dab5e6015e0cbe43be74afe6cd8fa61" id="r_a2dab5e6015e0cbe43be74afe6cd8fa61"><td class="memItemLeft"><a class="el" href="#a60a10ee8987af8365cad37d2e88a4974">Phase</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2dab5e6015e0cbe43be74afe6cd8fa61">_phase</a> = <a class="el" href="#a60a10ee8987af8365cad37d2e88a4974afb3815898aa9147ce5d7761b4fa285dd">DRIVE_TO_SCAN</a></td></tr>
+<tr class="memdesc:a2dab5e6015e0cbe43be74afe6cd8fa61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current autonomous execution phase.  <br /></td></tr>
 <tr class="memitem:a7e4bad450b0e6c1c254ac4510fc47510" id="r_a7e4bad450b0e6c1c254ac4510fc47510"><td class="memItemLeft"><a class="el" href="class_strategy.html#a663814f819ef5c9af00e816e95d512b2">Strategy::Block</a>&#160;</td><td class="memItemRight"><a class="el" href="#a7e4bad450b0e6c1c254ac4510fc47510">_detected</a> = <a class="el" href="class_strategy.html#a663814f819ef5c9af00e816e95d512b2aff2b3d1ab2c662df8a33da7da81e2f61">Strategy::Block::NONE</a></td></tr>
+<tr class="memdesc:a7e4bad450b0e6c1c254ac4510fc47510"><td class="mdescLeft">&#160;</td><td class="mdescRight">Block type identified by the detector step.  <br /></td></tr>
 <tr class="memitem:a91cee41dc074cff033f8aa948859752f" id="r_a91cee41dc074cff033f8aa948859752f"><td class="memItemLeft"><a class="el" href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f">Strategy::IndexDirection</a>&#160;</td><td class="memItemRight"><a class="el" href="#a91cee41dc074cff033f8aa948859752f">_slotDecision</a> = <a class="el" href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43fa98b43a5603828f2aef934b44afdf0391">Strategy::IndexDirection::REJECT</a></td></tr>
+<tr class="memdesc:a91cee41dc074cff033f8aa948859752f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indexing decision for the current block.  <br /></td></tr>
 <tr class="memitem:ac0b4fc0ffdcfb4c97b055b80bc234629" id="r_ac0b4fc0ffdcfb4c97b055b80bc234629"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ac0b4fc0ffdcfb4c97b055b80bc234629">_acceptedCount</a> = 0</td></tr>
+<tr class="memdesc:ac0b4fc0ffdcfb4c97b055b80bc234629"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of accepted blocks since last score.  <br /></td></tr>
 <tr class="memitem:add4df0f3fb49db8e7b3a4073ffd8ecf3" id="r_add4df0f3fb49db8e7b3a4073ffd8ecf3"><td class="memItemLeft"><a class="el" href="class_drive_distance.html">DriveDistance</a>&#160;</td><td class="memItemRight"><a class="el" href="#add4df0f3fb49db8e7b3a4073ffd8ecf3">_driveStep</a></td></tr>
+<tr class="memdesc:add4df0f3fb49db8e7b3a4073ffd8ecf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reusable straight-drive step.  <br /></td></tr>
 <tr class="memitem:a5691a49beb863e57bcab7d5a1127e636" id="r_a5691a49beb863e57bcab7d5a1127e636"><td class="memItemLeft"><a class="el" href="class_drive_arc.html">DriveArc</a>&#160;</td><td class="memItemRight"><a class="el" href="#a5691a49beb863e57bcab7d5a1127e636">_driveArcStep</a></td></tr>
+<tr class="memdesc:a5691a49beb863e57bcab7d5a1127e636"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reusable arc-drive step.  <br /></td></tr>
 <tr class="memitem:ad3e6f1a477ef97cd1d8ce4bdbc8bb76e" id="r_ad3e6f1a477ef97cd1d8ce4bdbc8bb76e"><td class="memItemLeft"><a class="el" href="class_follow_line_step.html">FollowLineStep</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad3e6f1a477ef97cd1d8ce4bdbc8bb76e">_followLineStep</a></td></tr>
-<tr class="memitem:a49476c68abacd9362e65c334e195883e" id="r_a49476c68abacd9362e65c334e195883e"><td class="memItemLeft"><a class="el" href="class_mine_block_step.html">MineBlockStep</a>&#160;</td><td class="memItemRight"><a class="el" href="#a49476c68abacd9362e65c334e195883e">_mineStep</a></td></tr>
+<tr class="memdesc:ad3e6f1a477ef97cd1d8ce4bdbc8bb76e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reusable line-follow step.  <br /></td></tr>
+<tr class="memitem:ab44bb590bf943596d5a59755fbfa2fef" id="r_ab44bb590bf943596d5a59755fbfa2fef"><td class="memItemLeft"><a class="el" href="class_mine_block.html">MineBlock</a>&#160;</td><td class="memItemRight"><a class="el" href="#ab44bb590bf943596d5a59755fbfa2fef">_mineStep</a></td></tr>
+<tr class="memdesc:ab44bb590bf943596d5a59755fbfa2fef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reusable mine-block step.  <br /></td></tr>
 <tr class="memitem:aaaceb9cf071482125b36badc2715e7ef" id="r_aaaceb9cf071482125b36badc2715e7ef"><td class="memItemLeft"><a class="el" href="class_index_block_step.html">IndexBlockStep</a>&#160;</td><td class="memItemRight"><a class="el" href="#aaaceb9cf071482125b36badc2715e7ef">_indexStep</a></td></tr>
+<tr class="memdesc:aaaceb9cf071482125b36badc2715e7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reusable block-indexing step.  <br /></td></tr>
 <tr class="memitem:a004c1a06fef26a36c0c6b69da5ef8da5" id="r_a004c1a06fef26a36c0c6b69da5ef8da5"><td class="memItemLeft"><a class="el" href="class_place_on_table_step.html">PlaceOnTableStep</a>&#160;</td><td class="memItemRight"><a class="el" href="#a004c1a06fef26a36c0c6b69da5ef8da5">_placeStep</a></td></tr>
+<tr class="memdesc:a004c1a06fef26a36c0c6b69da5ef8da5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reusable place-on-table step.  <br /></td></tr>
 <tr class="memitem:aba251454ad310304c764d5cd16f95d36" id="r_aba251454ad310304c764d5cd16f95d36"><td class="memItemLeft"><a class="el" href="class_advance_cycle_step.html">AdvanceCycleStep</a>&#160;</td><td class="memItemRight"><a class="el" href="#aba251454ad310304c764d5cd16f95d36">_advanceStep</a></td></tr>
+<tr class="memdesc:aba251454ad310304c764d5cd16f95d36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reusable cycle-advance step.  <br /></td></tr>
 </table>
-<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Phase-based autonomous planner compatible with <span class="tt"><a class="el" href="class_replan_step.html" title="Drives a looping planning function that supplies child steps on demand.">ReplanStep</a></span>. </p>
+<p>Call <span class="tt"><a class="el" href="#ad5f1b4c5013bd25a98368ab8af0f678b" title="Thunk adaptor for use as a ReplanStep::PlanFn.">planThunk()</a></span> as the planning function for <span class="tt"><a class="el" href="class_replan_step.html" title="Drives a looping planning function that supplies child steps on demand.">ReplanStep</a></span> to drive the full autonomous cycle until <span class="tt"><a class="el" href="#a50d07a4dcbaebf75dbc237d9bf8e4cab" title="Return the next step to execute, or nullptr when the routine is done.">planNext()</a></span> returns <span class="tt">nullptr</span>. </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
 <a id="a60a10ee8987af8365cad37d2e88a4974" name="a60a10ee8987af8365cad37d2e88a4974"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a60a10ee8987af8365cad37d2e88a4974">&#9670;&#160;</a></span>Phase</h2>
 
@@ -162,16 +186,27 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Autonomous execution phase. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974afb3815898aa9147ce5d7761b4fa285dd" name="a60a10ee8987af8365cad37d2e88a4974afb3815898aa9147ce5d7761b4fa285dd"></a>DRIVE_TO_SCAN&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974ad9d0f1647246e93d86a262e3edcdf2f6" name="a60a10ee8987af8365cad37d2e88a4974ad9d0f1647246e93d86a262e3edcdf2f6"></a>DETECT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974aea4c127ced47447501d3c069ebffe50b" name="a60a10ee8987af8365cad37d2e88a4974aea4c127ced47447501d3c069ebffe50b"></a>DECIDE_AND_ACT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974a180a6b3c3b65892478ffa3416202fae6" name="a60a10ee8987af8365cad37d2e88a4974a180a6b3c3b65892478ffa3416202fae6"></a>INDEX&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974a29385497e0f644c4898446ac3ce90199" name="a60a10ee8987af8365cad37d2e88a4974a29385497e0f644c4898446ac3ce90199"></a>DRIVE_TO_TABLE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974a02e8cc62565a9da9dcbf8b4ddd7f4646" name="a60a10ee8987af8365cad37d2e88a4974a02e8cc62565a9da9dcbf8b4ddd7f4646"></a>DRIVE_TO_CHEST&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974a29cf7c766df082753ee7eddf8bb9bdeb" name="a60a10ee8987af8365cad37d2e88a4974a29cf7c766df082753ee7eddf8bb9bdeb"></a>PLACE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974a808d8983493a2dc961e3f8ba03a32c18" name="a60a10ee8987af8365cad37d2e88a4974a808d8983493a2dc961e3f8ba03a32c18"></a>ADVANCE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974a892da8e726037c751b3969d937e756db" name="a60a10ee8987af8365cad37d2e88a4974a892da8e726037c751b3969d937e756db"></a>DONE&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974afb3815898aa9147ce5d7761b4fa285dd" name="a60a10ee8987af8365cad37d2e88a4974afb3815898aa9147ce5d7761b4fa285dd"></a>DRIVE_TO_SCAN&#160;</td><td class="fielddoc"><p><a class="el" href="class_drive.html">Drive</a> to the block dispenser scan position. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974ad9d0f1647246e93d86a262e3edcdf2f6" name="a60a10ee8987af8365cad37d2e88a4974ad9d0f1647246e93d86a262e3edcdf2f6"></a>DETECT&#160;</td><td class="fielddoc"><p>Detect which block type is present. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974aea4c127ced47447501d3c069ebffe50b" name="a60a10ee8987af8365cad37d2e88a4974aea4c127ced47447501d3c069ebffe50b"></a>DECIDE_AND_ACT&#160;</td><td class="fielddoc"><p>Mine/interact with the block at the dispenser. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974a180a6b3c3b65892478ffa3416202fae6" name="a60a10ee8987af8365cad37d2e88a4974a180a6b3c3b65892478ffa3416202fae6"></a>INDEX&#160;</td><td class="fielddoc"><p>Route the newly acquired block to the correct slot. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974a29385497e0f644c4898446ac3ce90199" name="a60a10ee8987af8365cad37d2e88a4974a29385497e0f644c4898446ac3ce90199"></a>DRIVE_TO_TABLE&#160;</td><td class="fielddoc"><p><a class="el" href="class_drive.html">Drive</a> to the scoring table. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974a02e8cc62565a9da9dcbf8b4ddd7f4646" name="a60a10ee8987af8365cad37d2e88a4974a02e8cc62565a9da9dcbf8b4ddd7f4646"></a>DRIVE_TO_CHEST&#160;</td><td class="fielddoc"><p><a class="el" href="class_drive.html">Drive</a> to the chest area (future use). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974a29cf7c766df082753ee7eddf8bb9bdeb" name="a60a10ee8987af8365cad37d2e88a4974a29cf7c766df082753ee7eddf8bb9bdeb"></a>PLACE&#160;</td><td class="fielddoc"><p>Place the block on the table. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974a808d8983493a2dc961e3f8ba03a32c18" name="a60a10ee8987af8365cad37d2e88a4974a808d8983493a2dc961e3f8ba03a32c18"></a>ADVANCE&#160;</td><td class="fielddoc"><p>Advance the strategy cycle counter. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a60a10ee8987af8365cad37d2e88a4974a892da8e726037c751b3969d937e756db" name="a60a10ee8987af8365cad37d2e88a4974a892da8e726037c751b3969d937e756db"></a>DONE&#160;</td><td class="fielddoc"><p>All planned actions complete. </p>
+</td></tr>
 </table>
 
 </div>
@@ -209,6 +244,16 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Construct the planner and bind it to the robot's subsystems. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">drive</td><td>Reference to the drive subsystem. </td></tr>
+    <tr><td class="paramname">miner</td><td>Reference to the miner subsystem. </td></tr>
+    <tr><td class="paramname">shooter</td><td>Reference to the shooter subsystem. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -226,6 +271,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Return the next step to execute, or <span class="tt">nullptr</span> when the routine is done. </p>
+<p>Called by <span class="tt"><a class="el" href="class_replan_step.html" title="Drives a looping planning function that supplies child steps on demand.">ReplanStep</a></span> after each child step finishes. Advances the internal phase and returns a pointer to the pre-allocated step object that should run next. </p><dl class="section return"><dt>Returns</dt><dd>Pointer to a pre-allocated <span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span>, or <span class="tt">nullptr</span> when DONE. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -256,6 +304,15 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Thunk adaptor for use as a <span class="tt"><a class="el" href="class_replan_step.html#a080db919de6fe49a855d4ffebe355591" title="Signature of the planning function: AutoStep* plan(void* context).">ReplanStep::PlanFn</a></span>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>Pointer to a <span class="tt"><a class="el" href="class_planner.html" title="Phase-based autonomous planner compatible with ReplanStep.">Planner</a></span> instance (cast internally). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Result of <span class="tt"><a class="el" href="#a50d07a4dcbaebf75dbc237d9bf8e4cab" title="Return the next step to execute, or nullptr when the routine is done.">planNext()</a></span> on the referenced <a class="el" href="class_planner.html" title="Phase-based autonomous planner compatible with ReplanStep.">Planner</a>. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -285,6 +342,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Number of accepted blocks since last score. </p>
+
 </div>
 </div>
 <a id="aba251454ad310304c764d5cd16f95d36" name="aba251454ad310304c764d5cd16f95d36"></a>
@@ -306,6 +365,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Reusable cycle-advance step. </p>
 
 </div>
 </div>
@@ -329,6 +390,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Block type identified by the detector step. </p>
+
 </div>
 </div>
 <a id="a022a5ecf95df2cde3ed8cda641fc1ad0" name="a022a5ecf95df2cde3ed8cda641fc1ad0"></a>
@@ -350,6 +413,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Reference to the drive subsystem. </p>
 
 </div>
 </div>
@@ -373,6 +438,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Reusable arc-drive step. </p>
+
 </div>
 </div>
 <a id="add4df0f3fb49db8e7b3a4073ffd8ecf3" name="add4df0f3fb49db8e7b3a4073ffd8ecf3"></a>
@@ -394,6 +461,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Reusable straight-drive step. </p>
 
 </div>
 </div>
@@ -417,6 +486,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Reusable line-follow step. </p>
+
 </div>
 </div>
 <a id="aaaceb9cf071482125b36badc2715e7ef" name="aaaceb9cf071482125b36badc2715e7ef"></a>
@@ -438,6 +509,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Reusable block-indexing step. </p>
 
 </div>
 </div>
@@ -461,10 +534,12 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Reference to the miner subsystem. </p>
+
 </div>
 </div>
-<a id="a49476c68abacd9362e65c334e195883e" name="a49476c68abacd9362e65c334e195883e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49476c68abacd9362e65c334e195883e">&#9670;&#160;</a></span>_mineStep</h2>
+<a id="ab44bb590bf943596d5a59755fbfa2fef" name="ab44bb590bf943596d5a59755fbfa2fef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab44bb590bf943596d5a59755fbfa2fef">&#9670;&#160;</a></span>_mineStep</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -473,7 +548,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_mine_block_step.html">MineBlockStep</a> Planner::_mineStep</td>
+          <td class="memname"><a class="el" href="class_mine_block.html">MineBlock</a> Planner::_mineStep</td>
         </tr>
       </table>
   </td>
@@ -482,6 +557,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Reusable mine-block step. </p>
 
 </div>
 </div>
@@ -505,6 +582,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Current autonomous execution phase. </p>
+
 </div>
 </div>
 <a id="a004c1a06fef26a36c0c6b69da5ef8da5" name="a004c1a06fef26a36c0c6b69da5ef8da5"></a>
@@ -526,6 +605,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Reusable place-on-table step. </p>
 
 </div>
 </div>
@@ -549,6 +630,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Reference to the shooter subsystem. </p>
+
 </div>
 </div>
 <a id="a91cee41dc074cff033f8aa948859752f" name="a91cee41dc074cff033f8aa948859752f"></a>
@@ -570,6 +653,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Indexing decision for the current block. </p>
 
 </div>
 </div>

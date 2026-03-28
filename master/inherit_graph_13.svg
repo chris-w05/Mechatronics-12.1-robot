@@ -11,7 +11,7 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="class_planner.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="class_planner.html" target="_top" xlink:title="Phase&#45;based autonomous planner compatible with ReplanStep.">
 <polygon fill="white" stroke="#666666" points="49,-19.25 0,-19.25 0,0 49,0 49,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="24.5" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Planner</text>
 </a>

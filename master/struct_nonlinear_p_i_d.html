@@ -92,18 +92,27 @@ $(function(){initNavTree('struct_nonlinear_p_i_d.html','','struct_nonlinear_p_i_
 </div><!--header-->
 <div class="contents">
 
+<p>Bundle of optional nonlinear gain functions for <a class="el" href="class_p_i_d_controller.html" title="Full-featured PID controller with anti-windup, output filtering, and optional nonlinear extensions.">PIDController</a>.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_p_i_d_8hpp_source.html">PID.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ad31b22977ef105697665d56df5cae31a" id="r_ad31b22977ef105697665d56df5cae31a"><td class="memItemLeft"><a class="el" href="_p_i_d_8hpp.html#a3bf9dfb4d525ffd07017dc4348a10ad0">FeedforwardFn</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad31b22977ef105697665d56df5cae31a">ff</a></td></tr>
+<tr class="memdesc:ad31b22977ef105697665d56df5cae31a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setpoint feedforward (replaces kff * setpoint).  <br /></td></tr>
 <tr class="memitem:a81c537934607039167f6639666b1e837" id="r_a81c537934607039167f6639666b1e837"><td class="memItemLeft"><a class="el" href="_p_i_d_8hpp.html#a7107eb4fdadb9833cd6da74f58d54e43">DerivativeFeedforwardFn</a>&#160;</td><td class="memItemRight"><a class="el" href="#a81c537934607039167f6639666b1e837">dff</a></td></tr>
+<tr class="memdesc:a81c537934607039167f6639666b1e837"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative feedforward (replaces kff * dSetpoint).  <br /></td></tr>
 <tr class="memitem:afcfaf705a3daeefdbb70f7cbcf96ce2e" id="r_afcfaf705a3daeefdbb70f7cbcf96ce2e"><td class="memItemLeft"><a class="el" href="_p_i_d_8hpp.html#ad8b6199351264fb5e7f2fe773395f2bf">KpFn</a>&#160;</td><td class="memItemRight"><a class="el" href="#afcfaf705a3daeefdbb70f7cbcf96ce2e">kp</a></td></tr>
+<tr class="memdesc:afcfaf705a3daeefdbb70f7cbcf96ce2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nonlinear proportional gain function.  <br /></td></tr>
 <tr class="memitem:a5fc98417ef508d19c7b96b6664a5d2fc" id="r_a5fc98417ef508d19c7b96b6664a5d2fc"><td class="memItemLeft"><a class="el" href="_p_i_d_8hpp.html#ad1d7b8772e9a29248ca584972196b3f5">KiFn</a>&#160;</td><td class="memItemRight"><a class="el" href="#a5fc98417ef508d19c7b96b6664a5d2fc">ki</a></td></tr>
+<tr class="memdesc:a5fc98417ef508d19c7b96b6664a5d2fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nonlinear integral gain function.  <br /></td></tr>
 <tr class="memitem:a78857dd2a537750b8cacd9bbaab1c821" id="r_a78857dd2a537750b8cacd9bbaab1c821"><td class="memItemLeft"><a class="el" href="_p_i_d_8hpp.html#ac51bb4d2d4bbcdc464fc7f362c08078e">KdFn</a>&#160;</td><td class="memItemRight"><a class="el" href="#a78857dd2a537750b8cacd9bbaab1c821">kd</a></td></tr>
+<tr class="memdesc:a78857dd2a537750b8cacd9bbaab1c821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nonlinear derivative gain function.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Nonlinear <a class="el" href="class_p_i_d.html">PID</a> constant struct </p>
+<div class="textblock"><p>Bundle of optional nonlinear gain functions for <a class="el" href="class_p_i_d_controller.html" title="Full-featured PID controller with anti-windup, output filtering, and optional nonlinear extensions.">PIDController</a>. </p>
+<p>Pass this to the <a class="el" href="class_p_i_d_controller.html" title="Full-featured PID controller with anti-windup, output filtering, and optional nonlinear extensions.">PIDController</a> constructor to enable nonlinear behaviour. Any member left as <span class="tt">nullptr</span> falls back to the corresponding linear gain. </p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a81c537934607039167f6639666b1e837" name="a81c537934607039167f6639666b1e837"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a81c537934607039167f6639666b1e837">&#9670;&#160;</a></span>dff</h2>
@@ -116,6 +125,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Derivative feedforward (replaces kff * dSetpoint). </p>
 
 </div>
 </div>
@@ -131,6 +142,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Setpoint feedforward (replaces kff * setpoint). </p>
+
 </div>
 </div>
 <a id="a78857dd2a537750b8cacd9bbaab1c821" name="a78857dd2a537750b8cacd9bbaab1c821"></a>
@@ -144,6 +157,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Nonlinear derivative gain function. </p>
 
 </div>
 </div>
@@ -159,6 +174,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Nonlinear integral gain function. </p>
+
 </div>
 </div>
 <a id="afcfaf705a3daeefdbb70f7cbcf96ce2e" name="afcfaf705a3daeefdbb70f7cbcf96ce2e"></a>
@@ -172,6 +189,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Nonlinear proportional gain function. </p>
 
 </div>
 </div>

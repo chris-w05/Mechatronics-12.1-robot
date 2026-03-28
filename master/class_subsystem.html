@@ -92,6 +92,9 @@ $(function(){initNavTree('class_subsystem.html','','class_subsystem-members'); }
 </div><!--header-->
 <div class="contents">
 
+<p>Polymorphic interface for a robot subsystem.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_subsystem_8h_source.html">Subsystem.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Subsystem:</div>
@@ -103,15 +106,26 @@ Inheritance diagram for Subsystem:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a97b47fc51947d7bf43aafc0efc4ec926" id="r_a97b47fc51947d7bf43aafc0efc4ec926"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="#a97b47fc51947d7bf43aafc0efc4ec926">~Subsystem</a> ()=default</td></tr>
 <tr class="memitem:a77a984e8a06bfebb924a6e7ba4f98363" id="r_a77a984e8a06bfebb924a6e7ba4f98363"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a77a984e8a06bfebb924a6e7ba4f98363">init</a> ()=0</td></tr>
+<tr class="memdesc:a77a984e8a06bfebb924a6e7ba4f98363"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise hardware and reset internal state. Called once in <a class="el" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup() — called once on power-on or reset.">setup()</a>.  <br /></td></tr>
 <tr class="memitem:a09fe9b3aa0f2d95453db41605412ec59" id="r_a09fe9b3aa0f2d95453db41605412ec59"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a09fe9b3aa0f2d95453db41605412ec59">update</a> ()=0</td></tr>
+<tr class="memdesc:a09fe9b3aa0f2d95453db41605412ec59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update control outputs. Called every loop iteration.  <br /></td></tr>
 <tr class="memitem:a6193d71849f3ed79e30ea867a66609d1" id="r_a6193d71849f3ed79e30ea867a66609d1"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a6193d71849f3ed79e30ea867a66609d1">stop</a> ()</td></tr>
+<tr class="memdesc:a6193d71849f3ed79e30ea867a66609d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place subsystem in a safe, stopped state.  <br /></td></tr>
 <tr class="memitem:a65e3db9a6b9eff35e5cd87a2a33cd5e6" id="r_a65e3db9a6b9eff35e5cd87a2a33cd5e6"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a65e3db9a6b9eff35e5cd87a2a33cd5e6">isHealthy</a> () const</td></tr>
+<tr class="memdesc:a65e3db9a6b9eff35e5cd87a2a33cd5e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report whether the subsystem is operating nominally.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a4d43587077a29fd21f4766e376b16c6d" id="r_a4d43587077a29fd21f4766e376b16c6d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a4d43587077a29fd21f4766e376b16c6d">Subsystem</a> ()=default</td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Polymorphic interface for a robot subsystem. </p>
+<p>All subsystems are expected to follow the init / update lifecycle:</p><ul>
+<li><span class="tt"><a class="el" href="#a77a984e8a06bfebb924a6e7ba4f98363" title="Initialise hardware and reset internal state. Called once in setup().">init()</a></span> is called once from <span class="tt"><a class="el" href="class_robot.html#a990e86a39cb249629a0985e71211fa2e" title="Initialise all subsystems — call once in setup().">Robot::init()</a></span> during setup.</li>
+<li><span class="tt"><a class="el" href="#a09fe9b3aa0f2d95453db41605412ec59" title="Update control outputs. Called every loop iteration.">update()</a></span> is called every loop iteration from <span class="tt"><a class="el" href="class_robot.html#adc34eec22821c2dce23904a5ea75cf13" title="Tick the robot — call every loop() iteration.">Robot::update()</a></span>.</li>
+</ul>
+<p>Optionally, <span class="tt"><a class="el" href="#a6193d71849f3ed79e30ea867a66609d1" title="Place subsystem in a safe, stopped state.">stop()</a></span> can place the subsystem in a known safe state (e.g., zero motor power) and <span class="tt"><a class="el" href="#a65e3db9a6b9eff35e5cd87a2a33cd5e6" title="Report whether the subsystem is operating nominally.">isHealthy()</a></span> can report fault conditions. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a97b47fc51947d7bf43aafc0efc4ec926" name="a97b47fc51947d7bf43aafc0efc4ec926"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a97b47fc51947d7bf43aafc0efc4ec926">&#9670;&#160;</a></span>~Subsystem()</h2>
 
@@ -186,6 +200,8 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Initialise hardware and reset internal state. Called once in <a class="el" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup() — called once on power-on or reset.">setup()</a>. </p>
+
 <p>Implemented in <a class="el" href="class_drive.html#aa0dc4494a5ade8ad199f64ff86ecdf5e">Drive</a>, <a class="el" href="class_miner.html#a70e0512803222c5e37d0ebff10cec909">Miner</a>, <a class="el" href="class_serial_coms.html#a020c40d0470b985397e66a325b5f6c7b">SerialComs</a>, and <a class="el" href="class_shooter.html#a0bc5222a774efac0dc81e77d2cd0ca72">Shooter</a>.</p>
 
 </div>
@@ -213,6 +229,9 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Report whether the subsystem is operating nominally. </p>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if healthy; <span class="tt">false</span> if a fault has been detected. </dd></dl>
+
 </div>
 </div>
 <a id="a6193d71849f3ed79e30ea867a66609d1" name="a6193d71849f3ed79e30ea867a66609d1"></a>
@@ -237,6 +256,9 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Place subsystem in a safe, stopped state. </p>
+<p>Default implementation is a no-op. Override to cut power, retract mechanisms, or otherwise make the subsystem safe on demand. </p>
 
 <p>Reimplemented in <a class="el" href="class_drive.html#aa892b685f071cb3f6c7aaa9a022898bd">Drive</a>, <a class="el" href="class_miner.html#aaecd98dd68895d44127103445eb54199">Miner</a>, <a class="el" href="class_serial_coms.html#a8f112a45b92f8e37834b61ca600011c2">SerialComs</a>, and <a class="el" href="class_shooter.html#ad6965b56c1412488767a25f5069c2979">Shooter</a>.</p>
 
@@ -264,6 +286,8 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Update control outputs. Called every loop iteration. </p>
 
 <p>Implemented in <a class="el" href="class_drive.html#acf7215c6160352d0fb51c67fbb34aa04">Drive</a>, <a class="el" href="class_miner.html#a8981a5f0de49e527684f44d08d0a8b5b">Miner</a>, <a class="el" href="class_serial_coms.html#a879cc06e5d975d938f41f7968fd79e76">SerialComs</a>, and <a class="el" href="class_shooter.html#a9509c1da04e8e4128e1071b9b888eb32">Shooter</a>.</p>
 

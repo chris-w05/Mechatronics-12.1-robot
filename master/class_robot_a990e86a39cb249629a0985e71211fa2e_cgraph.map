@@ -1,0 +1,7 @@
+<map id="Robot::init" name="Robot::init">
+<area shape="rect" id="Node000001" title="Initialise all subsystems — call once in setup()." alt="" coords="5,5,87,31"/>
+<area shape="rect" id="Node000002" href="$class_robot.html#a9e72bb50888e8247a9a55add640542ac" title="Print the serial command reference to port (defaults to USB Serial)." alt="" coords="135,5,284,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,16,122,18,116,19,87,21"/>
+<area shape="rect" id="Node000003" href="$class_robot.html#a3defa2b851d1a9267d6dbe251373ba7d" title="Send a message to a serial port (defaults to USB Serial if port is null)." alt="" coords="332,5,424,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="284,16,319,18,314,18,285,21"/>
+</map>

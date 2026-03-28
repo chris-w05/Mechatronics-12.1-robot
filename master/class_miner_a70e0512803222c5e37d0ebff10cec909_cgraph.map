@@ -1,0 +1,5 @@
+<map id="Miner::init" name="Miner::init">
+<area shape="rect" id="Node000001" title="Initialise hardware and reset internal state. Called once in setup()." alt="" coords="5,5,84,31"/>
+<area shape="rect" id="Node000002" href="$class_miner.html#a0b5a31a12bfa80912aa22cd1e21cde84" title="Stow both the miner servo and the ramp servo in the transport position." alt="" coords="132,5,297,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,16,119,18,114,19,84,21"/>
+</map>

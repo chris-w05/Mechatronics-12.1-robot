@@ -91,91 +91,92 @@ $(function(){initNavTree('_drive_distance_8hpp_source.html','',''); });
   <div class="headertitle"><div class="title">DriveDistance.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_drive_distance_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef DRIVEDISTANCE_STEP_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define DRIVEDISTANCE_STEP_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_auto_step_8h.html">Autonomous/AutoStep.h</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_drive_8hpp.html">subsystems/Drive.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="foldopen" id="foldopen00007" data-start="{" data-end="};">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="class_drive_distance.html">    7</a></span><span class="keyword">class </span><a class="code hl_function" href="class_drive_distance.html#a752afc1726fbfbf944a0873c79bb6637">DriveDistance</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_auto_step.html">AutoStep</a>{</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00009" data-start="{" data-end="}">
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="class_drive_distance.html#a752afc1726fbfbf944a0873c79bb6637">    9</a></span>    <a class="code hl_function" href="class_drive_distance.html#a752afc1726fbfbf944a0873c79bb6637">DriveDistance</a>(<a class="code hl_class" href="class_drive.html">Drive</a> &amp;drive,</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>                <span class="keywordtype">float</span> targetDistance,</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>                <span class="keywordtype">float</span> targetVelocity)</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        : <a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>(drive),</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>          <a class="code hl_variable" href="class_drive_distance.html#ae87c75809d2a80b01a066a4042a84ac7">_target</a>(targetDistance),</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>          <a class="code hl_variable" href="class_drive_distance.html#ac1f8936339f8c4ebf7caaacbd7e2f033">_velocity</a>(targetVelocity) {}</div>
+<a href="_drive_distance_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#ifndef DRIVEDISTANCE_STEP_H</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define DRIVEDISTANCE_STEP_H</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_auto_step_8h.html">Autonomous/AutoStep.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_drive_8hpp.html">subsystems/Drive.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span></div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_drive_distance.html">   14</a></span><span class="keyword">class </span><a class="code hl_function" href="class_drive_distance.html#a752afc1726fbfbf944a0873c79bb6637">DriveDistance</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_auto_step.html">AutoStep</a>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_drive_distance.html#a752afc1726fbfbf944a0873c79bb6637">   22</a></span>    <a class="code hl_function" href="class_drive_distance.html#a752afc1726fbfbf944a0873c79bb6637">DriveDistance</a>(<a class="code hl_class" href="class_drive.html">Drive</a> &amp;drive,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                <span class="keywordtype">float</span> targetDistance,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>                <span class="keywordtype">float</span> targetVelocity)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        : <a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>(drive),</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>          <a class="code hl_variable" href="class_drive_distance.html#ae87c75809d2a80b01a066a4042a84ac7">_target</a>(targetDistance),</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>          <a class="code hl_variable" href="class_drive_distance.html#ac1f8936339f8c4ebf7caaacbd7e2f033">_velocity</a>(targetVelocity) {}</div>
 </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_drive_distance.html#a03341c6915a70388d82d4d20e7b63493">   16</a></span>    <a class="code hl_function" href="class_drive_distance.html#a03341c6915a70388d82d4d20e7b63493">DriveDistance</a>(<a class="code hl_class" href="class_drive.html">Drive</a> &amp;drive)</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        : <a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>(drive){}</div>
-</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="class_drive_distance.html#a424e990fc5f0ea7e5c55994dd107808a">   19</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_distance.html#a424e990fc5f0ea7e5c55994dd107808a">start</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <a class="code hl_variable" href="class_drive_distance.html#ac63f57ff3a14009bdc8d6dd7c8e132a1">_startDistance</a> = <a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>.getDistance(); <span class="comment">// or encoder average</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>.setSpeed(<a class="code hl_variable" href="class_drive_distance.html#ac1f8936339f8c4ebf7caaacbd7e2f033">_velocity</a>);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    }</div>
-</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_drive_distance.html#a5bdfdcd85db4cb8e46b02814fff8de35">   26</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_distance.html#a5bdfdcd85db4cb8e46b02814fff8de35">update</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
-</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
 <div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_drive_distance.html#abb69e9733563a2e91ad6529dc91cf830">   30</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_drive_distance.html#abb69e9733563a2e91ad6529dc91cf830">isFinished</a>()<span class="keyword"> const override</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordflow">return</span> abs(<a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>.getDistance() - <a class="code hl_variable" href="class_drive_distance.html#ac63f57ff3a14009bdc8d6dd7c8e132a1">_startDistance</a>) &gt;= abs(<a class="code hl_variable" href="class_drive_distance.html#ae87c75809d2a80b01a066a4042a84ac7">_target</a>);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_drive_distance.html#a03341c6915a70388d82d4d20e7b63493">   30</a></span>    <a class="code hl_function" href="class_drive_distance.html#a03341c6915a70388d82d4d20e7b63493">DriveDistance</a>(<a class="code hl_class" href="class_drive.html">Drive</a> &amp;drive)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        : <a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>(drive){}</div>
 </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="class_drive_distance.html#a069bb6d074ba3960d87c401a089d5f45">   36</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_distance.html#a069bb6d074ba3960d87c401a089d5f45">end</a>(){</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>.hardSetSpeed(0);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_drive_distance.html#a424e990fc5f0ea7e5c55994dd107808a">   33</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_distance.html#a424e990fc5f0ea7e5c55994dd107808a">start</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <a class="code hl_variable" href="class_drive_distance.html#ac63f57ff3a14009bdc8d6dd7c8e132a1">_startDistance</a> = <a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>.getDistance(); <span class="comment">// or encoder average</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>.setSpeed(<a class="code hl_variable" href="class_drive_distance.html#ac1f8936339f8c4ebf7caaacbd7e2f033">_velocity</a>);</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
 </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_drive_distance.html#a48066fa16c9252fd2b530ba3a4245b57">   40</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_distance.html#a48066fa16c9252fd2b530ba3a4245b57">configure</a>(<span class="keywordtype">float</span> targetDistance, <span class="keywordtype">float</span> targetVelocity){</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <a class="code hl_variable" href="class_drive_distance.html#ae87c75809d2a80b01a066a4042a84ac7">_target</a> = targetDistance;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <a class="code hl_variable" href="class_drive_distance.html#ac1f8936339f8c4ebf7caaacbd7e2f033">_velocity</a> = targetVelocity;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_drive_distance.html#a5bdfdcd85db4cb8e46b02814fff8de35">   40</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_distance.html#a5bdfdcd85db4cb8e46b02814fff8de35">update</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
+</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="class_drive_distance.html#abb69e9733563a2e91ad6529dc91cf830">   44</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_drive_distance.html#abb69e9733563a2e91ad6529dc91cf830">isFinished</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">return</span> abs(<a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>.getDistance() - <a class="code hl_variable" href="class_drive_distance.html#ac63f57ff3a14009bdc8d6dd7c8e132a1">_startDistance</a>) &gt;= abs(<a class="code hl_variable" href="class_drive_distance.html#ae87c75809d2a80b01a066a4042a84ac7">_target</a>);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
 </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">   47</a></span>    <a class="code hl_class" href="class_drive.html">Drive</a> &amp;<a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="class_drive_distance.html#ae87c75809d2a80b01a066a4042a84ac7">   48</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_drive_distance.html#ae87c75809d2a80b01a066a4042a84ac7">_target</a> = 0;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_drive_distance.html#ac1f8936339f8c4ebf7caaacbd7e2f033">   49</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_drive_distance.html#ac1f8936339f8c4ebf7caaacbd7e2f033">_velocity</a> = 0;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_drive_distance.html#ac63f57ff3a14009bdc8d6dd7c8e132a1">   50</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_drive_distance.html#ac63f57ff3a14009bdc8d6dd7c8e132a1">_startDistance</a> = 0;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_drive_distance.html#a069bb6d074ba3960d87c401a089d5f45">   50</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_distance.html#a069bb6d074ba3960d87c401a089d5f45">end</a>(){</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>.setSpeed(0);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
 </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="a_auto_step_8h_html"><div class="ttname"><a href="_auto_step_8h.html">AutoStep.h</a></div></div>
-<div class="ttc" id="a_drive_8hpp_html"><div class="ttname"><a href="_drive_8hpp.html">Drive.hpp</a></div></div>
-<div class="ttc" id="aclass_auto_step_html"><div class="ttname"><a href="class_auto_step.html">AutoStep</a></div><div class="ttdef"><b>Definition</b> AutoStep.h:10</div></div>
-<div class="ttc" id="aclass_drive_distance_html_a03341c6915a70388d82d4d20e7b63493"><div class="ttname"><a href="class_drive_distance.html#a03341c6915a70388d82d4d20e7b63493">DriveDistance::DriveDistance</a></div><div class="ttdeci">DriveDistance(Drive &amp;drive)</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:16</div></div>
-<div class="ttc" id="aclass_drive_distance_html_a069bb6d074ba3960d87c401a089d5f45"><div class="ttname"><a href="class_drive_distance.html#a069bb6d074ba3960d87c401a089d5f45">DriveDistance::end</a></div><div class="ttdeci">void end()</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:36</div></div>
-<div class="ttc" id="aclass_drive_distance_html_a424e990fc5f0ea7e5c55994dd107808a"><div class="ttname"><a href="class_drive_distance.html#a424e990fc5f0ea7e5c55994dd107808a">DriveDistance::start</a></div><div class="ttdeci">void start() override</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:19</div></div>
-<div class="ttc" id="aclass_drive_distance_html_a48066fa16c9252fd2b530ba3a4245b57"><div class="ttname"><a href="class_drive_distance.html#a48066fa16c9252fd2b530ba3a4245b57">DriveDistance::configure</a></div><div class="ttdeci">void configure(float targetDistance, float targetVelocity)</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:40</div></div>
-<div class="ttc" id="aclass_drive_distance_html_a5bdfdcd85db4cb8e46b02814fff8de35"><div class="ttname"><a href="class_drive_distance.html#a5bdfdcd85db4cb8e46b02814fff8de35">DriveDistance::update</a></div><div class="ttdeci">void update() override</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:26</div></div>
-<div class="ttc" id="aclass_drive_distance_html_a752afc1726fbfbf944a0873c79bb6637"><div class="ttname"><a href="class_drive_distance.html#a752afc1726fbfbf944a0873c79bb6637">DriveDistance::DriveDistance</a></div><div class="ttdeci">DriveDistance(Drive &amp;drive, float targetDistance, float targetVelocity)</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:9</div></div>
-<div class="ttc" id="aclass_drive_distance_html_ab3aa3fd1d23b86f84751d3b492eaa3ff"><div class="ttname"><a href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">DriveDistance::_drive</a></div><div class="ttdeci">Drive &amp; _drive</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:47</div></div>
-<div class="ttc" id="aclass_drive_distance_html_abb69e9733563a2e91ad6529dc91cf830"><div class="ttname"><a href="class_drive_distance.html#abb69e9733563a2e91ad6529dc91cf830">DriveDistance::isFinished</a></div><div class="ttdeci">bool isFinished() const override</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:30</div></div>
-<div class="ttc" id="aclass_drive_distance_html_ac1f8936339f8c4ebf7caaacbd7e2f033"><div class="ttname"><a href="class_drive_distance.html#ac1f8936339f8c4ebf7caaacbd7e2f033">DriveDistance::_velocity</a></div><div class="ttdeci">float _velocity</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:49</div></div>
-<div class="ttc" id="aclass_drive_distance_html_ac63f57ff3a14009bdc8d6dd7c8e132a1"><div class="ttname"><a href="class_drive_distance.html#ac63f57ff3a14009bdc8d6dd7c8e132a1">DriveDistance::_startDistance</a></div><div class="ttdeci">float _startDistance</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:50</div></div>
-<div class="ttc" id="aclass_drive_distance_html_ae87c75809d2a80b01a066a4042a84ac7"><div class="ttname"><a href="class_drive_distance.html#ae87c75809d2a80b01a066a4042a84ac7">DriveDistance::_target</a></div><div class="ttdeci">float _target</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:48</div></div>
-<div class="ttc" id="aclass_drive_html"><div class="ttname"><a href="class_drive.html">Drive</a></div><div class="ttdef"><b>Definition</b> Drive.hpp:20</div></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="class_drive_distance.html#a48066fa16c9252fd2b530ba3a4245b57">   59</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_drive_distance.html#a48066fa16c9252fd2b530ba3a4245b57">configure</a>(<span class="keywordtype">float</span> targetDistance, <span class="keywordtype">float</span> targetVelocity){</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <a class="code hl_variable" href="class_drive_distance.html#ae87c75809d2a80b01a066a4042a84ac7">_target</a> = targetDistance;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <a class="code hl_variable" href="class_drive_distance.html#ac1f8936339f8c4ebf7caaacbd7e2f033">_velocity</a> = targetVelocity;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">   66</a></span>    <a class="code hl_class" href="class_drive.html">Drive</a> &amp;<a class="code hl_variable" href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">_drive</a>;             </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_drive_distance.html#ae87c75809d2a80b01a066a4042a84ac7">   67</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_drive_distance.html#ae87c75809d2a80b01a066a4042a84ac7">_target</a> = 0;         </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="class_drive_distance.html#ac1f8936339f8c4ebf7caaacbd7e2f033">   68</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_drive_distance.html#ac1f8936339f8c4ebf7caaacbd7e2f033">_velocity</a> = 0;       </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="class_drive_distance.html#ac63f57ff3a14009bdc8d6dd7c8e132a1">   69</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="class_drive_distance.html#ac63f57ff3a14009bdc8d6dd7c8e132a1">_startDistance</a> = 0;  </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
+</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_auto_step_8h_html"><div class="ttname"><a href="_auto_step_8h.html">AutoStep.h</a></div><div class="ttdoc">Abstract interface that every autonomous step must implement.</div></div>
+<div class="ttc" id="a_drive_8hpp_html"><div class="ttname"><a href="_drive_8hpp.html">Drive.hpp</a></div><div class="ttdoc">Differential-drive subsystem: closed-loop wheel control, line following, wall-distance holding,...</div></div>
+<div class="ttc" id="aclass_auto_step_html"><div class="ttname"><a href="class_auto_step.html">AutoStep</a></div><div class="ttdoc">Pure-virtual base class for all autonomous steps.</div><div class="ttdef"><b>Definition</b> AutoStep.h:26</div></div>
+<div class="ttc" id="aclass_drive_distance_html_a03341c6915a70388d82d4d20e7b63493"><div class="ttname"><a href="class_drive_distance.html#a03341c6915a70388d82d4d20e7b63493">DriveDistance::DriveDistance</a></div><div class="ttdeci">DriveDistance(Drive &amp;drive)</div><div class="ttdoc">Deferred-configure constructor — call configure() before use.</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:30</div></div>
+<div class="ttc" id="aclass_drive_distance_html_a069bb6d074ba3960d87c401a089d5f45"><div class="ttname"><a href="class_drive_distance.html#a069bb6d074ba3960d87c401a089d5f45">DriveDistance::end</a></div><div class="ttdeci">void end()</div><div class="ttdoc">Clean up resources or subsystem state when the step ends.</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:50</div></div>
+<div class="ttc" id="aclass_drive_distance_html_a424e990fc5f0ea7e5c55994dd107808a"><div class="ttname"><a href="class_drive_distance.html#a424e990fc5f0ea7e5c55994dd107808a">DriveDistance::start</a></div><div class="ttdeci">void start() override</div><div class="ttdoc">Initialise any state needed before the step begins running.</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:33</div></div>
+<div class="ttc" id="aclass_drive_distance_html_a48066fa16c9252fd2b530ba3a4245b57"><div class="ttname"><a href="class_drive_distance.html#a48066fa16c9252fd2b530ba3a4245b57">DriveDistance::configure</a></div><div class="ttdeci">void configure(float targetDistance, float targetVelocity)</div><div class="ttdoc">Re-configure for reuse.</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:59</div></div>
+<div class="ttc" id="aclass_drive_distance_html_a5bdfdcd85db4cb8e46b02814fff8de35"><div class="ttname"><a href="class_drive_distance.html#a5bdfdcd85db4cb8e46b02814fff8de35">DriveDistance::update</a></div><div class="ttdeci">void update() override</div><div class="ttdoc">Advance the step by one control-loop tick.</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:40</div></div>
+<div class="ttc" id="aclass_drive_distance_html_a752afc1726fbfbf944a0873c79bb6637"><div class="ttname"><a href="class_drive_distance.html#a752afc1726fbfbf944a0873c79bb6637">DriveDistance::DriveDistance</a></div><div class="ttdeci">DriveDistance(Drive &amp;drive, float targetDistance, float targetVelocity)</div><div class="ttdoc">Full constructor.</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:22</div></div>
+<div class="ttc" id="aclass_drive_distance_html_ab3aa3fd1d23b86f84751d3b492eaa3ff"><div class="ttname"><a href="class_drive_distance.html#ab3aa3fd1d23b86f84751d3b492eaa3ff">DriveDistance::_drive</a></div><div class="ttdeci">Drive &amp; _drive</div><div class="ttdoc">Drive subsystem reference.</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:66</div></div>
+<div class="ttc" id="aclass_drive_distance_html_abb69e9733563a2e91ad6529dc91cf830"><div class="ttname"><a href="class_drive_distance.html#abb69e9733563a2e91ad6529dc91cf830">DriveDistance::isFinished</a></div><div class="ttdeci">bool isFinished() const override</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:44</div></div>
+<div class="ttc" id="aclass_drive_distance_html_ac1f8936339f8c4ebf7caaacbd7e2f033"><div class="ttname"><a href="class_drive_distance.html#ac1f8936339f8c4ebf7caaacbd7e2f033">DriveDistance::_velocity</a></div><div class="ttdeci">float _velocity</div><div class="ttdoc">Drive speed (m/s).</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:68</div></div>
+<div class="ttc" id="aclass_drive_distance_html_ac63f57ff3a14009bdc8d6dd7c8e132a1"><div class="ttname"><a href="class_drive_distance.html#ac63f57ff3a14009bdc8d6dd7c8e132a1">DriveDistance::_startDistance</a></div><div class="ttdeci">float _startDistance</div><div class="ttdoc">Odometry distance at step start (m).</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:69</div></div>
+<div class="ttc" id="aclass_drive_distance_html_ae87c75809d2a80b01a066a4042a84ac7"><div class="ttname"><a href="class_drive_distance.html#ae87c75809d2a80b01a066a4042a84ac7">DriveDistance::_target</a></div><div class="ttdeci">float _target</div><div class="ttdoc">Target distance (m).</div><div class="ttdef"><b>Definition</b> DriveDistance.hpp:67</div></div>
+<div class="ttc" id="aclass_drive_html"><div class="ttname"><a href="class_drive.html">Drive</a></div><div class="ttdef"><b>Definition</b> Drive.hpp:34</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

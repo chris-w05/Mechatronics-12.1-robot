@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Game&#45;state singleton that tracks tool levels, block possession, and scoring logic.">
 <polygon fill="#999999" stroke="#666666" points="263.93,-262.75 156.43,-262.75 156.43,-243.5 263.93,-243.5 263.93,-262.75"/>
 <text xml:space="preserve" text-anchor="middle" x="210.18" y="-249.25" font-family="Helvetica,sans-Serif" font-size="10.00">src/utils/Strategy.hpp</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="_planner_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="_planner_8hpp.html" target="_top" xlink:title="High&#45;level autonomous planner used with ReplanStep.">
 <polygon fill="white" stroke="#666666" points="273.81,-141 132.56,-141 132.56,-121.75 273.81,-121.75 273.81,-141"/>
 <text xml:space="preserve" text-anchor="middle" x="203.18" y="-127.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/Autonomous/Planner.hpp</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="_strategy_controller_step_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="_strategy_controller_step_8hpp.html" target="_top" xlink:title="High&#45;level AutoStep that runs the full strategy loop inline.">
 <polygon fill="white" stroke="#666666" points="498.56,-30.5 361.81,-30.5 361.81,0 498.56,0 498.56,-30.5"/>
 <text xml:space="preserve" text-anchor="start" x="369.81" y="-17" font-family="Helvetica,sans-Serif" font-size="10.00">src/Autonomous/Steps</text>
 <text xml:space="preserve" text-anchor="middle" x="430.18" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">/StrategyControllerStep.hpp</text>
@@ -57,7 +57,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="_detect_block_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="_detect_block_8hpp.html" target="_top" xlink:title="AutoStep that samples the color sensor and updates Strategy with the detected block type.">
 <polygon fill="white" stroke="#666666" points="134.06,-207.5 18.31,-207.5 18.31,-177 134.06,-177 134.06,-207.5"/>
 <text xml:space="preserve" text-anchor="start" x="26.31" y="-194" font-family="Helvetica,sans-Serif" font-size="10.00">src/Autonomous/Steps</text>
 <text xml:space="preserve" text-anchor="middle" x="76.18" y="-182.75" font-family="Helvetica,sans-Serif" font-size="10.00">/DetectBlock.hpp</text>
@@ -76,7 +76,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="_index_block_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="_index_block_8hpp.html" target="_top" xlink:title="AutoStep that routes a newly acquired block to the correct hopper slot.">
 <polygon fill="white" stroke="#666666" points="268.06,-207.5 152.31,-207.5 152.31,-177 268.06,-177 268.06,-207.5"/>
 <text xml:space="preserve" text-anchor="start" x="160.31" y="-194" font-family="Helvetica,sans-Serif" font-size="10.00">src/Autonomous/Steps</text>
 <text xml:space="preserve" text-anchor="middle" x="210.18" y="-182.75" font-family="Helvetica,sans-Serif" font-size="10.00">/IndexBlock.hpp</text>
@@ -95,7 +95,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="_place_on_table_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000009"><a xlink:href="_place_on_table_8hpp.html" target="_top" xlink:title="AutoStep stub that places a block on the crafting table.">
 <polygon fill="white" stroke="#666666" points="402.06,-207.5 286.31,-207.5 286.31,-177 402.06,-177 402.06,-207.5"/>
 <text xml:space="preserve" text-anchor="start" x="294.31" y="-194" font-family="Helvetica,sans-Serif" font-size="10.00">src/Autonomous/Steps</text>
 <text xml:space="preserve" text-anchor="middle" x="344.18" y="-182.75" font-family="Helvetica,sans-Serif" font-size="10.00">/PlaceOnTable.hpp</text>
@@ -114,7 +114,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="_planner_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="_planner_8cpp.html" target="_top" xlink:title="Implementation of the autonomous Planner state machine.">
 <polygon fill="white" stroke="#666666" points="258.81,-85.75 117.56,-85.75 117.56,-66.5 258.81,-66.5 258.81,-85.75"/>
 <text xml:space="preserve" text-anchor="middle" x="188.18" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">src/Autonomous/Planner.cpp</text>
 </a>
@@ -132,7 +132,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="_robot_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="_robot_8hpp.html" target="_top" xlink:title="Top&#45;level robot class that owns all subsystems and the autonomous scheduler.">
 <polygon fill="white" stroke="#666666" points="353.93,-85.75 276.43,-85.75 276.43,-66.5 353.93,-66.5 353.93,-85.75"/>
 <text xml:space="preserve" text-anchor="middle" x="315.18" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">src/Robot.hpp</text>
 </a>
@@ -159,7 +159,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="main_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="main_8cpp.html" target="_top" xlink:title="Arduino entry point — instantiates the Robot and drives the main loop.">
 <polygon fill="white" stroke="#666666" points="343.31,-24.88 271.06,-24.88 271.06,-5.63 343.31,-5.63 343.31,-24.88"/>
 <text xml:space="preserve" text-anchor="middle" x="307.18" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">src/main.cpp</text>
 </a>

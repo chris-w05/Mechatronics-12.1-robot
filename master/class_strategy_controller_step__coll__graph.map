@@ -1,50 +1,51 @@
 <map id="StrategyControllerStep" name="StrategyControllerStep">
-<area shape="rect" id="Node000001" title=" " alt="" coords="1087,61,1241,87"/>
-<area shape="rect" id="Node000002" href="$class_auto_step.html" title=" " alt="" coords="404,5,480,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="494,13,535,12,649,12,782,12,841,15,915,22,1018,39,1111,60,1105,61,1017,44,915,27,840,20,782,18,649,17,535,17,497,18"/>
-<area shape="rect" id="Node000021" href="$class_autonomous_routine.html" title=" " alt="" coords="673,33,812,59"/>
-<area shape="poly" id="edge26_Node000021_Node000002" title=" " alt="" coords="494,28,535,35,606,41,675,45,670,47,605,46,534,40,496,33"/>
-<area shape="rect" id="Node000003" href="$class_robot.html" title=" " alt="" coords="939,140,995,166"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1009,134,1132,86,1127,89,1011,139"/>
-<area shape="rect" id="Node000004" href="$class_drive.html" title=" " alt="" coords="716,573,768,599"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="760,558,832,450,874,379,913,304,942,227,961,168,964,164,947,228,917,306,879,381,836,453,764,562"/>
-<area shape="rect" id="Node000005" href="$class_subsystem.html" title=" " alt="" coords="398,192,486,218"/>
-<area shape="poly" id="edge27_Node000003_Node000005" title=" " alt="" coords="500,204,643,204,728,200,812,191,880,176,941,161,936,163,881,181,812,196,728,205,643,209,502,210"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="476,224,513,254,524,270,536,284,567,302,595,310,622,319,651,342,673,371,691,402,718,469,734,530,742,574,737,572,729,531,713,471,687,405,668,373,647,345,620,324,593,315,565,307,533,288,520,273,509,257,476,230"/>
-<area shape="rect" id="Node000016" href="$class_miner.html" title=" " alt="" coords="716,83,769,108"/>
-<area shape="poly" id="edge16_Node000016_Node000005" title=" " alt="" coords="477,182,534,154,633,121,717,100,713,103,634,126,536,159,480,186"/>
-<area shape="rect" id="Node000018" href="$class_shooter.html" title=" " alt="" coords="709,268,776,294"/>
-<area shape="poly" id="edge19_Node000018_Node000005" title=" " alt="" coords="500,217,649,254,711,272,706,273,648,259,501,222"/>
-<area shape="rect" id="Node000020" href="$class_serial_coms.html" title=" " alt="" coords="698,132,787,158"/>
-<area shape="poly" id="edge24_Node000020_Node000005" title=" " alt="" coords="500,191,700,152,695,155,502,196"/>
-<area shape="rect" id="Node000006" href="$class_encoder_wrapper.html" title=" " alt="" coords="383,392,501,418"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="516,415,584,436,618,451,650,469,679,494,703,522,736,573,731,572,699,525,675,497,647,474,616,455,582,441,516,420"/>
-<area shape="poly" id="edge22_Node000018_Node000006" title=" " alt="" coords="488,383,711,293,707,296,491,388"/>
-<area shape="rect" id="Node000007" href="$class_line_sensor.html" title=" " alt="" coords="399,664,485,690"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="500,678,572,674,611,667,648,656,671,644,693,629,726,601,731,598,697,633,674,648,650,661,612,673,573,679,501,683"/>
-<area shape="rect" id="Node000008" href="$class_dual_motor_controller.html" title=" " alt="" coords="373,501,511,527"/>
-<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="490,530,535,545,635,567,719,583,713,583,634,573,534,550,490,536"/>
-<area shape="poly" id="edge21_Node000018_Node000008" title=" " alt="" coords="526,514,598,511,627,506,647,498,671,476,690,450,705,422,717,392,732,335,739,296,741,292,737,336,722,393,710,424,695,453,675,480,650,502,629,511,599,516,527,520"/>
-<area shape="rect" id="Node000009" href="$class_l298_n_motor_driver_mega.html" title=" " alt="" coords="99,445,258,471"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="273,470,350,485,401,500,396,501,349,490,274,475"/>
-<area shape="rect" id="Node000010" href="$class_p_i_d_controller.html" title=" " alt="" coords="128,520,229,546"/>
-<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="244,532,349,528,377,527,372,529,350,533,245,537"/>
-<area shape="rect" id="Node000011" href="$class_p_i_d.html" title=" " alt="" coords="5,520,50,546"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="64,530,130,531,126,535,67,535"/>
-<area shape="rect" id="Node000012" href="$class_sharp_g_p2_y0_a51.html" title=" " alt="" coords="382,771,502,796"/>
-<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="518,790,550,790,584,786,617,777,647,762,667,745,685,724,711,678,727,633,737,601,741,597,733,634,716,680,689,728,671,749,650,766,619,782,585,791,551,795,518,796"/>
-<area shape="rect" id="Node000013" href="$class_odometry.html" title=" " alt="" coords="403,611,481,636"/>
-<area shape="poly" id="edge12_Node000004_Node000013" title=" " alt="" coords="496,625,569,627,648,619,683,609,713,599,718,598,685,614,649,624,569,632,497,631"/>
-<area shape="rect" id="Node000014" href="$struct_odometry_1_1_pose2_d.html" title=" " alt="" coords="112,611,245,636"/>
-<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="260,621,405,622,400,625,261,626"/>
-<area shape="rect" id="Node000015" href="$class_ramsete_controller.html" title=" " alt="" coords="377,717,507,743"/>
-<area shape="poly" id="edge14_Node000004_Node000015" title=" " alt="" coords="522,733,586,727,618,719,647,706,678,682,702,652,733,601,737,598,706,656,681,686,650,710,619,724,587,732,523,739"/>
-<area shape="poly" id="edge15_Node000003_Node000016" title=" " alt="" coords="783,98,847,109,916,126,943,139,938,140,914,131,846,114,785,103"/>
-<area shape="rect" id="Node000017" href="$class_servo_control.html" title=" " alt="" coords="393,81,491,107"/>
-<area shape="poly" id="edge17_Node000016_Node000017" title=" " alt="" coords="506,92,718,94,713,97,507,97"/>
-<area shape="poly" id="edge18_Node000003_Node000018" title=" " alt="" coords="790,279,853,271,885,261,913,244,931,227,944,205,961,168,964,164,949,208,935,230,917,249,887,265,854,276,792,284"/>
-<area shape="rect" id="Node000019" href="$class_button.html" title=" " alt="" coords="412,268,472,294"/>
-<area shape="poly" id="edge20_Node000018_Node000019" title=" " alt="" coords="487,278,711,279,706,282,488,283"/>
-<area shape="poly" id="edge23_Node000003_Node000020" title=" " alt="" coords="802,147,836,149,941,152,936,154,836,154,803,152"/>
-<area shape="poly" id="edge25_Node000003_Node000021" title=" " alt="" coords="827,48,874,59,916,79,932,92,945,108,963,140,958,139,941,111,929,96,914,83,872,64,828,53"/>
+<area shape="rect" id="Node000001" title="Inline strategy state machine that decides, scans, mines, stores, and crafts." alt="" coords="1087,69,1241,95"/>
+<area shape="rect" id="Node000002" href="$class_auto_step.html" title="Pure&#45;virtual base class for all autonomous steps." alt="" coords="404,5,480,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="494,14,649,13,782,19,915,34,1100,68,1095,70,915,39,782,24,649,18,496,19"/>
+<area shape="rect" id="Node000021" href="$class_autonomous_routine.html" title="Drives an ordered sequence of AutoStep objects to completion." alt="" coords="673,39,812,64"/>
+<area shape="poly" id="edge27_Node000021_Node000002" title=" " alt="" coords="494,29,535,36,606,43,675,49,670,51,605,49,534,41,496,34"/>
+<area shape="rect" id="Node000003" href="$class_robot.html" title="Aggregates all robot subsystems and drives the main control loop." alt="" coords="939,156,995,182"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1008,148,1135,94,1131,97,1011,153"/>
+<area shape="rect" id="Node000004" href="$class_drive.html" title=" " alt="" coords="716,609,768,635"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="760,595,832,486,875,413,913,337,943,249,962,184,965,180,949,251,917,340,879,416,837,489,764,599"/>
+<area shape="rect" id="Node000005" href="$class_subsystem.html" title="Polymorphic interface for a robot subsystem." alt="" coords="398,212,486,238"/>
+<area shape="poly" id="edge28_Node000003_Node000005" title=" " alt="" coords="500,225,643,225,728,220,812,211,880,195,941,178,936,180,882,200,812,216,728,226,643,230,502,230"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="479,243,536,270,568,279,597,282,623,289,651,308,661,326,672,357,699,446,740,609,735,608,694,447,667,359,656,328,647,312,621,294,596,288,567,285,534,275,480,248"/>
+<area shape="rect" id="Node000016" href="$class_miner.html" title="Servo&#45;driven block&#45;mining and ramp&#45;deployment subsystem." alt="" coords="716,103,769,128"/>
+<area shape="poly" id="edge17_Node000016_Node000005" title=" " alt="" coords="477,202,534,174,633,141,717,120,713,123,634,146,536,179,480,206"/>
+<area shape="rect" id="Node000018" href="$class_shooter.html" title="Rack&#45;and&#45;pinion block shooter controlled by encoder feedback." alt="" coords="709,321,776,347"/>
+<area shape="poly" id="edge20_Node000018_Node000005" title=" " alt="" coords="500,232,573,249,650,274,691,296,726,321,721,321,688,301,648,279,572,254,502,237"/>
+<area shape="rect" id="Node000020" href="$class_serial_coms.html" title="Newline&#45;delimited ASCII command receiver for Arduino&#45;to&#45;Arduino comms." alt="" coords="698,152,787,178"/>
+<area shape="poly" id="edge25_Node000020_Node000005" title=" " alt="" coords="500,211,700,172,695,175,502,216"/>
+<area shape="rect" id="Node000006" href="$class_encoder_wrapper.html" title="Quadrature encoder driver with velocity and acceleration estimation." alt="" coords="383,439,501,464"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="472,471,536,511,567,523,593,529,619,536,650,549,694,578,730,609,724,609,691,583,647,554,617,541,591,535,565,528,533,516,472,477"/>
+<area shape="poly" id="edge23_Node000018_Node000006" title=" " alt="" coords="490,430,711,345,707,349,493,435"/>
+<area shape="rect" id="Node000007" href="$class_line_sensor.html" title="Pololu QTR&#45;MD&#45;08RC 8&#45;channel line sensor driver." alt="" coords="399,607,485,632"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="500,618,535,619,718,621,713,623,535,624,501,623"/>
+<area shape="rect" id="Node000008" href="$class_dual_motor_controller.html" title="Dual&#45;channel closed&#45;loop motor controller." alt="" coords="373,556,511,582"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="526,576,649,596,718,614,713,615,648,601,526,581"/>
+<area shape="poly" id="edge22_Node000018_Node000008" title=" " alt="" coords="458,542,490,503,510,484,533,468,565,456,592,454,618,452,647,440,675,419,699,393,732,349,735,346,703,396,679,423,650,445,619,457,592,459,566,461,536,473,514,488,494,507,462,546"/>
+<area shape="rect" id="Node000009" href="$class_l298_n_motor_driver_mega.html" title=" " alt="" coords="99,556,258,582"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="273,566,375,567,371,570,275,571"/>
+<area shape="rect" id="Node000010" href="$class_p_i_d_controller.html" title="Full&#45;featured PID controller with anti&#45;windup, output filtering, and optional nonlinear extensions." alt="" coords="128,708,229,734"/>
+<area shape="poly" id="edge15_Node000004_Node000010" title=" " alt="" coords="244,732,302,740,369,746,440,745,510,735,573,714,633,686,720,636,725,634,636,691,575,719,511,740,440,750,369,751,301,745,245,737"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="217,698,280,662,348,615,359,603,372,592,399,581,395,584,375,596,363,607,351,620,283,666,220,703"/>
+<area shape="rect" id="Node000011" href="$class_p_i_d.html" title="Lightweight PID controller base class." alt="" coords="5,708,50,734"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="64,718,130,719,126,723,66,723"/>
+<area shape="rect" id="Node000012" href="$class_sharp_g_p2_y0_a51.html" title="Sharp GP2Y0A51 analog IR distance sensor driver." alt="" coords="382,797,502,823"/>
+<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="517,817,550,816,584,812,617,803,647,788,667,773,683,754,709,710,726,668,736,637,740,634,731,669,714,713,688,757,670,776,650,793,619,808,585,817,550,822,518,822"/>
+<area shape="rect" id="Node000013" href="$class_odometry.html" title="Tracks robot pose by integrating encoder wheel displacements." alt="" coords="403,863,481,888"/>
+<area shape="poly" id="edge12_Node000004_Node000013" title=" " alt="" coords="497,886,533,891,573,890,612,883,647,866,673,842,694,812,710,780,721,746,734,681,739,637,743,633,739,682,726,747,715,782,699,815,677,845,650,870,614,888,573,896,533,896,497,891"/>
+<area shape="rect" id="Node000014" href="$struct_odometry_1_1_pose2_d.html" title="2&#45;D robot pose." alt="" coords="112,863,245,888"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="261,873,405,875,400,876,261,878"/>
+<area shape="rect" id="Node000015" href="$class_ramsete_controller.html" title=" " alt="" coords="377,656,507,682"/>
+<area shape="poly" id="edge14_Node000004_Node000015" title=" " alt="" coords="522,663,584,657,648,648,718,631,713,632,649,653,585,663,523,668"/>
+<area shape="poly" id="edge16_Node000003_Node000016" title=" " alt="" coords="783,117,847,126,916,142,944,155,938,156,914,147,846,131,785,122"/>
+<area shape="rect" id="Node000017" href="$class_servo_control.html" title="Servo driver with angle clamping, inversion, and deferred writes." alt="" coords="393,101,491,127"/>
+<area shape="poly" id="edge18_Node000016_Node000017" title=" " alt="" coords="506,112,718,114,713,117,507,117"/>
+<area shape="poly" id="edge19_Node000003_Node000018" title=" " alt="" coords="789,323,852,302,884,286,913,265,930,245,944,222,961,184,964,180,948,224,935,248,917,268,887,290,854,307,791,328"/>
+<area shape="rect" id="Node000019" href="$class_button.html" title="Digital button / limit&#45;switch driver." alt="" coords="412,321,472,347"/>
+<area shape="poly" id="edge21_Node000018_Node000019" title=" " alt="" coords="487,332,711,333,706,336,488,337"/>
+<area shape="poly" id="edge24_Node000003_Node000020" title=" " alt="" coords="802,164,836,165,941,168,936,170,836,170,804,169"/>
+<area shape="poly" id="edge26_Node000003_Node000021" title=" " alt="" coords="827,60,874,74,917,96,945,125,963,156,957,155,940,128,913,100,872,79,828,65"/>
 </map>

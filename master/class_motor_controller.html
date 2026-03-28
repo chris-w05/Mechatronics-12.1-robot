@@ -92,6 +92,9 @@ $(function(){initNavTree('class_motor_controller.html','','class_motor_controlle
 </div><!--header-->
 <div class="contents">
 
+<p>Single-channel closed-loop motor controller.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_motor_controller_8hpp_source.html">MotorController.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for MotorController:</div>
@@ -104,10 +107,12 @@ Public Types</h2></td></tr>
 <tr class="memitem:a83e0f658da91c657052c5133f1691ea2" id="r_a83e0f658da91c657052c5133f1691ea2"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#a83e0f658da91c657052c5133f1691ea2">DriverType</a> { <a class="el" href="#a83e0f658da91c657052c5133f1691ea2a6c20dd63e8106c1d43a2df20989af414">TB9051</a>
 , <a class="el" href="#a83e0f658da91c657052c5133f1691ea2a6c2c38b83b9a6c5797fd42915af4668c">L298N</a>
  }</td></tr>
+<tr class="memdesc:a83e0f658da91c657052c5133f1691ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Choice of motor driver topology.  <a href="#a83e0f658da91c657052c5133f1691ea2">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7d782fc3aa310f6443367e77964be908" id="r_a7d782fc3aa310f6443367e77964be908"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7d782fc3aa310f6443367e77964be908">MotorController</a> (int pwm1_pin, int pwm2_pin=-1, int en_pin=-1, int enb_pin=-1, int diag_pin=-1, int ocm_pin=-1, int occ_pin=-1, float analog_vref=5.0f, float kp=0.0f, float ki=0.0f, float kd=0.0f, <a class="el" href="#a83e0f658da91c657052c5133f1691ea2">DriverType</a> driver=<a class="el" href="#a83e0f658da91c657052c5133f1691ea2a6c20dd63e8106c1d43a2df20989af414">DriverType::TB9051</a>)</td></tr>
+<tr class="memdesc:a7d782fc3aa310f6443367e77964be908"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct with individual gain floats.  <br /></td></tr>
 <tr class="memitem:abf6a2bdab53cefcfa0a77b44a3772d66" id="r_abf6a2bdab53cefcfa0a77b44a3772d66"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#abf6a2bdab53cefcfa0a77b44a3772d66">MotorController</a> (int pwm1_pin, int pwm2_pin=-1, int en_pin=-1, int enb_pin=-1, int diag_pin=-1, int ocm_pin=-1, int occ_pin=-1, float analog_vref=5.0f, <a class="el" href="struct_p_i_d_constants.html">PIDConstants</a> consts={0, 0, 0}, <a class="el" href="#a83e0f658da91c657052c5133f1691ea2">DriverType</a> driver=<a class="el" href="#a83e0f658da91c657052c5133f1691ea2a6c20dd63e8106c1d43a2df20989af414">DriverType::TB9051</a>)</td></tr>
 <tr class="memitem:a1cb5865ca59693edd2059cde1f222531" id="r_a1cb5865ca59693edd2059cde1f222531"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1cb5865ca59693edd2059cde1f222531">begin</a> ()</td></tr>
 <tr class="memitem:ad6537e115b5e5e671339b13181bfc991" id="r_ad6537e115b5e5e671339b13181bfc991"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad6537e115b5e5e671339b13181bfc991">setSpeed</a> (int speed)</td></tr>
@@ -152,7 +157,10 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a297fa46d70e4f7ee65055e899549cc9c" id="r_a297fa46d70e4f7ee65055e899549cc9c"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a297fa46d70e4f7ee65055e899549cc9c">_targetDeadband</a> = 0.01</td></tr>
 <tr class="memitem:a1163a83fa123b4f0c5007ae41e3ed7b2" id="r_a1163a83fa123b4f0c5007ae41e3ed7b2"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a1163a83fa123b4f0c5007ae41e3ed7b2">_externalSenseVoltsPerAmp</a> = NAN</td></tr>
 </table>
-<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Single-channel closed-loop motor controller. </p>
+<p>Supports two driver hardware topologies selected at construction time. Call <span class="tt"><a class="el" href="#a1cb5865ca59693edd2059cde1f222531">begin()</a></span> once in setup, then call <span class="tt"><a class="el" href="#a217ab4721b313d7b48439785b7670ba1">update()</a></span> every loop to apply <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> control, or <span class="tt"><a class="el" href="#ad6537e115b5e5e671339b13181bfc991">setSpeed()</a></span> for direct open-loop PWM output. </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
 <a id="a83e0f658da91c657052c5133f1691ea2" name="a83e0f658da91c657052c5133f1691ea2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a83e0f658da91c657052c5133f1691ea2">&#9670;&#160;</a></span>DriverType</h2>
 
@@ -172,9 +180,13 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Choice of motor driver topology. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a83e0f658da91c657052c5133f1691ea2a6c20dd63e8106c1d43a2df20989af414" name="a83e0f658da91c657052c5133f1691ea2a6c20dd63e8106c1d43a2df20989af414"></a>TB9051&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a83e0f658da91c657052c5133f1691ea2a6c2c38b83b9a6c5797fd42915af4668c" name="a83e0f658da91c657052c5133f1691ea2a6c2c38b83b9a6c5797fd42915af4668c"></a>L298N&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a83e0f658da91c657052c5133f1691ea2a6c20dd63e8106c1d43a2df20989af414" name="a83e0f658da91c657052c5133f1691ea2a6c20dd63e8106c1d43a2df20989af414"></a>TB9051&#160;</td><td class="fielddoc"><p>Pololu TB9051FTG single-channel carrier. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a83e0f658da91c657052c5133f1691ea2a6c2c38b83b9a6c5797fd42915af4668c" name="a83e0f658da91c657052c5133f1691ea2a6c2c38b83b9a6c5797fd42915af4668c"></a>L298N&#160;</td><td class="fielddoc"><p>Generic L298N H-bridge module. </p>
+</td></tr>
 </table>
 
 </div>
@@ -256,6 +268,25 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Construct with individual gain floats. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pwm1_pin</td><td>PWM pin (TB9051 PWM1 or L298N IN1). </td></tr>
+    <tr><td class="paramname">pwm2_pin</td><td>Second PWM pin or -1 for single-PWM mode. </td></tr>
+    <tr><td class="paramname">en_pin</td><td>Enable pin (-1 to skip). </td></tr>
+    <tr><td class="paramname">enb_pin</td><td>ENB pin (-1 to skip). </td></tr>
+    <tr><td class="paramname">diag_pin</td><td>Diagnostic / fault pin (-1 to skip). </td></tr>
+    <tr><td class="paramname">ocm_pin</td><td>Over-current monitor analog pin (-1 to skip). </td></tr>
+    <tr><td class="paramname">occ_pin</td><td>Over-current control pin (-1 to skip). </td></tr>
+    <tr><td class="paramname">analog_vref</td><td>ADC reference voltage (V). </td></tr>
+    <tr><td class="paramname">kp</td><td>Proportional gain for internal <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a>. </td></tr>
+    <tr><td class="paramname">ki</td><td>Integral gain for internal <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a>. </td></tr>
+    <tr><td class="paramname">kd</td><td>Derivative gain for internal <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a>. </td></tr>
+    <tr><td class="paramname">driver</td><td>Driver hardware type. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

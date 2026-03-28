@@ -8,7 +8,8 @@ var searchData=
   ['m2pwm_5',['m2PWM',['../struct_t_b9051_pins.html#ad0808a8c702f9b67e27c9dc49c3ef56b',1,'TB9051Pins']]],
   ['max_5fcmd_5flen_6',['MAX_CMD_LEN',['../class_serial_coms.html#add9e76347118e34a87bc26f248b19ea9',1,'SerialComs']]],
   ['max_5fsub_5fsteps_7',['MAX_SUB_STEPS',['../_composite_step_8hpp.html#acb9201bc5b13f9f9c58a5f68ae2a8299',1,'CompositeStep.hpp']]],
-  ['miner_8',['miner',['../class_mine_block_step.html#ae38bf2b3f425329df782d0ed7302820e',1,'MineBlockStep::miner'],['../class_robot.html#a1c92214d8ab441e65b448522b62b494c',1,'Robot::miner']]],
-  ['mode_9',['mode',['../class_robot.html#a0e518babbea08e7d2e3560cc15ea5a35',1,'Robot']]],
-  ['motor_10',['motor',['../class_shooter.html#a3b598cd7dda893db5c61884295750e9a',1,'Shooter']]]
+  ['miner_8',['miner',['../class_deploy_ramp.html#abb9550a73d32bb8c927f6c6e93ea2222',1,'DeployRamp::miner'],['../class_mine_block.html#a32ea0dbd56077caa3a8eef3d5f158a3d',1,'MineBlock::miner'],['../class_mine_block_autofire.html#a77659bd76cadb8f553d79b2c159a6765',1,'MineBlockAutofire::miner'],['../class_robot.html#a1c92214d8ab441e65b448522b62b494c',1,'Robot::miner']]],
+  ['minerservo_9',['minerServo',['../class_miner.html#a67d0461bdf52b384e83f749aa50d6179',1,'Miner']]],
+  ['mode_10',['mode',['../class_robot.html#a0e518babbea08e7d2e3560cc15ea5a35',1,'Robot']]],
+  ['motor_11',['motor',['../class_shooter.html#a3b598cd7dda893db5c61884295750e9a',1,'Shooter']]]
 ];

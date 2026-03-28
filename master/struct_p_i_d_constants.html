@@ -92,16 +92,24 @@ $(function(){initNavTree('struct_p_i_d_constants.html','','struct_p_i_d_constant
 </div><!--header-->
 <div class="contents">
 
+<p>This file contains everything necessary to build a <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller. It also has the added capability of being able to create a nonlinear controller using functions for kp ki and kd if wanted.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_p_i_d_8hpp_source.html">PID.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a37c173d52187d5ae2ebe8eacbbabf91a" id="r_a37c173d52187d5ae2ebe8eacbbabf91a"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a37c173d52187d5ae2ebe8eacbbabf91a">kp</a></td></tr>
+<tr class="memdesc:a37c173d52187d5ae2ebe8eacbbabf91a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proportional gain.  <br /></td></tr>
 <tr class="memitem:ae6b567bb2424e4aa814b7ed524e3aedd" id="r_ae6b567bb2424e4aa814b7ed524e3aedd"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ae6b567bb2424e4aa814b7ed524e3aedd">ki</a></td></tr>
+<tr class="memdesc:ae6b567bb2424e4aa814b7ed524e3aedd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integral gain.  <br /></td></tr>
 <tr class="memitem:abedd542bf87f8498398fb63d0ee76484" id="r_abedd542bf87f8498398fb63d0ee76484"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#abedd542bf87f8498398fb63d0ee76484">kd</a></td></tr>
+<tr class="memdesc:abedd542bf87f8498398fb63d0ee76484"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative gain.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This file contains everything necessary to build a <a class="el" href="class_p_i_d.html">PID</a> controller. It also has the added capability of being able to create a nonlinear controller using functions for kp ki and kd if wanted </p>
+<div class="textblock"><p>This file contains everything necessary to build a <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller. It also has the added capability of being able to create a nonlinear controller using functions for kp ki and kd if wanted. </p>
+<p>Proportional, integral, and derivative gains.</p>
+<p>Passed as a single struct to avoid long argument lists wherever gains need to be configured or stored. </p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="abedd542bf87f8498398fb63d0ee76484" name="abedd542bf87f8498398fb63d0ee76484"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abedd542bf87f8498398fb63d0ee76484">&#9670;&#160;</a></span>kd</h2>
@@ -114,6 +122,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Derivative gain. </p>
 
 </div>
 </div>
@@ -129,6 +139,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Integral gain. </p>
+
 </div>
 </div>
 <a id="a37c173d52187d5ae2ebe8eacbbabf91a" name="a37c173d52187d5ae2ebe8eacbbabf91a"></a>
@@ -142,6 +154,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Proportional gain. </p>
 
 </div>
 </div>

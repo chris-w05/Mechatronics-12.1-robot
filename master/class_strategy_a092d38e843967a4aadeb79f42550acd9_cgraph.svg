@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Return whether the robot has collected the full set of blocks needed to score.">
 <polygon fill="#999999" stroke="#666666" points="118.75,-24.88 0,-24.88 0,-5.63 118.75,-5.63 118.75,-24.88"/>
 <text xml:space="preserve" text-anchor="middle" x="59.38" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::readyToScore</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_strategy.html#a1943002dce146e4c4ab5aeebae9f9235" target="_top" xlink:title="Return the highest block type that can be mined with the current pickaxe.">
 <polygon fill="white" stroke="#666666" points="284.75,-30.5 154.75,-30.5 154.75,0 284.75,0 284.75,-30.5"/>
 <text xml:space="preserve" text-anchor="start" x="162.75" y="-17" font-family="Helvetica,sans-Serif" font-size="10.00">Strategy::getMaxMineable</text>
 <text xml:space="preserve" text-anchor="middle" x="219.75" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Block</text>

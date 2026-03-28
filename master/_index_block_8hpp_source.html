@@ -91,80 +91,81 @@ $(function(){initNavTree('_index_block_8hpp_source.html','',''); });
   <div class="headertitle"><div class="title">IndexBlock.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_index_block_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef PLACE_BLOCK_STEP_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define PLACE_BLOCK_STEP_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_auto_step_8h.html">Autonomous/AutoStep.h</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_drive_8hpp.html">subsystems/Drive.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_strategy_8hpp.html">utils/Strategy.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="class_index_block_step.html">    8</a></span><span class="keyword">class </span><a class="code hl_function" href="class_index_block_step.html#a34f6a9f102fd236b01fef7584a2cc05b">IndexBlockStep</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_auto_step.html">AutoStep</a></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_index_block_step.html#a34f6a9f102fd236b01fef7584a2cc05b">   11</a></span>    <a class="code hl_function" href="class_index_block_step.html#a34f6a9f102fd236b01fef7584a2cc05b">IndexBlockStep</a>(<a class="code hl_enumeration" href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f">Strategy::IndexDirection</a> dir</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>                  )</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        : <a class="code hl_variable" href="class_index_block_step.html#a9b6d2b2fe722d403fc0043cf3485c233">_dir</a>(dir) {}</div>
+<a href="_index_block_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef PLACE_BLOCK_STEP_H</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define PLACE_BLOCK_STEP_H</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="_auto_step_8h.html">Autonomous/AutoStep.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="_drive_8hpp.html">subsystems/Drive.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="_strategy_8hpp.html">utils/Strategy.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_index_block_step.html">   18</a></span><span class="keyword">class </span><a class="code hl_function" href="class_index_block_step.html#a34f6a9f102fd236b01fef7584a2cc05b">IndexBlockStep</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_auto_step.html">AutoStep</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="}">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_index_block_step.html#a34f6a9f102fd236b01fef7584a2cc05b">   25</a></span>    <a class="code hl_function" href="class_index_block_step.html#a34f6a9f102fd236b01fef7584a2cc05b">IndexBlockStep</a>(<a class="code hl_enumeration" href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f">Strategy::IndexDirection</a> dir</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                  )</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        : <a class="code hl_variable" href="class_index_block_step.html#a9b6d2b2fe722d403fc0043cf3485c233">_dir</a>(dir) {}</div>
 </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_index_block_step.html#aa453d51337a11b6d5718e82b240b7ae6">   15</a></span>    <a class="code hl_function" href="class_index_block_step.html#aa453d51337a11b6d5718e82b240b7ae6">IndexBlockStep</a>(){</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    }</div>
-</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="class_index_block_step.html#a929f4e0524c7bb5746ec54adda7a12e0">   19</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_index_block_step.html#a929f4e0524c7bb5746ec54adda7a12e0">start</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    }</div>
-</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="class_index_block_step.html#ae64a6a734c126985adbc7b46d6c503ee">   23</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_index_block_step.html#ae64a6a734c126985adbc7b46d6c503ee">update</a>()<span class="keyword"> override</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="comment">//Logic to make servo push block to either side of the hopper, then reset. Governed by _dir for direction to index</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    }</div>
-</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_index_block_step.html#ad7aa9b314da08d79189bcb5b02297138">   28</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_index_block_step.html#ad7aa9b314da08d79189bcb5b02297138">isFinished</a>()<span class="keyword"> const override</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_index_block_step.html#aa453d51337a11b6d5718e82b240b7ae6">   29</a></span>    <a class="code hl_function" href="class_index_block_step.html#aa453d51337a11b6d5718e82b240b7ae6">IndexBlockStep</a>(){</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    }</div>
 </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
 <div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_index_block_step.html#afb7a3a962ee933cbb0a5e5c6ace0c2d3">   33</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_index_block_step.html#afb7a3a962ee933cbb0a5e5c6ace0c2d3">end</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_index_block_step.html#a929f4e0524c7bb5746ec54adda7a12e0">   33</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_index_block_step.html#a929f4e0524c7bb5746ec54adda7a12e0">start</a>()<span class="keyword"> override</span></div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    }</div>
 </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
 <div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_index_block_step.html#aa80223d74ba9841a367f68ca3c241b5e">   37</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_index_block_step.html#aa80223d74ba9841a367f68ca3c241b5e">configure</a>(<a class="code hl_enumeration" href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f">Strategy::IndexDirection</a> dir){</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <a class="code hl_variable" href="class_index_block_step.html#a9b6d2b2fe722d403fc0043cf3485c233">_dir</a> = dir;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_index_block_step.html#ae64a6a734c126985adbc7b46d6c503ee">   37</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_index_block_step.html#ae64a6a734c126985adbc7b46d6c503ee">update</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="comment">//Logic to make servo push block to either side of the hopper, then reset. Governed by _dir for direction to index</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    }</div>
 </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="class_index_block_step.html#a9b6d2b2fe722d403fc0043cf3485c233">   42</a></span>    <a class="code hl_enumeration" href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f">Strategy::IndexDirection</a> <a class="code hl_variable" href="class_index_block_step.html#a9b6d2b2fe722d403fc0043cf3485c233">_dir</a>;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00042" data-start="{" data-end="}">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="class_index_block_step.html#ad7aa9b314da08d79189bcb5b02297138">   42</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_index_block_step.html#ad7aa9b314da08d79189bcb5b02297138">isFinished</a>()<span class="keyword"> const override</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
 </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="a_auto_step_8h_html"><div class="ttname"><a href="_auto_step_8h.html">AutoStep.h</a></div></div>
-<div class="ttc" id="a_drive_8hpp_html"><div class="ttname"><a href="_drive_8hpp.html">Drive.hpp</a></div></div>
-<div class="ttc" id="a_strategy_8hpp_html"><div class="ttname"><a href="_strategy_8hpp.html">Strategy.hpp</a></div></div>
-<div class="ttc" id="aclass_auto_step_html"><div class="ttname"><a href="class_auto_step.html">AutoStep</a></div><div class="ttdef"><b>Definition</b> AutoStep.h:10</div></div>
-<div class="ttc" id="aclass_index_block_step_html_a34f6a9f102fd236b01fef7584a2cc05b"><div class="ttname"><a href="class_index_block_step.html#a34f6a9f102fd236b01fef7584a2cc05b">IndexBlockStep::IndexBlockStep</a></div><div class="ttdeci">IndexBlockStep(Strategy::IndexDirection dir)</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:11</div></div>
-<div class="ttc" id="aclass_index_block_step_html_a929f4e0524c7bb5746ec54adda7a12e0"><div class="ttname"><a href="class_index_block_step.html#a929f4e0524c7bb5746ec54adda7a12e0">IndexBlockStep::start</a></div><div class="ttdeci">void start() override</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:19</div></div>
-<div class="ttc" id="aclass_index_block_step_html_a9b6d2b2fe722d403fc0043cf3485c233"><div class="ttname"><a href="class_index_block_step.html#a9b6d2b2fe722d403fc0043cf3485c233">IndexBlockStep::_dir</a></div><div class="ttdeci">Strategy::IndexDirection _dir</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:42</div></div>
-<div class="ttc" id="aclass_index_block_step_html_aa453d51337a11b6d5718e82b240b7ae6"><div class="ttname"><a href="class_index_block_step.html#aa453d51337a11b6d5718e82b240b7ae6">IndexBlockStep::IndexBlockStep</a></div><div class="ttdeci">IndexBlockStep()</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:15</div></div>
-<div class="ttc" id="aclass_index_block_step_html_aa80223d74ba9841a367f68ca3c241b5e"><div class="ttname"><a href="class_index_block_step.html#aa80223d74ba9841a367f68ca3c241b5e">IndexBlockStep::configure</a></div><div class="ttdeci">void configure(Strategy::IndexDirection dir)</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:37</div></div>
-<div class="ttc" id="aclass_index_block_step_html_ad7aa9b314da08d79189bcb5b02297138"><div class="ttname"><a href="class_index_block_step.html#ad7aa9b314da08d79189bcb5b02297138">IndexBlockStep::isFinished</a></div><div class="ttdeci">bool isFinished() const override</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:28</div></div>
-<div class="ttc" id="aclass_index_block_step_html_ae64a6a734c126985adbc7b46d6c503ee"><div class="ttname"><a href="class_index_block_step.html#ae64a6a734c126985adbc7b46d6c503ee">IndexBlockStep::update</a></div><div class="ttdeci">void update() override</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:23</div></div>
-<div class="ttc" id="aclass_index_block_step_html_afb7a3a962ee933cbb0a5e5c6ace0c2d3"><div class="ttname"><a href="class_index_block_step.html#afb7a3a962ee933cbb0a5e5c6ace0c2d3">IndexBlockStep::end</a></div><div class="ttdeci">void end() override</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:33</div></div>
-<div class="ttc" id="aclass_strategy_html_a5ddf8243b5b7b9c45797dcf7b076b43f"><div class="ttname"><a href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f">Strategy::IndexDirection</a></div><div class="ttdeci">IndexDirection</div><div class="ttdef"><b>Definition</b> Strategy.hpp:75</div></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_index_block_step.html#afb7a3a962ee933cbb0a5e5c6ace0c2d3">   47</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_index_block_step.html#afb7a3a962ee933cbb0a5e5c6ace0c2d3">end</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
+</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="class_index_block_step.html#aa80223d74ba9841a367f68ca3c241b5e">   55</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_index_block_step.html#aa80223d74ba9841a367f68ca3c241b5e">configure</a>(<a class="code hl_enumeration" href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f">Strategy::IndexDirection</a> dir){</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <a class="code hl_variable" href="class_index_block_step.html#a9b6d2b2fe722d403fc0043cf3485c233">_dir</a> = dir;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
+</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="class_index_block_step.html#a9b6d2b2fe722d403fc0043cf3485c233">   60</a></span>    <a class="code hl_enumeration" href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f">Strategy::IndexDirection</a> <a class="code hl_variable" href="class_index_block_step.html#a9b6d2b2fe722d403fc0043cf3485c233">_dir</a>; </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>};</div>
+</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_auto_step_8h_html"><div class="ttname"><a href="_auto_step_8h.html">AutoStep.h</a></div><div class="ttdoc">Abstract interface that every autonomous step must implement.</div></div>
+<div class="ttc" id="a_drive_8hpp_html"><div class="ttname"><a href="_drive_8hpp.html">Drive.hpp</a></div><div class="ttdoc">Differential-drive subsystem: closed-loop wheel control, line following, wall-distance holding,...</div></div>
+<div class="ttc" id="a_strategy_8hpp_html"><div class="ttname"><a href="_strategy_8hpp.html">Strategy.hpp</a></div><div class="ttdoc">Game-state singleton that tracks tool levels, block possession, and scoring logic.</div></div>
+<div class="ttc" id="aclass_auto_step_html"><div class="ttname"><a href="class_auto_step.html">AutoStep</a></div><div class="ttdoc">Pure-virtual base class for all autonomous steps.</div><div class="ttdef"><b>Definition</b> AutoStep.h:26</div></div>
+<div class="ttc" id="aclass_index_block_step_html_a34f6a9f102fd236b01fef7584a2cc05b"><div class="ttname"><a href="class_index_block_step.html#a34f6a9f102fd236b01fef7584a2cc05b">IndexBlockStep::IndexBlockStep</a></div><div class="ttdeci">IndexBlockStep(Strategy::IndexDirection dir)</div><div class="ttdoc">Construct with a known index direction.</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:25</div></div>
+<div class="ttc" id="aclass_index_block_step_html_a929f4e0524c7bb5746ec54adda7a12e0"><div class="ttname"><a href="class_index_block_step.html#a929f4e0524c7bb5746ec54adda7a12e0">IndexBlockStep::start</a></div><div class="ttdeci">void start() override</div><div class="ttdoc">Initialise any state needed before the step begins running.</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:33</div></div>
+<div class="ttc" id="aclass_index_block_step_html_a9b6d2b2fe722d403fc0043cf3485c233"><div class="ttname"><a href="class_index_block_step.html#a9b6d2b2fe722d403fc0043cf3485c233">IndexBlockStep::_dir</a></div><div class="ttdeci">Strategy::IndexDirection _dir</div><div class="ttdoc">Index direction resolved by Strategy.</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:60</div></div>
+<div class="ttc" id="aclass_index_block_step_html_aa453d51337a11b6d5718e82b240b7ae6"><div class="ttname"><a href="class_index_block_step.html#aa453d51337a11b6d5718e82b240b7ae6">IndexBlockStep::IndexBlockStep</a></div><div class="ttdeci">IndexBlockStep()</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:29</div></div>
+<div class="ttc" id="aclass_index_block_step_html_aa80223d74ba9841a367f68ca3c241b5e"><div class="ttname"><a href="class_index_block_step.html#aa80223d74ba9841a367f68ca3c241b5e">IndexBlockStep::configure</a></div><div class="ttdeci">void configure(Strategy::IndexDirection dir)</div><div class="ttdoc">Re-configure the index direction for reuse.</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:55</div></div>
+<div class="ttc" id="aclass_index_block_step_html_ad7aa9b314da08d79189bcb5b02297138"><div class="ttname"><a href="class_index_block_step.html#ad7aa9b314da08d79189bcb5b02297138">IndexBlockStep::isFinished</a></div><div class="ttdeci">bool isFinished() const override</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:42</div></div>
+<div class="ttc" id="aclass_index_block_step_html_ae64a6a734c126985adbc7b46d6c503ee"><div class="ttname"><a href="class_index_block_step.html#ae64a6a734c126985adbc7b46d6c503ee">IndexBlockStep::update</a></div><div class="ttdeci">void update() override</div><div class="ttdoc">Advance the step by one control-loop tick.</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:37</div></div>
+<div class="ttc" id="aclass_index_block_step_html_afb7a3a962ee933cbb0a5e5c6ace0c2d3"><div class="ttname"><a href="class_index_block_step.html#afb7a3a962ee933cbb0a5e5c6ace0c2d3">IndexBlockStep::end</a></div><div class="ttdeci">void end() override</div><div class="ttdoc">Clean up resources or subsystem state when the step ends.</div><div class="ttdef"><b>Definition</b> IndexBlock.hpp:47</div></div>
+<div class="ttc" id="aclass_strategy_html_a5ddf8243b5b7b9c45797dcf7b076b43f"><div class="ttname"><a href="class_strategy.html#a5ddf8243b5b7b9c45797dcf7b076b43f">Strategy::IndexDirection</a></div><div class="ttdeci">IndexDirection</div><div class="ttdoc">Routing decision for a newly acquired block.</div><div class="ttdef"><b>Definition</b> Strategy.hpp:110</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

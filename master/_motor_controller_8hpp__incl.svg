@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Unified single&#45;channel motor controller supporting TB9051FTG and L298N drivers.">
 <polygon fill="#999999" stroke="#666666" points="156.25,-129.75 0,-129.75 0,-110.5 156.25,-110.5 156.25,-129.75"/>
 <text xml:space="preserve" text-anchor="middle" x="78.12" y="-116.25" font-family="Helvetica,sans-Serif" font-size="10.00">src/Devices/MotorController.hpp</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="_p_i_d_8hpp.html" target="_top" xlink:title="PID controller classes with optional nonlinear extensions and feedforward support.">
 <polygon fill="white" stroke="#666666" points="147.62,-74.5 74.62,-74.5 74.62,-55.25 147.62,-55.25 147.62,-74.5"/>
 <text xml:space="preserve" text-anchor="middle" x="111.12" y="-61" font-family="Helvetica,sans-Serif" font-size="10.00">utils/PID.hpp</text>
 </a>

@@ -91,6 +91,9 @@ $(function(){initNavTree('_odometry_plotting_8hpp.html','',''); });
   <div class="headertitle"><div class="title">OdometryPlotting.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Template helper functions for emitting JSON odometry telemetry over a serial port.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for OdometryPlotting.hpp:</div>
@@ -100,19 +103,28 @@ Include dependency graph for OdometryPlotting.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_odometry_plotting_8hpp__dep__incl.svg" width="2368" height="450"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_odometry_plotting_8hpp__dep__incl.svg" width="2628" height="450"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_odometry_plotting_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a65a25b8ff1be39c954186daf39da6526" id="r_a65a25b8ff1be39c954186daf39da6526"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a65a25b8ff1be39c954186daf39da6526">__attribute__</a> ((unused)) float wrapAnglePi(float a)</td></tr>
+<tr class="memdesc:a65a25b8ff1be39c954186daf39da6526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrap an angle to the range [-pi, pi].  <br /></td></tr>
+<tr id="func-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Telemetry emitters</div></td></tr>
 <tr class="memitem:a7714029eb70fc247d92d34267a52ff46" id="r_a7714029eb70fc247d92d34267a52ff46"><td class="memTemplParams" colspan="2">template&lt;typename OdomT&gt; </td></tr>
 <tr class="memitem:a7714029eb70fc247d92d34267a52ff46 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7714029eb70fc247d92d34267a52ff46">emitTelemetryJSON</a> (HardwareSerial &amp;serial, const OdomT &amp;actualOdom, float vLeftActual, float vRightActual, float pLeftActual, float pRightActual)</td></tr>
+<tr class="memdesc:a7714029eb70fc247d92d34267a52ff46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emit a JSON object with the robot's actual pose and wheel state.  <br /></td></tr>
 <tr class="memitem:a2f5bb033cb9f0ebb61def6b9e09966bc" id="r_a2f5bb033cb9f0ebb61def6b9e09966bc"><td class="memTemplParams" colspan="2">template&lt;typename OdomT&gt; </td></tr>
 <tr class="memitem:a2f5bb033cb9f0ebb61def6b9e09966bc template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2f5bb033cb9f0ebb61def6b9e09966bc">emitTelemetryJSON</a> (HardwareSerial &amp;serial, const OdomT &amp;actualOdom, float vLeftActual, float vRightActual, float pLeftActual, float pRightActual, float pLeftDesired, float pRightDesired)</td></tr>
+<tr class="memdesc:a2f5bb033cb9f0ebb61def6b9e09966bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emit a JSON object with actual and desired wheel positions.  <br /></td></tr>
 <tr class="memitem:a0496914ca911bfbe8c14cde5746d5edb" id="r_a0496914ca911bfbe8c14cde5746d5edb"><td class="memTemplParams" colspan="2">template&lt;typename OdomT&gt; </td></tr>
 <tr class="memitem:a0496914ca911bfbe8c14cde5746d5edb template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0496914ca911bfbe8c14cde5746d5edb">emitTelemetryJSON</a> (HardwareSerial &amp;serial, const OdomT &amp;actualOdom, const OdomT &amp;desiredOdom, float vLeftActual, float vRightActual, float vLeftDesired, float vRightDesired, float pLeftActual, float pRightActual, float pLeftDesired, float pRightDesired)</td></tr>
+<tr class="memdesc:a0496914ca911bfbe8c14cde5746d5edb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emit a JSON object with full actual + desired pose and 2-D tracking error. The most complete telemetry overload. <br  />
+ In addition to the fields in the two<br  />
+ * simpler overloads, it adds the desired pose, desired wheel velocities, and<br  />
+ * the signed 2-D pose error (ex, ey, eth) so that trajectory tracking can be visualised in real time.  <br /></td></tr>
 <tr class="memitem:a3db4928dcfb961b78b7ad2168aa9d1c2" id="r_a3db4928dcfb961b78b7ad2168aa9d1c2"><td class="memTemplParams" colspan="2">template&lt;typename OdomT&gt; </td></tr>
 <tr class="memitem:a3db4928dcfb961b78b7ad2168aa9d1c2 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3db4928dcfb961b78b7ad2168aa9d1c2">emitTelemetryCSV</a> (HardwareSerial &amp;serial, const OdomT &amp;actualOdom, float vLeftActual, float vRightActual, float pLeftActual, float pRightActual)</td></tr>
 <tr class="memitem:a5956b5dc0ff2aa6888502c1aea1578d8" id="r_a5956b5dc0ff2aa6888502c1aea1578d8"><td class="memTemplParams" colspan="2">template&lt;typename OdomT&gt; </td></tr>
@@ -120,7 +132,50 @@ Functions</h2></td></tr>
 <tr class="memitem:a4a0589ada723c91968d2df7d886881f6" id="r_a4a0589ada723c91968d2df7d886881f6"><td class="memTemplParams" colspan="2">template&lt;typename OdomT&gt; </td></tr>
 <tr class="memitem:a4a0589ada723c91968d2df7d886881f6 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4a0589ada723c91968d2df7d886881f6">emitTelemetryCSV</a> (HardwareSerial &amp;serial, const OdomT &amp;actualOdom, const OdomT &amp;desiredOdom, float vLeftActual, float vRightActual, float vLeftDesired, float vRightDesired, float pLeftActual, float pRightActual, float pLeftDesired, float pRightDesired)</td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Template helper functions for emitting JSON odometry telemetry over a serial port. </p>
+<p>Three overloads of <span class="tt"><a class="el" href="#a7714029eb70fc247d92d34267a52ff46" title="Emit a JSON object with the robot&#39;s actual pose and wheel state.">emitTelemetryJSON()</a></span> are provided, each adding more fields to the JSON object:</p><ol type="1">
+<li>Actual pose + actual wheel velocities and positions.</li>
+<li>Adds desired (reference) wheel positions.</li>
+<li>Adds desired pose, desired wheel velocities, and 2-D pose error.</li>
+</ol>
+<p>The output is a single-line JSON object terminated by a newline, compatible with the Teleplot VS Code extension and other serial JSON consumers.</p>
+<dl class="section note"><dt>Note</dt><dd>These are template functions parameterised on an odometry type. The type must expose a <span class="tt">getPose()</span> method returning an object with public <span class="tt">x</span>, <span class="tt">y</span>, and <span class="tt">heading</span> fields. </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a65a25b8ff1be39c954186daf39da6526" name="a65a25b8ff1be39c954186daf39da6526"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65a25b8ff1be39c954186daf39da6526">&#9670;&#160;</a></span>__attribute__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">__attribute__ </td>
+          <td>(</td>
+          <td class="paramtype">(unused)</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wrap an angle to the range [-pi, pi]. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>Input angle (radians). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Equivalent angle in (-π, π]. </dd></dl>
+
+</div>
+</div>
 <a id="a4a0589ada723c91968d2df7d886881f6" name="a4a0589ada723c91968d2df7d886881f6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4a0589ada723c91968d2df7d886881f6">&#9670;&#160;</a></span>emitTelemetryCSV() <span class="overload">[1/3]</span></h2>
 
@@ -351,6 +406,33 @@ template&lt;typename OdomT&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Emit a JSON object with full actual + desired pose and 2-D tracking error. The most complete telemetry overload. <br  />
+ In addition to the fields in the two<br  />
+ * simpler overloads, it adds the desired pose, desired wheel velocities, and<br  />
+ * the signed 2-D pose error (ex, ey, eth) so that trajectory tracking can be visualised in real time. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">OdomT</td><td><a class="el" href="class_odometry.html" title="Tracks robot pose by integrating encoder wheel displacements.">Odometry</a> type (must provide <span class="tt">getPose()</span>) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">serial</td><td>Serial port to write to. </td></tr>
+    <tr><td class="paramname">actualOdom</td><td>Current (measured) odometry object. </td></tr>
+    <tr><td class="paramname">desiredOdom</td><td>Reference (desired) odometry object. </td></tr>
+    <tr><td class="paramname">vLeftActual</td><td>Actual left-wheel velocity (in/s). </td></tr>
+    <tr><td class="paramname">vRightActual</td><td>Actual right-wheel velocity (in/s). </td></tr>
+    <tr><td class="paramname">vLeftDesired</td><td>Reference left-wheel velocity (in/s). </td></tr>
+    <tr><td class="paramname">vRightDesired</td><td>Reference right-wheel velocity (in/s). </td></tr>
+    <tr><td class="paramname">pLeftActual</td><td>Actual left-wheel position (in). </td></tr>
+    <tr><td class="paramname">pRightActual</td><td>Actual right-wheel position (in). </td></tr>
+    <tr><td class="paramname">pLeftDesired</td><td>Reference left-wheel position (in). </td></tr>
+    <tr><td class="paramname">pRightDesired</td><td>Reference right-wheel position (in). </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a7714029eb70fc247d92d34267a52ff46" name="a7714029eb70fc247d92d34267a52ff46"></a>
@@ -393,6 +475,45 @@ template&lt;typename OdomT&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Emit a JSON object with the robot's actual pose and wheel state. </p>
+<p>JSON fields: </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Key  </th><th class="markdownTableHeadNone">Description  </th><th class="markdownTableHeadNone">Units  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">t  </td><td class="markdownTableBodyNone">Timestamp from millis()  </td><td class="markdownTableBodyNone">ms  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">x  </td><td class="markdownTableBodyNone">Actual X position  </td><td class="markdownTableBodyNone">inches  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">y  </td><td class="markdownTableBodyNone">Actual Y position  </td><td class="markdownTableBodyNone">inches  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">th  </td><td class="markdownTableBodyNone">Actual heading  </td><td class="markdownTableBodyNone">rad  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">vl  </td><td class="markdownTableBodyNone">Actual left-wheel velocity  </td><td class="markdownTableBodyNone">in/s  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">vr  </td><td class="markdownTableBodyNone">Actual right-wheel velocity  </td><td class="markdownTableBodyNone">in/s  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">pl  </td><td class="markdownTableBodyNone">Actual left-wheel position  </td><td class="markdownTableBodyNone">inches  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">pr  </td><td class="markdownTableBodyNone">Actual right-wheel position  </td><td class="markdownTableBodyNone">inches  </td></tr>
+</table>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">OdomT</td><td><a class="el" href="class_odometry.html" title="Tracks robot pose by integrating encoder wheel displacements.">Odometry</a> type (must provide <span class="tt">getPose()</span>). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">serial</td><td>Serial port to write to. </td></tr>
+    <tr><td class="paramname">actualOdom</td><td>Current (measured) odometry object. </td></tr>
+    <tr><td class="paramname">vLeftActual</td><td>Left-wheel velocity (in/s). </td></tr>
+    <tr><td class="paramname">vRightActual</td><td>Right-wheel velocity (in/s). </td></tr>
+    <tr><td class="paramname">pLeftActual</td><td>Left-wheel position (in). </td></tr>
+    <tr><td class="paramname">pRightActual</td><td>Right-wheel position (in). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -446,6 +567,36 @@ template&lt;typename OdomT&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Emit a JSON object with actual and desired wheel positions. </p>
+<p>Extends the basic overload with reference (desired) wheel positions so that tracking error can be computed on the receiving side.</p>
+<p>Additional fields beyond the basic overload: </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Key  </th><th class="markdownTableHeadNone">Description  </th><th class="markdownTableHeadNone">Units  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">pl_ref  </td><td class="markdownTableBodyNone">Desired left-wheel position  </td><td class="markdownTableBodyNone">inches  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">pr_ref  </td><td class="markdownTableBodyNone">Desired right-wheel position  </td><td class="markdownTableBodyNone">inches  </td></tr>
+</table>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">OdomT</td><td><a class="el" href="class_odometry.html" title="Tracks robot pose by integrating encoder wheel displacements.">Odometry</a> type (must provide <span class="tt">getPose()</span>). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">serial</td><td>Serial port to write to. </td></tr>
+    <tr><td class="paramname">actualOdom</td><td>Current (measured) odometry object. </td></tr>
+    <tr><td class="paramname">vLeftActual</td><td>Actual left-wheel velocity (in/s). </td></tr>
+    <tr><td class="paramname">vRightActual</td><td>Actual right-wheel velocity (in/s). </td></tr>
+    <tr><td class="paramname">pLeftActual</td><td>Actual left-wheel position (in). </td></tr>
+    <tr><td class="paramname">pRightActual</td><td>Actual right-wheel position (in). </td></tr>
+    <tr><td class="paramname">pLeftDesired</td><td>Reference left-wheel position (in). </td></tr>
+    <tr><td class="paramname">pRightDesired</td><td>Reference right-wheel position (in). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

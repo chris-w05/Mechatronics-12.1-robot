@@ -92,6 +92,9 @@ $(function(){initNavTree('class_p_i_d_controller.html','','class_p_i_d_controlle
 </div><!--header-->
 <div class="contents">
 
+<p>Full-featured <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller with anti-windup, output filtering, and optional nonlinear extensions.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_p_i_d_8hpp_source.html">PID.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for PIDController:</div>
@@ -106,10 +109,14 @@ Collaboration diagram for PIDController:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a67cc314aa5b3b4e9c47ac414b3a4c008" id="r_a67cc314aa5b3b4e9c47ac414b3a4c008"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a67cc314aa5b3b4e9c47ac414b3a4c008">PIDController</a> ()</td></tr>
 <tr class="memitem:af50f86800ed8b6c79ff3fc10c6f6f645" id="r_af50f86800ed8b6c79ff3fc10c6f6f645"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af50f86800ed8b6c79ff3fc10c6f6f645">PIDController</a> (float kp, float ki, float kd)</td></tr>
 <tr class="memitem:ae5170c91f2bd0d773d411b96c12148fa" id="r_ae5170c91f2bd0d773d411b96c12148fa"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae5170c91f2bd0d773d411b96c12148fa">PIDController</a> (<a class="el" href="struct_p_i_d_constants.html">PIDConstants</a> consts)</td></tr>
 <tr class="memitem:aeac6ca4706cfbab6fe5ad8a683dc7323" id="r_aeac6ca4706cfbab6fe5ad8a683dc7323"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aeac6ca4706cfbab6fe5ad8a683dc7323">PIDController</a> (<a class="el" href="struct_p_i_d_constants.html">PIDConstants</a> consts, <a class="el" href="struct_nonlinear_p_i_d.html">NonlinearPID</a> funcs)</td></tr>
 <tr class="memitem:a1e9550a41075dc1bb99606e2227fcfed" id="r_a1e9550a41075dc1bb99606e2227fcfed"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1e9550a41075dc1bb99606e2227fcfed">PIDController</a> (<a class="el" href="struct_nonlinear_p_i_d.html">NonlinearPID</a> funcs)</td></tr>
+<tr class="memitem:a591b83591ed3c5ece84d7ec331e3bd7c" id="r_a591b83591ed3c5ece84d7ec331e3bd7c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a591b83591ed3c5ece84d7ec331e3bd7c">set</a> (<a class="el" href="struct_p_i_d_constants.html">PIDConstants</a> consts)</td></tr>
+<tr class="memitem:ac012a90c7f631aeda76bd140bd93bdc4" id="r_ac012a90c7f631aeda76bd140bd93bdc4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac012a90c7f631aeda76bd140bd93bdc4">set</a> (float value, short index)</td></tr>
+<tr class="memitem:aad6a9ba211c523c93bed7aecdeccb848" id="r_aad6a9ba211c523c93bed7aecdeccb848"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aad6a9ba211c523c93bed7aecdeccb848">setFilterStrength</a> (float alpha)</td></tr>
 <tr class="memitem:a13b6487783b1ed67b2a84010613edda1" id="r_a13b6487783b1ed67b2a84010613edda1"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a13b6487783b1ed67b2a84010613edda1">update</a> (float measurement, float dmeasurement, float setpoint, float dSetpoint=0)</td></tr>
 <tr class="memitem:a63d8cde4ef1b4485c5d39243efbb5e37" id="r_a63d8cde4ef1b4485c5d39243efbb5e37"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a63d8cde4ef1b4485c5d39243efbb5e37">update</a> (float measurement, float setpoint)</td></tr>
 <tr class="memitem:a834506a782676ba4645ed2e842f51818" id="r_a834506a782676ba4645ed2e842f51818"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a834506a782676ba4645ed2e842f51818">setIntegralLimits</a> (float minVal, float maxVal)</td></tr>
@@ -136,20 +143,31 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a9ce4cb255762e8a6c7649161340e1133" id="r_a9ce4cb255762e8a6c7649161340e1133"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a9ce4cb255762e8a6c7649161340e1133">_kff</a> = 0.0</td></tr>
+<tr class="memdesc:a9ce4cb255762e8a6c7649161340e1133"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple feedforward gain (FF = kff × setpoint).  <br /></td></tr>
 <tr class="memitem:a27d6d0e4e61d328be9c3d8d47d910a1b" id="r_a27d6d0e4e61d328be9c3d8d47d910a1b"><td class="memItemLeft"><a class="el" href="_p_i_d_8hpp.html#a3bf9dfb4d525ffd07017dc4348a10ad0">FeedforwardFn</a>&#160;</td><td class="memItemRight"><a class="el" href="#a27d6d0e4e61d328be9c3d8d47d910a1b">_ffFunc</a> = nullptr</td></tr>
+<tr class="memdesc:a27d6d0e4e61d328be9c3d8d47d910a1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom setpoint feedforward function (overrides _kff when set).  <br /></td></tr>
 <tr class="memitem:a0b26769b888190a8d2aaca3ac98d6e33" id="r_a0b26769b888190a8d2aaca3ac98d6e33"><td class="memItemLeft"><a class="el" href="_p_i_d_8hpp.html#a7107eb4fdadb9833cd6da74f58d54e43">DerivativeFeedforwardFn</a>&#160;</td><td class="memItemRight"><a class="el" href="#a0b26769b888190a8d2aaca3ac98d6e33">_dffFunc</a> = nullptr</td></tr>
+<tr class="memdesc:a0b26769b888190a8d2aaca3ac98d6e33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom derivative feedforward function.  <br /></td></tr>
 <tr class="memitem:a1d0de7e362c3de22a64f9658264399c2" id="r_a1d0de7e362c3de22a64f9658264399c2"><td class="memItemLeft"><a class="el" href="_p_i_d_8hpp.html#ad8b6199351264fb5e7f2fe773395f2bf">KpFn</a>&#160;</td><td class="memItemRight"><a class="el" href="#a1d0de7e362c3de22a64f9658264399c2">_kpFunc</a> = nullptr</td></tr>
+<tr class="memdesc:a1d0de7e362c3de22a64f9658264399c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nonlinear proportional gain function (overrides _kp when set).  <br /></td></tr>
 <tr class="memitem:a2a249390ef5d7c859e7cce9489589941" id="r_a2a249390ef5d7c859e7cce9489589941"><td class="memItemLeft"><a class="el" href="_p_i_d_8hpp.html#ad1d7b8772e9a29248ca584972196b3f5">KiFn</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2a249390ef5d7c859e7cce9489589941">_kiFunc</a> = nullptr</td></tr>
+<tr class="memdesc:a2a249390ef5d7c859e7cce9489589941"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nonlinear integral gain function (overrides _ki when set).  <br /></td></tr>
 <tr class="memitem:abbbed0981252ebda2f2ae64aa199a3e3" id="r_abbbed0981252ebda2f2ae64aa199a3e3"><td class="memItemLeft"><a class="el" href="_p_i_d_8hpp.html#ac51bb4d2d4bbcdc464fc7f362c08078e">KdFn</a>&#160;</td><td class="memItemRight"><a class="el" href="#abbbed0981252ebda2f2ae64aa199a3e3">_kdFunc</a> = nullptr</td></tr>
-<tr class="memitem:a0af29a9cd99e2385d8d0cd868c4f796c" id="r_a0af29a9cd99e2385d8d0cd868c4f796c"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a0af29a9cd99e2385d8d0cd868c4f796c">values</a> [filterStrength] = {0}</td></tr>
-<tr class="memitem:a33a691598e2f3dc78d3aa175f939ea55" id="r_a33a691598e2f3dc78d3aa175f939ea55"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a33a691598e2f3dc78d3aa175f939ea55">filterSum</a> = 0</td></tr>
-<tr class="memitem:a8e0021c6e5afa2ce3def0fc99f122ec2" id="r_a8e0021c6e5afa2ce3def0fc99f122ec2"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a8e0021c6e5afa2ce3def0fc99f122ec2">filterIndex</a> = 0</td></tr>
+<tr class="memdesc:abbbed0981252ebda2f2ae64aa199a3e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nonlinear derivative gain function (overrides _kd when set).  <br /></td></tr>
+<tr class="memitem:a0f4c08e6fe6485da8e1b532edddd0310" id="r_a0f4c08e6fe6485da8e1b532edddd0310"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a0f4c08e6fe6485da8e1b532edddd0310">_alpha</a> = 1</td></tr>
+<tr class="memdesc:a0f4c08e6fe6485da8e1b532edddd0310"><td class="mdescLeft">&#160;</td><td class="mdescRight">IIR output filter coefficient (1 = off, smaller = stronger filter).  <br /></td></tr>
 <tr class="memitem:ad23e971fc01d68437af4d4bfe836990d" id="r_ad23e971fc01d68437af4d4bfe836990d"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ad23e971fc01d68437af4d4bfe836990d">_integral</a> = 0.0</td></tr>
+<tr class="memdesc:ad23e971fc01d68437af4d4bfe836990d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accumulated integral term.  <br /></td></tr>
 <tr class="memitem:a9c1448b9bb2093c0a7261ed09bad8575" id="r_a9c1448b9bb2093c0a7261ed09bad8575"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a9c1448b9bb2093c0a7261ed09bad8575">_lastMeasurement</a> = 0.0</td></tr>
+<tr class="memdesc:a9c1448b9bb2093c0a7261ed09bad8575"><td class="mdescLeft">&#160;</td><td class="mdescRight">Previous measurement (for internal derivative computation).  <br /></td></tr>
 <tr class="memitem:a8a466282fd064ba8786092578dfde6fd" id="r_a8a466282fd064ba8786092578dfde6fd"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a8a466282fd064ba8786092578dfde6fd">_lastOutput</a> = 0.0</td></tr>
+<tr class="memdesc:a8a466282fd064ba8786092578dfde6fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Previous filtered output (for IIR filter and slew).  <br /></td></tr>
 <tr class="memitem:a9b90c9fdc917acc2654ed4337e8fc5b8" id="r_a9b90c9fdc917acc2654ed4337e8fc5b8"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a9b90c9fdc917acc2654ed4337e8fc5b8">_lastDerivative</a> = 0.0</td></tr>
+<tr class="memdesc:a9b90c9fdc917acc2654ed4337e8fc5b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Previous derivative estimate (for IIR derivative filtering).  <br /></td></tr>
 <tr class="memitem:a64d7a14d4e09c41c3536eb49da0b8d8e" id="r_a64d7a14d4e09c41c3536eb49da0b8d8e"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a64d7a14d4e09c41c3536eb49da0b8d8e">_iMin</a> = -100000.0</td></tr>
+<tr class="memdesc:a64d7a14d4e09c41c3536eb49da0b8d8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lower clamp on the integral accumulator (anti-windup).  <br /></td></tr>
 <tr class="memitem:a30f6506fddb1c3d98c6c112ad8777843" id="r_a30f6506fddb1c3d98c6c112ad8777843"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a30f6506fddb1c3d98c6c112ad8777843">_iMax</a> = 100000.0</td></tr>
+<tr class="memdesc:a30f6506fddb1c3d98c6c112ad8777843"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upper clamp on the integral accumulator (anti-windup).  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -163,9 +181,48 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:ad7c20b62edd6ba05251349cb8412f17f inherit pro_attribs_class_p_i_d" id="r_ad7c20b62edd6ba05251349cb8412f17f"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="class_p_i_d.html#ad7c20b62edd6ba05251349cb8412f17f">_lastOutput</a> {0.f}</td></tr>
 <tr class="memitem:aa62c7bb7ecbeeb9e86146ea54a18dc7a inherit pro_attribs_class_p_i_d" id="r_aa62c7bb7ecbeeb9e86146ea54a18dc7a"><td class="memItemLeft">unsigned long&#160;</td><td class="memItemRight"><a class="el" href="class_p_i_d.html#aa62c7bb7ecbeeb9e86146ea54a18dc7a">_lastTime</a> {0}</td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Full-featured <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller with anti-windup, output filtering, and optional nonlinear extensions. </p>
+<p>Extends <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> with:</p><ul>
+<li>Integral clamping (anti-windup) via configurable limits.</li>
+<li>IIR output filter to smooth the command signal.</li>
+<li>Optional feedforward functions (<a class="el" href="_p_i_d_8hpp.html#a3bf9dfb4d525ffd07017dc4348a10ad0" title="Feedforward function pointer type.">FeedforwardFn</a>, <a class="el" href="_p_i_d_8hpp.html#a7107eb4fdadb9833cd6da74f58d54e43" title="Derivative feedforward function pointer type.">DerivativeFeedforwardFn</a>).</li>
+<li>Optional nonlinear gain functions (<a class="el" href="_p_i_d_8hpp.html#ad8b6199351264fb5e7f2fe773395f2bf" title="Nonlinear proportional gain function pointer type.">KpFn</a>, <a class="el" href="_p_i_d_8hpp.html#ad1d7b8772e9a29248ca584972196b3f5" title="Nonlinear integral gain function pointer type.">KiFn</a>, <a class="el" href="_p_i_d_8hpp.html#ac51bb4d2d4bbcdc464fc7f362c08078e" title="Nonlinear derivative gain function pointer type.">KdFn</a>) for gain scheduling.</li>
+</ul>
+<p>When the nonlinear callbacks are <span class="tt">nullptr</span> the controller degrades to a standard <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> with the linear kp / ki / kd constants. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a67cc314aa5b3b4e9c47ac414b3a4c008" name="a67cc314aa5b3b4e9c47ac414b3a4c008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67cc314aa5b3b4e9c47ac414b3a4c008">&#9670;&#160;</a></span>PIDController() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">PIDController::PIDController </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="class_p_i_d_controller_a67cc314aa5b3b4e9c47ac414b3a4c008_cgraph.svg" width="322" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="af50f86800ed8b6c79ff3fc10c6f6f645" name="af50f86800ed8b6c79ff3fc10c6f6f645"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af50f86800ed8b6c79ff3fc10c6f6f645">&#9670;&#160;</a></span>PIDController() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af50f86800ed8b6c79ff3fc10c6f6f645">&#9670;&#160;</a></span>PIDController() <span class="overload">[2/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -204,7 +261,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="ae5170c91f2bd0d773d411b96c12148fa" name="ae5170c91f2bd0d773d411b96c12148fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5170c91f2bd0d773d411b96c12148fa">&#9670;&#160;</a></span>PIDController() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5170c91f2bd0d773d411b96c12148fa">&#9670;&#160;</a></span>PIDController() <span class="overload">[3/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -234,7 +291,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="aeac6ca4706cfbab6fe5ad8a683dc7323" name="aeac6ca4706cfbab6fe5ad8a683dc7323"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeac6ca4706cfbab6fe5ad8a683dc7323">&#9670;&#160;</a></span>PIDController() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aeac6ca4706cfbab6fe5ad8a683dc7323">&#9670;&#160;</a></span>PIDController() <span class="overload">[4/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -269,7 +326,7 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a id="a1e9550a41075dc1bb99606e2227fcfed" name="a1e9550a41075dc1bb99606e2227fcfed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e9550a41075dc1bb99606e2227fcfed">&#9670;&#160;</a></span>PIDController() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e9550a41075dc1bb99606e2227fcfed">&#9670;&#160;</a></span>PIDController() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -376,7 +433,63 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Gets rid of all of the nonlinear functions in the <a class="el" href="class_p_i_d.html">PID</a> controller </p>
+<p>Gets rid of all of the nonlinear functions in the <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller </p>
+
+</div>
+</div>
+<a id="ac012a90c7f631aeda76bd140bd93bdc4" name="ac012a90c7f631aeda76bd140bd93bdc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac012a90c7f631aeda76bd140bd93bdc4">&#9670;&#160;</a></span>set() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PIDController::set </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">short</td>          <td class="paramname"><span class="paramname"><em>index</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the parameters of the <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> controller using the value of the parameter and which one to set (0, 1, 2) for kp ki kd </p>
+
+</div>
+</div>
+<a id="a591b83591ed3c5ece84d7ec331e3bd7c" name="a591b83591ed3c5ece84d7ec331e3bd7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a591b83591ed3c5ece84d7ec331e3bd7c">&#9670;&#160;</a></span>set() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PIDController::set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_p_i_d_constants.html">PIDConstants</a></td>          <td class="paramname"><span class="paramname"><em>consts</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the values for all <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> constants </p>
 
 </div>
 </div>
@@ -430,6 +543,38 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <p>Set a custom feedforward function. The function signature must be: double f(float setpoint)</p>
 <p>If set, this function is used instead of the simple kff*setpoint. Pass nullptr to clear. </p>
+
+</div>
+</div>
+<a id="aad6a9ba211c523c93bed7aecdeccb848" name="aad6a9ba211c523c93bed7aecdeccb848"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad6a9ba211c523c93bed7aecdeccb848">&#9670;&#160;</a></span>setFilterStrength()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PIDController::setFilterStrength </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets the strength of the internal IIR filter</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alpha</td><td>The strength of the filter, with 0 being the strongest and 1 being the weakest. Min of 0 and max of 1 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -577,11 +722,11 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Gets signal from controller. PIDConcontroller's update(...) differs from <a class="el" href="class_p_i_d.html">PID</a>'s update because of its implementation of a feedforward function.</p>
+<p>Gets signal from controller. PIDConcontroller's update(...) differs from <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a>'s update because of its implementation of a feedforward function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">measurement</td><td>The current parameter being controller (can be position, velocity, etc) </td></tr>
-    <tr><td class="paramname">dmeasurement</td><td>The rate of change of the parameter of interest. If the <a class="el" href="class_p_i_d.html">PID</a> is being used on position, this would be the velocity </td></tr>
+    <tr><td class="paramname">dmeasurement</td><td>The rate of change of the parameter of interest. If the <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> is being used on position, this would be the velocity </td></tr>
     <tr><td class="paramname">setpoint</td><td>The target value for the parameter of interest </td></tr>
   </table>
   </dd>
@@ -620,7 +765,7 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Update <a class="el" href="class_p_i_d.html">PID</a> and return control output. This particular overload of update(...) finds the derivative of the current measurement. When derivative information is not available this can be used. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Update <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> and return control output. This particular overload of update(...) finds the derivative of the current measurement. When derivative information is not available this can be used. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">measurement</td><td>The current parameter being controller (can be position, velocity, etc) </td></tr>
     <tr><td class="paramname">setpoint</td><td>The target value for the parameter of interest </td></tr>
@@ -636,6 +781,30 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a0f4c08e6fe6485da8e1b532edddd0310" name="a0f4c08e6fe6485da8e1b532edddd0310"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f4c08e6fe6485da8e1b532edddd0310">&#9670;&#160;</a></span>_alpha</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PIDController::_alpha = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>IIR output filter coefficient (1 = off, smaller = stronger filter). </p>
+
+</div>
+</div>
 <a id="a0b26769b888190a8d2aaca3ac98d6e33" name="a0b26769b888190a8d2aaca3ac98d6e33"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0b26769b888190a8d2aaca3ac98d6e33">&#9670;&#160;</a></span>_dffFunc</h2>
 
@@ -655,6 +824,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Custom derivative feedforward function. </p>
 
 </div>
 </div>
@@ -678,6 +849,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Custom setpoint feedforward function (overrides _kff when set). </p>
+
 </div>
 </div>
 <a id="a30f6506fddb1c3d98c6c112ad8777843" name="a30f6506fddb1c3d98c6c112ad8777843"></a>
@@ -699,6 +872,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Upper clamp on the integral accumulator (anti-windup). </p>
 
 </div>
 </div>
@@ -722,6 +897,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Lower clamp on the integral accumulator (anti-windup). </p>
+
 </div>
 </div>
 <a id="ad23e971fc01d68437af4d4bfe836990d" name="ad23e971fc01d68437af4d4bfe836990d"></a>
@@ -743,6 +920,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Accumulated integral term. </p>
 
 </div>
 </div>
@@ -766,6 +945,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Nonlinear derivative gain function (overrides _kd when set). </p>
+
 </div>
 </div>
 <a id="a9ce4cb255762e8a6c7649161340e1133" name="a9ce4cb255762e8a6c7649161340e1133"></a>
@@ -787,6 +968,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Simple feedforward gain (FF = kff × setpoint). </p>
 
 </div>
 </div>
@@ -810,6 +993,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Nonlinear integral gain function (overrides _ki when set). </p>
+
 </div>
 </div>
 <a id="a1d0de7e362c3de22a64f9658264399c2" name="a1d0de7e362c3de22a64f9658264399c2"></a>
@@ -831,6 +1016,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Nonlinear proportional gain function (overrides _kp when set). </p>
 
 </div>
 </div>
@@ -854,6 +1041,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Previous derivative estimate (for IIR derivative filtering). </p>
+
 </div>
 </div>
 <a id="a9c1448b9bb2093c0a7261ed09bad8575" name="a9c1448b9bb2093c0a7261ed09bad8575"></a>
@@ -875,6 +1064,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Previous measurement (for internal derivative computation). </p>
 
 </div>
 </div>
@@ -898,71 +1089,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a8e0021c6e5afa2ce3def0fc99f122ec2" name="a8e0021c6e5afa2ce3def0fc99f122ec2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e0021c6e5afa2ce3def0fc99f122ec2">&#9670;&#160;</a></span>filterIndex</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int PIDController::filterIndex = 0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a33a691598e2f3dc78d3aa175f939ea55" name="a33a691598e2f3dc78d3aa175f939ea55"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33a691598e2f3dc78d3aa175f939ea55">&#9670;&#160;</a></span>filterSum</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float PIDController::filterSum = 0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0af29a9cd99e2385d8d0cd868c4f796c" name="a0af29a9cd99e2385d8d0cd868c4f796c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0af29a9cd99e2385d8d0cd868c4f796c">&#9670;&#160;</a></span>values</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float PIDController::values[filterStrength] = {0}</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>Previous filtered output (for IIR filter and slew). </p>
 
 </div>
 </div>

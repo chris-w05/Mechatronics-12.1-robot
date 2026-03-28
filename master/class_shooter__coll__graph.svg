@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Rack&#45;and&#45;pinion block shooter controlled by encoder feedback.">
 <polygon fill="#999999" stroke="#666666" points="174.62,-19.25 124.88,-19.25 124.88,0 174.62,0 174.62,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="149.75" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Shooter</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_subsystem.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_subsystem.html" target="_top" xlink:title="Polymorphic interface for a robot subsystem.">
 <polygon fill="white" stroke="#666666" points="65.5,-91.75 0,-91.75 0,-72.5 65.5,-72.5 65.5,-91.75"/>
 <text xml:space="preserve" text-anchor="middle" x="32.75" y="-78.25" font-family="Helvetica,sans-Serif" font-size="10.00">Subsystem</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="class_button.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="class_button.html" target="_top" xlink:title="Digital button / limit&#45;switch driver.">
 <polygon fill="white" stroke="#666666" points="128,-91.75 83.5,-91.75 83.5,-72.5 128,-72.5 128,-91.75"/>
 <text xml:space="preserve" text-anchor="middle" x="105.75" y="-78.25" font-family="Helvetica,sans-Serif" font-size="10.00">Button</text>
 </a>
@@ -57,7 +57,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="class_dual_motor_controller.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="class_dual_motor_controller.html" target="_top" xlink:title="Dual&#45;channel closed&#45;loop motor controller.">
 <polygon fill="white" stroke="#666666" points="249.25,-91.75 146.25,-91.75 146.25,-72.5 249.25,-72.5 249.25,-91.75"/>
 <text xml:space="preserve" text-anchor="middle" x="197.75" y="-78.25" font-family="Helvetica,sans-Serif" font-size="10.00">DualMotorController</text>
 </a>
@@ -95,7 +95,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="class_p_i_d_controller.html" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="class_p_i_d_controller.html" target="_top" xlink:title="Full&#45;featured PID controller with anti&#45;windup, output filtering, and optional nonlinear extensions.">
 <polygon fill="white" stroke="#666666" points="303.38,-179.5 228.12,-179.5 228.12,-160.25 303.38,-160.25 303.38,-179.5"/>
 <text xml:space="preserve" text-anchor="middle" x="265.75" y="-166" font-family="Helvetica,sans-Serif" font-size="10.00">PIDController</text>
 </a>
@@ -115,7 +115,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="class_p_i_d.html" target="_top" xlink:title=" ">
+<g id="a_Node000007"><a xlink:href="class_p_i_d.html" target="_top" xlink:title="Lightweight PID controller base class.">
 <polygon fill="white" stroke="#666666" points="282.38,-235.75 249.12,-235.75 249.12,-216.5 282.38,-216.5 282.38,-235.75"/>
 <text xml:space="preserve" text-anchor="middle" x="265.75" y="-222.25" font-family="Helvetica,sans-Serif" font-size="10.00">PID</text>
 </a>
@@ -133,7 +133,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="class_encoder_wrapper.html" target="_top" xlink:title=" ">
+<g id="a_Node000008"><a xlink:href="class_encoder_wrapper.html" target="_top" xlink:title="Quadrature encoder driver with velocity and acceleration estimation.">
 <polygon fill="white" stroke="#666666" points="355.75,-91.75 267.75,-91.75 267.75,-72.5 355.75,-72.5 355.75,-91.75"/>
 <text xml:space="preserve" text-anchor="middle" x="311.75" y="-78.25" font-family="Helvetica,sans-Serif" font-size="10.00">EncoderWrapper</text>
 </a>

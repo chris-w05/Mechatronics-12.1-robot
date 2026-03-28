@@ -91,6 +91,9 @@ $(function(){initNavTree('_robot_8hpp.html','',''); });
   <div class="headertitle"><div class="title">Robot.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Top-level robot class that owns all subsystems and the autonomous scheduler.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_config_8hpp_source.html">Config.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_subsystem_8h_source.html">subsystems/Subsystem.h</a>&quot;</code><br />
@@ -111,13 +114,15 @@ $(function(){initNavTree('_robot_8hpp.html','',''); });
 <code>#include &quot;<a class="el" href="_fire_step_8hpp_source.html">Autonomous/Steps/FireStep.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_follow_line_step_8hpp_source.html">Autonomous/Steps/FollowLineStep.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_mine_block_8hpp_source.html">Autonomous/Steps/MineBlock.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_deploy_ramp_8hpp_source.html">Autonomous/Steps/DeployRamp.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_mine_block_autofire_8hpp_source.html">Autonomous/Steps/MineBlockAutofire.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_motor_controller_8hpp_source.html">Devices/MotorController.hpp</a>&quot;</code><br />
 <code>#include &quot;SoftwareSerial.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="_robot___commands_8hpp_source.html">Robot_Commands.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Robot.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_robot_8hpp__incl.svg" width="4720" height="567"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_robot_8hpp__incl.svg" width="5251" height="567"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -130,8 +135,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Robot" id="r_Robot"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_robot.html">Robot</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aggregates all robot subsystems and drives the main control loop.  <a href="class_robot.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Top-level robot class that owns all subsystems and the autonomous scheduler. </p>
+<p><span class="tt"><a class="el" href="class_robot.html" title="Aggregates all robot subsystems and drives the main control loop.">Robot</a></span> is the single entry-point for both <span class="tt"><a class="el" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Arduino setup() — called once on power-on or reset.">setup()</a></span> and <span class="tt"><a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="Arduino loop() — called repeatedly after setup().">loop()</a></span>. It owns <span class="tt"><a class="el" href="class_drive.html">Drive</a></span>, <span class="tt"><a class="el" href="class_miner.html" title="Servo-driven block-mining and ramp-deployment subsystem.">Miner</a></span>, <span class="tt"><a class="el" href="class_shooter.html" title="Rack-and-pinion block shooter controlled by encoder feedback.">Shooter</a></span>, and <span class="tt"><a class="el" href="class_serial_coms.html" title="Newline-delimited ASCII command receiver for Arduino-to-Arduino comms.">SerialComs</a></span> as public members so that autonomous steps can reference them directly.</p>
+<p>Serial command handling (USB + Serial2) is implemented in <a class="el" href="_robot___commands_8hpp.html" title="Serial command protocol implementation for the Robot class.">Robot_Commands.hpp</a>, which is <span class="tt">#include</span>d at the bottom of this file. See that file for the full command protocol reference. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

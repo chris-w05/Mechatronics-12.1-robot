@@ -1,5 +1,5 @@
 <map id="SerialComs" name="SerialComs">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,95,105"/>
-<area shape="rect" id="Node000002" href="$class_subsystem.html" title=" " alt="" coords="6,5,94,31"/>
+<area shape="rect" id="Node000001" title="Newline&#45;delimited ASCII command receiver for Arduino&#45;to&#45;Arduino comms." alt="" coords="5,79,95,105"/>
+<area shape="rect" id="Node000002" href="$class_subsystem.html" title="Polymorphic interface for a robot subsystem." alt="" coords="6,5,94,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="52,45,53,79,47,78,48,48"/>
 </map>

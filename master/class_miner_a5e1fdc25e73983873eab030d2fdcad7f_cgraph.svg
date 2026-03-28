@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Start mining for a fixed number of press cycles.">
 <polygon fill="#999999" stroke="#666666" points="94,-19.25 0,-19.25 0,0 94,0 94,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="47" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Miner::startMining</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="class_miner.html#a2621577e4088181556df1c3141bb6a10" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="class_miner.html#a2621577e4088181556df1c3141bb6a10" target="_top" xlink:title="Internal transition to MINING mode; resets all hit and cycle counters.">
 <polygon fill="white" stroke="#666666" points="224,-19.25 130,-19.25 130,0 224,0 224,-19.25"/>
 <text xml:space="preserve" text-anchor="middle" x="177" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Miner::startMining</text>
 </a>

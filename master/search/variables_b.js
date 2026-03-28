@@ -9,6 +9,6 @@ var searchData=
   ['lastsignal2_6',['lastSignal2',['../class_dual_motor_controller.html#aaae5e972591341004da02fd3e725ac57',1,'DualMotorController']]],
   ['lasttime_7',['lastTime',['../class_accelerate_straight_line.html#a3ea303542ba0f9e1c1d0e2a30bba460b',1,'AccelerateStraightLine']]],
   ['lastvelocity_8',['lastVelocity',['../class_encoder_wrapper.html#acb4183788ad22e65a30afdca277d44d0',1,'EncoderWrapper']]],
-  ['linesensorcalmax_9',['lineSensorCalMax',['../_config_8hpp.html#a8c8701ad5b27308b371a248791e78065',1,'Config.hpp']]],
-  ['linesensorcalmin_10',['lineSensorCalMin',['../_config_8hpp.html#a6c091febe432fceaf1593851200c5bd6',1,'Config.hpp']]]
+  ['linesensorcalmax_9',['LINESENSORCALMAX',['../group__physical.html#gabf427f1a4fef08eff42601eaf40ea59b',1,'Config.hpp']]],
+  ['linesensorcalmin_10',['LINESENSORCALMIN',['../group__physical.html#ga0276b8480dfe12f1651af81e64e5186b',1,'Config.hpp']]]
 ];

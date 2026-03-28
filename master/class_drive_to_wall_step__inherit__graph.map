@@ -1,5 +1,5 @@
 <map id="DriveToWallStep" name="DriveToWallStep">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,124,105"/>
-<area shape="rect" id="Node000002" href="$class_auto_step.html" title=" " alt="" coords="27,5,102,31"/>
+<area shape="rect" id="Node000001" title="Approach a wall using the front distance sensor until within 0.5 cm of _target." alt="" coords="5,79,124,105"/>
+<area shape="rect" id="Node000002" href="$class_auto_step.html" title="Pure&#45;virtual base class for all autonomous steps." alt="" coords="27,5,102,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,45,67,79,62,78,63,48"/>
 </map>

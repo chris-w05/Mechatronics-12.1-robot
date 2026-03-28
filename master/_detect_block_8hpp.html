@@ -91,6 +91,9 @@ $(function(){initNavTree('_detect_block_8hpp.html','',''); });
   <div class="headertitle"><div class="title">DetectBlock.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> that samples the color sensor and updates <span class="tt"><a class="el" href="class_strategy.html" title="Game-state manager and strategy decision engine.">Strategy</a></span> with the detected block type.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_auto_step_8h_source.html">Autonomous/AutoStep.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_drive_8hpp_source.html">subsystems/Drive.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_strategy_8hpp_source.html">utils/Strategy.hpp</a>&quot;</code><br />
@@ -110,8 +113,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:DetectBlockStep" id="r_DetectBlockStep"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_detect_block_step.html">DetectBlockStep</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Poll the color sensor for a configurable window, then finish.  <a href="class_detect_block_step.html#details">More...</a><br /></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><span class="tt"><a class="el" href="class_auto_step.html" title="Pure-virtual base class for all autonomous steps.">AutoStep</a></span> that samples the color sensor and updates <span class="tt"><a class="el" href="class_strategy.html" title="Game-state manager and strategy decision engine.">Strategy</a></span> with the detected block type. </p>
+<p>Runs for <span class="tt">_checkTimeMs</span> milliseconds while polling the color sensor. On expiry the step marks itself finished. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

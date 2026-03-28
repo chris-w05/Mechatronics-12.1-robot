@@ -1,13 +1,16 @@
 <map id="Robot::processCommandString" name="Robot::processCommandString">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,210,107"/>
-<area shape="rect" id="Node000002" href="$class_robot.html#a2a309b38abaed08fcd6dc60b09f65ca2" title=" " alt="" coords="268,5,468,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,78,257,48,309,35,304,37,258,53,155,83"/>
-<area shape="rect" id="Node000003" href="$class_robot.html#a3defa2b851d1a9267d6dbe251373ba7d" title=" " alt="" coords="526,56,618,82"/>
-<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="210,86,512,70,510,75,211,91"/>
-<area shape="rect" id="Node000004" href="$class_robot.html#aa0975008ed9aee31a6ff43d8289bedb5" title=" " alt="" coords="258,107,478,132"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="210,101,245,107,239,108,211,107"/>
-<area shape="rect" id="Node000005" href="$class_robot.html#a422a0be216adcf84334fd65325b20413" title=" " alt="" coords="265,156,471,197"/>
-<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="147,105,258,142,282,152,277,152,257,147,146,110"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="423,29,514,54,509,54,423,34"/>
-<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="422,103,509,84,514,83,423,109"/>
+<area shape="rect" id="Node000001" title="Parse and dispatch a raw command string to the appropriate handler." alt="" coords="5,132,210,158"/>
+<area shape="rect" id="Node000002" href="$class_robot.html#a25277ec017ab37e4920908740e7f1ee9" title="Handle commands that are valid in any operating mode." alt="" coords="261,56,460,82"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,129,302,85,299,89,154,134"/>
+<area shape="rect" id="Node000004" href="$class_robot.html#a3defa2b851d1a9267d6dbe251373ba7d" title="Send a message to a serial port (defaults to USB Serial if port is null)." alt="" coords="780,81,873,107"/>
+<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="210,135,765,96,764,101,211,140"/>
+<area shape="rect" id="Node000005" href="$class_robot.html#a701fe8e294bbf124925db433690174dd" title="Handle SERIAL_TEST commands with no numeric parameters." alt="" coords="512,157,732,183"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="210,147,498,162,495,166,210,153"/>
+<area shape="rect" id="Node000006" href="$class_robot.html#acf85577d12d881301a16f303f39efc05" title="Parse a keyword + up to two float parameters from a command string." alt="" coords="258,207,464,248"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="150,156,284,200,279,203,149,161"/>
+<area shape="rect" id="Node000003" href="$class_robot.html#a9e72bb50888e8247a9a55add640542ac" title="Print the serial command reference to port (defaults to USB Serial)." alt="" coords="548,5,697,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="430,53,540,34,535,35,432,58"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="461,72,767,90,762,92,461,77"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="675,29,733,48,789,74,783,74,731,53,675,34"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="674,154,731,136,784,115,789,114,733,141,676,159"/>
 </map>

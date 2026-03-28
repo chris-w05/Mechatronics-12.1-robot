@@ -91,6 +91,9 @@ $(function(){initNavTree('_config_8hpp.html','',''); });
   <div class="headertitle"><div class="title">Config.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Central configuration: pin assignments, physical constants, and <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> gains.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="_dual_motor_controller_8hpp_source.html">Devices/DualMotorController.hpp</a>&gt;</code><br />
 <code>#include &quot;<a class="el" href="_p_i_d_8hpp_source.html">utils/PID.hpp</a>&quot;</code><br />
@@ -103,98 +106,40 @@ Include dependency graph for Config.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_config_8hpp__dep__incl.svg" width="2754" height="450"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="_config_8hpp__dep__incl.svg" width="3287" height="466"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="_config_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga42531e6d1baacb43d0a2f6e89312fa47" id="r_ga42531e6d1baacb43d0a2f6e89312fa47"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="group__physical.html#ga42531e6d1baacb43d0a2f6e89312fa47">distanceSensor_VoltageToDistance</a> (float voltage)</td></tr>
+<tr class="memdesc:ga42531e6d1baacb43d0a2f6e89312fa47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a Sharp IR sensor voltage to distance in centimetres.  <br /></td></tr>
+<tr class="memitem:ga9c109a40745570b32ae051c909ab5a7c" id="r_ga9c109a40745570b32ae051c909ab5a7c"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="group__pid__constants.html#ga9c109a40745570b32ae051c909ab5a7c">shooterFF</a> (float measurement, float target)</td></tr>
+<tr class="memdesc:ga9c109a40745570b32ae051c909ab5a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nonlinear feedforward for the shooter position controller.  <br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ad78ba0578bf8a65c6c463a39be5db656" id="r_ad78ba0578bf8a65c6c463a39be5db656"><td class="memItemLeft">const <a class="el" href="struct_t_b9051_pins.html">TB9051Pins</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad78ba0578bf8a65c6c463a39be5db656">drivePins</a></td></tr>
-<tr class="memitem:a1e2a140b4aaaeb5edca32df2c141cea3" id="r_a1e2a140b4aaaeb5edca32df2c141cea3"><td class="memItemLeft">const <a class="el" href="struct_t_b9051_pins.html">TB9051Pins</a>&#160;</td><td class="memItemRight"><a class="el" href="#a1e2a140b4aaaeb5edca32df2c141cea3">shooterPins</a></td></tr>
-<tr class="memitem:a6c091febe432fceaf1593851200c5bd6" id="r_a6c091febe432fceaf1593851200c5bd6"><td class="memItemLeft">const uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a6c091febe432fceaf1593851200c5bd6">lineSensorCalMin</a> [8] = {0, 0, 0, 0, 0, 0, 0, 0}</td></tr>
-<tr class="memitem:a8c8701ad5b27308b371a248791e78065" id="r_a8c8701ad5b27308b371a248791e78065"><td class="memItemLeft">const uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a8c8701ad5b27308b371a248791e78065">lineSensorCalMax</a> [8] = {1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000}</td></tr>
+<tr class="memitem:ga0276b8480dfe12f1651af81e64e5186b" id="r_ga0276b8480dfe12f1651af81e64e5186b"><td class="memItemLeft">const uint16_t&#160;</td><td class="memItemRight"><a class="el" href="group__physical.html#ga0276b8480dfe12f1651af81e64e5186b">LINESENSORCALMIN</a> [8] = {96, 96, 96, 48, 48, 48, 48, 48}</td></tr>
+<tr class="memdesc:ga0276b8480dfe12f1651af81e64e5186b"><td class="mdescLeft">&#160;</td><td class="mdescRight">QTR minimum calibration values (per sensor).  <br /></td></tr>
+<tr class="memitem:gabf427f1a4fef08eff42601eaf40ea59b" id="r_gabf427f1a4fef08eff42601eaf40ea59b"><td class="memItemLeft">const uint16_t&#160;</td><td class="memItemRight"><a class="el" href="group__physical.html#gabf427f1a4fef08eff42601eaf40ea59b">LINESENSORCALMAX</a> [8] = {1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000}</td></tr>
+<tr class="memdesc:gabf427f1a4fef08eff42601eaf40ea59b"><td class="mdescLeft">&#160;</td><td class="mdescRight">QTR maximum calibration values.  <br /></td></tr>
+<tr id="var-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Drive encoder pins (hardware interrupt-capable)</div></td></tr>
+<tr id="var-members-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Drive motor pin bundle (L298N-compatible via DualMotorController)</div></td></tr>
+<tr class="memitem:gad78ba0578bf8a65c6c463a39be5db656" id="r_gad78ba0578bf8a65c6c463a39be5db656"><td class="memItemLeft">const <a class="el" href="struct_t_b9051_pins.html">TB9051Pins</a>&#160;</td><td class="memItemRight"><a class="el" href="group__pins.html#gad78ba0578bf8a65c6c463a39be5db656">drivePins</a></td></tr>
+<tr id="var-members-2" class="groupHeader"><td colspan="2"><div class="groupHeader">Shooter motor pin bundle</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>M2 pins are unused (set to 255 = NC) because the shooter uses only one motor. </p>
+</div></td></tr>
+<tr class="memitem:ga1e2a140b4aaaeb5edca32df2c141cea3" id="r_ga1e2a140b4aaaeb5edca32df2c141cea3"><td class="memItemLeft">const <a class="el" href="struct_t_b9051_pins.html">TB9051Pins</a>&#160;</td><td class="memItemRight"><a class="el" href="group__pins.html#ga1e2a140b4aaaeb5edca32df2c141cea3">shooterPins</a></td></tr>
+<tr id="var-members-3" class="groupHeader"><td colspan="2"><div class="groupHeader">Serial (XBee wireless comms on Serial2)</div></td></tr>
+<tr id="var-members-4" class="groupHeader"><td colspan="2"><div class="groupHeader">Miner timing and angles</div></td></tr>
+<tr id="var-members-5" class="groupHeader"><td colspan="2"><div class="groupHeader">Shooter tuning</div></td></tr>
+<tr id="var-members-6" class="groupHeader"><td colspan="2"><div class="groupHeader">Ramp servo angles</div></td></tr>
 </table>
-<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
-<a id="ad78ba0578bf8a65c6c463a39be5db656" name="ad78ba0578bf8a65c6c463a39be5db656"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad78ba0578bf8a65c6c463a39be5db656">&#9670;&#160;</a></span>drivePins</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="struct_t_b9051_pins.html">TB9051Pins</a> drivePins</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">                       = {</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">.m1PWM = 6,</div>
-<div class="line">.m1Direction1 = 31,</div>
-<div class="line">.m1Direction2 = 33,</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">.m2PWM = 7,</div>
-<div class="line">.m2Direction1 = 35,</div>
-<div class="line">.m2Direction2 = 37}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a8c8701ad5b27308b371a248791e78065" name="a8c8701ad5b27308b371a248791e78065"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c8701ad5b27308b371a248791e78065">&#9670;&#160;</a></span>lineSensorCalMax</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const uint16_t lineSensorCalMax[8] = {1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6c091febe432fceaf1593851200c5bd6" name="a6c091febe432fceaf1593851200c5bd6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c091febe432fceaf1593851200c5bd6">&#9670;&#160;</a></span>lineSensorCalMin</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const uint16_t lineSensorCalMin[8] = {0, 0, 0, 0, 0, 0, 0, 0}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1e2a140b4aaaeb5edca32df2c141cea3" name="a1e2a140b4aaaeb5edca32df2c141cea3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e2a140b4aaaeb5edca32df2c141cea3">&#9670;&#160;</a></span>shooterPins</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="struct_t_b9051_pins.html">TB9051Pins</a> shooterPins</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">                             = {</div>
-<div class="line">    </div>
-<div class="line">    .m1PWM = 2,</div>
-<div class="line">    .m1Direction1 = 39,</div>
-<div class="line">    .m1Direction2 = 41,</div>
-<div class="line"> </div>
-<div class="line">    </div>
-<div class="line">    .m2PWM = 255,</div>
-<div class="line">    .m2Direction1 = 255,</div>
-<div class="line">    .m2Direction2 = 255</div>
-<div class="line">}</div>
-</div><!-- fragment -->
-</div>
-</div>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Central configuration: pin assignments, physical constants, and <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> gains. </p>
+<p>All hardware pin numbers, drivetrain geometry, miner/shooter tuning values, and <a class="el" href="class_p_i_d.html" title="Lightweight PID controller base class.">PID</a> constants live here so that changes only need to be made in one place. Every subsystem and autonomous step pulls its constants from this file via its includes. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>
