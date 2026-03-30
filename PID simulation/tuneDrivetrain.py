@@ -13,11 +13,13 @@ optimisation to pidf_optimizer.run_multistart_optimization().
 
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 from pidf_optimizer import (
     simulate_euler, simulate_euler_ramp,
     get_metrics, get_ramp_metrics,
     cost_fn, cost_fn_ramp,
+    evaluate_ramp_cost_grid,
     run_multistart_optimization,
 )
 
@@ -37,8 +39,8 @@ from pidf_optimizer import (
 #   Jm_eff = 0.5451 × (9.73e-3)² / 2.31            = 2.23e-5 kg·m²
 #            (motor rotor + full gearbox inertia at motor shaft)
 #
-K_DC_NOLOAD = 1.745    # Measured no-load DC gain  [rad_out/s / V]
-T_M_NOLOAD  = 0.1451  # Measured mechanical time constant [s]
+K_DC_NOLOAD = 2.09    # Measured no-load DC gain  [rad_out/s / V]
+T_M_NOLOAD  = 0.05  # Measured mechanical time constant [s]
 
 R = 2.31       # Armature resistance [ohm]
 N  = 50 / 1.5        # Gear ratio
@@ -86,10 +88,10 @@ print(f"  Free-running no-load speed @ V_MAX: {alpha / beta * V_MAX:.3f} m/s  "
 RAMP_RATES  = [0.10, 0.25, 0.50]   # m/s
 RAMP_MAX_POS = 1.0                  # plateau the ramp saturates at [m]
 
-W_LAG       = 6.0    # steady-state tracking lag (replaces rise-time weight)
-W_SETTLE    = 6.0
-W_EFFORT    = 0
-W_IAE       = 1.0    # Integral of Absolute Error (penalises cumulative tracking error)
+W_LAG       = 2.0    # steady-state tracking lag (replaces rise-time weight)
+W_SETTLE    = 2.0
+W_EFFORT    = 6.0
+W_IAE       = 4.0    # Integral of Absolute Error (penalises cumulative tracking error)
 DT_SIM      = 0.004
 T_END       = 5.0     # long enough to reach plateau for the slowest ramp
 
@@ -107,6 +109,7 @@ wc  = 2.0                         # target crossover [rad/s]
 Kp0 = 200 / V_TO_SIGNAL
 Ki0 = 100 / V_TO_SIGNAL 
 Kd0 = 8 / V_TO_SIGNAL           # critical damping approximation
+a0 = 0.0                        #feed forward term
 
 starts = np.array([
     [Kp0,   Ki0,  Kd0,   0.0],
@@ -114,7 +117,9 @@ starts = np.array([
     [Kp0,   Ki0,  Kd0*2, 0.0],
     [Kp0/2, Ki0,  Kd0/2, 0.0],
     [Kp0,   1.0,  Kd0,   0.0],
-    [Kp0*3, 2.0,  Kd0*3, 0.0],
+    [Kp0*10, 2.0,  Kd0*3, 0.0],
+    [Kp0, 2000.0,  Kd0*3, 0.0],
+    [0, 0.0, 0.0, 0.0],
 ])
 
 
@@ -130,6 +135,7 @@ best_gains, best_j, all_results = run_multistart_optimization(
     dt_sim=DT_SIM, t_end=T_END,
     a_pre=A_PRE, a_coulomb=A_COULOMB,
     deriv_on_error=True,
+    max_workers=os.cpu_count() or 1,
 )
 
 Kp, Ki, Kd, a = best_gains
@@ -139,6 +145,13 @@ print(f"  Kp = {Kp:.4f}")
 print(f"  Ki = {Ki:.4f}")
 print(f"  Kd = {Kd:.4f}")
 print(f"  a  = {a:.4f}")
+print(f"  Cost J = {best_j:.5f}")
+
+print("\n=== Initial Gains In motor signal units ===")
+print(f"  Kp = {Kp0 * V_TO_SIGNAL:.4f}")
+print(f"  Ki = {Ki0 * V_TO_SIGNAL:.4f}")
+print(f"  Kd = {Kd0 * V_TO_SIGNAL:.4f}")
+print(f"  a  = {a0 *  V_TO_SIGNAL:.4f}")
 print(f"  Cost J = {best_j:.5f}")
 
 print("\n=== Optimised Gains In motor signal units ===")
@@ -227,30 +240,64 @@ lines2, labels2 = ax2.get_legend_handles_labels()
 ax1.legend(lines1 + lines2, labels1 + labels2, loc="center right")
 
 # Plot 3: Cost landscape — Kp vs Kd slice (ramp cost)
-Kp_range = np.linspace(Kp0 * 0.1, Kp0 * 4, 40)
-Kd_range = np.linspace(0, Kd0 * 4, 40)
+minKp = min( Kp0, Kp )
+maxKp = max( Kp0, Kp )
+
+minKd = min(Kd0, Kd)
+maxKd = max(Kd0, Kd)
+
+kp_span = max(maxKp - minKp, max(abs(Kp0), abs(Kp), 1.0) * 0.1)
+kd_span = max(maxKd - minKd, max(abs(Kd0), abs(Kd), 1.0) * 0.1)
+
+Kp_range = np.linspace(max(0.0, minKp - 0.25 * kp_span), maxKp + 0.25 * kp_span, 40)
+Kd_range = np.linspace(max(0.0, minKd - 0.25 * kd_span), maxKd + 0.25 * kd_span, 40)
 KP_g, KD_g = np.meshgrid(Kp_range, Kd_range)
 J_map = np.zeros_like(KP_g)
+grid_workers = os.cpu_count() or 1
 
-print("Computing cost landscape (40x40 grid)...")
-for ii in range(KP_g.shape[0]):
-    for jj in range(KP_g.shape[1]):
-        g = [KP_g[ii, jj], Ki, KD_g[ii, jj], a]
-        J_map[ii, jj] = cost_fn_ramp(
-            g, RAMP_RATES, RAMP_MAX_POS, alpha, beta, gamma, V_MAX,
-            W_LAG, W_SETTLE, W_EFFORT, DT_SIM, T_END,
-            a_pre=A_PRE, a_coulomb=A_COULOMB, deriv_on_error=True, w_iae=W_IAE,
-        )
+print(f"Computing cost landscape (40x40 grid, {grid_workers} workers)...")
+grid_tasks = [
+    (
+        kp_val,
+        Ki,
+        kd_val,
+        a,
+        RAMP_RATES,
+        RAMP_MAX_POS,
+        alpha,
+        beta,
+        gamma,
+        V_MAX,
+        W_LAG,
+        W_SETTLE,
+        W_EFFORT,
+        DT_SIM,
+        T_END,
+        A_PRE,
+        A_COULOMB,
+        True,
+        W_IAE,
+    )
+    for kp_val, kd_val in np.column_stack((KP_g.ravel(), KD_g.ravel()))
+]
+J_map[:, :] = np.array(evaluate_ramp_cost_grid(grid_tasks, max_workers=grid_workers)).reshape(KP_g.shape)
 
 J_map_safe = np.maximum(J_map, 1e-9)
+finite_costs = J_map_safe[np.isfinite(J_map_safe)]
 plt.figure("Cost Landscape", figsize=(7.8, 5.4))
 try:
+    log_vmin = finite_costs.min()
+    log_vmax = np.percentile(finite_costs, 98.0)
+    if log_vmax <= log_vmin:
+        log_vmax = finite_costs.max()
+    log_levels = np.geomspace(log_vmin, log_vmax, 60)
     contour = plt.contourf(
-        KP_g, KD_g, J_map_safe, levels=25,
-        norm=plt.matplotlib.colors.LogNorm(vmin=J_map_safe.min(), vmax=J_map_safe.max())
+        KP_g, KD_g, J_map_safe, levels=log_levels,
+        norm=plt.matplotlib.colors.LogNorm(vmin=log_vmin, vmax=log_vmax),
+        extend="max",
     )
 except Exception:
-    contour = plt.contourf(KP_g, KD_g, J_map_safe, levels=25)
+    contour = plt.contourf(KP_g, KD_g, J_map_safe, levels=60)
 plt.colorbar(contour)
 plt.plot(Kp, Kd, marker="*", markersize=14, linewidth=0, label="Optimum")
 plt.plot(Kp0, Kd0, marker="x", markersize=12, linewidth=0, label="Initial")
@@ -259,7 +306,168 @@ plt.ylabel("K_d")
 plt.title(f"Cost landscape (K_i={Ki:.3f}, a={a:.3f} fixed at optimum)")
 plt.legend(loc="upper right")
 
-# Plot 4: Robustness to robot mass (payload variation)
+# Plot 4: 3D cost-volume isosurfaces (Kp, Ki, Kd with a fixed)
+minKi = min(Ki0, Ki)
+maxKi = max(Ki0, Ki)
+ki_span = max(maxKi - minKi, max(abs(Ki0), abs(Ki), 1.0) * 0.1)
+
+KI_N = 22
+Ki_range = np.linspace(max(0.0, minKi - 0.25 * ki_span), maxKi + 0.25 * ki_span, KI_N)
+
+print(f"Computing 3D cost volume ({len(Kp_range)}x{len(Ki_range)}x{len(Kd_range)} grid, {grid_workers} workers)...")
+kp_3d, ki_3d, kd_3d = np.meshgrid(Kp_range, Ki_range, Kd_range, indexing="ij")
+volume_tasks = [
+    (
+        kp_val,
+        ki_val,
+        kd_val,
+        a,
+        RAMP_RATES,
+        RAMP_MAX_POS,
+        alpha,
+        beta,
+        gamma,
+        V_MAX,
+        W_LAG,
+        W_SETTLE,
+        W_EFFORT,
+        DT_SIM,
+        T_END,
+        A_PRE,
+        A_COULOMB,
+        True,
+        W_IAE,
+    )
+    for kp_val, ki_val, kd_val in np.column_stack((kp_3d.ravel(), ki_3d.ravel(), kd_3d.ravel()))
+]
+J_vol = np.array(evaluate_ramp_cost_grid(volume_tasks, max_workers=grid_workers)).reshape(kp_3d.shape)
+J_vol_safe = np.maximum(J_vol, 1e-9)
+
+try:
+    import importlib
+
+    measure = importlib.import_module("skimage.measure")
+
+    finite_vol = J_vol_safe[np.isfinite(J_vol_safe)]
+    iso_levels = np.unique(np.percentile(finite_vol, [20.0, 35.0, 50.0]))
+    fig_iso = plt.figure("Cost Isosurfaces (Kp, Ki, Kd)", figsize=(8.6, 6.2))
+    ax_iso = fig_iso.add_subplot(111, projection="3d")
+
+    cmap_iso = plt.cm.viridis
+    level_norm = plt.matplotlib.colors.Normalize(vmin=iso_levels.min(), vmax=iso_levels.max())
+    for level in iso_levels:
+        verts, faces, _, _ = measure.marching_cubes(J_vol_safe, level=level)
+
+        kp_vals = np.interp(verts[:, 0], np.arange(len(Kp_range)), Kp_range)
+        ki_vals = np.interp(verts[:, 1], np.arange(len(Ki_range)), Ki_range)
+        kd_vals = np.interp(verts[:, 2], np.arange(len(Kd_range)), Kd_range)
+
+        ax_iso.plot_trisurf(
+            kp_vals,
+            ki_vals,
+            kd_vals,
+            triangles=faces,
+            color=cmap_iso(level_norm(level)),
+            alpha=0.25,
+            linewidth=0.08,
+            antialiased=True,
+        )
+
+    ax_iso.scatter([Kp], [Ki], [Kd], marker="*", s=120, c="crimson", label="Optimum")
+    ax_iso.scatter([Kp0], [Ki0], [Kd0], marker="x", s=80, c="black", label="Initial")
+    ax_iso.set_xlabel("K_p")
+    ax_iso.set_ylabel("K_i")
+    ax_iso.set_zlabel("K_d")
+    ax_iso.set_title(f"Cost Isosurfaces (a={a:.3f} fixed)")
+    ax_iso.legend(loc="upper left")
+except Exception as exc:
+    print(f"Isosurface plot skipped (requires scikit-image): {exc}")
+
+# # Optional alternative (commented out): 2D Kp-Kd landscape with Ki slider
+# from matplotlib.widgets import Slider
+
+# fig_slider, ax_slider = plt.subplots(figsize=(8.2, 5.4))
+# plt.subplots_adjust(bottom=0.22)
+# slider_ki_vals = np.linspace(Ki_range[0], Ki_range[-1], 30)
+
+# initial_tasks = [
+#     (
+#         kp_val,
+#         slider_ki_vals[0],
+#         kd_val,
+#         a,
+#         RAMP_RATES,
+#         RAMP_MAX_POS,
+#         alpha,
+#         beta,
+#         gamma,
+#         V_MAX,
+#         W_LAG,
+#         W_SETTLE,
+#         W_EFFORT,
+#         DT_SIM,
+#         T_END,
+#         A_PRE,
+#         A_COULOMB,
+#         True,
+#         W_IAE,
+#     )
+#     for kp_val, kd_val in np.column_stack((KP_g.ravel(), KD_g.ravel()))
+# ]
+# J_slider = np.array(evaluate_ramp_cost_grid(initial_tasks, max_workers=grid_workers)).reshape(KP_g.shape)
+# J_slider = np.maximum(J_slider, 1e-9)
+# contour_slider = ax_slider.contourf(KP_g, KD_g, J_slider, levels=40)
+# marker_opt, = ax_slider.plot([Kp], [Kd], "r*", markersize=12)
+# marker_init, = ax_slider.plot([Kp0], [Kd0], "kx", markersize=10)
+# ax_slider.set_title(f"Cost landscape with Ki slider (Ki={slider_ki_vals[0]:.3f})")
+# ax_slider.set_xlabel("K_p")
+# ax_slider.set_ylabel("K_d")
+# cbar_slider = fig_slider.colorbar(contour_slider, ax=ax_slider)
+
+# slider_ax = fig_slider.add_axes([0.16, 0.08, 0.68, 0.04])
+# slider_ki = Slider(slider_ax, "K_i", slider_ki_vals[0], slider_ki_vals[-1], valinit=slider_ki_vals[0])
+
+# def update_ki(val):
+#     ki_sel = float(val)
+#     tasks = [
+#         (
+#             kp_val,
+#             ki_sel,
+#             kd_val,
+#             a,
+#             RAMP_RATES,
+#             RAMP_MAX_POS,
+#             alpha,
+#             beta,
+#             gamma,
+#             V_MAX,
+#             W_LAG,
+#             W_SETTLE,
+#             W_EFFORT,
+#             DT_SIM,
+#             T_END,
+#             A_PRE,
+#             A_COULOMB,
+#             True,
+#             W_IAE,
+#         )
+#         for kp_val, kd_val in np.column_stack((KP_g.ravel(), KD_g.ravel()))
+#     ]
+#     new_map = np.array(evaluate_ramp_cost_grid(tasks, max_workers=grid_workers)).reshape(KP_g.shape)
+#     new_map = np.maximum(new_map, 1e-9)
+
+#     ax_slider.clear()
+#     ax_slider.contourf(KP_g, KD_g, new_map, levels=40)
+#     ax_slider.plot([Kp], [Kd], "r*", markersize=12)
+#     ax_slider.plot([Kp0], [Kd0], "kx", markersize=10)
+#     ax_slider.set_xlabel("K_p")
+#     ax_slider.set_ylabel("K_d")
+#     ax_slider.set_title(f"Cost landscape with Ki slider (Ki={ki_sel:.3f})")
+#     fig_slider.canvas.draw_idle()
+
+# slider_ki.on_changed(update_ki)
+
+# Plot 5: Robustness to robot mass (payload variation)
 plt.figure("Robustness to Mass", figsize=(7.8, 3.8))
 mass_vals = [M * 0.5, M, M * 1.5, M * 2.0]
 rate_test = RAMP_RATES[1]   # medium ramp rate
@@ -286,5 +494,5 @@ plt.legend(loc="lower right")
 plt.grid(True)
 plt.xlim(0, T_END)
 
-print("\nDone - 4 figures generated.")
+print("\nDone - 5 figures generated (if scikit-image is installed).")
 plt.show()

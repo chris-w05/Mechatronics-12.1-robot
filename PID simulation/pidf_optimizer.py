@@ -28,6 +28,10 @@ The PIDF controller (derivative on output, no derivative kick):
 Usage: import and call run_multistart_optimization().
 """
 
+import os
+from concurrent.futures import ProcessPoolExecutor
+from multiprocessing import get_context
+
 import numpy as np
 from scipy.optimize import minimize
 
@@ -422,6 +426,143 @@ def cost_fn(gains, steps, alpha, beta, gamma, v_max,
     return j / len(steps)
 
 
+def _process_pool_kwargs(max_workers):
+    kwargs = {"max_workers": max_workers}
+    try:
+        kwargs["mp_context"] = get_context("fork")
+    except ValueError:
+        pass
+    return kwargs
+
+
+def _run_single_optimization(task):
+    (
+        index,
+        x0,
+        bounds,
+        default_opts,
+        use_ramp,
+        use_tf,
+        steps,
+        alpha,
+        beta,
+        gamma,
+        v_max,
+        w_rise,
+        w_over,
+        w_settle,
+        w_effort,
+        dt_sim,
+        t_end,
+        a_pre,
+        a_coulomb,
+        num,
+        den,
+        deriv_on_error,
+        ramp_rates,
+        ramp_max_pos,
+        w_lag,
+        w_ramp_settle,
+        w_iae,
+    ) = task
+
+    if use_ramp:
+        def obj(g):
+            return cost_fn_ramp(
+                g, ramp_rates, ramp_max_pos,
+                alpha, beta, gamma, v_max,
+                w_lag, w_ramp_settle, w_effort,
+                dt_sim, t_end,
+                a_pre=a_pre, a_coulomb=a_coulomb,
+                deriv_on_error=deriv_on_error,
+                w_iae=w_iae,
+            )
+    elif use_tf:
+        A_ss, B_ss, C_ss, D_ss = tf_to_ss(num, den)
+
+        def obj(g):
+            j = 0.0
+            for xref in steps:
+                t, x, v = simulate_ss(
+                    g, xref, A_ss, B_ss, C_ss, D_ss, v_max, dt_sim, t_end,
+                    a_pre=a_pre, a_coulomb=a_coulomb,
+                )
+                rise, over, settle = get_metrics(t, x, xref)
+                effort = np.mean(v**2) / (v_max**2)
+                j += (
+                    w_rise * (rise / 1.0)
+                    + w_over * (over / 0.05)**2
+                    + w_settle * (settle / 2.0)
+                    + w_effort * effort
+                )
+            return j / len(steps)
+    else:
+        def obj(g):
+            return cost_fn(
+                g, steps, alpha, beta, gamma, v_max,
+                w_rise, w_over, w_settle, w_effort, dt_sim, t_end,
+                a_pre=a_pre, a_coulomb=a_coulomb,
+            )
+
+    try:
+        result = minimize(obj, x0, method="L-BFGS-B", bounds=bounds, options=default_opts)
+        return index, result.x, result.fun, None
+    except Exception as exc:
+        return index, None, None, str(exc)
+
+
+def _evaluate_ramp_cost_task(task):
+    (
+        kp_val,
+        ki_val,
+        kd_val,
+        a_val,
+        ramp_rates,
+        max_pos,
+        alpha,
+        beta,
+        gamma,
+        v_max,
+        w_lag,
+        w_settle,
+        w_effort,
+        dt_sim,
+        t_end,
+        a_pre,
+        a_coulomb,
+        deriv_on_error,
+        w_iae,
+    ) = task
+
+    return cost_fn_ramp(
+        [kp_val, ki_val, kd_val, a_val],
+        ramp_rates,
+        max_pos,
+        alpha,
+        beta,
+        gamma,
+        v_max,
+        w_lag,
+        w_settle,
+        w_effort,
+        dt_sim,
+        t_end,
+        a_pre=a_pre,
+        a_coulomb=a_coulomb,
+        deriv_on_error=deriv_on_error,
+        w_iae=w_iae,
+    )
+
+
+def evaluate_ramp_cost_grid(tasks, max_workers=None):
+    worker_count = max_workers or (os.cpu_count() or 1)
+    if worker_count <= 1 or len(tasks) <= 1:
+        return [_evaluate_ramp_cost_task(task) for task in tasks]
+
+    with ProcessPoolExecutor(**_process_pool_kwargs(worker_count)) as executor:
+        return list(executor.map(_evaluate_ramp_cost_task, tasks))
+
+
 # ── OPTIMISATION ───────────────────────────────────────────────────────────
 
 def run_multistart_optimization(
@@ -437,6 +578,7 @@ def run_multistart_optimization(
     ramp_rates=None, ramp_max_pos=None,
     w_lag=4.0, w_ramp_settle=2.0, w_iae=0.0,
     lbfgs_options=None,
+    max_workers=None,
 ):
     """
     Multi-start L-BFGS-B minimisation of cost_fn or cost_fn_ramp.
@@ -471,6 +613,8 @@ def run_multistart_optimization(
     w_ramp_settle  : ramp-mode weight on settling time
     w_iae          : ramp-mode weight on IAE (Integral of Absolute Error)
     lbfgs_options  : dict forwarded to scipy.optimize.minimize
+    max_workers    : number of worker threads used for multi-start optimisation.
+                     Defaults to all available CPU workers.
 
     Returns
     -------
@@ -492,44 +636,6 @@ def run_multistart_optimization(
     if use_tf and not use_lump and use_ramp:
         raise ValueError("Ramp mode currently only supports the lumped (alpha, beta, gamma) plant.")
 
-    # ── Build objective function ───────────────────────────────────────────
-    if use_ramp:
-        def obj(g):
-            return cost_fn_ramp(
-                g, ramp_rates, ramp_max_pos,
-                alpha, beta, gamma, v_max,
-                w_lag, w_ramp_settle, w_effort,
-                dt_sim, t_end,
-                a_pre=a_pre, a_coulomb=a_coulomb,
-                deriv_on_error=deriv_on_error,
-                w_iae=w_iae,
-            )
-    elif use_tf:
-        A_ss, B_ss, C_ss, D_ss = tf_to_ss(num, den)
-        def obj(g):
-            j = 0.0
-            for xref in steps:
-                t, x, v = simulate_ss(
-                    g, xref, A_ss, B_ss, C_ss, D_ss, v_max, dt_sim, t_end,
-                    a_pre=a_pre, a_coulomb=a_coulomb,
-                )
-                rise, over, settle = get_metrics(t, x, xref)
-                effort = np.mean(v**2) / (v_max**2)
-                j += (
-                    w_rise   * (rise / 1.0)
-                    + w_over   * (over / 0.05)**2
-                    + w_settle * (settle / 2.0)
-                    + w_effort * effort
-                )
-            return j / len(steps)
-    else:
-        def obj(g):
-            return cost_fn(
-                g, steps, alpha, beta, gamma, v_max,
-                w_rise, w_over, w_settle, w_effort, dt_sim, t_end,
-                a_pre=a_pre, a_coulomb=a_coulomb,
-            )
-
     default_opts = {
         "maxiter": 200,
         "maxfun":  5000,
@@ -544,28 +650,67 @@ def run_multistart_optimization(
     all_results = np.zeros((len(starts), 5))
     best_j = np.inf
     best_gains = starts[0].copy()
+    worker_count = max_workers or (os.cpu_count() or 1)
 
-    print("=== Gradient Descent (multi-start) ===")
-    for i, x0 in enumerate(starts, start=1):
-        try:
-            result = minimize(obj, x0, method="L-BFGS-B",
-                              bounds=bounds, options=default_opts)
-            g_opt = result.x
-            j_opt = result.fun
-            all_results[i - 1] = [g_opt[0], g_opt[1], g_opt[2], g_opt[3], j_opt]
+    print(f"=== Gradient Descent (multi-start, {worker_count} workers) ===")
 
-            tag = ""
-            if j_opt < best_j:
-                best_j = j_opt
-                best_gains = g_opt.copy()
-                tag = "  <- best"
+    tasks = [
+        (
+            i,
+            x0,
+            bounds,
+            default_opts,
+            use_ramp,
+            use_tf,
+            steps,
+            alpha,
+            beta,
+            gamma,
+            v_max,
+            w_rise,
+            w_over,
+            w_settle,
+            w_effort,
+            dt_sim,
+            t_end,
+            a_pre,
+            a_coulomb,
+            num,
+            den,
+            deriv_on_error,
+            ramp_rates,
+            ramp_max_pos,
+            w_lag,
+            w_ramp_settle,
+            w_iae,
+        )
+        for i, x0 in enumerate(starts, start=1)
+    ]
 
-            print(
-                f"  Start {i}: J={j_opt:.5f}  "
-                f"Kp={g_opt[0]:.1f} Ki={g_opt[1]:.3f} "
-                f"Kd={g_opt[2]:.3f} a={g_opt[3]:.3f}{tag}"
-            )
-        except Exception:
+    if worker_count <= 1 or len(tasks) <= 1:
+        results = [_run_single_optimization(task) for task in tasks]
+    else:
+        with ProcessPoolExecutor(**_process_pool_kwargs(worker_count)) as executor:
+            results = list(executor.map(_run_single_optimization, tasks))
+
+    results.sort(key=lambda item: item[0])
+    for i, g_opt, j_opt, exc in results:
+        if exc is not None:
             print(f"  Start {i}: failed")
+            continue
+
+        all_results[i - 1] = [g_opt[0], g_opt[1], g_opt[2], g_opt[3], j_opt]
+
+        tag = ""
+        if j_opt < best_j:
+            best_j = j_opt
+            best_gains = g_opt.copy()
+            tag = "  <- best"
+
+        print(
+            f"  Start {i}: J={j_opt:.5f}  "
+            f"Kp={g_opt[0]:.1f} Ki={g_opt[1]:.3f} "
+            f"Kd={g_opt[2]:.3f} a={g_opt[3]:.3f}{tag}"
+        )
 
     return best_gains, best_j, all_results
