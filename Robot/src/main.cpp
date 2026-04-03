@@ -11,6 +11,9 @@
 
 Robot robot;
 
+unsigned long loopCount;
+unsigned long lastTime = 0;
+
 // unsigned long lastTime = 0.0;
 
 /**
@@ -44,5 +47,13 @@ void loop()
   // Serial.print(now - lastTime);
   // Serial.println("\r");
   // lastTime = now;
+  loopCount ++;
+
+  if (loopCount % 1000 == 0){
+    Serial.print("Average loop time (ms): ");
+    Serial.print( (millis() - lastTime) / (float)loopCount);
+    Serial.println();
+    lastTime = millis();
+  }
   robot.update();
 }

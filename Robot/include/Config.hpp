@@ -187,7 +187,7 @@ static const float DRIVE_LINEFOLLOW_GAIN = DRIVE_LINEFOLLOW_GAINS.kp; ///< Conve
 static const PIDConstants DRIVE_DISTANCE_PID = {
     .kp = -240.0,
     .ki = 0,
-    .kd = -45};
+    .kd = -60};
 
 /** @brief Closed-loop velocity PID gains for the left drive wheel. */
 static const PIDConstants DRIVE_L_PID = {
