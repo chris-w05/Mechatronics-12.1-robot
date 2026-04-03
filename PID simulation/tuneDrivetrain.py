@@ -39,8 +39,8 @@ from pidf_optimizer import (
 #   Jm_eff = 0.5451 × (9.73e-3)² / 2.31            = 2.23e-5 kg·m²
 #            (motor rotor + full gearbox inertia at motor shaft)
 #
-K_DC_NOLOAD = 2.09    # Measured no-load DC gain  [rad_out/s / V]
-T_M_NOLOAD  = 0.05  # Measured mechanical time constant [s]
+K_DC_NOLOAD = 2.25    # Measured no-load DC gain  [rad_out/s / V]
+T_M_NOLOAD  = 0.1687  # Measured mechanical time constant [s]
 
 R = 2.31       # Armature resistance [ohm]
 N  = 50 / 1.5        # Gear ratio
