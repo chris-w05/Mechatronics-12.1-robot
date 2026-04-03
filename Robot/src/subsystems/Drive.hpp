@@ -254,7 +254,6 @@ public:
             case LINEFOLLOWING_HARDSET: {
                 float correction = _lineSensor.getPosition();
                 float correction_signal = _lineSensorPID.update(correction, 0); // Scale signal by how fast the robot is moving
-
                 _motorController.setPower(
                     _signalL + (int)(correction_signal / LINESENSOR_LR_RATIO), // Accounts for offcenter position of line sensor
                     _signalR - (int)correction_signal);
@@ -264,7 +263,7 @@ public:
             case LINEFOLLOWING_DISTANCE:{
                 //Distance sensor sets the base signal for control:
                 float dist = _distSensor.getDistanceIn();
-                float signalBase = _distanceSensorPID.update(dist, _targetDistance);
+                float signalBase = _distanceSensorPID.update(dist, -(leftVel + rightVel)/2, _targetDistance);
                 _signalL = signalBase;
                 _signalR = signalBase;
                 //Line sensor applies steering correction to distance sensor commands
@@ -418,6 +417,7 @@ public:
     void followLine(float speed)
     {
         _mode = MODE::LINEFOLLOWING;
+        _lineSensorPID.reset();
         _motorController.makeLinear();
         if (_resetTargetPosBetweenSegments)
         {
@@ -434,6 +434,7 @@ public:
     void followLineHardset(int speed)
     {
         _mode    = MODE::LINEFOLLOWING_HARDSET;
+        _lineSensorPID.reset();
         _signalL = speed;
         _signalR = speed;
     }
@@ -445,6 +446,7 @@ public:
     void approachDistance(float distance)
     {
         _mode           = MODE::DISTANCE;
+        _distanceSensorPID.reset();
         _targetDistance = distance;
     }
 
@@ -457,6 +459,8 @@ public:
      */
     void approachAlongLine(float distance){
         _mode           = MODE::LINEFOLLOWING_DISTANCE;
+        _lineSensorPID.reset();
+        _distanceSensorPID.reset();
         _targetDistance = distance;
     }
 

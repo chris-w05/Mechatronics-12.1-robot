@@ -55,7 +55,7 @@ public:
                   VtoDfunction voltageToDistanceFunction = nullptr,
                   float vref = 5.0f,
                   uint16_t adcMax = 1023,
-                  float emaAlpha = 0.1f)
+                  float emaAlpha = 1.0f)
         : _pin(adcPin),
           _vref(vref),
           _adcMax(adcMax),

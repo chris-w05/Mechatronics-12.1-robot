@@ -248,16 +248,12 @@ public:
     // Constructors (unchanged behavior)
     PIDController(float kp, float ki, float kd)
         : PID(_kp, _ki, _kd), _kff(0.0f), _ffFunc(nullptr){
-        // Set integral limits to not oversaturate values
-        _iMax = 400 / ki;
-        _iMin = -400 / ki;
+        updateIntegralLimitsFromKi(ki);
         }
 
     PIDController(PIDConstants consts)
         : PID(consts), _kff(0.0f), _ffFunc(nullptr) {
-        // Set integral limits to not oversaturate values
-            _iMax = 400 / consts.ki;
-            _iMin = -400 / consts.ki;
+        updateIntegralLimitsFromKi(consts.ki);
         }
 
     
@@ -272,9 +268,7 @@ public:
           _kiFunc(funcs.ki),
           _kdFunc(funcs.kd)
     {
-        // Set integral limits to not oversaturate values
-        _iMin = 400 / consts.ki;
-        _iMin = -400 / consts.ki;
+        updateIntegralLimitsFromKi(consts.ki);
     }
 
     /**
@@ -296,8 +290,7 @@ public:
         _kp = consts.kp;
         _ki = consts.ki;
         _kd = consts.kd;
-        _iMin = 400 / consts.ki;
-        _iMin = -400 / consts.ki;
+        updateIntegralLimitsFromKi(consts.ki);
     }
 
     /**
@@ -314,6 +307,7 @@ public:
             break;
         case 1:
             _ki = value;
+            updateIntegralLimitsFromKi(_ki);
             Serial.println(_ki);
             Serial.println("KI");
             break;
@@ -355,8 +349,15 @@ public:
         float error = setpoint - measurement;
 
         // Integrator
-        _integral += error * dt;
-        _integral = constrain(_integral, _iMin, _iMax); // anti-windup via clamping
+        if (_ki != 0.0f || _kiFunc)
+        {
+            _integral += error * dt;
+            _integral = constrain(_integral, _iMin, _iMax); // anti-windup via clamping
+        }
+        else
+        {
+            _integral = 0.0f;
+        }
 
         float output = calculate(measurement, setpoint, dmeasurement, _integral, dSetpoint);
 
@@ -386,8 +387,15 @@ public:
         float error = setpoint - measurement;
 
         // Integrator
-        _integral += error * dt;
-        _integral = constrain(_integral, _iMin, _iMax); // anti-windup via clamping
+        if (_ki != 0.0f || _kiFunc)
+        {
+            _integral += error * dt;
+            _integral = constrain(_integral, _iMin, _iMax); // anti-windup via clamping
+        }
+        else
+        {
+            _integral = 0.0f;
+        }
 
         // Derivative (on measurement to avoid derivative kick from setpoint)
         float derivative = (measurement - _lastMeasurement) / dt;
@@ -476,6 +484,21 @@ public:
     }
 
 private:
+    void updateIntegralLimitsFromKi(float ki)
+    {
+        if (fabsf(ki) < 1e-6f)
+        {
+            _iMin = -100000.0f;
+            _iMax = 100000.0f;
+            _integral = 0.0f;
+            return;
+        }
+
+        const float iLimitMagnitude = 400.0f / fabsf(ki);
+        _iMin = -iLimitMagnitude;
+        _iMax = iLimitMagnitude;
+        _integral = constrain(_integral, _iMin, _iMax);
+    }
 
     /**
      * Calculates the output of the controller
