@@ -176,7 +176,7 @@ static const float DRIVE_LINEFOLLOW_VELOCITY_GAIN = 6.0f; ///< Scales line-posit
 
 /** @brief PID gains for the line-following velocity correction loop. */
 static const PIDConstants DRIVE_LINEFOLLOW_GAINS = {
-    .kp = 175,
+    .kp = 350,
     .ki = 0,
     .kd = 0
 };

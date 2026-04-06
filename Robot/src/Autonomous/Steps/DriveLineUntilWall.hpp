@@ -62,6 +62,9 @@ public:
     {
         //Special case where the drive should continue being snapped to the wall, even as other steps are queued
         //Drive doesn't stop control until other commands are sent
+
+        //I added this so the robot continues to drive into the wall
+        _drive.hardSetSpeed(130);
     }
 
     /**

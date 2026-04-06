@@ -54,6 +54,7 @@ void loop()
     Serial.print( (millis() - lastTime) / (float)loopCount);
     Serial.println();
     lastTime = millis();
+    loopCount = 0;
   }
   robot.update();
 }

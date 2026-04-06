@@ -262,8 +262,9 @@ public:
 
             case LINEFOLLOWING_DISTANCE:{
                 //Distance sensor sets the base signal for control:
-                float dist = _distSensor.getDistanceIn();
-                float signalBase = _distanceSensorPID.update(dist, -(leftVel + rightVel)/2, _targetDistance);
+                // float dist = _distSensor.getDistanceIn();
+                // float signalBase = _distanceSensorPID.update(dist, -(leftVel + rightVel)/2, _targetDistance);
+                float signalBase = 80 * (4 - (leftVel + rightVel) / 2);
                 _signalL = signalBase;
                 _signalR = signalBase;
                 //Line sensor applies steering correction to distance sensor commands
