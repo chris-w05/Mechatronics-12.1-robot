@@ -65,7 +65,7 @@ private:
     float _leftTargetPos   = 0;  ///< Integrated position target, left wheel (in)
     float _rightTargetPos  = 0;  ///< Integrated position target, right wheel (in)
 
-    unsigned long _start_pulse_time = 0;
+    unsigned long _startPulseTime = 0; ///< When the last pulse started in pusle mode
     unsigned long _lastTime = 0;
 
     // =========================================================================
@@ -296,7 +296,8 @@ public:
             }
 
             case PULSE:{
-                if( now % _pulseFrequency < _pulseDuration){
+                //Create PWM style signal
+                if( (now - _startPulseTime) % _pulseFrequency < _pulseDuration){
                     _motorController.setPower(_signalL, _signalR);
                 }
                 else{
@@ -492,7 +493,7 @@ public:
         _signalR = power;
         _pulseDuration = duration;
         _pulseFrequency = dutyCycle;
-        _start_pulse_time = micros();
+        _startPulseTime = micros();
     }
 
     /**
