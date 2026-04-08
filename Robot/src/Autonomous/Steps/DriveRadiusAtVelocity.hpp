@@ -19,9 +19,9 @@ public:
         /**
          * @brief Full constructor.
          * @param drive          Drive subsystem reference.
-         * @param targetVelocity Arc speed (m/s).
-         * @param radius         Arc radius (m).
-         * @param distance       Arc length to travel (m).
+         * @param targetVelocity Arc speed (in/s).
+         * @param radius         Arc radius (in).
+         * @param distance       Arc length to travel (in).
          */
         DriveRadiusAtVelocity(Drive &drive,
                          float targetVelocity,

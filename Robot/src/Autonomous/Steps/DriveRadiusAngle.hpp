@@ -19,8 +19,8 @@ public:
         /**
          * @brief Full constructor.
          * @param drive           Drive subsystem reference.
-         * @param targetVelocity  Arc speed (m/s).
-         * @param radius          Arc radius (m).
+         * @param targetVelocity  Arc speed (in/s).
+         * @param radius          Arc radius (in).
          * @param angleToTurnDeg  Heading change to achieve (degrees).
          */
         DriveRadiusAngle(Drive &drive,

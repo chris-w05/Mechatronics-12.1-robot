@@ -45,7 +45,8 @@ class Drive : public Subsystem {
         LINEFOLLOWING_HARDSET, ///< Line following using motor signals
         LINEFOLLOWING_DISTANCE,///< Simulataneous line following and distance follwing using motor signals
         HARDSET,               ///< Open-loop: raw left/right motor signals
-        DISTANCE               ///< Holds a fixed distance from a wall
+        DISTANCE,              ///< Holds a fixed distance from a wall
+        PULSE                  ///< Pulses the drivetrain at a fixed power
 
     };
 
@@ -90,6 +91,8 @@ private:
     PIDController     _lineSensorPID;         ///< PID controller for line following
     unsigned long     _lastTelemetryMs = 0;   ///< Throttle telemetry output to 20 Hz
     bool              _resetTargetPosBetweenSegments    = false;    ///< Changes whether syncTargetPositions() is called between trajectories
+    unsigned long     _pulseDuration;   ///< Time between pulses
+    unsigned long     _pulseFrequency;  ///< How often pulses in the PULSE mode happen
 
     // =========================================================================
     // Internal helpers
@@ -141,7 +144,7 @@ public:
         _lineSensorPID.set(DRIVE_LINEFOLLOW_GAINS);
         Serial.println("Drivetrain initialized");
         
-        // _ramsete.disable();
+        _ramsete.disable();
     }
 
     /** Called every loop iteration. Updates sensors and applies control. */
@@ -262,9 +265,8 @@ public:
 
             case LINEFOLLOWING_DISTANCE:{
                 //Distance sensor sets the base signal for control:
-                // float dist = _distSensor.getDistanceIn();
-                // float signalBase = _distanceSensorPID.update(dist, -(leftVel + rightVel)/2, _targetDistance);
-                float signalBase = 80 * (4 - (leftVel + rightVel) / 2);
+                float dist = _distSensor.getDistanceIn();
+                float signalBase = _distanceSensorPID.update(dist, -(leftVel + rightVel)/2, _targetDistance);
                 _signalL = signalBase;
                 _signalR = signalBase;
                 //Line sensor applies steering correction to distance sensor commands
@@ -291,6 +293,17 @@ public:
                     _signalR);
                 break;
             }
+
+            case PULSE:{
+                if( now % _pulseFrequency < _pulseDuration){
+                    _motorController.setPower(_signalL, _signalR);
+                }
+                else{
+                    _motorController.setPower(0, 0);
+                }
+                break;
+            }
+
 
             default:
                 _motorController.setPower(0, 0);
@@ -463,6 +476,21 @@ public:
         _lineSensorPID.reset();
         _distanceSensorPID.reset();
         _targetDistance = distance;
+    }
+
+    /**
+     * @brief Sets the drivetrain to the pulsed mode. This has the drivetrain move at a power for a duration at a specified period. This is like a super super coarse PWM
+     * 
+     * @param power Motor power signal to move at (-400 to 400)
+     * @param duration How long to turn on the motor for each cycle. Units are in us
+     * @param dutyCycle How long each cycle is. Units are in us
+     */
+    void pulse( int power, unsigned long duration = 1000000, unsigned long dutyCycle = 2000000 ){
+        _mode = MODE::PULSE;
+        _signalL = power;
+        _signalR = power;
+        _pulseDuration = duration;
+        _pulseFrequency = dutyCycle;
     }
 
     /**

@@ -22,7 +22,7 @@ public:
      * @brief Construct in angle-based mode (CCW arc).
      * @param drive         Drive subsystem reference.
      * @param targetAngle   Heading change to achieve (radians, positive = CCW).
-     * @param targetVelocity Drive speed along the arc (m/s).
+     * @param targetVelocity Drive speed along the arc (rad/s).
      * @param radius        Arc radius (m).
      */
     DriveArc(Drive& drive,

@@ -24,17 +24,14 @@
 
 // Autonomous framework and steps
 #include "Autonomous/AutonomousRoutine.hpp"
-#include "Autonomous/Planner.hpp"
-#include "Autonomous/ReplanStep.hpp"
 #include "Autonomous/Steps/AccelerateStraightLine.hpp"
-#include "Autonomous/Steps/CompositeStep.hpp"
 #include "Autonomous/Steps/DelayStep.hpp"
 #include "Autonomous/Steps/DriveDistance.hpp"
 #include "Autonomous/Steps/DriveLineUntilWall.hpp"
+#include "Autonomous/Steps/DriveArc.hpp"
 #include "Autonomous/Steps/DriveRadiusAngle.hpp"
 #include "Autonomous/Steps/DriveRadiusAtVelocity.hpp"
 #include "Autonomous/Steps/FireStep.hpp"
-#include "Autonomous/Steps/FollowLineStep.hpp"
 #include "Autonomous/Steps/MineBlock.hpp"
 #include "Autonomous/Steps/DeployRamp.hpp"
 #include "Autonomous/Steps/MineBlockAutofire.hpp"
