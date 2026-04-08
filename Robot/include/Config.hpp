@@ -140,7 +140,7 @@ inline float distanceSensor_VoltageToDistance(float voltage){
 
 /// @name Miner timing and angles
 /// @{
-static const unsigned long MINER_CYCLE_MS        = 400UL; ///< Full press-retract cycle period (ms)
+static const unsigned long MINER_CYCLE_MS        = 280UL; ///< Full press-retract cycle period (ms)
 static const unsigned long MINER_PRESS_MS         = 100UL; ///< Duration the miner servo stays in the pressed position (ms)
 static const int           MINER_SERVO_PRESS_ANGLE   = 140; ///< Servo angle while pressing down on the block (°)
 static const int           MINER_SERVO_RETRACT_ANGLE = 160; ///< Servo angle after lifting off the block (°)

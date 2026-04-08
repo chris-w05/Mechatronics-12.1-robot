@@ -65,6 +65,7 @@ private:
     float _leftTargetPos   = 0;  ///< Integrated position target, left wheel (in)
     float _rightTargetPos  = 0;  ///< Integrated position target, right wheel (in)
 
+    unsigned long _start_pulse_time = 0;
     unsigned long _lastTime = 0;
 
     // =========================================================================
@@ -144,7 +145,7 @@ public:
         _lineSensorPID.set(DRIVE_LINEFOLLOW_GAINS);
         Serial.println("Drivetrain initialized");
         
-        _ramsete.disable();
+        //_ramsete.disable();
     }
 
     /** Called every loop iteration. Updates sensors and applies control. */
@@ -491,6 +492,7 @@ public:
         _signalR = power;
         _pulseDuration = duration;
         _pulseFrequency = dutyCycle;
+        _start_pulse_time = micros();
     }
 
     /**
