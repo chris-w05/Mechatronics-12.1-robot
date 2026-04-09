@@ -64,7 +64,7 @@ public:
         //Drive doesn't stop control until other commands are sent
 
         //I added this so the robot continues to drive into the wall
-        _drive.pulse(160, 250000, 1000000);
+        _drive.pulse(160, 120000, 1000000);
     }
 
     /**

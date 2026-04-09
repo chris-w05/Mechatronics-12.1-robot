@@ -30,6 +30,7 @@
 #include "Autonomous/Steps/DriveLineUntilWall.hpp"
 #include "Autonomous/Steps/DriveArc.hpp"
 #include "Autonomous/Steps/DriveRadiusAngle.hpp"
+#include "Autonomous/Steps/DriveRadiusToLine.hpp"
 #include "Autonomous/Steps/DriveRadiusAtVelocity.hpp"
 #include "Autonomous/Steps/FireStep.hpp"
 #include "Autonomous/Steps/MineBlock.hpp"

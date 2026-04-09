@@ -106,6 +106,10 @@ private:
         _rightTargetPos = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
     }
 
+    bool constexpr lineSensorUpdated(){
+        return _mode == LINEFOLLOWING || _mode == LINEFOLLOWING_HARDSET || _mode == LINEFOLLOWING_DISTANCE;
+    }
+
 public:
     // =========================================================================
     // Construction / lifecycle
@@ -145,7 +149,7 @@ public:
         _lineSensorPID.set(DRIVE_LINEFOLLOW_GAINS);
         Serial.println("Drivetrain initialized");
         
-        //_ramsete.disable();
+        _ramsete.disable();
     }
 
     /** Called every loop iteration. Updates sensors and applies control. */
@@ -162,7 +166,7 @@ public:
         // Gate expensive peripheral reads to the modes that actually use them.
         // The QTR RC line sensor blocks for up to its timeout (default 1000 µs) per read;
         // the distance sensor adds ~100 µs for analogRead().
-        if (_mode == LINEFOLLOWING || _mode == LINEFOLLOWING_HARDSET || _mode == LINEFOLLOWING_DISTANCE)
+        if (lineSensorUpdated())
             _lineSensor.update();
         if (_mode == DISTANCE || _mode == LINEFOLLOWING_DISTANCE)
             _distSensor.update();
@@ -194,7 +198,7 @@ public:
             case ARC:
             case STOPPED: {
                 // Ramp the actual setpoint toward the target to limit acceleration
-                const float maxDelta = 3000.0f * dt;
+                const float maxDelta = 300000.0f * dt;
                 float deltaL = _targetSpeedL - _speedL;
                 float deltaR = _targetSpeedR - _speedR;
                 float maxChange = max(fabsf(deltaL), fabsf(deltaR));
@@ -555,6 +559,56 @@ public:
 
     /** Net accumulated heading from the encoder-integrated odometry (radians). */
     float getTrueAccumulatedHeading()      { return _odometry.getAccumulatedHeading(); }
+
+    /** Returns true if there is a line present under the line sensor*/
+    bool isLinePresent() {
+        const bool lineSensorAlreadyUpdated = lineSensorUpdated();
+
+        if (!lineSensorAlreadyUpdated)
+        {
+            _lineSensor.update();
+        }
+
+        const uint16_t *raw = _lineSensor.getRaw();
+        for (uint8_t i = 0; i < LineSensor::numberPins; ++i)
+        {
+            const int32_t span = static_cast<int32_t>(LINESENSORCALMAX[i])
+                               - static_cast<int32_t>(LINESENSORCALMIN[i]);
+            if (span <= 0)
+            {
+                continue;
+            }
+
+            const int32_t signalAboveMin = static_cast<int32_t>(raw[i])
+                                         - static_cast<int32_t>(LINESENSORCALMIN[i]);
+
+            if (signalAboveMin * 100 >= span * 25)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Reutrns the corrent offset on the line sensor
+     */
+    float getLineSensorPosition(){
+        if (!lineSensorUpdated())
+        {
+            _lineSensor.update();
+        }
+
+        return _lineSensor.getPosition();
+    }
+
+    /** Returns true if robot is over line and line is also centered
+     */
+    float isCenteredOverLine(){
+
+    }
+
 
     /** Average of both wheel velocities (in/s). */
     float getAvgVelocity()

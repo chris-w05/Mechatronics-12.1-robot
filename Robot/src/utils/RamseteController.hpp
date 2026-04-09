@@ -43,7 +43,7 @@ public:
      * @param zeta Damping ratio in (0, 1). Values closer to 1 are more
      *             overdamped and avoid oscillation.
      */
-    RamseteController(float b = 0.03f, float zeta = 0.4f)
+    RamseteController(float b = 0.04f, float zeta = 0.1f)
         : _b(b), _zeta(zeta) {}
 
     void enable()          { _enabled = true;  }

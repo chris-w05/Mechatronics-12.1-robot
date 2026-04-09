@@ -176,7 +176,7 @@ static const float DRIVE_LINEFOLLOW_VELOCITY_GAIN = 6.0f; ///< Scales line-posit
 
 /** @brief PID gains for the line-following velocity correction loop. */
 static const PIDConstants DRIVE_LINEFOLLOW_GAINS = {
-    .kp = 350,
+    .kp = 500,
     .ki = 0,
     .kd = 0
 };
@@ -191,9 +191,9 @@ static const PIDConstants DRIVE_DISTANCE_PID = {
 
 /** @brief Closed-loop velocity PID gains for the left drive wheel. */
 static const PIDConstants DRIVE_L_PID = {
-    .kp = 400.0,
-    .ki = 100,
-    .kd = 8
+    .kp = 490.0,
+    .ki = 92,
+    .kd = 36
 };
 
 static const PIDConstants DRIVE_R_PID = DRIVE_L_PID; ///< Closed-loop velocity PID gains for the right drive wheel (identical to left)
