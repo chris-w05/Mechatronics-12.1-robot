@@ -562,9 +562,7 @@ public:
 
     /** Returns true if there is a line present under the line sensor*/
     bool isLinePresent() {
-        const bool lineSensorAlreadyUpdated = lineSensorUpdated();
-
-        if (!lineSensorAlreadyUpdated)
+        if (!lineSensorUpdated())
         {
             _lineSensor.update();
         }
@@ -604,9 +602,34 @@ public:
     }
 
     /** Returns true if robot is over line and line is also centered
+     * 
+     * @param window +- the margin for the line to be considered centered
      */
-    float isCenteredOverLine(){
+    float isCenteredOverLine(float window = 0.3){
+        bool over_line = false;
 
+        if (!lineSensorUpdated())
+        {
+            _lineSensor.update();
+        }
+
+        const uint16_t *raw = _lineSensor.getRaw();
+        for (uint8_t i = 0; i < LineSensor::numberPins; ++i)
+        {
+            const int32_t span = static_cast<int32_t>(LINESENSORCALMAX[i]) - static_cast<int32_t>(LINESENSORCALMIN[i]);
+            if (span <= 0)
+            {
+                continue;
+            }
+
+            const int32_t signalAboveMin = static_cast<int32_t>(raw[i]) - static_cast<int32_t>(LINESENSORCALMIN[i]);
+
+            if (signalAboveMin * 100 >= span * 25)
+            {
+                over_line = true;
+            }
+        }
+        return over_line && (_lineSensor.getPosition() < window);
     }
 
 
