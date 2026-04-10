@@ -6,9 +6,6 @@ run1 = load("StepSize05.mat");
 K = 2.5;
 T = .168;
 
-% (5cm / 2.54 cm/in) * 1.5 (gearbox ratio)
-conversion = 0.0782480314961;
-
 
 % Convert robot gains into V/rev
 Kp = (490 * 0.0782480314961)

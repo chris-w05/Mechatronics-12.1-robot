@@ -39,7 +39,7 @@ from scipy.optimize import minimize
 # ── SIMULATION ─────────────────────────────────────────────────────────────
 
 def simulate_euler(gains, xref, alpha, beta, gamma, v_max, dt, t_end,
-                   a_pre=0.0, a_coulomb=0.0, deriv_on_error=False):
+                   a_pre=0.0, a_coulomb=0.0, deriv_on_error=False, v_feed=0.0):
     """
     Fixed-step Euler integrator for the PIDF-controlled second-order plant.
 
@@ -86,6 +86,11 @@ def simulate_euler(gains, xref, alpha, beta, gamma, v_max, dt, t_end,
             e_prev = e
         else:
             v = kp * e + ki * xi - kd * xdot + a * xref
+
+        direction = np.sign(xref - x)
+        if direction == 0.0:
+            direction = np.sign(xdot)
+        v += direction * v_feed
         v = np.clip(v, -v_max, v_max)
 
         x_out[i] = x
@@ -106,7 +111,7 @@ def simulate_euler(gains, xref, alpha, beta, gamma, v_max, dt, t_end,
 
 
 def simulate_euler_ramp(gains, ramp_rate, max_pos, alpha, beta, gamma, v_max, dt, t_end,
-                        a_pre=0.0, a_coulomb=0.0, deriv_on_error=True):
+                        a_pre=0.0, a_coulomb=0.0, deriv_on_error=True, v_feed=0.0):
     """
     Fixed-step Euler integrator with a ramp reference: xref(t) = min(ramp_rate·t, max_pos).
 
@@ -149,6 +154,13 @@ def simulate_euler_ramp(gains, ramp_rate, max_pos, alpha, beta, gamma, v_max, dt
             e_prev = e
         else:
             v = kp * e + ki * xi - kd * xdot + a * xref
+
+        direction = np.sign(ramp_rate)
+        if direction == 0.0:
+            direction = np.sign(xref - x)
+        if direction == 0.0:
+            direction = np.sign(xdot)
+        v += direction * v_feed
         v = np.clip(v, -v_max, v_max)
 
         x_out[i]    = x
@@ -270,7 +282,7 @@ def tf_to_ss(num, den):
 
 
 def simulate_ss(gains, xref, A, B, C, D_mat, v_max, dt, t_end,
-               a_pre=0.0, a_coulomb=0.0):
+               a_pre=0.0, a_coulomb=0.0, v_feed=0.0):
     """
     Fixed-step Euler integrator for a PIDF-controlled state-space plant.
 
@@ -338,6 +350,10 @@ def simulate_ss(gains, xref, A, B, C, D_mat, v_max, dt, t_end,
 
         e = xref - y
         ctrl = kp * e + ki * xi - kd * y_dot + a_ff * xref
+        direction = np.sign(xref - y)
+        if direction == 0.0:
+            direction = np.sign(y_dot)
+        ctrl += direction * v_feed
         ctrl = np.clip(ctrl, -v_max, v_max)
 
         x_out[i] = y

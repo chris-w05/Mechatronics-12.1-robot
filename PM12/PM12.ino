@@ -7,7 +7,7 @@
 #include <L298NMotorDriverMega.h>
 
 // ── Hardware ─────────────────────────────────────────────────────────────────
-Encoder leftEncoder(18, 19);   // Left  motor encoder
+Encoder leftEncoder(19, 18);   // Left  motor encoder
 Encoder rightEncoder(20, 21);  // Right motor encoder
 
 L298NMotorDriverMega motorDriver(
@@ -108,14 +108,16 @@ void loop() {
   // ── Desired trajectory ────────────────────────────────────────────────────
   // [0, rampDuration)            → ramp: theta_des = omega_ramp * t
   // [rampDuration, StepDuration) → hold: theta_des = StepSize
-  if (t < rampDuration) {
-    theta1_des = omega_ramp * t;
-    theta2_des = omega_ramp * t;
-  } else {
-    theta1_des = StepSize;
-    theta2_des = StepSize;
-  }
+  // if (t < rampDuration) {
+  //   theta1_des = omega_ramp * t;
+  //   theta2_des = omega_ramp * t;
+  // } else {
+  //   theta1_des = StepSize;
+  //   theta2_des = StepSize;
+  // }
 
+  theta1_des = StepSize;
+    theta2_des = StepSize;
   // ── PID errors ────────────────────────────────────────────────────────────
   double error1_prev = error1;
   double error2_prev = error2;
@@ -140,7 +142,7 @@ void loop() {
   // ── Send motor commands ───────────────────────────────────────────────────
   int cmd1 = (int)(CMD_MAX * V1 / V_MAX);
   int cmd2 = (int)(CMD_MAX * V2 / V_MAX);
-  motorDriver.setSpeeds(cmd1, cmd2);
+  motorDriver.setSpeeds(-cmd1, cmd2);
 
   // ── Serial data logging ───────────────────────────────────────────────────
   if (t < StepDuration) {
@@ -152,7 +154,7 @@ void loop() {
     Serial.print((theta1_des + theta2_des) / 2.0, 5);
     Serial.println();
   } else {
-    motorDriver.setSpeeds(0, 0);
+    // motorDriver.setSpeeds(0, 0);
   }
 
   // ── Prepare for next iteration ────────────────────────────────────────────
