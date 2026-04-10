@@ -142,8 +142,8 @@ inline float distanceSensor_VoltageToDistance(float voltage){
 /// @{
 static const unsigned long MINER_CYCLE_MS        = 280UL; ///< Full press-retract cycle period (ms)
 static const unsigned long MINER_PRESS_MS         = 100UL; ///< Duration the miner servo stays in the pressed position (ms)
-static const int           MINER_SERVO_PRESS_ANGLE   = 140; ///< Servo angle while pressing down on the block (°)
-static const int           MINER_SERVO_RETRACT_ANGLE = 160; ///< Servo angle after lifting off the block (°)
+static const int           MINER_SERVO_PRESS_ANGLE   = 145; ///< Servo angle while pressing down on the block (°)
+static const int           MINER_SERVO_RETRACT_ANGLE = 170; ///< Servo angle after lifting off the block (°)
 static const int           MINER_SERVO_STORE_ANGLE   = 180; ///< Servo angle in the stowed/transport position (°)
 /// @}
 
@@ -176,17 +176,17 @@ static const float DRIVE_LINEFOLLOW_VELOCITY_GAIN = 6.0f; ///< Scales line-posit
 
 /** @brief PID gains for the line-following velocity correction loop. */
 static const PIDConstants DRIVE_LINEFOLLOW_GAINS = {
-    .kp = 500,
+    .kp = 250,
     .ki = 0,
-    .kd = 0
+    .kd = 50
 };
 
 static const float DRIVE_LINEFOLLOW_GAIN = DRIVE_LINEFOLLOW_GAINS.kp; ///< Convenience alias for the line-follow proportional gain
 
 /** @brief PID gains for the IR-distance-sensor wall-following loop. */
 static const PIDConstants DRIVE_DISTANCE_PID = {
-    .kp = -200.0,
-    .ki = -70,
+    .kp = -100.0,
+    .ki = -35,
     .kd = -80};
 
 /** @brief Closed-loop velocity PID gains for the left drive wheel. */
@@ -228,7 +228,7 @@ inline float shooterFF(float measurement, float target)
 /** @brief Position (rack-displacement) PID gains for the shooter motor controller. */
 static const PIDConstants SHOOTER_POSITION_PID = {
     .kp = 6000.0,
-    .ki = 00.0,
+    .ki = 100.0,
     .kd = 1000.0
 };
 
