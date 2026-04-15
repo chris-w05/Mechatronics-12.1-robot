@@ -198,9 +198,9 @@ inline void Robot::handleGlobalCommand(const char *cmd, Stream *replyPort)
             mode = AUTONOMOUS;
             float speed = 22;
             autonomous.add(new DriveDistance(drive, 14, speed));
-            autonomous.add(new DriveRadiusAngle(drive, speed * 1, -20, 45));
+            autonomous.add(new DriveRadiusAngle(drive, speed * .5, -20, 45));
             autonomous.add(new DriveDistance(drive, 5, speed));
-            autonomous.add(new DriveRadiusAngle(drive, speed * 1, 20, -45));
+            autonomous.add(new DriveRadiusAngle(drive, speed * .5, 20, -45));
             autonomous.add(new DriveDistance(drive, 34, speed));
             autonomous.add(new DriveRadiusToLine(drive, speed * .2, -3));
             // autonomous.add(new DriveDistance(drive, 2, speed * .3));
