@@ -33,7 +33,7 @@ public:
         pinMode(_pinA, INPUT_PULLUP); // try enabling pullups
         pinMode(_pinB, INPUT_PULLUP);
         encoder.write(0); // baseline
-        lastMicros = millis();
+        lastMicros = micros();
         count = encoder.read();
         lastCount = count;
         velocity = 0;

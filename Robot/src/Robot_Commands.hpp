@@ -202,7 +202,7 @@ inline void Robot::handleGlobalCommand(const char *cmd, Stream *replyPort)
             autonomous.add(new DriveDistance(drive, 5, speed));
             autonomous.add(new DriveRadiusAngle(drive, speed * .5, 20, -45));
             autonomous.add(new DriveDistance(drive, 34, speed));
-            autonomous.add(new DriveRadiusToLine(drive, speed * .2, -3));
+            autonomous.add(new DriveRadiusToLine(drive, speed * .12, -3));
             // autonomous.add(new DriveDistance(drive, 2, speed * .3));
             autonomous.add(new DriveLineToWallStep(drive, 1));
             autonomous.add(new MineBlockAutofire(miner, shooter, 5 * 60 ));

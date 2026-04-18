@@ -140,18 +140,20 @@ inline float distanceSensor_VoltageToDistance(float voltage){
 
 /// @name Miner timing and angles
 /// @{
-static const unsigned long MINER_CYCLE_MS        = 280UL; ///< Full press-retract cycle period (ms)
-static const unsigned long MINER_PRESS_MS         = 100UL; ///< Duration the miner servo stays in the pressed position (ms)
-static const int           MINER_SERVO_PRESS_ANGLE   = 145; ///< Servo angle while pressing down on the block (°)
-static const int           MINER_SERVO_RETRACT_ANGLE = 170; ///< Servo angle after lifting off the block (°)
-static const int           MINER_SERVO_STORE_ANGLE   = 180; ///< Servo angle in the stowed/transport position (°)
+static const unsigned long MINER_CYCLE_MS               = 280UL;    ///< Full press-retract cycle period (ms)
+static const unsigned long MINER_PRESS_MS               = 100UL;    ///< Duration the miner servo stays in the pressed position (ms)
+static const int           MINER_SERVO_PRESS_ANGLE      = 145;      ///< Servo angle while pressing down on the block (°)
+static const int           MINER_SERVO_RETRACT_ANGLE    = 170;      ///< Servo angle after lifting off the block (°)
+static const int           MINER_SERVO_STORE_ANGLE      = 180;      ///< Servo angle in the stowed/transport position (°)
 /// @}
 
 /// @name Shooter tuning
 /// @{
-static const float SHOOTER_PULL_BACK_ROTATIONS = 0.75f; ///< Output-shaft rotations the rack retracts to when priming
-static const int   SHOOTER_SETTLE_TIME         = 200;   ///< Time (ms) to wait for a block to settle before firing
-static const int   SHOOTER_FIRE_TIME           = 800;   ///< Time (ms) after firing before priming again
+static const float SHOOTER_PRIME_POSITION       = 0.75f; ///< Output-shaft rotations the rack retracts to when priming
+static const float SHOOTER_FIRE_POSITION        = 0.95f; ///< Position to set motor to when firing shooter. This will put the shooter into the deadband region of the slip gear
+static const int   SHOOTER_SETTLE_TIME          = 200;   ///< Time (ms) to wait for a block to settle before firing
+static const int   SHOOTER_JAM_DETECT_TIME      = 4000;  ///< If a block hasn't been detected in this amount of time, a block is likely jammed
+static const int   SHOOTER_FIRE_TIME            = 800;   ///< Time (ms) after firing before priming again
 /// @}
 
 /// @name Ramp servo angles

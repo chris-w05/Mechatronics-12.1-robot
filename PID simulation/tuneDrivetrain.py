@@ -81,7 +81,6 @@ print(f"  Free-running no-load speed @ V_MAX: {alpha / beta * V_MAX:.3f} m/s  "
       f"({alpha / beta * V_MAX * 39.37:.1f} in/s)")
 
 
-
 # ── 2. OPTIMISATION SETUP ──────────────────────────────────────────────────
 
 # Ramp rates in METERS/SECOND — slow, medium, and fast traversal

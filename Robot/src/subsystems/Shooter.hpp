@@ -45,9 +45,9 @@ public:
 
     /** @brief Sub-states of the autofire state machine (used in AUTO mode). */
     enum AUTOFIRE_STATE{
-        WAITFORBLOCK, ///< Idle — waiting for the block-present switch to trigger
-        HASBLOCK,     ///< Block detected — waiting for the settle delay
-        FIRE          ///< Block settled — motor driving to fire position
+        WAITFORBLOCK,   ///< Idle — waiting for the block-present switch to trigger
+        HASBLOCK,       ///< Block detected — waiting for the settle delay
+        FIRE,           ///< Block settled — motor driving to fire position
     };
 
     /**
@@ -104,6 +104,7 @@ public:
      */
     void update() override
     {
+        now = millis();
         encoder.update();
         position = encoder.getCount()  * SHOOTER_TICKS_TO_ROTATIONS;
         velocity = encoder.getVelocity()  * SHOOTER_TICKS_TO_ROTATIONS; // encoder gives ticks/sec for velocity
@@ -197,7 +198,7 @@ public:
     /**
      * @brief Pull the rack back to the primed (loaded) position using POSITION control.
      *
-     * Commands the motor to `nextPrimePosition()`, which is `SHOOTER_PULL_BACK_ROTATIONS`
+     * Commands the motor to `nextPrimePosition()`, which is `SHOOTER_PRIME_POSITION`
      * above the current integer encoder position.
      */
     void prime(){
@@ -233,10 +234,11 @@ public:
             _mode = AUTO;
             motor.resetPID();
             motor.setPID(SHOOTER_POSITION_PID);
+            _fireTime = millis();
         }
 
         //Prime the shooter
-        targetPosition = floor(targetPosition) + SHOOTER_PULL_BACK_ROTATIONS; //.1 is a safety factor in the event the shooter is slightly below an integer position.
+        targetPosition = floor(targetPosition) + SHOOTER_PRIME_POSITION; //.1 is a safety factor in the event the shooter is slightly below an integer position.
         motor.setTarget(targetPosition);
     }
 
@@ -263,21 +265,32 @@ private:
     /** @brief Run one tick of the autofire state machine (called inside update()). */
     void handleAutoFire()
     {
-        unsigned long now = millis();
         switch( autoFire_state){
             case WAITFORBLOCK:
             {
                 // Detect rising edge of switch
                 block_switch.update();
-                bool reading = block_switch.getReading();
-                if (reading && reading != last_switch_value)
+                bool is_block_present = block_switch.getReading();
+
+                //Start fire procedure if there is a block
+                if (is_block_present)
                 {
                     _blockDetectedTime = now;
                     autoFire_state = HASBLOCK;
                 }
+
+                //Jump straight to shooting if there has been a suspiciously long time without a block
+                if (now - _fireTime > SHOOTER_JAM_DETECT_TIME)
+                {
+                    targetPosition = nextFirePosition();
+                    motor.setTarget(targetPosition);
+                    autoFire_state = FIRE;
+                    _fireTime = now;
+                }
                 break;
             }
             
+            //Do nothing until the block settles
             case HASBLOCK:
             {
                 if( now - _blockDetectedTime > SHOOTER_SETTLE_TIME){
@@ -289,7 +302,7 @@ private:
                 }
                 break;
             }
-            
+
             case FIRE:
             {
                 //Allow rack to settle before firing again
@@ -312,19 +325,20 @@ private:
      * @brief Compute the encoder target for the primed (pulled-back) position.
      * @return Target position in rotations.
      */
-    float nextPrimePosition( ){
-        // converting position to an integer using floor ensures the shooter will move in the positive direction
-        // This has the assumption that the motor is in the deadband when the command is sent
-        // Ensures shooter will not move in negative direction when rack is forward
-        return floor(targetPosition) + SHOOTER_PULL_BACK_ROTATIONS; //.1 is a safety factor in the event the shooter is slightly below an integer position.
+    const float nextPrimePosition( ){
+        // Moves shooter in positive direction to the nearest n + SHOOTER_PRIME_POSITION without passing SHOOTER_FIRE_POSITION
+        // 1e-6f prevents floating point error from causing errors on repeated prime calls. 
+        return floor(targetPosition + (1 - SHOOTER_PRIME_POSITION) - 1e-6f) + SHOOTER_PRIME_POSITION;
     }
+
 
     /**
      * @brief Compute the encoder target for the fire (extended) position.
      * @return Target position in rotations.
      */
-    float nextFirePosition(){
-        return ceil(targetPosition) + .12;
+    const float nextFirePosition(){
+        //Hardcoded 1e-6 prevents floating point errors when Fire() is repeatedly called
+        return floor(targetPosition + (1 - SHOOTER_FIRE_POSITION) + 1e-6f) + SHOOTER_FIRE_POSITION;
     }
 
     Mode _mode = OFF;                              ///< Current operating mode
@@ -334,7 +348,7 @@ private:
     DualMotorController motor;  ///< PID-controlled dual motor driver for the rack
     EncoderWrapper encoder;     ///< Quadrature encoder providing position and velocity
 
-    bool last_switch_value = 0;             ///< Previous block-switch reading (for edge detection)
+    unsigned long now = 0;                  ///< current time in milliseconds
     unsigned long _fireTime = 0;            ///< millis() when the fire command was issued
     unsigned long _blockDetectedTime = 0;   ///< millis() when the block-present switch triggered
     unsigned long _cycleStartTime = 0;      ///< millis() at the start of the current fire cycle
