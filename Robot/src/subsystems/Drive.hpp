@@ -539,6 +539,16 @@ public:
     /** Ideal pose derived from the feedforward (target) trajectory. */
     Odometry::Pose2D getPose()             { return _desiredOdometry.getPose(); }
 
+    /** Sets the pose of the measured odometry */
+    void setPose(Odometry::Pose2D pose){
+        _odometry.setPose(pose);
+    }
+
+    void setDesiredPositionsToCurrent(){
+        _leftTargetPos  = _leftEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
+        _rightTargetPos = _rightEncoder.getCount() * DRIVETRAIN_TICKS_TO_IN;
+    }
+
     /** Best-estimate robot pose integrated from encoder ticks. */
     Odometry::Pose2D getTruePose()         { return _odometry.getPose(); }
 
@@ -562,12 +572,19 @@ public:
 
     /** Returns true if there is a line present under the line sensor*/
     bool isLinePresent() {
+        constexpr int32_t kPerSensorThresholdPct = 25;
+        constexpr uint8_t kMinActiveSensors = 2;
+        constexpr int32_t kMinTotalSignalAboveMin = 200;
+
         if (!lineSensorUpdated())
         {
             _lineSensor.update();
         }
 
         const uint16_t *raw = _lineSensor.getRaw();
+        uint8_t activeSensors = 0;
+        int32_t totalSignalAboveMin = 0;
+
         for (uint8_t i = 0; i < LineSensor::numberPins; ++i)
         {
             const int32_t span = static_cast<int32_t>(LINESENSORCALMAX[i])
@@ -579,14 +596,21 @@ public:
 
             const int32_t signalAboveMin = static_cast<int32_t>(raw[i])
                                          - static_cast<int32_t>(LINESENSORCALMIN[i]);
-
-            if (signalAboveMin * 100 >= span * 25)
+            if (signalAboveMin <= 0)
             {
-                return true;
+                continue;
+            }
+
+            totalSignalAboveMin += signalAboveMin;
+
+            if (signalAboveMin * 100 >= span * kPerSensorThresholdPct)
+            {
+                ++activeSensors;
             }
         }
 
-        return false;
+        return activeSensors >= kMinActiveSensors
+            && totalSignalAboveMin >= kMinTotalSignalAboveMin;
     }
 
     /**
@@ -605,31 +629,9 @@ public:
      * 
      * @param window +- the margin for the line to be considered centered
      */
-    float isCenteredOverLine(float window = 0.3){
-        bool over_line = false;
-
-        if (!lineSensorUpdated())
-        {
-            _lineSensor.update();
-        }
-
-        const uint16_t *raw = _lineSensor.getRaw();
-        for (uint8_t i = 0; i < LineSensor::numberPins; ++i)
-        {
-            const int32_t span = static_cast<int32_t>(LINESENSORCALMAX[i]) - static_cast<int32_t>(LINESENSORCALMIN[i]);
-            if (span <= 0)
-            {
-                continue;
-            }
-
-            const int32_t signalAboveMin = static_cast<int32_t>(raw[i]) - static_cast<int32_t>(LINESENSORCALMIN[i]);
-
-            if (signalAboveMin * 100 >= span * 25)
-            {
-                over_line = true;
-            }
-        }
-        return over_line && (_lineSensor.getPosition() < window);
+    bool isCenteredOverLine(float window = 0.3){
+        const bool over_line = isLinePresent();
+        return over_line && (fabsf(_lineSensor.getPosition()) < window);
     }
 
 

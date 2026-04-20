@@ -27,7 +27,7 @@
 
 // ── Configuration ──────────────────────────────────────────────────────────
 static const uint8_t  NUM_SENSORS           = 8;
-static const uint8_t  SENSOR_PINS[NUM_SENSORS] = {28, 30, 32, 34, 36, 38, 40, 42};
+static const uint8_t  SENSOR_PINS[NUM_SENSORS] = {46, 44, 43, 45, 47, 49, 51, 53};
 static const uint16_t RC_TIMEOUT_US         = 1000;   // µs — matches LineSensor::init default
 static const float    SENSOR_SPACING_CM     = 0.8f;   // cm between adjacent sensors
 

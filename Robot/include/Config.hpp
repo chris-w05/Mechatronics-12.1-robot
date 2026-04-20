@@ -84,8 +84,8 @@ static const uint16_t SHOOTER_LIMIT_PIN     = 27; ///< Block-detection limit swi
 /// @{
 // ============================================================================
 
-static const int MAX_STEPS      = 10; ///< Maximum steps in one AutonomousRoutine (caps stack usage)
-static const int MAX_SUBSYSTEMS = 10; ///< Maximum subsystems registered with Robot
+static const int MAX_STEPS      = 15; ///< Maximum steps in one AutonomousRoutine (caps stack usage)
+static const int MAX_SUBSYSTEMS = 5; ///< Maximum subsystems registered with Robot
 
 /// @}
 
@@ -142,8 +142,8 @@ inline float distanceSensor_VoltageToDistance(float voltage){
 /// @{
 static const unsigned long MINER_CYCLE_MS               = 280UL;    ///< Full press-retract cycle period (ms)
 static const unsigned long MINER_PRESS_MS               = 100UL;    ///< Duration the miner servo stays in the pressed position (ms)
-static const int           MINER_SERVO_PRESS_ANGLE      = 145;      ///< Servo angle while pressing down on the block (°)
-static const int           MINER_SERVO_RETRACT_ANGLE    = 170;      ///< Servo angle after lifting off the block (°)
+static const int           MINER_SERVO_PRESS_ANGLE      = 130;      ///< Servo angle while pressing down on the block (°)
+static const int           MINER_SERVO_RETRACT_ANGLE    = 165;      ///< Servo angle after lifting off the block (°)
 static const int           MINER_SERVO_STORE_ANGLE      = 180;      ///< Servo angle in the stowed/transport position (°)
 /// @}
 
@@ -152,7 +152,7 @@ static const int           MINER_SERVO_STORE_ANGLE      = 180;      ///< Servo a
 static const float SHOOTER_PRIME_POSITION       = 0.75f; ///< Output-shaft rotations the rack retracts to when priming
 static const float SHOOTER_FIRE_POSITION        = 0.95f; ///< Position to set motor to when firing shooter. This will put the shooter into the deadband region of the slip gear
 static const int   SHOOTER_SETTLE_TIME          = 200;   ///< Time (ms) to wait for a block to settle before firing
-static const int   SHOOTER_JAM_DETECT_TIME      = 4000;  ///< If a block hasn't been detected in this amount of time, a block is likely jammed
+static const int   SHOOTER_JAM_DETECT_TIME      = 6000;  ///< If a block hasn't been detected in this amount of time, a block is likely jammed
 static const int   SHOOTER_FIRE_TIME            = 800;   ///< Time (ms) after firing before priming again
 /// @}
 

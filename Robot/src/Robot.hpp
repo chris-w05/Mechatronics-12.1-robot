@@ -187,6 +187,12 @@ private:
     void handleSerialTestCommand(const char *cmd, float param, bool paramValid, Stream *replyPort);
     /** @brief Handle SERIAL_TEST commands with two numeric parameters. */
     void handleSerialTestCommand(const char *cmd, float p1, float p2, Stream *replyPort);
+    /** @brief Clear, rebuild, and start the default autonomous routine. */
+    void startDefaultAutonomous();
+    /** @brief Clear, rebuild, and start the stealing autonomous routine. */
+    void startStealAutonomous();
+    /** @brief Clear, rebuild, and start the stealing autonomous routine. */
+    void startStealShortAutonomous();
 };
 
 // Implementations of serial command methods — kept in a separate file

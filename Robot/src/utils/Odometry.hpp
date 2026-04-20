@@ -70,6 +70,13 @@ public:
     Pose2D getPose() const { return _pose; }
 
     /**
+     * @brief Set the current odometry pose
+     */
+    void setPose(Pose2D pose) {
+        _pose = pose; 
+    }
+
+    /**
      * @brief Return the total arc-length travelled since `init()` (path-dependent).
      * @return Cumulative distance (inches).
      */

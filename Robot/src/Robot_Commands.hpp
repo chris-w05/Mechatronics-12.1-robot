@@ -14,7 +14,7 @@
  * | Command            | Mode        | Action |
  * |--------------------|-------------|--------|
  * | `A`                | Any         | Start autonomous routine |
- * | `a`                | Any         | Reset & restart autonomous |
+ * | 'Z'                | Any         | Start Stealing autonomous |
  * | `S`                | Any         | Enter SERIAL_TEST mode |
  * | `stop`             | Any         | Stop all subsystems |
  * | `Help`             | Any         | Print this command reference |
@@ -76,7 +76,7 @@ inline void Robot::printSerialHelp(Stream *port)
     reply(port, "  Help                 : print this help");
     reply(port, "  S                    : enter SERIAL_TEST mode");
     reply(port, "  A                    : start autonomous routine");
-    reply(port, "  a                    : reset & restart autonomous");
+    reply(port, "  Z                    : start evil autonomous");
     reply(port, "  stop                 : stop all subsystems");
     reply(port, "------- SERIAL_TEST mode -------------");
     reply(port, "     E                 : exit to AWAIT mode");
@@ -187,6 +187,75 @@ inline void Robot::processCommandString(const char *raw, Stream *replyPort)
     }
 }
 
+inline void Robot::startDefaultAutonomous()
+{
+    const float speed = 22;
+
+    // Rebuild from scratch so each start uses fresh step state.
+    autonomous.clear();
+    drive.setDesiredPositionsToCurrent();
+    autonomous.add(new DriveDistance(drive, 14, speed));
+    autonomous.add(new DriveRadiusAngle(drive, speed * .5, -20, 45));
+    autonomous.add(new DriveDistance(drive, 5, speed));
+    autonomous.add(new DriveRadiusAngle(drive, speed * .5, 20, -41));
+    autonomous.add(new DriveDistance(drive, 34, speed));
+    autonomous.add(new DriveRadiusToLine(drive, speed * .12, -3));
+    // autonomous.add(new DriveDistance(drive, 2, speed * .3));
+    autonomous.add(new DriveLineToWallStep(drive, 1));
+    autonomous.add(new MineBlockAutofire(miner, shooter, 5 * 60));
+
+    mode = AUTONOMOUS;
+    autonomous.start();
+}
+
+inline void Robot::startStealAutonomous()
+{
+    const float speed = 22;
+
+    // Rebuild from scratch so each start uses fresh step state.
+    autonomous.clear();
+    drive.setDesiredPositionsToCurrent();
+    autonomous.add(new DriveDistance(           drive, 14,  speed));
+    autonomous.add(new DriveRadiusAngle(drive, speed * .5, -20, 45));
+    autonomous.add(new DriveDistance(drive, 5, speed));
+    autonomous.add(new DriveRadiusAngle(drive, speed * .5, 20, -45));
+    autonomous.add(new DriveDistance(drive, 10, speed));
+    autonomous.add(new DriveRadiusToLine(       drive,      speed * .12, -3));
+    autonomous.add(new DriveLineToWallStep(     drive, 1));
+    autonomous.add(new MineBlock(               drive, miner, 70));
+    autonomous.add(new DriveRadiusAngle(        drive,      -speed * .5, 16, 90));
+    autonomous.add(new DriveDistance(drive, -12, -speed*.5));
+    autonomous.add(new DriveRadiusToLine(       drive,      speed * .12, 3));
+    autonomous.add(new DriveLineToWallStep(     drive, 1));
+    autonomous.add(new MineBlockAutofire(       miner, shooter, 5 * 60));
+
+    mode = AUTONOMOUS;
+    autonomous.start();
+}
+
+inline void Robot::startStealShortAutonomous()
+{
+    const float speed = 22;
+
+    // Rebuild from scratch so each start uses fresh step state.
+    autonomous.clear();
+    drive.setDesiredPositionsToCurrent();
+    autonomous.add(new DriveDistance(drive, 18, 2));
+    // autonomous.add(new DriveRadiusToLine(drive, 6, -9));
+    autonomous.add(new DriveRadiusAngle(drive, speed * .85, -18, 90));
+    autonomous.add(new DriveLineToWallStep(drive, 1));
+    autonomous.add(new MineBlock(drive, miner, 75));
+    autonomous.add(new DriveDistance(drive, -10, -10));
+    autonomous.add(new DriveRadiusAngle(drive, -speed * .3, 0, 90));
+    autonomous.add(new DriveDistance(drive, 43, speed ));
+    autonomous.add(new DriveRadiusToLine(drive, speed * .12, -3));
+    autonomous.add(new DriveLineToWallStep(drive, 1));
+    autonomous.add(new MineBlockAutofire(miner, shooter, 5 * 60));
+
+    mode = AUTONOMOUS;
+    autonomous.start();
+}
+
 // --- Global commands (active in all modes) -----------------------------------
 
 inline void Robot::handleGlobalCommand(const char *cmd, Stream *replyPort)
@@ -195,21 +264,28 @@ inline void Robot::handleGlobalCommand(const char *cmd, Stream *replyPort)
     {
         if (mode != AUTONOMOUS)
         {
-            mode = AUTONOMOUS;
-            float speed = 22;
-            autonomous.add(new DriveDistance(drive, 14, speed));
-            autonomous.add(new DriveRadiusAngle(drive, speed * .5, -20, 45));
-            autonomous.add(new DriveDistance(drive, 5, speed));
-            autonomous.add(new DriveRadiusAngle(drive, speed * .5, 20, -45));
-            autonomous.add(new DriveDistance(drive, 34, speed));
-            autonomous.add(new DriveRadiusToLine(drive, speed * .12, -3));
-            // autonomous.add(new DriveDistance(drive, 2, speed * .3));
-            autonomous.add(new DriveLineToWallStep(drive, 1));
-            autonomous.add(new MineBlockAutofire(miner, shooter, 5 * 60 ));
-
-            autonomous.start();
+            startDefaultAutonomous();
             reply(replyPort, "Autonomous started.");
         }
+        return;
+    }
+    else if (strcmp(cmd, "Z") == 0)
+    {
+        if (mode != AUTONOMOUS)
+        {
+            startStealAutonomous();
+            reply(replyPort, "Evil Autonomous started.");
+        }
+        return;
+    }
+    else if (strcmp(cmd, "Q") == 0)
+    {
+        if (mode != AUTONOMOUS)
+        {
+            startStealShortAutonomous();
+            reply(replyPort, "Evil Autonomous (short) started.");
+        }
+        return;
     }
     else if (strcmp(cmd, "S") == 0) {
         if (mode != SERIAL_TEST) {
@@ -217,6 +293,7 @@ inline void Robot::handleGlobalCommand(const char *cmd, Stream *replyPort)
             mode = SERIAL_TEST;
             reply(replyPort, "Entered SERIAL_TEST mode. Send 'H' for help.");
         }
+        return;
     }
     
     else if (strcmp(cmd, "stop") == 0) {
@@ -224,16 +301,12 @@ inline void Robot::handleGlobalCommand(const char *cmd, Stream *replyPort)
             subsystems[i]->stop();
         autonomous.stop();
         reply(replyPort, "Stopped all subsystems.");
-    }
-    else if (strcmp(cmd, "a") == 0) {
-        mode = AUTONOMOUS;
-        autonomous.reset();
-        autonomous.start();
-        reply(replyPort, "Autonomous reset and started.");
+        return;
     }
     else if (strcmp(cmd, "Help") == 0)
     {
         printSerialHelp(replyPort);
+        return;
     }
     else {
         if (mode != SERIAL_TEST) {
@@ -253,26 +326,34 @@ inline void Robot::handleSerialTestCommand(const char *cmd, Stream *replyPort)
         autonomous.stop();
         miner.startMiningIndefinitely();
         reply(replyPort, "Mine: miner started (indefinite).");
+        return;
     }
     else if (strcmp(cmd, "m") == 0) {
         autonomous.stop();
         miner.store();
         reply(replyPort, "Mine: miner stopped (store mode).");
+        return;
     }
-    else if (strcmp(cmd, "ramsete") == 0) { drive.toggleRamseteCorrection(); }
+    else if (strcmp(cmd, "ramsete") == 0) { 
+        drive.toggleRamseteCorrection();
+        return;
+    }
     else if (strcmp(cmd, "Linefollow") == 0) {
         autonomous.clear();
         drive.followLineHardset(200);
+        return;
     }
     else if (strcmp(cmd, "Fire") == 0) { shooter.autoFire(); }
     else if (strcmp(cmd, "l") == 0 || strcmp(cmd, "r") == 0 || strcmp(cmd, "d") == 0) {
         autonomous.stop();
         drive.hardSetSpeed(0);
+        return;
     }
     else if (strcmp(cmd, "E") == 0) {
         autonomous.stop();
         mode = AWAIT;
         Serial.println("Exited SERIAL_TEST. Back to AWAIT.");
+        return;
     }
     else if (strcmp(cmd, "f") == 0) { shooter.stopFiring(); shooter.prime(); }
     else if (strcmp(cmd, "p") == 0) { shooter.stopFiring(); shooter.holdPosition(1.1); }
@@ -280,6 +361,7 @@ inline void Robot::handleSerialTestCommand(const char *cmd, Stream *replyPort)
     else if (strcmp(cmd, "ReadDistance") == 0) {
         Serial.print("Distance sensor: ");
         Serial.println(drive.getDistanceSensorReading());
+        return;
     }
 }
 
@@ -288,7 +370,10 @@ inline void Robot::handleSerialTestCommand(const char *cmd, Stream *replyPort)
 inline void Robot::handleSerialTestCommand(const char *cmd, float param, bool paramValid,
                                             Stream *replyPort)
 {
-    if      (strcmp(cmd, "Drive") == 0) { drive.setSpeed(paramValid ? param : 10.0f); }
+    if      (strcmp(cmd, "Drive") == 0) { 
+        drive.setSpeed(paramValid ? param : 10.0f);
+        return;
+    }
     else if (strcmp(cmd, "Linefollow") == 0) {
         if (paramValid) drive.followLineHardset(paramValid ? (int)param : 100);
     }

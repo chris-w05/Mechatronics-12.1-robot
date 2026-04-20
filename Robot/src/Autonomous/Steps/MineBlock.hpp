@@ -19,12 +19,12 @@ class MineBlock : public AutoStep
 public:
     /**
      * @brief Construct the step.
+     * @param drive  Drive subsystem reference
      * @param miner  Miner subsystem reference.
      * @param hits   Number of press cycles to complete.
      */
-    MineBlock(Miner& miner, int hits ):
-    miner(miner), _numberHits(hits) {
-        
+    MineBlock(Drive &drive, Miner &miner, int hits) : drive(drive), miner(miner), _numberHits(hits) 
+    {
     }
 
     void start() override
@@ -44,6 +44,9 @@ public:
 
     void end() override
     {
+        //Set the measured pose to the desired pose. 
+        drive.setDesiredPositionsToCurrent();
+        miner.store();
     }
 
     /**
@@ -55,6 +58,7 @@ public:
     }
 
 private:
+    Drive &drive;
     Miner &miner;              ///< Miner subsystem reference
     short _numberHits = 5;     ///< Target number of press cycles
     bool hitsMet = false;      ///< (unused — completion tracked by Miner)

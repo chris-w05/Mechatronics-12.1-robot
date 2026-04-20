@@ -47,14 +47,14 @@ void loop()
   // Serial.print(now - lastTime);
   // Serial.println("\r");
   // lastTime = now;
-  loopCount ++;
+  // loopCount ++;
 
-  if (loopCount % 1000 == 0){
-    Serial.print("Average loop time (ms): ");
-    Serial.print( (millis() - lastTime) / (float)loopCount);
-    Serial.println();
-    lastTime = millis();
-    loopCount = 0;
-  }
+  // if (loopCount % 1000 == 0){
+  //   Serial.print("Average loop time (ms): ");
+  //   Serial.print( (millis() - lastTime) / (float)loopCount);
+  //   Serial.println();
+  //   lastTime = millis();
+  //   loopCount = 0;
+  // }
   robot.update();
 }
